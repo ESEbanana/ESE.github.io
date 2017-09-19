@@ -6,14 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | Hexo</title>
+  <title>基于JAVA图形化界面的云端 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+  <meta name="description" content="记录每天的进步，只有努力不会背叛自己！ JAVA云端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于JAVA图形化界面的云端">
+<meta property="og:url" content="http://yoursite.com/2017/09/19/java_swing/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！ JAVA云端">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjozm52oh6j30fs08x75l.jpg">
+<meta property="og:updated_time" content="2017-09-19T09:21:56.919Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="基于JAVA图形化界面的云端">
+<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！ JAVA云端">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjozm52oh6j30fs08x75l.jpg">
   
   
     <link rel="icon" href="/favicon.png">
@@ -155,103 +161,167 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-java_swing" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      基于JAVA图形化界面的云端
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/19/java_swing/" class="archive-article-date">
+
+        
+        <a href="/2017/09/19/java_swing/" class="archive-article-date">
   	<time datetime="2017-09-19T09:07:14.292Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-19</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/19/java_swing/">基于JAVA图形化界面的云端</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>记录每天的进步，只有努力不会背叛自己！</p>
+<h1 id="JAVA云端"><a href="#JAVA云端" class="headerlink" title="JAVA云端"></a>JAVA云端</h1><a id="more"></a>
+<h2 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h2><p> swing图形化界面继承来自AWT图形化界面1、Swing 是一个为Java设计的GUI工具包。Swing是JAVA基础类的一部分。Swing包括了图形用户界面（GUI）器件如：文本框，按钮，分隔窗格和表。Swing提供许多比AWT更好的屏幕显示元素。它们用纯Java写成，所以同Java本身一样可以跨平台运行，这一点不像AWT。它们是JFC的一部分。它们支持可更换的面板和主题（各种操作系统默认的特有主题），然而不是真的使用原生平台提供的设备，而是仅仅在表面上模仿它们。这意味着你可以在任意平台上使用JAVA支持的任意面板。轻量级组件的缺点则是执行速度较慢，优点就是可以在所有平台上采用统一的行为 。</p>
+<h2 id="2、了解Java-swing-结构"><a href="#2、了解Java-swing-结构" class="headerlink" title="2、了解Java swing 结构"></a>2、了解Java swing 结构</h2><p><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjozm52oh6j30fs08x75l.jpg" alt=""></p>
+<p>Swing组件可以分成两种类型，一种是JComponent类，另一种是Window类。两者的区别是JComponent组件类主要包括一些不能独立显示的组件（即必须依赖于中间容器才能显示），而Window组件类主要包括了一些可以独立显示的组件。</p>
+<p>JFrame – java的GUI程序的基本思路是以JFrame为基础，它是屏幕上window的对象，能够最大化、最小化、关闭。<br>JPanel – Java图形用户界面(GUI)工具包swing中的面板容器类，包含在javax.swing 包中，可以进行嵌套，功能是对窗体中具有相同逻辑功能的组件进行组合，是一种轻量级容器，可以加入到JFrame窗体中。。<br>JLabel – JLabel 对象可以显示文本、图像或同时显示二者。可以通过设置垂直和水平对齐方式，指定标签显示区中标签内容在何处对齐。默认情况下，标签在其显示区内垂直居中对齐。默认情况下，只显示文本的标签是开始边对齐；而只显示图像的标签则水平居中对齐。<br>JTextField –一个轻量级组件，它允许编辑单行文本。<br>JPasswordField – 允许我们输入了一行字像输入框，但隐藏星号(*) 或点创建密码(密码)</p>
+<p>最后，直接上代码模型，这是我项目的部分，贴出来大家可以参考<br>百度链接: <a href="http://pan.baidu.com/s/1qY4tVuk" target="_blank" rel="external">http://pan.baidu.com/s/1qY4tVuk</a><br>密码： 6qp5</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>小懵懂感谢各位小哥哥小姐姐啦<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/1.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/19/java_swing/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/18/pwn0/" class="archive-article-date">
-  	<time datetime="2017-09-18T12:39:19.586Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-18</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/09/18/pwn0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">PWN</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/18/pwn0/">PWN</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/14/window-hexo/" class="archive-article-date">
-  	<time datetime="2017-09-14T12:49:19.648Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/14/window-hexo/">基于绕过密码检测</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -274,8 +344,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
