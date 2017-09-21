@@ -8,16 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>RE | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每天的进步，只有努力不会背叛自己！ RE开始开始到开始">
+  <meta name="description" content="IDA动态调试linux下的ELF">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RE">
-<meta property="og:url" content="http://yoursite.com/2017/09/20/ctf_start/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/09/21/elf_debugging/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！ RE开始开始到开始">
-<meta property="og:updated_time" content="2017-09-21T07:23:12.894Z">
+<meta property="og:description" content="IDA动态调试linux下的ELF">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjr8txdky9j30fh08t74d.jpg">
+<meta property="og:updated_time" content="2017-09-21T11:45:51.753Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RE">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！ RE开始开始到开始">
+<meta name="twitter:description" content="IDA动态调试linux下的ELF">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjr8txdky9j30fh08t74d.jpg">
   
   
     <link rel="icon" href="/favicon.png">
@@ -159,7 +161,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ctf_start" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-elf_debugging" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -171,21 +173,19 @@
   
 
         
-        <a href="/2017/09/20/ctf_start/" class="archive-article-date">
-  	<time datetime="2017-09-20T01:07:27.280Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-20</time>
+        <a href="/2017/09/21/elf_debugging/" class="archive-article-date">
+  	<time datetime="2017-09-21T07:20:46.735Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>记录每天的进步，只有努力不会背叛自己！</p>
-<h1 id="RE开始开始到开始"><a href="#RE开始开始到开始" class="headerlink" title="RE开始开始到开始"></a>RE开始开始到开始</h1><a id="more"></a>
-<h2 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h2><p>RE是逆向工程的简称（自己认为而已），逆向工程（又称逆向技术），是一种产品设计技术再现过程，即对一项目标产品进行逆向分析及研究，从而演绎并得出该产品的处理流程、组织结构、功能特性及技术规格等设计要素，以制作出功能相近，但又不完全一样的产品。逆向工程源于商业及军事领域中的硬件分析。其主要目的是在不能轻易获得必要的生产信息的情况下，直接从成品分析，推导出产品的设计原理。</p>
-<h2 id="2、工具"><a href="#2、工具" class="headerlink" title="2、工具"></a>2、工具</h2><p>1、IDA<br>2、Ollydbg<br>3、PEID</p>
-<p>只想说，撸代码要学会备份，备份，备份，重要的事情说三遍<br>PS: 可以从我博客的友情链接中发现协会其他人的博客</p>
-<p>前言: <a href="http://zhuanlan.zhihu.com/Evi1m0/19695848" target="_blank" rel="external">http://zhuanlan.zhihu.com/Evi1m0/19695848</a><br>因为所以 <a href="http://zhuanlan.zhihu.com/Evi1m0/19700177" target="_blank" rel="external">http://zhuanlan.zhihu.com/Evi1m0/19700177</a><br>黑客眼中的黑客 <a href="http://zhuanlan.zhihu.com/Evi1m0/19702939" target="_blank" rel="external">http://zhuanlan.zhihu.com/Evi1m0/19702939</a><br>学会使用搜索引擎 <a href="http://zhuanlan.zhihu.com/Evi1m0/19714051" target="_blank" rel="external">http://zhuanlan.zhihu.com/Evi1m0/19714051</a><br>首先，你需要先学会编程 <a href="http://zhuanlan.zhihu.com/Evi1m0/19733294" target="_blank" rel="external">http://zhuanlan.zhihu.com/Evi1m0/19733294</a><br>你们眼中的黑客 —— 脚本小子 <a href="http://zhuanlan.zhihu.com/Evi1m0/19773598" target="_blank" rel="external">http://zhuanlan.zhihu.com/Evi1m0/19773598</a></p>
-
+        <h1 id="IDA动态调试linux下的ELF"><a href="#IDA动态调试linux下的ELF" class="headerlink" title="IDA动态调试linux下的ELF"></a>IDA动态调试linux下的ELF</h1><a id="more"></a>
+<h2 id="1、准备"><a href="#1、准备" class="headerlink" title="1、准备"></a>1、准备</h2><p>在 IDA 的安装目录/dbgsrc/找到 linux_server 和 linux_serverx64 拷贝到 linux 虚拟机中</p>
+<h2 id="2、查看文件类型"><a href="#2、查看文件类型" class="headerlink" title="2、查看文件类型"></a>2、查看文件类型</h2><p><code>file elf</code><br>如果是32位的运行<br><code>./linux_server</code><br>64位的运行<br><code>./linux_serverx64</code></p>
+<h2 id="3、Windows设置"><a href="#3、Windows设置" class="headerlink" title="3、Windows设置"></a>3、Windows设置</h2><p>1、Debugger –&gt;Remote Linux debugger<br>2、Debugger –&gt;Process options –&gt; hostname<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjr8txdky9j30fh08t74d.jpg" alt=""></p>
+<h2 id="4、运行"><a href="#4、运行" class="headerlink" title="4、运行"></a>4、运行</h2>
       
 
       
@@ -269,7 +269,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/20/ctf_start/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/21/elf_debugging/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -283,18 +283,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/20/msf_17_010/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          MSF
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/09/19/pwn2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">PWN2</div>
+    <a href="/2017/09/20/SFX/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">RE</div>
       <i class="icon-circle-right"></i>
     </a>
   
