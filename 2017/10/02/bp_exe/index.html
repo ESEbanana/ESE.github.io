@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | ESE</title>
+  <title>RE | ESE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ESE">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+  <meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点RE Windows爆破exe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RE">
+<meta property="og:url" content="http://yoursite.com/2017/10/02/bp_exe/index.html">
 <meta property="og:site_name" content="ESE">
+<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点RE Windows爆破exe">
+<meta property="og:updated_time" content="2017-10-02T13:24:15.713Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ESE">
+<meta name="twitter:title" content="RE">
+<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点RE Windows爆破exe">
   
   
     <link rel="icon" href="/favicon.png">
@@ -155,79 +159,193 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-bp_exe" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/18/pwn0/" class="archive-article-date">
-  	<time datetime="2017-09-18T12:39:19.586Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-18</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/18/pwn0/">PWN0</a>
+    <h1 class="article-title" itemprop="name">
+      RE
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/14/pwn00/" class="archive-article-date">
-  	<time datetime="2017-09-14T12:49:19.648Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-14</time>
+        
+        <a href="/2017/10/02/bp_exe/" class="archive-article-date">
+  	<time datetime="2017-10-02T13:20:23.301Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-02</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/14/pwn00/">基于绕过密码检测</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>记录每天的进步，只有努力不会背叛自己！每天学习一点RE</p>
+<h1 id="Windows爆破exe"><a href="#Windows爆破exe" class="headerlink" title="Windows爆破exe"></a>Windows爆破exe</h1><a id="more"></a>
+<h2 id="1、windows爆破exe"><a href="#1、windows爆破exe" class="headerlink" title="1、windows爆破exe"></a>1、windows爆破exe</h2><p>直接看代码，以后可能用到，就记录下来<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf8 -*-</span></div><div class="line">import subprocess</div><div class="line">import threading</div><div class="line"></div><div class="line">serial=<span class="string">'78767-77666-76786-87788-77778-66867-66777-86767-66877-77778-88887'</span></div><div class="line"><span class="string">''</span><span class="string">'</span></div><div class="line"><span class="string">##得到flag的字典</span></div><div class="line"><span class="string">dic = '</span>_qwertyuiopasdfghjklzxcvbnm<span class="string">'</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">name = []</span></div><div class="line"><span class="string">with open('</span>dic.txt<span class="string">','</span>w<span class="string">') as f:</span></div><div class="line"><span class="string">    for i in dic:</span></div><div class="line"><span class="string">        for j in dic:</span></div><div class="line"><span class="string">            for k in dic:</span></div><div class="line"><span class="string">                for l in dic:</span></div><div class="line"><span class="string">                    f.writelines('</span>&#123;hdu<span class="string">'+i+'</span>b<span class="string">'+j+k+l+'</span>0_&#125;\n<span class="string">')</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">'</span><span class="string">''</span></div><div class="line">def crack(<span class="built_in">source</span>):</div><div class="line">    p = subprocess.Popen(pname, stdin=subprocess.PIPE, stdout=subprocess.PIPE)</div><div class="line">    result = p.communicate(input=<span class="built_in">source</span>)</div><div class="line">    res=result[0]</div><div class="line">    <span class="keyword">if</span> (<span class="string">'Sorry'</span> <span class="keyword">in</span> res):</div><div class="line">        <span class="built_in">return</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="built_in">print</span> <span class="built_in">source</span></div><div class="line">        <span class="built_in">exit</span>()</div><div class="line"></div><div class="line">dic = []</div><div class="line"></div><div class="line">with open(<span class="string">'dic.txt'</span>, <span class="string">'r'</span>) as f:</div><div class="line">    <span class="keyword">for</span> eachline <span class="keyword">in</span> f.readlines():</div><div class="line">        dic.append(eachline)</div><div class="line"></div><div class="line"><span class="comment">##pname = 'myproject1.exe'</span></div><div class="line">pname = <span class="string">'crackme.exe'</span></div><div class="line"><span class="comment">##a = '123'+' '+'123'</span></div><div class="line">threads = []</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> dic:</div><div class="line">    <span class="built_in">source</span> = i + <span class="string">' '</span> + serial</div><div class="line">    t = threading.Thread(target = crack, args=(<span class="built_in">source</span>,))</div><div class="line">    threads.append(t)</div><div class="line"></div><div class="line">num = 0</div><div class="line"><span class="keyword">for</span> t <span class="keyword">in</span> threads:</div><div class="line">    t.start()</div><div class="line">    <span class="keyword">while</span> True:</div><div class="line">        <span class="comment">#判断正在运行的线程数量,如果小于5则退出while循环,</span></div><div class="line">        <span class="comment">#进入for循环启动新的进程.否则就一直在while循环进入死循环</span></div><div class="line">        <span class="keyword">if</span>(len(threading.enumerate()) &lt; 20):</div><div class="line">            <span class="built_in">break</span></div></pre></td></tr></table></figure></p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>啦啦啦啦<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/1.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/02/bp_exe/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/10/02/pwn1_me/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">PWN1——me</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="bp_exe" data-title="RE" data-url="http://yoursite.com/2017/10/02/bp_exe/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+  <div id="SOHUCS" sid="bp_exe" ></div> 
+<script type="text/javascript"> 
+window.YiliaChangyanWrap = function() {
+    var appid = "true"; 
+    var conf = "true"; 
+    var width = window.innerWidth || document.documentElement.clientWidth; 
+    if (width < 960) { 
+    window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); }
+}
+</script>
+  
+
+  
+
   
 
 
@@ -251,8 +369,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
