@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>PWN1 | ESE</title>
+  <title>PWN0——me | ESE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–整数溢出">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PWN1">
+<meta property="og:title" content="PWN0——me">
 <meta property="og:url" content="http://yoursite.com/2017/09/19/pwn0_me/index.html">
 <meta property="og:site_name" content="ESE">
 <meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–整数溢出">
@@ -20,9 +20,9 @@
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnyn32vutj30dc03nt8v.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnyz0rjcdj30q605j0tb.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnzf4p7wfj30kt07gmy3.jpg">
-<meta property="og:updated_time" content="2017-10-01T02:59:46.389Z">
+<meta property="og:updated_time" content="2017-10-02T01:39:30.502Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PWN1">
+<meta name="twitter:title" content="PWN0——me">
 <meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–整数溢出">
 <meta name="twitter:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnx80zkt7j30fq07aaa0.jpg">
   
@@ -173,7 +173,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      PWN1
+      PWN0——me
     </h1>
   
 
@@ -193,7 +193,8 @@
 <h2 id="3、分析"><a href="#3、分析" class="headerlink" title="3、分析"></a>3、分析</h2><p>   先file pwn0,发现为32位,checksec pwn0并且没有开NX,用ida打开，如下<br>   <img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnx80zkt7j30fq07aaa0.jpg" alt=""><br>   发现栈空间为14h,这里是无符号接受判断输入的字符个数，也就是当超过256,个字符又会循环。即257为1，根据题目<br>   判断输入字符4~8个，即261=5，构造261位，既可以绕过检测，又为我们提供了栈空间</p>
 <p>   由于已经知道那个函数的栈空间14h,那么函数的返回地址即为18h,但是我们的shellcode是大于18h的，所以放在18h的后面，payload如下：<br>   <code>payload =&#39;a&#39;*24 + ret + shellcode</code></p>
 <p>   现在我们找到ret的地址，即是shellcode的起始地址（shellcode可以自己生成），这我…一言难尽<br>   <img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnyh9bq2aj30np07yq3j.jpg" alt=""><br>   调试，找到shellcode的起始地址<br>   <img src="http://ww4.sinaimg.cn/large/006rgqhqgy1fjnyk5kgi5j30op06uq45.jpg" alt=""><br>   改变返回地址<br>   ret = 0xffffcf80<br>   运行<br>   <img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnyn32vutj30dc03nt8v.jpg" alt=""><br>   成功！<br>   然而，并没有做过pwn题的我来说，我就直接运行，悲剧发生了</p>
-<p>   原来要在本地跑运行，然后 核心转存，用生成的coredump来调试<br>   核心转存配置：<br>   <img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnyz0rjcdj30q605j0tb.jpg" alt=""></p>
+<p>   原来要在本地跑运行，然后 核心转存，用生成的coredump来调试<br>   核心转存配置：<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ulimit -c unlimited</div><div class="line">echo /tmp/core.%e.%p &gt; /proc/sys/kernel/core_pattern</div></pre></td></tr></table></figure></p>
+<p>   <img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnyz0rjcdj30q605j0tb.jpg" alt=""></p>
 <p>   这几个指令。执行完后我们就关掉整个linux系统的ASLR保护。<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cat /proc/sys/kernel/randomize_va_space</div><div class="line">echo 0 &gt; /proc/sys/kernel/randomize_va_space</div></pre></td></tr></table></figure></p>
 <p>   本地运行：<br>   <code>socat tcp-l:4000,fork exec:./pwn0</code></p>
 <p>   本地生成core.pwn0.2684文件,调试core.pwn0.2684文件<br>   <code>gdb pwn0 core.pwn0.2684</code><br>   如图：<br>   <img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnzf4p7wfj30kt07gmy3.jpg" alt=""></p>
@@ -335,7 +336,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="pwn0_me" data-title="PWN1" data-url="http://yoursite.com/2017/09/19/pwn0_me/"></div>
+	<div class="ds-thread" data-thread-key="pwn0_me" data-title="PWN0——me" data-url="http://yoursite.com/2017/09/19/pwn0_me/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
