@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>PWN_x86—1_rop | ESE</title>
+  <title>PWN1_me | ESE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–rop">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PWN_x86—1_rop">
+<meta property="og:title" content="PWN1_me">
 <meta property="og:url" content="http://yoursite.com/2017/10/02/pwn1_me/index.html">
 <meta property="og:site_name" content="ESE">
 <meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–rop">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/006rgqhqgy1fk37g59505j30vy0jxjuy.jpg">
-<meta property="og:updated_time" content="2017-10-05T09:47:16.145Z">
+<meta property="og:updated_time" content="2017-10-06T06:58:19.889Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PWN_x86—1_rop">
+<meta name="twitter:title" content="PWN1_me">
 <meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–rop">
 <meta name="twitter:image" content="http://ww4.sinaimg.cn/large/006rgqhqgy1fk37g59505j30vy0jxjuy.jpg">
   
@@ -168,7 +168,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      PWN_x86—1_rop
+      PWN1_me
     </h1>
   
 
@@ -186,7 +186,8 @@
 <h2 id="1、何为rop"><a href="#1、何为rop" class="headerlink" title="1、何为rop"></a>1、何为rop</h2><p>ROP的全称为Return-oriented programming（返回导向编程），这是一种高级的内存攻击技术可以用来绕过现代操作系统的各种通用防御（比如内存不可执行和代码签名等）。ROP是一种攻击技术，其中攻击者使用堆栈的控制来在现有程序代码中的子程序中的返回指令之前，立即间接地执行精心挑选的指令或机器指令组。因此，ROP技术是可以用来绕过现有的程序内部内存的保护机制的。在学习下面的内容之前，先确保自己已经了解了基本的堆栈溢出的漏洞原理。<br>ROP re-uses ，即我们可以重用Bin文件或者Libc文件(共享库)中的代码。这些代码，或者说指令，通常被我们称作“ROP Gadget”。<br>另一种姿势理解：顾名思义ROP，就是面向返回语句的编程方法，它借用libc代码段里面的多个retq前的一段指令拼凑成一段有效的逻辑，从而达到攻击的目标。</p>
 <p>然而，ROP是一个复杂的技术，允许我们绕过DEP和ALSR，但不幸的是（或对于用户来说幸运的是）这不能绕过Canary，但如果有额外的内存泄漏，我们可以通过泄露，leak canary的值和使用它。</p>
 <h2 id="2、题目-全球某工商的ctf网站上的ctf题（还有源码福利）"><a href="#2、题目-全球某工商的ctf网站上的ctf题（还有源码福利）" class="headerlink" title="2、题目-全球某工商的ctf网站上的ctf题（还有源码福利）"></a>2、题目-全球某工商的ctf网站上的ctf题（还有源码福利）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;stdlib.h&gt;</div><div class="line">#include &lt;unistd.h&gt;</div><div class="line">void vulnerable_function() &#123;</div><div class="line">    char buf[128];</div><div class="line">    read(STDIN_FILENO, buf, 512);</div><div class="line">&#125;</div><div class="line">int main(int argc, char** argv) &#123;</div><div class="line">    write(STDOUT_FILENO, &quot;Hello, World\n&quot;, 13);</div><div class="line">    vulnerable_function();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="3、分析"><a href="#3、分析" class="headerlink" title="3、分析"></a>3、分析</h2><p>查看文件类型<br><code>file pwn1</code><br>发现是64位的，吓我一跳，了解一下x64的特点<br>x64中前六个参数依次保存在RDI, RSI, RDX, RCX, R8和 R9寄存器里，如果还有更多的参数的话才会保存在栈上。<br>如write(rdi,rsi,rdx)<br>先明确目标<br>1、用于任意地址读<br>2、用于任意地址写<br>3、获取shell</p>
+<h2 id="3、分析"><a href="#3、分析" class="headerlink" title="3、分析"></a>3、分析</h2><p>查看文件类型<br><code>file pwn1</code><br>发现是64位的，吓我一跳，了解一下x64的特点</p>
+<h2 id="x64中前六个参数依次保存在RDI-RSI-RDX-RCX-R8和-R9寄存器里，如果还有更多的参数的话才会保存在栈上。"><a href="#x64中前六个参数依次保存在RDI-RSI-RDX-RCX-R8和-R9寄存器里，如果还有更多的参数的话才会保存在栈上。" class="headerlink" title="x64中前六个参数依次保存在RDI, RSI, RDX, RCX, R8和 R9寄存器里，如果还有更多的参数的话才会保存在栈上。"></a>x64中前六个参数依次保存在RDI, RSI, RDX, RCX, R8和 R9寄存器里，如果还有更多的参数的话才会保存在栈上。</h2><p>如write(rdi,rsi,rdx)<br>先明确目标<br>1、用于任意地址读<br>2、用于任意地址写<br>3、获取shell</p>
 <p>可以看到这个程序仅仅只有一个buffer overflow，也没有任何的辅助函数可以使用，所以我们要先想办法泄露内存信息，找到system()的值，然后再传递“/bin/sh”到.bss段, 最后调用system(“/bin/sh”)。因为原程序使用了write()和read()函数，我们可以通过write()去输出write.got的地址，从而计算出libc.so在内存中的地址。但问题在于write()的参数应该如何传递，因为x64下前6个参数不是保存在栈中，而是通过寄存器传值。我们使用ROPgadget并没有找到类似于pop rdi, ret,pop rsi, ret这样的gadgets。那应该怎么办呢？其实在x64下有一些万能的gadgets可以利用。比如说我们用objdump -d ./level5观察一下__libc_csu_init()这个函数。一般来说，只要程序调用了libc.so，程序都会有这个函数用来对libc进行初始化操作。</p>
 <p><code>objdump -d pwn1</code><br>如下:<br><img src="http://ww4.sinaimg.cn/large/006rgqhqgy1fk37g59505j30vy0jxjuy.jpg" alt=""><br>我们可以看到利用0x4005fa处的代码我们可以控制rbx,rbp,r12,r13,r14和r15的值，随后利用0x4005e0处的代码我们将r15的值赋值给rdx, r14的值赋值给rsi,r13的值赋值给edi，随后就会调用call qword ptr [r12+rbx8]。这时候我们只要再将rbx的值赋值为0，再通过精心构造栈上的数据，我们就可以控制pc去调用我们想要调用的函数了（比如说write函数）。执行完call qword ptr [r12+rbx8]之后，程序会对rbx+=1，然后对比rbp和rbx的值，如果相等就会继续向下执行并ret到我们想要继续执行的地址。所以为了让rbp和rbx的值相等，我们可以将rbp的值设置为1，因为之前已经将rbx的值设置为0了。大概思路就是这样，我们下来构造ROP链。</p>
 <p>那就先来第一步吧，任意地址读，这里我们需要gadget<br>注意我们的gadget是call qword ptr [r12+rbx*8]，所以我们应该使用write.got的地址而不是write.plt的地址。payload1任意地址读<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">payload1 = &apos;a&apos;*136</div><div class="line">payload1 +=p64(0x4005fa)+p64(0)+p64(1)+p64(write_got)+p64(8)+p64(raddr)+p64(1)</div><div class="line">payload1 +=p64(0x4005e0)+&apos;12345678&apos;*7</div><div class="line">payload1 +=p64(main_addr)</div></pre></td></tr></table></figure></p>
@@ -330,7 +331,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="pwn1_me" data-title="PWN_x86—1_rop" data-url="http://yoursite.com/2017/10/02/pwn1_me/"></div>
+	<div class="ds-thread" data-thread-key="pwn1_me" data-title="PWN1_me" data-url="http://yoursite.com/2017/10/02/pwn1_me/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
