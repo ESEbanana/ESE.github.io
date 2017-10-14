@@ -6,18 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>java | ESE</title>
+  <title>ESE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每天的进步，只有努力不会背叛自己！ java——jar文件运行命令行窗口一闪而过">
-<meta property="og:type" content="article">
-<meta property="og:title" content="java">
-<meta property="og:url" content="http://yoursite.com/2017/10/13/java_jar/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="ESE">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="ESE">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！ java——jar文件运行命令行窗口一闪而过">
-<meta property="og:updated_time" content="2017-10-13T02:12:02.358Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！ java——jar文件运行命令行窗口一闪而过">
+<meta name="twitter:title" content="ESE">
   
   
     <link rel="icon" href="/favicon.png">
@@ -159,20 +155,22 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-java_jar" class="article article-type-post " itemscope itemprop="blogPost">
+            
+  
+    <article id="post-pwn0" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      java
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/18/pwn0/">基于绕过密码检测</a>
     </h1>
   
 
         
-        <a href="/2017/10/13/java_jar/" class="archive-article-date">
-  	<time datetime="2017-10-13T01:28:34.623Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-13</time>
+        <a href="/2017/09/18/pwn0/" class="archive-article-date">
+  	<time datetime="2017-09-18T12:39:19.586Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-18</time>
 </a>
         
       </header>
@@ -180,40 +178,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>记录每天的进步，只有努力不会背叛自己！</p>
-<h1 id="java——jar文件运行命令行窗口一闪而过"><a href="#java——jar文件运行命令行窗口一闪而过" class="headerlink" title="java——jar文件运行命令行窗口一闪而过"></a>java——jar文件运行命令行窗口一闪而过</h1><a id="more"></a>
-<h2 id="1、jar文件"><a href="#1、jar文件" class="headerlink" title="1、jar文件"></a>1、jar文件</h2><p>1、开始是显示压缩包文件，如果你没有装java环境，那就去装，这里装java链接<br><a href="https://jingyan.baidu.com/article/a24b33cd59b58e19fe002bb9.html" target="_blank" rel="external">https://jingyan.baidu.com/article/a24b33cd59b58e19fe002bb9.html</a><br>然后，右键属性，选择打开方式Java(TM) platform SE,双击运行<br>2、如果jar文件运行命令行窗口一闪而过，可以用命令行打开<br><code>java -jar xxx.jar</code><br>或者建一个文本。将后缀名改为.bat。将上面命令写入，保存双击运行.bat<br>3、如果每个jar文件都这样，那不得烦死了，那就找出现错误的原因<br>当运行命令行或.bat的时候会出现错误的原因，<br>WARNING: Could not open/create prefs root node Software\JavaSoft\Prefs at root 0x80000002. Windows RegCreateKeyEx(…) returned error code 5.<br>百度一下，解决如下：<br>win10<br>运行(win+r)打开：regedit<br>然后找到HKEY_LOCAL_MACHINE \ SOFTWARE \ JavaSoft,右键-新建-项，命名为Prefs</p>
-<p>最后，错误解决了，但是.jar双击还是不能运行，头疼<br>但，只要建一个.bat文件，就可以双击运行，就可以不必每次都用命令打开了</p>
-<h2 id="2、锥心之痛"><a href="#2、锥心之痛" class="headerlink" title="2、锥心之痛"></a>2、锥心之痛</h2><p>发现这篇文章可以解决这个问题<br><a href="http://blog.csdn.net/liujian619/article/details/41380953" target="_blank" rel="external">http://blog.csdn.net/liujian619/article/details/41380953</a></p>
-<h3 id="文学修养"><a href="#文学修养" class="headerlink" title="文学修养"></a>文学修养</h3><p>衣带渐宽终不悔，<br>为伊消得人憔悴。</p>
-
+<h1 id="缓冲区溢出"><a href="#缓冲区溢出" class="headerlink" title="缓冲区溢出"></a>缓冲区溢出</h1>
+        
+          <a class="article-more-a" href="/2017/09/18/pwn0/#more">阅读全文 >></a>
+        
       
 
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>啦啦啦啦<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/1.png">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -222,84 +192,16 @@
       
 
       
-
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/18/pwn0/">展开全文 >></a>
+        </p>
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/13/java_jar/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/10/14/pwn7/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          PWN_x86—7
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/10/10/re_tls/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">RE_tls</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -319,45 +221,12 @@
 
 
 
-  
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="java_jar" data-title="java" data-url="http://yoursite.com/2017/10/13/java_jar/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
 
   
   
-  
-
-  
-  <div id="SOHUCS" sid="java_jar" ></div> 
-<script type="text/javascript"> 
-window.YiliaChangyanWrap = function() {
-    var appid = "true"; 
-    var conf = "true"; 
-    var width = window.innerWidth || document.documentElement.clientWidth; 
-    if (width < 960) { 
-    window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); }
-}
-</script>
-  
-
-  
-
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
   
 
 
@@ -380,8 +249,8 @@ window.YiliaChangyanWrap = function() {
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

@@ -6,18 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>java | ESE</title>
+  <title>PWN_x86—7 | ESE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每天的进步，只有努力不会背叛自己！ java——jar文件运行命令行窗口一闪而过">
+  <meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–pwn题的一些小技巧">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java">
-<meta property="og:url" content="http://yoursite.com/2017/10/13/java_jar/index.html">
+<meta property="og:title" content="PWN_x86—7">
+<meta property="og:url" content="http://yoursite.com/2017/10/14/pwn7/index.html">
 <meta property="og:site_name" content="ESE">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！ java——jar文件运行命令行窗口一闪而过">
-<meta property="og:updated_time" content="2017-10-13T02:12:02.358Z">
+<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–pwn题的一些小技巧">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fkhzurrmruj30kk0i80xi.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fkhzy1yhrgj30eq06eq42.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fki08gsy4bj30fv08nabr.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fki09ch88bj30gn0c80tp.jpg">
+<meta property="og:updated_time" content="2017-10-14T12:00:01.901Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！ java——jar文件运行命令行窗口一闪而过">
+<meta name="twitter:title" content="PWN_x86—7">
+<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–pwn题的一些小技巧">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fkhzurrmruj30kk0i80xi.jpg">
   
   
     <link rel="icon" href="/favicon.png">
@@ -159,32 +164,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-java_jar" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-pwn7" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      java
+      PWN_x86—7
     </h1>
   
 
         
-        <a href="/2017/10/13/java_jar/" class="archive-article-date">
-  	<time datetime="2017-10-13T01:28:34.623Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-13</time>
+        <a href="/2017/10/14/pwn7/" class="archive-article-date">
+  	<time datetime="2017-10-14T11:13:32.798Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>记录每天的进步，只有努力不会背叛自己！</p>
-<h1 id="java——jar文件运行命令行窗口一闪而过"><a href="#java——jar文件运行命令行窗口一闪而过" class="headerlink" title="java——jar文件运行命令行窗口一闪而过"></a>java——jar文件运行命令行窗口一闪而过</h1><a id="more"></a>
-<h2 id="1、jar文件"><a href="#1、jar文件" class="headerlink" title="1、jar文件"></a>1、jar文件</h2><p>1、开始是显示压缩包文件，如果你没有装java环境，那就去装，这里装java链接<br><a href="https://jingyan.baidu.com/article/a24b33cd59b58e19fe002bb9.html" target="_blank" rel="external">https://jingyan.baidu.com/article/a24b33cd59b58e19fe002bb9.html</a><br>然后，右键属性，选择打开方式Java(TM) platform SE,双击运行<br>2、如果jar文件运行命令行窗口一闪而过，可以用命令行打开<br><code>java -jar xxx.jar</code><br>或者建一个文本。将后缀名改为.bat。将上面命令写入，保存双击运行.bat<br>3、如果每个jar文件都这样，那不得烦死了，那就找出现错误的原因<br>当运行命令行或.bat的时候会出现错误的原因，<br>WARNING: Could not open/create prefs root node Software\JavaSoft\Prefs at root 0x80000002. Windows RegCreateKeyEx(…) returned error code 5.<br>百度一下，解决如下：<br>win10<br>运行(win+r)打开：regedit<br>然后找到HKEY_LOCAL_MACHINE \ SOFTWARE \ JavaSoft,右键-新建-项，命名为Prefs</p>
-<p>最后，错误解决了，但是.jar双击还是不能运行，头疼<br>但，只要建一个.bat文件，就可以双击运行，就可以不必每次都用命令打开了</p>
-<h2 id="2、锥心之痛"><a href="#2、锥心之痛" class="headerlink" title="2、锥心之痛"></a>2、锥心之痛</h2><p>发现这篇文章可以解决这个问题<br><a href="http://blog.csdn.net/liujian619/article/details/41380953" target="_blank" rel="external">http://blog.csdn.net/liujian619/article/details/41380953</a></p>
-<h3 id="文学修养"><a href="#文学修养" class="headerlink" title="文学修养"></a>文学修养</h3><p>衣带渐宽终不悔，<br>为伊消得人憔悴。</p>
+        <p>记录每天的进步，只有努力不会背叛自己！每天学习一点PWN</p>
+<h1 id="PWN从开始到开始–pwn题的一些小技巧"><a href="#PWN从开始到开始–pwn题的一些小技巧" class="headerlink" title="PWN从开始到开始–pwn题的一些小技巧"></a>PWN从开始到开始–pwn题的一些小技巧</h1><a id="more"></a>
+<h2 id="1、工具"><a href="#1、工具" class="headerlink" title="1、工具"></a>1、工具</h2><p>首先安装pwntools<br><code>git clone https://github.com/Gallopsled/pwntools</code><br><code>cd pwntools</code><br><code>python setup.py install</code><br>安装peda<br><code>git clone https://github.com/longld/peda.git ~/peda</code><br><code>echo &quot;source ~/peda/peda.py&quot; &gt;&gt; ~/.gdbinit</code></p>
+<h2 id="2、找到返回地址"><a href="#2、找到返回地址" class="headerlink" title="2、找到返回地址"></a>2、找到返回地址</h2><h3 id="x86"><a href="#x86" class="headerlink" title="x86"></a>x86</h3><p>如下gdb ./pwn<br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1fkhzurrmruj30kk0i80xi.jpg" alt=""></p>
+<h3 id="x64"><a href="#x64" class="headerlink" title="x64"></a>x64</h3><p><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fkhzy1yhrgj30eq06eq42.jpg" alt=""></p>
+<h2 id="3、生成shellcode"><a href="#3、生成shellcode" class="headerlink" title="3、生成shellcode"></a>3、生成shellcode</h2><p>这个联网才可以<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fki08gsy4bj30fv08nabr.jpg" alt=""><br>结果如下<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fki09ch88bj30gn0c80tp.jpg" alt=""></p>
+<h2 id="4、找内存中函数地址"><a href="#4、找内存中函数地址" class="headerlink" title="4、找内存中函数地址"></a>4、找内存中函数地址</h2><p>这需要程序跑完,在gdb里<br><code>p system</code><br><code>p callsystem</code><br>查看内存<br><code>x \16x 0x482054</code><br><code>x \gx rsp</code></p>
+<h2 id="5、搭建pwn题目"><a href="#5、搭建pwn题目" class="headerlink" title="5、搭建pwn题目"></a>5、搭建pwn题目</h2><p>查看是否开启随机化(不是0则开启)<br><code>cat /proc/sys/kernel/randomize_va_space</code><br>关闭随机化<br><code>echo 0 &gt; /proc/sys/kernel/randomize_va_space</code><br>搭建题目<br><code>socat tcp-l:4000,fork exec:./pwn</code><br>连接测试<br><code>nc 127.0.0.1 4000</code></p>
+<h2 id="6、coredump"><a href="#6、coredump" class="headerlink" title="6、coredump"></a>6、coredump</h2><p>在/etc/profile中加入以下一行，这将允许生成coredump文件<br><code>ulimit -c unlimited</code><br>在rc.local中加入以下一行，这将使程序崩溃时生成的coredump文件位于/tmp目录下<br><code>echo /tmp/core.%e.%p &gt; /proc/sys/kernel/core_pattern</code><br>调试coredump文件<br><code>gdb ./test test.core</code><br>x64找到溢出地点<br><code>x \100x $esp-100</code></p>
+<h3 id="文学修养"><a href="#文学修养" class="headerlink" title="文学修养"></a>文学修养</h3><p>无边落木萧萧下，不尽长江滚滚来。<br>万里悲秋常作客，百年多病独登台。</p>
 
       
 
@@ -269,7 +278,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/13/java_jar/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/14/pwn7/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -283,18 +292,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/10/14/pwn7/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          PWN_x86—7
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/10/10/re_tls/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">RE_tls</div>
+    <a href="/2017/10/13/java_jar/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -322,7 +322,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="java_jar" data-title="java" data-url="http://yoursite.com/2017/10/13/java_jar/"></div>
+	<div class="ds-thread" data-thread-key="pwn7" data-title="PWN_x86—7" data-url="http://yoursite.com/2017/10/14/pwn7/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -344,7 +344,7 @@
   
 
   
-  <div id="SOHUCS" sid="java_jar" ></div> 
+  <div id="SOHUCS" sid="pwn7" ></div> 
 <script type="text/javascript"> 
 window.YiliaChangyanWrap = function() {
     var appid = "true"; 
