@@ -81,12 +81,12 @@
 
 
 
-<meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–整数溢出">
+<meta name="description" content="整数真的很神奇">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PWN0——me">
+<meta property="og:title" content="PWN0——整数溢出">
 <meta property="og:url" content="http://yoursite.com/2017/09/19/pwn0_me/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–整数溢出">
+<meta property="og:description" content="整数真的很神奇">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnx80zkt7j30fq07aaa0.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnyh9bq2aj30np07yq3j.jpg">
@@ -94,10 +94,10 @@
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnyn32vutj30dc03nt8v.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnyz0rjcdj30q605j0tb.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnzf4p7wfj30kt07gmy3.jpg">
-<meta property="og:updated_time" content="2017-10-08T04:04:06.697Z">
+<meta property="og:updated_time" content="2017-11-09T11:42:56.082Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PWN0——me">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–整数溢出">
+<meta name="twitter:title" content="PWN0——整数溢出">
+<meta name="twitter:description" content="整数真的很神奇">
 <meta name="twitter:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnx80zkt7j30fq07aaa0.jpg">
 
 
@@ -134,7 +134,7 @@
 
 
 
-  <title>PWN0——me | ESE's Note</title>
+  <title>PWN0——整数溢出 | ESE's Note</title>
   
 
 
@@ -264,7 +264,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/19/pwn0_me/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ESE">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -278,7 +278,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">PWN0——me</h1>
+          <h1 class="post-title" itemprop="name headline">PWN0——整数溢出</h1>
         
 
         <div class="post-meta">
@@ -332,8 +332,7 @@
       
 
       
-        <p>记录每天的进步，只有努力不会背叛自己！每天学习一点PWN</p>
-<h1 id="PWN从开始到开始–整数溢出"><a href="#PWN从开始到开始–整数溢出" class="headerlink" title="PWN从开始到开始–整数溢出"></a>PWN从开始到开始–整数溢出</h1><a id="more"></a>
+        <p>整数真的很神奇<br><a id="more"></a></p>
 <h2 id="1、整数溢出"><a href="#1、整数溢出" class="headerlink" title="1、整数溢出"></a>1、整数溢出</h2><p>整数溢出就是往存储整数的内存单位存放的数据大于该内存单位所能存储的最大值,整数溢出有时候间接导致缓冲区溢出。</p>
 <h2 id="2、题目-全球某工商的ctf网站上的ctf题（还有源码福利）"><a href="#2、题目-全球某工商的ctf网站上的ctf题（还有源码福利）" class="headerlink" title="2、题目-全球某工商的ctf网站上的ctf题（还有源码福利）"></a>2、题目-全球某工商的ctf网站上的ctf题（还有源码福利）</h2><p>题目：<br>链接：<a href="http://pan.baidu.com/s/1nuU9pO1" target="_blank" rel="external">http://pan.baidu.com/s/1nuU9pO1</a> 密码：e7ue<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include</span></div><div class="line"><span class="comment">#include</span></div><div class="line"><span class="comment">#include</span></div><div class="line">void flow(char* input)</div><div class="line">&#123;</div><div class="line">	char passwd_buf[11];</div><div class="line">	unsigned char passwd_len = strlen(input);</div><div class="line">	<span class="keyword">if</span>(passwd_len&gt;=4&amp;&amp;passwd_len&lt;=8)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"Valid Password\n"</span>);</div><div class="line">		strcpy(passwd_buf,input);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span>&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"Invalid Password\n"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	char input[1024];</div><div class="line">	gets(input);</div><div class="line">	flow(input);</div><div class="line">	<span class="built_in">return</span> 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="3、分析"><a href="#3、分析" class="headerlink" title="3、分析"></a>3、分析</h2><p>   先file pwn0,发现为32位,checksec pwn0并且没有开NX,用ida打开，如下<br>   <img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjnx80zkt7j30fq07aaa0.jpg" alt=""><br>   发现栈空间为14h,这里是无符号接受判断输入的字符个数，也就是当超过256,个字符又会循环。即257为1，根据题目<br>   判断输入字符4~8个，即261=5，构造261位，既可以绕过检测，又为我们提供了栈空间</p>
@@ -395,8 +394,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/19/pwn3/" rel="prev" title="PWN_x86—3_fmt">
-                PWN_x86—3_fmt <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/19/pwn2/" rel="prev" title="PWN——CTF中的简单ret2blic">
+                PWN——CTF中的简单ret2blic <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -465,9 +464,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.png"
-                alt="ESE" />
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">ESE</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -503,21 +502,27 @@
             
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                  <a href="https://github.com/saucxs/" target="_blank" title="GitHub">
                     
                       <i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://twitter.com/yourname" target="_blank" title="Twitter">
+                  <a href="https://weibo.com/" target="_blank" title="Twitter">
                     
                       <i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="Zhihu">
+                  <a href="https://www.zhihu.com/people/ese-76-83/activities" target="_blank" title="Zhihu">
                     
-                      <i class="fa fa-fw fa-qq"></i>Zhihu</a>
+                      <i class="fa fa-fw fa-drupal"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/5899672336/profile?topnav=1&wvr=6/&is_all=1" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
                 </span>
               
             
@@ -528,10 +533,10 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
               <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
+                <i class="fa  fa-fw fa-globe"></i>
+                
               </div>
               <ul class="links-of-blogroll-list">
                 
@@ -590,7 +595,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PWN从开始到开始–整数溢出"><span class="nav-number">1.</span> <span class="nav-text">PWN从开始到开始–整数溢出</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、整数溢出"><span class="nav-number">1.1.</span> <span class="nav-text">1、整数溢出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、题目-全球某工商的ctf网站上的ctf题（还有源码福利）"><span class="nav-number">1.2.</span> <span class="nav-text">2、题目-全球某工商的ctf网站上的ctf题（还有源码福利）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、分析"><span class="nav-number">1.3.</span> <span class="nav-text">3、分析</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、整数溢出"><span class="nav-number">1.</span> <span class="nav-text">1、整数溢出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、题目-全球某工商的ctf网站上的ctf题（还有源码福利）"><span class="nav-number">2.</span> <span class="nav-text">2、题目-全球某工商的ctf网站上的ctf题（还有源码福利）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、分析"><span class="nav-number">3.</span> <span class="nav-text">3、分析</span></a></li></ol></div>
             
 
           </div>
@@ -615,7 +620,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">ESE</span>
+  <span class="author" itemprop="copyrightHolder"></span>
 
   
 </div>
@@ -634,7 +639,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共18.6k字</span>
+  <span class="post-count">博客全站共17.9k字</span>
 </div>
 
         

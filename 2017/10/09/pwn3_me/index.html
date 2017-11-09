@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–FmtStr">
+<meta name="description" content="FmtStr格式化字符串利用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PWN2_me">
+<meta property="og:title" content="PWN——格式化字符串利用">
 <meta property="og:url" content="http://yoursite.com/2017/10/09/pwn3_me/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–FmtStr">
+<meta property="og:description" content="FmtStr格式化字符串利用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-10T06:55:50.813Z">
+<meta property="og:updated_time" content="2017-11-09T11:47:17.136Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PWN2_me">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–FmtStr">
+<meta name="twitter:title" content="PWN——格式化字符串利用">
+<meta name="twitter:description" content="FmtStr格式化字符串利用">
 
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <title>PWN2_me | ESE's Note</title>
+  <title>PWN——格式化字符串利用 | ESE's Note</title>
   
 
 
@@ -257,7 +257,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/09/pwn3_me/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ESE">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -271,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">PWN2_me</h1>
+          <h1 class="post-title" itemprop="name headline">PWN——格式化字符串利用</h1>
         
 
         <div class="post-meta">
@@ -325,8 +325,7 @@
       
 
       
-        <p>记录每天的进步，只有努力不会背叛自己！每天学习一点PWN</p>
-<h1 id="PWN从开始到开始–FmtStr"><a href="#PWN从开始到开始–FmtStr" class="headerlink" title="PWN从开始到开始–FmtStr"></a>PWN从开始到开始–FmtStr</h1><a id="more"></a>
+        <p>FmtStr格式化字符串利用<br><a id="more"></a></p>
 <h2 id="1、程序"><a href="#1、程序" class="headerlink" title="1、程序"></a>1、程序</h2><p>链接：<a href="http://pan.baidu.com/s/1mil6uTE" target="_blank" rel="external">http://pan.baidu.com/s/1mil6uTE</a> 密码：7ff0<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[*] <span class="string">'/root/ctf/pwn_learning/zjgsu/pwn3/pwn3'</span></div><div class="line">    Arch:     i386-32-little</div><div class="line">    RELRO:    No RELRO</div><div class="line">    Stack:    Canary found</div><div class="line">    NX:       NX enabled</div><div class="line">    PIE:      No PIE (0x8048000)</div></pre></td></tr></table></figure></p>
 <p>有canary保护，感觉现在还不会</p>
 <h2 id="2、分析程序"><a href="#2、分析程序" class="headerlink" title="2、分析程序"></a>2、分析程序</h2><p>我们去尝试运行，摸清了基本上的程序的功能。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">root@kali:pwn3<span class="comment"># ./pwn3 </span></div><div class="line">Hello, I<span class="string">'m nao!</span></div><div class="line"><span class="string">Please tell me your name... asd</span></div><div class="line"><span class="string">Nice to meet you, asd :)</span></div><div class="line"><span class="string">root@kali:pwn3#</span></div></pre></td></tr></table></figure></p>
@@ -381,8 +380,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/09/pwn6/" rel="next" title="PWN_x86—6_FmtStr">
-                <i class="fa fa-chevron-left"></i> PWN_x86—6_FmtStr
+              <a href="/2017/10/09/pwn6/" rel="next" title="PWN——格式化字符FmtStr">
+                <i class="fa fa-chevron-left"></i> PWN——格式化字符FmtStr
               </a>
             
           </div>
@@ -391,8 +390,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/10/re_tls/" rel="prev" title="RE_tls">
-                RE_tls <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/10/re_tls/" rel="prev" title="RE_绕过tls保护">
+                RE_绕过tls保护 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -461,9 +460,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.png"
-                alt="ESE" />
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">ESE</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -499,21 +498,27 @@
             
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                  <a href="https://github.com/saucxs/" target="_blank" title="GitHub">
                     
                       <i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://twitter.com/yourname" target="_blank" title="Twitter">
+                  <a href="https://weibo.com/" target="_blank" title="Twitter">
                     
                       <i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="Zhihu">
+                  <a href="https://www.zhihu.com/people/ese-76-83/activities" target="_blank" title="Zhihu">
                     
-                      <i class="fa fa-fw fa-qq"></i>Zhihu</a>
+                      <i class="fa fa-fw fa-drupal"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/5899672336/profile?topnav=1&wvr=6/&is_all=1" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
                 </span>
               
             
@@ -524,10 +529,10 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
               <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
+                <i class="fa  fa-fw fa-globe"></i>
+                
               </div>
               <ul class="links-of-blogroll-list">
                 
@@ -586,7 +591,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PWN从开始到开始–FmtStr"><span class="nav-number">1.</span> <span class="nav-text">PWN从开始到开始–FmtStr</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、程序"><span class="nav-number">1.1.</span> <span class="nav-text">1、程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、分析程序"><span class="nav-number">1.2.</span> <span class="nav-text">2、分析程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、写exp"><span class="nav-number">1.3.</span> <span class="nav-text">3、写exp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4，exp"><span class="nav-number">1.4.</span> <span class="nav-text">4，exp:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5，修改exp"><span class="nav-number">1.5.</span> <span class="nav-text">5，修改exp:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文学修养"><span class="nav-number">1.5.1.</span> <span class="nav-text">文学修养</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、程序"><span class="nav-number">1.</span> <span class="nav-text">1、程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、分析程序"><span class="nav-number">2.</span> <span class="nav-text">2、分析程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、写exp"><span class="nav-number">3.</span> <span class="nav-text">3、写exp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4，exp"><span class="nav-number">4.</span> <span class="nav-text">4，exp:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5，修改exp"><span class="nav-number">5.</span> <span class="nav-text">5，修改exp:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文学修养"><span class="nav-number">5.1.</span> <span class="nav-text">文学修养</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -611,7 +616,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">ESE</span>
+  <span class="author" itemprop="copyrightHolder"></span>
 
   
 </div>
@@ -630,7 +635,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共18.6k字</span>
+  <span class="post-count">博客全站共17.9k字</span>
 </div>
 
         

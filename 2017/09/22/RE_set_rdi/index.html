@@ -81,12 +81,12 @@
 
 
 
-<meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点RE Linux下修改程序流程">
+<meta name="description" content="听说修改eip，直接读取flag">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RE_linux">
+<meta property="og:title" content="RE_Linux下修改程序流程">
 <meta property="og:url" content="http://yoursite.com/2017/09/22/re_set_rdi/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点RE Linux下修改程序流程">
+<meta property="og:description" content="听说修改eip，直接读取flag">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fjsow111ogj30f30ap74d.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjsoxdbsenj30ho08ddft.jpg">
@@ -96,10 +96,10 @@
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjspcf2jrdj30f106saad.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjspf4abj5j30dr059t8t.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjspjccvgqj30ef046t8x.jpg">
-<meta property="og:updated_time" content="2017-10-10T07:52:38.154Z">
+<meta property="og:updated_time" content="2017-11-09T11:54:50.040Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RE_linux">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点RE Linux下修改程序流程">
+<meta name="twitter:title" content="RE_Linux下修改程序流程">
+<meta name="twitter:description" content="听说修改eip，直接读取flag">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fjsow111ogj30f30ap74d.jpg">
 
 
@@ -136,7 +136,7 @@
 
 
 
-  <title>RE_linux | ESE's Note</title>
+  <title>RE_Linux下修改程序流程 | ESE's Note</title>
   
 
 
@@ -266,7 +266,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/22/re_set_rdi/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ESE">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">RE_linux</h1>
+          <h1 class="post-title" itemprop="name headline">RE_Linux下修改程序流程</h1>
         
 
         <div class="post-meta">
@@ -334,8 +334,7 @@
       
 
       
-        <p>记录每天的进步，只有努力不会背叛自己！每天学习一点RE</p>
-<h1 id="Linux下修改程序流程"><a href="#Linux下修改程序流程" class="headerlink" title="Linux下修改程序流程"></a>Linux下修改程序流程</h1><a id="more"></a>
+        <p>听说修改eip，直接读取flag<br><a id="more"></a></p>
 <h2 id="1、Linux下修改程序流程"><a href="#1、Linux下修改程序流程" class="headerlink" title="1、Linux下修改程序流程"></a>1、Linux下修改程序流程</h2><p>今天看见一个ctf的elf题目，很有趣，是一个dice题目，很熟悉嘛。今天有发现一种新套路，便记录下来，以后遇见就嘿嘿嘿</p>
 <h2 id="2、分析"><a href="#2、分析" class="headerlink" title="2、分析"></a>2、分析</h2><p>打开ida，发现如下<br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1fjsow111ogj30f30ap74d.jpg" alt=""><br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjsoxdbsenj30ho08ddft.jpg" alt=""><br>前面生成随机数，后面验证，以往我都会改验证的地方，今天来点不一样的</p>
 <h2 id="3、修改"><a href="#3、修改" class="headerlink" title="3、修改"></a>3、修改</h2><p>发现flag在这个函数打印<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjsp2mc1g3j30f503idfo.jpg" alt=""><br>这个函数的地址是0x4006B6,同时发现main开始运行的 地址<br><img src="http://ww4.sinaimg.cn/large/006rgqhqgy1fjsp7bf6c8j30hf043q2u.jpg" alt=""><br>linux下gdb调试，在下断点,run运行<br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1fjsp9inf3vj30a40983zg.jpg" alt=""><br>i r 查看寄存器的值,此时，还没有运行到程序区<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjspcf2jrdj30f106saad.jpg" alt=""><br>n下一步，在i r查看<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjspf4abj5j30dr059t8t.jpg" alt=""><br>发现已经到达程序区了，将rdi寄存器设置为我们想要的值 set $rdi=0x4006b6,运行c<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjspjccvgqj30ef046t8x.jpg" alt=""></p>
@@ -378,8 +377,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/21/re_elf_debugging/" rel="next" title="RE_liunx_debug">
-                <i class="fa fa-chevron-left"></i> RE_liunx_debug
+              <a href="/2017/09/21/re_elf_debugging/" rel="next" title="RE_Windows下IDA动态调试linux的ELF">
+                <i class="fa fa-chevron-left"></i> RE_Windows下IDA动态调试linux的ELF
               </a>
             
           </div>
@@ -388,8 +387,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/02/pwn1_me/" rel="prev" title="PWN1_me">
-                PWN1_me <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/02/pwn1_me/" rel="prev" title="PWN——x86下的ro利用p">
+                PWN——x86下的ro利用p <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -458,9 +457,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.png"
-                alt="ESE" />
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">ESE</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -496,21 +495,27 @@
             
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                  <a href="https://github.com/saucxs/" target="_blank" title="GitHub">
                     
                       <i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://twitter.com/yourname" target="_blank" title="Twitter">
+                  <a href="https://weibo.com/" target="_blank" title="Twitter">
                     
                       <i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="Zhihu">
+                  <a href="https://www.zhihu.com/people/ese-76-83/activities" target="_blank" title="Zhihu">
                     
-                      <i class="fa fa-fw fa-qq"></i>Zhihu</a>
+                      <i class="fa fa-fw fa-drupal"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/5899672336/profile?topnav=1&wvr=6/&is_all=1" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
                 </span>
               
             
@@ -521,10 +526,10 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
               <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
+                <i class="fa  fa-fw fa-globe"></i>
+                
               </div>
               <ul class="links-of-blogroll-list">
                 
@@ -583,7 +588,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux下修改程序流程"><span class="nav-number">1.</span> <span class="nav-text">Linux下修改程序流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、Linux下修改程序流程"><span class="nav-number">1.1.</span> <span class="nav-text">1、Linux下修改程序流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、分析"><span class="nav-number">1.2.</span> <span class="nav-text">2、分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、修改"><span class="nav-number">1.3.</span> <span class="nav-text">3、修改</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、Linux下修改程序流程"><span class="nav-number">1.</span> <span class="nav-text">1、Linux下修改程序流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、分析"><span class="nav-number">2.</span> <span class="nav-text">2、分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、修改"><span class="nav-number">3.</span> <span class="nav-text">3、修改</span></a></li></ol></div>
             
 
           </div>
@@ -608,7 +613,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">ESE</span>
+  <span class="author" itemprop="copyrightHolder"></span>
 
   
 </div>
@@ -627,7 +632,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共18.6k字</span>
+  <span class="post-count">博客全站共17.9k字</span>
 </div>
 
         

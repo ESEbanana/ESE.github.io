@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–CTF中的ROP">
+<meta name="description" content="啥是rop?">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PWN_x86—4_rop">
+<meta property="og:title" content="PWN_x86中的ROP利用">
 <meta property="og:url" content="http://yoursite.com/2017/10/04/pwn4/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–CTF中的ROP">
+<meta property="og:description" content="啥是rop?">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-05T09:43:01.353Z">
+<meta property="og:updated_time" content="2017-11-09T11:48:16.679Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PWN_x86—4_rop">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–CTF中的ROP">
+<meta name="twitter:title" content="PWN_x86中的ROP利用">
+<meta name="twitter:description" content="啥是rop?">
 
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <title>PWN_x86—4_rop | ESE's Note</title>
+  <title>PWN_x86中的ROP利用 | ESE's Note</title>
   
 
 
@@ -257,7 +257,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/04/pwn4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ESE">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -271,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">PWN_x86—4_rop</h1>
+          <h1 class="post-title" itemprop="name headline">PWN_x86中的ROP利用</h1>
         
 
         <div class="post-meta">
@@ -325,8 +325,7 @@
       
 
       
-        <p>记录每天的进步，只有努力不会背叛自己！每天学习一点PWN</p>
-<h1 id="PWN从开始到开始–CTF中的ROP"><a href="#PWN从开始到开始–CTF中的ROP" class="headerlink" title="PWN从开始到开始–CTF中的ROP"></a>PWN从开始到开始–CTF中的ROP</h1><a id="more"></a>
+        <p>啥是rop?<br><a id="more"></a></p>
 <h2 id="1、CTF中的ROP"><a href="#1、CTF中的ROP" class="headerlink" title="1、CTF中的ROP"></a>1、CTF中的ROP</h2><p>顾名思义ROP，就是面向返回语句的编程方法，它借用libc代码段里面的多个retq前的一段指令拼凑成一段有效的逻辑，从而达到攻击的目标。</p>
 <h2 id="2、源码"><a href="#2、源码" class="headerlink" title="2、源码"></a>2、源码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;stdio.h&gt;</span></div><div class="line"><span class="comment">#include &lt;stdlib.h&gt;</span></div><div class="line">void f()</div><div class="line">&#123;</div><div class="line">     system(<span class="string">"no_shell_QQ"</span>);</div><div class="line">&#125;</div><div class="line">void secure(void)</div><div class="line">&#123;</div><div class="line">    char buf1[100];</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"What do you think ?\n"</span>);</div><div class="line">    gets(buf1);</div><div class="line">&#125;</div><div class="line">int main(void)</div><div class="line">&#123;</div><div class="line">    secure();</div><div class="line">    <span class="built_in">return</span> 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>运行命令生成<br><code>gcc -m32 -no-pie -fno-stack-protector -z execstack -o pwn2 pwn2.c</code></p>
@@ -373,8 +372,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/02/re_bp_exe/" rel="next" title="RE_bp">
-                <i class="fa fa-chevron-left"></i> RE_bp
+              <a href="/2017/10/02/re_bp_exe/" rel="next" title="RE_Windows爆破exe程序">
+                <i class="fa fa-chevron-left"></i> RE_Windows爆破exe程序
               </a>
             
           </div>
@@ -383,8 +382,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/04/pwn1/" rel="prev" title="PWN_x86—1_ret">
-                PWN_x86—1_ret <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/04/pwn1/" rel="prev" title="PWN_栈溢出——控制流劫持">
+                PWN_栈溢出——控制流劫持 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -453,9 +452,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.png"
-                alt="ESE" />
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">ESE</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -491,21 +490,27 @@
             
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                  <a href="https://github.com/saucxs/" target="_blank" title="GitHub">
                     
                       <i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://twitter.com/yourname" target="_blank" title="Twitter">
+                  <a href="https://weibo.com/" target="_blank" title="Twitter">
                     
                       <i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="Zhihu">
+                  <a href="https://www.zhihu.com/people/ese-76-83/activities" target="_blank" title="Zhihu">
                     
-                      <i class="fa fa-fw fa-qq"></i>Zhihu</a>
+                      <i class="fa fa-fw fa-drupal"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/5899672336/profile?topnav=1&wvr=6/&is_all=1" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
                 </span>
               
             
@@ -516,10 +521,10 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
               <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
+                <i class="fa  fa-fw fa-globe"></i>
+                
               </div>
               <ul class="links-of-blogroll-list">
                 
@@ -578,7 +583,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PWN从开始到开始–CTF中的ROP"><span class="nav-number">1.</span> <span class="nav-text">PWN从开始到开始–CTF中的ROP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、CTF中的ROP"><span class="nav-number">1.1.</span> <span class="nav-text">1、CTF中的ROP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、源码"><span class="nav-number">1.2.</span> <span class="nav-text">2、源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、漏洞原理，利用rop结合ret2blic技术"><span class="nav-number">1.3.</span> <span class="nav-text">3、漏洞原理，利用rop结合ret2blic技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、exp"><span class="nav-number">1.4.</span> <span class="nav-text">4、exp</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、CTF中的ROP"><span class="nav-number">1.</span> <span class="nav-text">1、CTF中的ROP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、源码"><span class="nav-number">2.</span> <span class="nav-text">2、源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、漏洞原理，利用rop结合ret2blic技术"><span class="nav-number">3.</span> <span class="nav-text">3、漏洞原理，利用rop结合ret2blic技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、exp"><span class="nav-number">4.</span> <span class="nav-text">4、exp</span></a></li></ol></div>
             
 
           </div>
@@ -603,7 +608,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">ESE</span>
+  <span class="author" itemprop="copyrightHolder"></span>
 
   
 </div>
@@ -622,7 +627,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共18.6k字</span>
+  <span class="post-count">博客全站共17.9k字</span>
 </div>
 
         

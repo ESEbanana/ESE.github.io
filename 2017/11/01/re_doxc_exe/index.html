@@ -81,12 +81,12 @@
 
 
 
-<meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点RE EXE文件伪装成docx">
+<meta name="description" content="EXE文件伪装成docx，初次见到蒙">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RE_exe_docx">
+<meta property="og:title" content="RE_病毒分析">
 <meta property="og:url" content="http://yoursite.com/2017/11/01/re_doxc_exe/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点RE EXE文件伪装成docx">
+<meta property="og:description" content="EXE文件伪装成docx，初次见到蒙">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fl2t3vhhjkj30mp0azaam.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fl2t8nqbo8j30ed04g3yn.jpg">
@@ -99,10 +99,10 @@
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/006rgqhqgy1fl2u5spu00j30lc08st8o.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fl2umxfvz1j30gc0a13yf.jpg">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/006rgqhqgy1fl2wae1m51j30oz0izn1i.jpg">
-<meta property="og:updated_time" content="2017-11-01T15:12:33.107Z">
+<meta property="og:updated_time" content="2017-11-09T11:52:23.643Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RE_exe_docx">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点RE EXE文件伪装成docx">
+<meta name="twitter:title" content="RE_病毒分析">
+<meta name="twitter:description" content="EXE文件伪装成docx，初次见到蒙">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fl2t3vhhjkj30mp0azaam.jpg">
 
 
@@ -139,7 +139,7 @@
 
 
 
-  <title>RE_exe_docx | ESE's Note</title>
+  <title>RE_病毒分析 | ESE's Note</title>
   
 
 
@@ -269,7 +269,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/01/re_doxc_exe/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ESE">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -283,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">RE_exe_docx</h1>
+          <h1 class="post-title" itemprop="name headline">RE_病毒分析</h1>
         
 
         <div class="post-meta">
@@ -337,8 +337,7 @@
       
 
       
-        <p>记录每天的进步，只有努力不会背叛自己！每天学习一点RE</p>
-<h1 id="EXE文件伪装成docx"><a href="#EXE文件伪装成docx" class="headerlink" title="EXE文件伪装成docx"></a>EXE文件伪装成docx</h1><a id="more"></a>
+        <p>EXE文件伪装成docx，初次见到蒙<br><a id="more"></a></p>
 <h2 id="1、题目"><a href="#1、题目" class="headerlink" title="1、题目"></a>1、题目</h2><p>链接：<a href="http://pan.baidu.com/s/1qX8PHnA" target="_blank" rel="external">http://pan.baidu.com/s/1qX8PHnA</a> 密码：34yi</p>
 <h2 id="2、查看文件"><a href="#2、查看文件" class="headerlink" title="2、查看文件"></a>2、查看文件</h2><p>ida打开exe<br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1fl2t3vhhjkj30mp0azaam.jpg" alt=""><br>发现加壳程序,pedi没有检查倒是什么壳，放到kali用strings一下<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fl2t8nqbo8j30ed04g3yn.jpg" alt=""><br>尝试upx脱壳机脱，然而脱不下来,手动脱了,UPX的脱壳比较简单，找到pushad 和popad下断点，然后往下跟就好，找到的OEP<br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1fl2td2kzkpj31020ejq3s.jpg" alt=""><br>OEP开始一般都这样的<br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1fl2t5f8sq7j30x30d2gos.jpg" alt=""><br>右键使用OllyDump将程序dump出来即可，UPX加壳的程序不需要修复IAT就可以直接运行<br><img src="http://ww4.sinaimg.cn/large/006rgqhqgy1fl2tppwexjj30ye0gkta3.jpg" alt=""><br>用ida打开,已经可以看见代码啦<br><img src="http://ww4.sinaimg.cn/large/006rgqhqgy1fl2twn4r0jj30ym0fqgn1.jpg" alt=""><br>sub_401370函数的逻辑如下，主要行为为拷贝evil.exe到%temp%下一份，在从资源中释放evil.docx文件到当前目录</p>
 <p>sub_401620的功能很简单，就是如果命令行参数个数为2（即之前新创建的进程），则循环删除evil.exe文件<br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1fl2u19e10nj30an08pa9x.jpg" alt=""><br>创建一个进程evil.exe “evil.exe”，然后打开docx<br>sub_4018F0从<a href="http://www.ddctf.com/x.jpg中读取数据。x.jpg即题目中的x.jpg，自建服务器然后将x.jpg放在" target="_blank" rel="external">http://www.ddctf.com/x.jpg中读取数据。x.jpg即题目中的x.jpg，自建服务器然后将x.jpg放在</a><br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fl2u4b81agj30mx0e9jrh.jpg" alt=""><br>之后是两个解码函数，这里可以直接忽略其中的逻辑。<br><img src="http://ww4.sinaimg.cn/large/006rgqhqgy1fl2u5spu00j30lc08st8o.jpg" alt=""><br>然后是执行sub_401220的函数,OD动态跟一下看<br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1fl2umxfvz1j30gc0a13yf.jpg" alt=""></p>
@@ -383,8 +382,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/31/re_kx2/" rel="next" title="RE">
-                <i class="fa fa-chevron-left"></i> RE
+              <a href="/2017/10/31/re_kx2/" rel="next" title="RE——看雪">
+                <i class="fa fa-chevron-left"></i> RE——看雪
               </a>
             
           </div>
@@ -393,8 +392,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/03/pwn_ruqun/" rel="prev" title="PWN">
-                PWN <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/03/pwn_ruqun/" rel="prev" title="PWN为了入群做题">
+                PWN为了入群做题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -463,9 +462,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.png"
-                alt="ESE" />
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">ESE</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -501,21 +500,27 @@
             
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                  <a href="https://github.com/saucxs/" target="_blank" title="GitHub">
                     
                       <i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://twitter.com/yourname" target="_blank" title="Twitter">
+                  <a href="https://weibo.com/" target="_blank" title="Twitter">
                     
                       <i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="Zhihu">
+                  <a href="https://www.zhihu.com/people/ese-76-83/activities" target="_blank" title="Zhihu">
                     
-                      <i class="fa fa-fw fa-qq"></i>Zhihu</a>
+                      <i class="fa fa-fw fa-drupal"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/5899672336/profile?topnav=1&wvr=6/&is_all=1" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
                 </span>
               
             
@@ -526,10 +531,10 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
               <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
+                <i class="fa  fa-fw fa-globe"></i>
+                
               </div>
               <ul class="links-of-blogroll-list">
                 
@@ -588,7 +593,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#EXE文件伪装成docx"><span class="nav-number">1.</span> <span class="nav-text">EXE文件伪装成docx</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、题目"><span class="nav-number">1.1.</span> <span class="nav-text">1、题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、查看文件"><span class="nav-number">1.2.</span> <span class="nav-text">2、查看文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、搭建环境"><span class="nav-number">1.3.</span> <span class="nav-text">3、搭建环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、OD动态"><span class="nav-number">1.4.</span> <span class="nav-text">3、OD动态</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、题目"><span class="nav-number">1.</span> <span class="nav-text">1、题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、查看文件"><span class="nav-number">2.</span> <span class="nav-text">2、查看文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、搭建环境"><span class="nav-number">3.</span> <span class="nav-text">3、搭建环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、OD动态"><span class="nav-number">4.</span> <span class="nav-text">3、OD动态</span></a></li></ol></div>
             
 
           </div>
@@ -613,7 +618,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">ESE</span>
+  <span class="author" itemprop="copyrightHolder"></span>
 
   
 </div>
@@ -632,7 +637,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共18.6k字</span>
+  <span class="post-count">博客全站共17.9k字</span>
 </div>
 
         

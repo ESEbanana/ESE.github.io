@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点RE Windows爆破exe">
+<meta name="description" content="爆破最好的解决方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RE_bp">
+<meta property="og:title" content="RE_Windows爆破exe程序">
 <meta property="og:url" content="http://yoursite.com/2017/10/02/re_bp_exe/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点RE Windows爆破exe">
+<meta property="og:description" content="爆破最好的解决方法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-10T07:51:13.556Z">
+<meta property="og:updated_time" content="2017-11-09T11:51:05.193Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RE_bp">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点RE Windows爆破exe">
+<meta name="twitter:title" content="RE_Windows爆破exe程序">
+<meta name="twitter:description" content="爆破最好的解决方法">
 
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <title>RE_bp | ESE's Note</title>
+  <title>RE_Windows爆破exe程序 | ESE's Note</title>
   
 
 
@@ -257,7 +257,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/02/re_bp_exe/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ESE">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -271,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">RE_bp</h1>
+          <h1 class="post-title" itemprop="name headline">RE_Windows爆破exe程序</h1>
         
 
         <div class="post-meta">
@@ -325,8 +325,7 @@
       
 
       
-        <p>记录每天的进步，只有努力不会背叛自己！每天学习一点RE</p>
-<h1 id="Windows爆破exe"><a href="#Windows爆破exe" class="headerlink" title="Windows爆破exe"></a>Windows爆破exe</h1><a id="more"></a>
+        <p>爆破最好的解决方法<br><a id="more"></a></p>
 <h2 id="1、windows爆破exe"><a href="#1、windows爆破exe" class="headerlink" title="1、windows爆破exe"></a>1、windows爆破exe</h2><p>直接看代码，以后可能用到，就记录下来<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf8 -*-</span></div><div class="line">import subprocess</div><div class="line">import threading</div><div class="line"></div><div class="line">serial=<span class="string">'78767-77666-76786-87788-77778-66867-66777-86767-66877-77778-88887'</span></div><div class="line"><span class="string">''</span><span class="string">'</span></div><div class="line"><span class="string">##得到flag的字典</span></div><div class="line"><span class="string">dic = '</span>_qwertyuiopasdfghjklzxcvbnm<span class="string">'</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">name = []</span></div><div class="line"><span class="string">with open('</span>dic.txt<span class="string">','</span>w<span class="string">') as f:</span></div><div class="line"><span class="string">    for i in dic:</span></div><div class="line"><span class="string">        for j in dic:</span></div><div class="line"><span class="string">            for k in dic:</span></div><div class="line"><span class="string">                for l in dic:</span></div><div class="line"><span class="string">                    f.writelines('</span>&#123;hdu<span class="string">'+i+'</span>b<span class="string">'+j+k+l+'</span>0_&#125;\n<span class="string">')</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">'</span><span class="string">''</span></div><div class="line">def crack(<span class="built_in">source</span>):</div><div class="line">    p = subprocess.Popen(pname, stdin=subprocess.PIPE, stdout=subprocess.PIPE)</div><div class="line">    result = p.communicate(input=<span class="built_in">source</span>)</div><div class="line">    res=result[0]</div><div class="line">    <span class="keyword">if</span> (<span class="string">'Sorry'</span> <span class="keyword">in</span> res):</div><div class="line">        <span class="built_in">return</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="built_in">print</span> <span class="built_in">source</span></div><div class="line">        <span class="built_in">exit</span>()</div><div class="line"></div><div class="line">dic = []</div><div class="line"></div><div class="line">with open(<span class="string">'dic.txt'</span>, <span class="string">'r'</span>) as f:</div><div class="line">    <span class="keyword">for</span> eachline <span class="keyword">in</span> f.readlines():</div><div class="line">        dic.append(eachline)</div><div class="line"></div><div class="line"><span class="comment">##pname = 'myproject1.exe'</span></div><div class="line">pname = <span class="string">'crackme.exe'</span></div><div class="line"><span class="comment">##a = '123'+' '+'123'</span></div><div class="line">threads = []</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> dic:</div><div class="line">    <span class="built_in">source</span> = i + <span class="string">' '</span> + serial</div><div class="line">    t = threading.Thread(target = crack, args=(<span class="built_in">source</span>,))</div><div class="line">    threads.append(t)</div><div class="line"></div><div class="line">num = 0</div><div class="line"><span class="keyword">for</span> t <span class="keyword">in</span> threads:</div><div class="line">    t.start()</div><div class="line">    <span class="keyword">while</span> True:</div><div class="line">        <span class="comment">#判断正在运行的线程数量,如果小于5则退出while循环,</span></div><div class="line">        <span class="comment">#进入for循环启动新的进程.否则就一直在while循环进入死循环</span></div><div class="line">        <span class="keyword">if</span>(len(threading.enumerate()) &lt; 20):</div><div class="line">            <span class="built_in">break</span></div></pre></td></tr></table></figure></p>
 
       
@@ -367,8 +366,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/02/pwn1_me/" rel="next" title="PWN1_me">
-                <i class="fa fa-chevron-left"></i> PWN1_me
+              <a href="/2017/10/02/pwn1_me/" rel="next" title="PWN——x86下的ro利用p">
+                <i class="fa fa-chevron-left"></i> PWN——x86下的ro利用p
               </a>
             
           </div>
@@ -377,8 +376,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/04/pwn4/" rel="prev" title="PWN_x86—4_rop">
-                PWN_x86—4_rop <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/04/pwn4/" rel="prev" title="PWN_x86中的ROP利用">
+                PWN_x86中的ROP利用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -447,9 +446,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.png"
-                alt="ESE" />
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">ESE</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -485,21 +484,27 @@
             
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                  <a href="https://github.com/saucxs/" target="_blank" title="GitHub">
                     
                       <i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://twitter.com/yourname" target="_blank" title="Twitter">
+                  <a href="https://weibo.com/" target="_blank" title="Twitter">
                     
                       <i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="Zhihu">
+                  <a href="https://www.zhihu.com/people/ese-76-83/activities" target="_blank" title="Zhihu">
                     
-                      <i class="fa fa-fw fa-qq"></i>Zhihu</a>
+                      <i class="fa fa-fw fa-drupal"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/5899672336/profile?topnav=1&wvr=6/&is_all=1" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
                 </span>
               
             
@@ -510,10 +515,10 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
               <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
+                <i class="fa  fa-fw fa-globe"></i>
+                
               </div>
               <ul class="links-of-blogroll-list">
                 
@@ -572,7 +577,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows爆破exe"><span class="nav-number">1.</span> <span class="nav-text">Windows爆破exe</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、windows爆破exe"><span class="nav-number">1.1.</span> <span class="nav-text">1、windows爆破exe</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、windows爆破exe"><span class="nav-number">1.</span> <span class="nav-text">1、windows爆破exe</span></a></li></ol></div>
             
 
           </div>
@@ -597,7 +602,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">ESE</span>
+  <span class="author" itemprop="copyrightHolder"></span>
 
   
 </div>
@@ -616,7 +621,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共18.6k字</span>
+  <span class="post-count">博客全站共17.9k字</span>
 </div>
 
         

@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点RE 绕过tls保护">
+<meta name="description" content="在main函数前，还有什么">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RE_tls">
+<meta property="og:title" content="RE_绕过tls保护">
 <meta property="og:url" content="http://yoursite.com/2017/10/10/re_tls/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点RE 绕过tls保护">
+<meta property="og:description" content="在main函数前，还有什么">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-10T08:35:47.456Z">
+<meta property="og:updated_time" content="2017-11-09T11:56:27.030Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RE_tls">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点RE 绕过tls保护">
+<meta name="twitter:title" content="RE_绕过tls保护">
+<meta name="twitter:description" content="在main函数前，还有什么">
 
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <title>RE_tls | ESE's Note</title>
+  <title>RE_绕过tls保护 | ESE's Note</title>
   
 
 
@@ -257,7 +257,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/re_tls/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ESE">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -271,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">RE_tls</h1>
+          <h1 class="post-title" itemprop="name headline">RE_绕过tls保护</h1>
         
 
         <div class="post-meta">
@@ -325,11 +325,11 @@
       
 
       
-        <p>记录每天的进步，只有努力不会背叛自己！每天学习一点RE</p>
-<h1 id="绕过tls保护"><a href="#绕过tls保护" class="headerlink" title="绕过tls保护"></a>绕过tls保护</h1><a id="more"></a>
+        <p>在main函数前，还有什么<br><a id="more"></a></p>
 <h2 id="1、何为tls"><a href="#1、何为tls" class="headerlink" title="1、何为tls"></a>1、何为tls</h2><p>TLS回调函数是指，每当创建/终止进程的线程时会自动调用执行的函数。创建的主线程也会自动调用回调函数，且其调用执行先于EP代码。</p>
 <h2 id="2、实践"><a href="#2、实践" class="headerlink" title="2、实践"></a>2、实践</h2><p>TLS callback函数的定义<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">typedef VOID</div><div class="line">(NTAPI *PIMAGE_TLS_CALLBACK) (</div><div class="line">    PVOID DllHandle,     //模块句柄，即加载地址</div><div class="line">    DWORD Reason,        </div><div class="line">    PVOID Reserved</div><div class="line">    );</div><div class="line"></div><div class="line">其中reason有以下几种：(winNT.h)</div><div class="line"><span class="comment">#define DLL_PROCESS_ATTACH   1    进程启动</span></div><div class="line"><span class="comment">#define DLL_THREAD_ATTACH    2    线程启动</span></div><div class="line"><span class="comment">#define DLL_THREAD_DETACH    3    线程退出</span></div><div class="line"><span class="comment">#define DLL_PROCESS_DETACH   0    进程退出</span></div></pre></td></tr></table></figure></p>
 <p>编程实例<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>等待更新 555555</p>
 
       
     </div>
@@ -369,8 +369,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/09/pwn3_me/" rel="next" title="PWN2_me">
-                <i class="fa fa-chevron-left"></i> PWN2_me
+              <a href="/2017/10/09/pwn3_me/" rel="next" title="PWN——格式化字符串利用">
+                <i class="fa fa-chevron-left"></i> PWN——格式化字符串利用
               </a>
             
           </div>
@@ -379,8 +379,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/13/java_jar/" rel="prev" title="java">
-                java <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/13/java_jar/" rel="prev" title="java——jar文件运行命令行窗口一闪而过">
+                java——jar文件运行命令行窗口一闪而过 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -449,9 +449,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.png"
-                alt="ESE" />
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">ESE</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -487,21 +487,27 @@
             
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                  <a href="https://github.com/saucxs/" target="_blank" title="GitHub">
                     
                       <i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://twitter.com/yourname" target="_blank" title="Twitter">
+                  <a href="https://weibo.com/" target="_blank" title="Twitter">
                     
                       <i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="Zhihu">
+                  <a href="https://www.zhihu.com/people/ese-76-83/activities" target="_blank" title="Zhihu">
                     
-                      <i class="fa fa-fw fa-qq"></i>Zhihu</a>
+                      <i class="fa fa-fw fa-drupal"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/5899672336/profile?topnav=1&wvr=6/&is_all=1" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
                 </span>
               
             
@@ -512,10 +518,10 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
               <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
+                <i class="fa  fa-fw fa-globe"></i>
+                
               </div>
               <ul class="links-of-blogroll-list">
                 
@@ -574,7 +580,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#绕过tls保护"><span class="nav-number">1.</span> <span class="nav-text">绕过tls保护</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、何为tls"><span class="nav-number">1.1.</span> <span class="nav-text">1、何为tls</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、实践"><span class="nav-number">1.2.</span> <span class="nav-text">2、实践</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、何为tls"><span class="nav-number">1.</span> <span class="nav-text">1、何为tls</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、实践"><span class="nav-number">2.</span> <span class="nav-text">2、实践</span></a></li></ol></div>
             
 
           </div>
@@ -599,7 +605,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">ESE</span>
+  <span class="author" itemprop="copyrightHolder"></span>
 
   
 </div>
@@ -618,7 +624,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共18.6k字</span>
+  <span class="post-count">博客全站共17.9k字</span>
 </div>
 
         

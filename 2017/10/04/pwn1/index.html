@@ -81,19 +81,19 @@
 
 
 
-<meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN 基于无保护栈溢出——控制流劫持">
+<meta name="description" content="第一次拿到shell,感觉真好">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PWN_x86—1_ret">
+<meta property="og:title" content="PWN_栈溢出——控制流劫持">
 <meta property="og:url" content="http://yoursite.com/2017/10/04/pwn1/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN 基于无保护栈溢出——控制流劫持">
+<meta property="og:description" content="第一次拿到shell,感觉真好">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjp0dswpxmj30a4049q2q.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjp0gjcua3j30fe05xq41.jpg">
-<meta property="og:updated_time" content="2017-10-05T06:18:15.790Z">
+<meta property="og:updated_time" content="2017-11-09T11:44:47.238Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PWN_x86—1_ret">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN 基于无保护栈溢出——控制流劫持">
+<meta name="twitter:title" content="PWN_栈溢出——控制流劫持">
+<meta name="twitter:description" content="第一次拿到shell,感觉真好">
 <meta name="twitter:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjp0dswpxmj30a4049q2q.jpg">
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <title>PWN_x86—1_ret | ESE's Note</title>
+  <title>PWN_栈溢出——控制流劫持 | ESE's Note</title>
   
 
 
@@ -260,7 +260,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/04/pwn1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ESE">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -274,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">PWN_x86—1_ret</h1>
+          <h1 class="post-title" itemprop="name headline">PWN_栈溢出——控制流劫持</h1>
         
 
         <div class="post-meta">
@@ -328,8 +328,7 @@
       
 
       
-        <p>记录每天的进步，只有努力不会背叛自己！每天学习一点PWN</p>
-<h1 id="基于无保护栈溢出——控制流劫持"><a href="#基于无保护栈溢出——控制流劫持" class="headerlink" title="基于无保护栈溢出——控制流劫持"></a>基于无保护栈溢出——控制流劫持</h1><a id="more"></a>
+        <p>第一次拿到shell,感觉真好<br><a id="more"></a></p>
 <h2 id="1、原理"><a href="#1、原理" class="headerlink" title="1、原理"></a>1、原理</h2><p>通过覆盖返回地址，让程序执行我们想要执行的位置（任意地址）,包括我们构造的shellcode，从而得到shell<br>换个姿势理解： <a href="https://esebanana.github.io/2017/09/14/window-hexo/" target="_blank" rel="external">https://esebanana.github.io/2017/09/14/window-hexo/</a></p>
 <h2 id="2、源码福利"><a href="#2、源码福利" class="headerlink" title="2、源码福利"></a>2、源码福利</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;stdio.h&gt;</span></div><div class="line"><span class="comment">#include &lt;string.h&gt;</span></div><div class="line">void <span class="function"><span class="title">success</span></span>() &#123;</div><div class="line">puts(<span class="string">"You Hava already controlled it."</span>);</div><div class="line">system(<span class="string">"/bin/sh"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">void <span class="function"><span class="title">vulnerable</span></span>() &#123;</div><div class="line">char s[12];</div><div class="line">gets(s);</div><div class="line">puts(s);</div><div class="line"><span class="built_in">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main(int argc, char **argv) &#123;</div><div class="line">vulnerable();</div><div class="line"><span class="built_in">return</span> 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="3、命令编译程序生成stack1-exe文件"><a href="#3、命令编译程序生成stack1-exe文件" class="headerlink" title="3、命令编译程序生成stack1.exe文件"></a>3、命令编译程序生成stack1.exe文件</h2><p><code>gcc -m32 -no-pie -fno-stack-protector -z execstack -o stack1 stack1.c</code><br>-no-pie会关掉PIE,-fno-stack-protector和-z execstack这两个参数会分别关掉Stack Protector和NX</p>
@@ -376,8 +375,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/04/pwn4/" rel="next" title="PWN_x86—4_rop">
-                <i class="fa fa-chevron-left"></i> PWN_x86—4_rop
+              <a href="/2017/10/04/pwn4/" rel="next" title="PWN_x86中的ROP利用">
+                <i class="fa fa-chevron-left"></i> PWN_x86中的ROP利用
               </a>
             
           </div>
@@ -386,8 +385,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/06/pwn5/" rel="prev" title="PWN_x86—5_DynELF">
-                PWN_x86—5_DynELF <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/06/pwn5/" rel="prev" title="PWN——泄露函数地址，获取libc">
+                PWN——泄露函数地址，获取libc <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -456,9 +455,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.png"
-                alt="ESE" />
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">ESE</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -494,21 +493,27 @@
             
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                  <a href="https://github.com/saucxs/" target="_blank" title="GitHub">
                     
                       <i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://twitter.com/yourname" target="_blank" title="Twitter">
+                  <a href="https://weibo.com/" target="_blank" title="Twitter">
                     
                       <i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="Zhihu">
+                  <a href="https://www.zhihu.com/people/ese-76-83/activities" target="_blank" title="Zhihu">
                     
-                      <i class="fa fa-fw fa-qq"></i>Zhihu</a>
+                      <i class="fa fa-fw fa-drupal"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/5899672336/profile?topnav=1&wvr=6/&is_all=1" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
                 </span>
               
             
@@ -519,10 +524,10 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
               <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
+                <i class="fa  fa-fw fa-globe"></i>
+                
               </div>
               <ul class="links-of-blogroll-list">
                 
@@ -581,7 +586,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基于无保护栈溢出——控制流劫持"><span class="nav-number">1.</span> <span class="nav-text">基于无保护栈溢出——控制流劫持</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、原理"><span class="nav-number">1.1.</span> <span class="nav-text">1、原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、源码福利"><span class="nav-number">1.2.</span> <span class="nav-text">2、源码福利</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、命令编译程序生成stack1-exe文件"><span class="nav-number">1.3.</span> <span class="nav-text">3、命令编译程序生成stack1.exe文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、分析"><span class="nav-number">1.4.</span> <span class="nav-text">4、分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、写exp"><span class="nav-number">1.5.</span> <span class="nav-text">5、写exp</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、原理"><span class="nav-number">1.</span> <span class="nav-text">1、原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、源码福利"><span class="nav-number">2.</span> <span class="nav-text">2、源码福利</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、命令编译程序生成stack1-exe文件"><span class="nav-number">3.</span> <span class="nav-text">3、命令编译程序生成stack1.exe文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、分析"><span class="nav-number">4.</span> <span class="nav-text">4、分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、写exp"><span class="nav-number">5.</span> <span class="nav-text">5、写exp</span></a></li></ol></div>
             
 
           </div>
@@ -606,7 +611,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">ESE</span>
+  <span class="author" itemprop="copyrightHolder"></span>
 
   
 </div>
@@ -625,7 +630,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共18.6k字</span>
+  <span class="post-count">博客全站共17.9k字</span>
 </div>
 
         

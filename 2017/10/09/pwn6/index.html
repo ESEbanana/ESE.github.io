@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–CTF中的FmtStr">
+<meta name="description" content="FmtStr的利用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PWN_x86—6_FmtStr">
+<meta property="og:title" content="PWN——格式化字符FmtStr">
 <meta property="og:url" content="http://yoursite.com/2017/10/09/pwn6/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–CTF中的FmtStr">
+<meta property="og:description" content="FmtStr的利用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-09T08:23:47.003Z">
+<meta property="og:updated_time" content="2017-11-09T11:50:24.033Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PWN_x86—6_FmtStr">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–CTF中的FmtStr">
+<meta name="twitter:title" content="PWN——格式化字符FmtStr">
+<meta name="twitter:description" content="FmtStr的利用">
 
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <title>PWN_x86—6_FmtStr | ESE's Note</title>
+  <title>PWN——格式化字符FmtStr | ESE's Note</title>
   
 
 
@@ -257,7 +257,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/09/pwn6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ESE">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -271,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">PWN_x86—6_FmtStr</h1>
+          <h1 class="post-title" itemprop="name headline">PWN——格式化字符FmtStr</h1>
         
 
         <div class="post-meta">
@@ -325,8 +325,7 @@
       
 
       
-        <p>记录每天的进步，只有努力不会背叛自己！每天学习一点PWN</p>
-<h1 id="PWN从开始到开始–CTF中的FmtStr"><a href="#PWN从开始到开始–CTF中的FmtStr" class="headerlink" title="PWN从开始到开始–CTF中的FmtStr"></a>PWN从开始到开始–CTF中的FmtStr</h1><a id="more"></a>
+        <p>FmtStr的利用<br><a id="more"></a></p>
 <h2 id="1、介绍fmt的函数"><a href="#1、介绍fmt的函数" class="headerlink" title="1、介绍fmt的函数"></a>1、介绍fmt的函数</h2><h3 id="FmtStr函数"><a href="#FmtStr函数" class="headerlink" title="FmtStr函数"></a>FmtStr函数</h3><p>FmtStr函数可以获取偏移参数的个数offset<br>例如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include&lt;stdio.h&gt;</span></div><div class="line">int main(int argc, char * argv[])</div><div class="line">&#123;</div><div class="line">    char a[1024];</div><div class="line">    <span class="keyword">while</span>(1) </div><div class="line">    &#123;</div><div class="line">        memset(a, <span class="string">'\0'</span>, 1024);</div><div class="line">        <span class="built_in">read</span>(0, a, 1024);</div><div class="line">        <span class="built_in">printf</span>(a);</div><div class="line">        fflush(stdout);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>FmtStr函数利用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">from pwn import *</div><div class="line"></div><div class="line">def exec_fmt(payload):</div><div class="line">    p = process(<span class="string">'./1'</span>)</div><div class="line">    p.sendline(payload)</div><div class="line">    <span class="built_in">return</span> p.recv()</div><div class="line"></div><div class="line">autofmt = FmtStr(exec_fmt)</div><div class="line"><span class="built_in">print</span> autofmt.offset</div></pre></td></tr></table></figure></p>
 <p>结果：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">root@kali:pwn3<span class="comment"># python 1.py </span></div><div class="line">[+] Starting <span class="built_in">local</span> process <span class="string">'./1'</span>: pid 4859</div><div class="line">[+] Starting <span class="built_in">local</span> process <span class="string">'./1'</span>: pid 4861</div><div class="line">[+] Starting <span class="built_in">local</span> process <span class="string">'./1'</span>: pid 4863</div><div class="line">[+] Starting <span class="built_in">local</span> process <span class="string">'./1'</span>: pid 4865</div><div class="line">[*] Found format string offset: 4</div><div class="line">4</div><div class="line">[*] Stopped process <span class="string">'./1'</span> (pid 4865)</div><div class="line">[*] Stopped process <span class="string">'./1'</span> (pid 4863)</div><div class="line">[*] Stopped process <span class="string">'./1'</span> (pid 4861)</div><div class="line">[*] Stopped process <span class="string">'./1'</span> (pid 4859)</div></pre></td></tr></table></figure></p>
@@ -380,8 +379,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/09/pwn3_me/" rel="prev" title="PWN2_me">
-                PWN2_me <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/09/pwn3_me/" rel="prev" title="PWN——格式化字符串利用">
+                PWN——格式化字符串利用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -450,9 +449,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.png"
-                alt="ESE" />
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">ESE</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -488,21 +487,27 @@
             
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                  <a href="https://github.com/saucxs/" target="_blank" title="GitHub">
                     
                       <i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://twitter.com/yourname" target="_blank" title="Twitter">
+                  <a href="https://weibo.com/" target="_blank" title="Twitter">
                     
                       <i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="Zhihu">
+                  <a href="https://www.zhihu.com/people/ese-76-83/activities" target="_blank" title="Zhihu">
                     
-                      <i class="fa fa-fw fa-qq"></i>Zhihu</a>
+                      <i class="fa fa-fw fa-drupal"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/5899672336/profile?topnav=1&wvr=6/&is_all=1" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
                 </span>
               
             
@@ -513,10 +518,10 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
               <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
+                <i class="fa  fa-fw fa-globe"></i>
+                
               </div>
               <ul class="links-of-blogroll-list">
                 
@@ -575,7 +580,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PWN从开始到开始–CTF中的FmtStr"><span class="nav-number">1.</span> <span class="nav-text">PWN从开始到开始–CTF中的FmtStr</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、介绍fmt的函数"><span class="nav-number">1.1.</span> <span class="nav-text">1、介绍fmt的函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FmtStr函数"><span class="nav-number">1.1.1.</span> <span class="nav-text">FmtStr函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fmtstr-payload函数"><span class="nav-number">1.1.2.</span> <span class="nav-text">fmtstr_payload函数</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、介绍fmt的函数"><span class="nav-number">1.</span> <span class="nav-text">1、介绍fmt的函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FmtStr函数"><span class="nav-number">1.1.</span> <span class="nav-text">FmtStr函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fmtstr-payload函数"><span class="nav-number">1.2.</span> <span class="nav-text">fmtstr_payload函数</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -600,7 +605,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">ESE</span>
+  <span class="author" itemprop="copyrightHolder"></span>
 
   
 </div>
@@ -619,7 +624,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共18.6k字</span>
+  <span class="post-count">博客全站共17.9k字</span>
 </div>
 
         

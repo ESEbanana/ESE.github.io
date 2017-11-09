@@ -81,19 +81,19 @@
 
 
 
-<meta name="description" content="记录每天的进步，只有努力不会背叛自己！ 缓冲区溢出">
+<meta name="description" content="初次遇见，一个新的天地">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于绕过密码检测">
+<meta property="og:title" content="缓冲区溢出--绕过密码检测">
 <meta property="og:url" content="http://yoursite.com/2017/09/18/pwn0/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！ 缓冲区溢出">
+<meta property="og:description" content="初次遇见，一个新的天地">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fki1tgzzjdj30fe088t9d.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fki1uhhrzvj30fe04fmxj.jpg">
-<meta property="og:updated_time" content="2017-10-14T12:48:02.151Z">
+<meta property="og:updated_time" content="2017-11-09T11:42:33.532Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基于绕过密码检测">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！ 缓冲区溢出">
+<meta name="twitter:title" content="缓冲区溢出--绕过密码检测">
+<meta name="twitter:description" content="初次遇见，一个新的天地">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fki1tgzzjdj30fe088t9d.jpg">
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <title>基于绕过密码检测 | ESE's Note</title>
+  <title>缓冲区溢出--绕过密码检测 | ESE's Note</title>
   
 
 
@@ -260,7 +260,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/18/pwn0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ESE">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -274,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">基于绕过密码检测</h1>
+          <h1 class="post-title" itemprop="name headline">缓冲区溢出--绕过密码检测</h1>
         
 
         <div class="post-meta">
@@ -328,8 +328,7 @@
       
 
       
-        <p>记录每天的进步，只有努力不会背叛自己！</p>
-<h1 id="缓冲区溢出"><a href="#缓冲区溢出" class="headerlink" title="缓冲区溢出"></a>缓冲区溢出</h1><a id="more"></a>
+        <p>初次遇见，一个新的天地<br><a id="more"></a></p>
 <h2 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h2><p> 缓冲区溢出是一种非常普遍、非常危险的漏洞，在各种操作系统、应用软件中广泛存在。利用缓冲区溢出攻击，可以导致程序运行失败、系统宕机、重新启动等后果。更为严重的是，可以利用它执行非授权指令，甚至可以取得系统特权，进而进行各种非法操作。这里利用C语言不判断数组越界做缓冲区溢出。</p>
 <h2 id="2、源代码"><a href="#2、源代码" class="headerlink" title="2、源代码"></a>2、源代码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include&lt;stdio.h&gt;</span></div><div class="line"><span class="comment">#include&lt;String.h&gt;</span></div><div class="line"><span class="comment"># define passwd "9234567"</span></div><div class="line"></div><div class="line">int func_A(char *password)</div><div class="line">&#123;</div><div class="line">	int a;</div><div class="line">    a = strcmp(password,passwd);</div><div class="line">	</div><div class="line">	<span class="built_in">return</span> a;</div><div class="line">&#125;</div><div class="line">int main (int argc,char **argv,char **envp)</div><div class="line">&#123;</div><div class="line">	int flag = 0;</div><div class="line">	char password[16];</div><div class="line">	<span class="keyword">while</span>(1)</div><div class="line">	&#123;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"password:"</span>);</div><div class="line">	scanf(<span class="string">"%s"</span>,password);</div><div class="line">	flag = func_A(password);</div><div class="line">	<span class="keyword">if</span>(flag)</div><div class="line">	&#123;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"error!!\n"</span>);</div><div class="line">	&#125;<span class="keyword">else</span> &#123;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"sccess!!\n"</span>);</div><div class="line">	<span class="built_in">break</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这是一个简单验证密码的函数。我们先了解它的栈。</p>
@@ -455,9 +454,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.png"
-                alt="ESE" />
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">ESE</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -493,21 +492,27 @@
             
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                  <a href="https://github.com/saucxs/" target="_blank" title="GitHub">
                     
                       <i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://twitter.com/yourname" target="_blank" title="Twitter">
+                  <a href="https://weibo.com/" target="_blank" title="Twitter">
                     
                       <i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="Zhihu">
+                  <a href="https://www.zhihu.com/people/ese-76-83/activities" target="_blank" title="Zhihu">
                     
-                      <i class="fa fa-fw fa-qq"></i>Zhihu</a>
+                      <i class="fa fa-fw fa-drupal"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/5899672336/profile?topnav=1&wvr=6/&is_all=1" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
                 </span>
               
             
@@ -518,10 +523,10 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
               <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
+                <i class="fa  fa-fw fa-globe"></i>
+                
               </div>
               <ul class="links-of-blogroll-list">
                 
@@ -580,7 +585,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#缓冲区溢出"><span class="nav-number">1.</span> <span class="nav-text">缓冲区溢出</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、概念"><span class="nav-number">1.1.</span> <span class="nav-text">1、概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、源代码"><span class="nav-number">1.2.</span> <span class="nav-text">2、源代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、缓冲区溢出代码"><span class="nav-number">1.3.</span> <span class="nav-text">3、缓冲区溢出代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、概念"><span class="nav-number">1.</span> <span class="nav-text">1、概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、源代码"><span class="nav-number">2.</span> <span class="nav-text">2、源代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、缓冲区溢出代码"><span class="nav-number">3.</span> <span class="nav-text">3、缓冲区溢出代码</span></a></li></ol></div>
             
 
           </div>
@@ -605,7 +610,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">ESE</span>
+  <span class="author" itemprop="copyrightHolder"></span>
 
   
 </div>
@@ -624,7 +629,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共18.6k字</span>
+  <span class="post-count">博客全站共17.9k字</span>
 </div>
 
         

