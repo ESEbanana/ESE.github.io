@@ -88,10 +88,20 @@
 <meta property="og:site_name" content="ESE&#39;s Note">
 <meta property="og:description" content="在main函数前，还有什么">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-09T11:56:27.030Z">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1flfix8jsj8j31750f2aah.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1flfj49nejej30r90ikq6b.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1flfjxsyhz4j316l0nh78k.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1flfk389npmj30ny0eydhc.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/006rgqhqgy1flfk4opm41j30lb0dqmy7.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1flfk72dak1j315t0jq41a.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1flfka5rrbkj30m40hhjse.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/006rgqhqgy1flfkb8q07mj30jw0bi74m.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1flfkdw89zvj30up0d4dgi.jpg">
+<meta property="og:updated_time" content="2017-11-12T12:18:28.713Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RE_绕过tls保护">
 <meta name="twitter:description" content="在main函数前，还有什么">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1flfix8jsj8j31750f2aah.jpg">
 
 
 
@@ -328,8 +338,7 @@
         <p>在main函数前，还有什么<br><a id="more"></a></p>
 <h2 id="1、何为tls"><a href="#1、何为tls" class="headerlink" title="1、何为tls"></a>1、何为tls</h2><p>TLS回调函数是指，每当创建/终止进程的线程时会自动调用执行的函数。创建的主线程也会自动调用回调函数，且其调用执行先于EP代码。</p>
 <h2 id="2、实践"><a href="#2、实践" class="headerlink" title="2、实践"></a>2、实践</h2><p>TLS callback函数的定义<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">typedef VOID</div><div class="line">(NTAPI *PIMAGE_TLS_CALLBACK) (</div><div class="line">    PVOID DllHandle,     //模块句柄，即加载地址</div><div class="line">    DWORD Reason,        </div><div class="line">    PVOID Reserved</div><div class="line">    );</div><div class="line"></div><div class="line">其中reason有以下几种：(winNT.h)</div><div class="line"><span class="comment">#define DLL_PROCESS_ATTACH   1    进程启动</span></div><div class="line"><span class="comment">#define DLL_THREAD_ATTACH    2    线程启动</span></div><div class="line"><span class="comment">#define DLL_THREAD_DETACH    3    线程退出</span></div><div class="line"><span class="comment">#define DLL_PROCESS_DETACH   0    进程退出</span></div></pre></td></tr></table></figure></p>
-<p>编程实例<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
-<p>等待更新 555555</p>
+<h2 id="3、手动去除TLS函数"><a href="#3、手动去除TLS函数" class="headerlink" title="3、手动去除TLS函数"></a>3、手动去除TLS函数</h2><p>例如：ida打开是这样的<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1flfix8jsj8j31750f2aah.jpg" alt=""><br>那就有TLS函数<br>1、OD去除TLS函数<br>OD运行，f9直接退出，因为会先执行TLS函数，这时需要设置成这样<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1flfj49nejej30r90ikq6b.jpg" alt=""><br>这就可以停在系统断点，可以看看tls函数做了什么，一般都是判断是否使用工具，ida,od，peid，如果有使用其中一种，程序直接退出，不会执行main函数<br>接着就一步一步的找TLS函数，找到直接把tls函数nop。<br>2、利用PEviewEXE和winhex去掉TLS函数<br>利用PEviewEXE查看PE文件的结构体,发现TLS结构体<br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1flfjxsyhz4j316l0nh78k.jpg" alt=""><br>修改1<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1flfk389npmj30ny0eydhc.jpg" alt=""><br>修改为<br><img src="http://ww4.sinaimg.cn/large/006rgqhqgy1flfk4opm41j30lb0dqmy7.jpg" alt=""><br>修改2<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1flfk72dak1j315t0jq41a.jpg" alt=""><br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1flfka5rrbkj30m40hhjse.jpg" alt=""><br>修改为<br><img src="http://ww4.sinaimg.cn/large/006rgqhqgy1flfkb8q07mj30jw0bi74m.jpg" alt=""><br>将修改后的文件另存为111.exe,ida打开<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1flfkdw89zvj30up0d4dgi.jpg" alt=""><br>这是已经去掉TLS函数了，收工</p>
 
       
     </div>
@@ -584,7 +593,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、何为tls"><span class="nav-number">1.</span> <span class="nav-text">1、何为tls</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、实践"><span class="nav-number">2.</span> <span class="nav-text">2、实践</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、何为tls"><span class="nav-number">1.</span> <span class="nav-text">1、何为tls</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、实践"><span class="nav-number">2.</span> <span class="nav-text">2、实践</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、手动去除TLS函数"><span class="nav-number">3.</span> <span class="nav-text">3、手动去除TLS函数</span></a></li></ol></div>
             
 
           </div>
@@ -628,7 +637,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共20.6k字</span>
+  <span class="post-count">博客全站共20.8k字</span>
 </div>
 
         
