@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fki08gsy4bj30fv08nabr.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fki09ch88bj30gn0c80tp.jpg">
 <meta property="og:image" content="https://i.imgur.com/DVWbSy1.png">
-<meta property="og:updated_time" content="2017-11-24T02:46:56.608Z">
+<meta property="og:updated_time" content="2017-12-06T13:52:34.463Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PWN从开始到开始--pwn题的一些小技巧">
 <meta name="twitter:description" content="pwn题必备的套路">
@@ -334,13 +334,20 @@
         <p>pwn题必备的套路<br><a id="more"></a></p>
 <h2 id="1、工具"><a href="#1、工具" class="headerlink" title="1、工具"></a>1、工具</h2><p>首先安装pwntools<br><code>git clone https://github.com/Gallopsled/pwntools</code><br><code>cd pwntools</code><br><code>python setup.py install</code><br>安装peda<br><code>git clone https://github.com/longld/peda.git ~/peda</code><br><code>echo &quot;source ~/peda/peda.py&quot; &gt;&gt; ~/.gdbinit</code><br>编译x86程序依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install build-essential module-assistant  </div><div class="line">sudo apt-get install gcc-multilib g++-multilib</div></pre></td></tr></table></figure></p>
 <p>生成x86文件<br><code>gcc -m32 -no-pie -fno-stack-protector -z execstack -o stack1 stack1.c</code><br>-no-pie会关掉PIE,-fno-stack-protector和-z execstack这两个参数会分别关掉Stack Protector和NX</p>
-<h2 id="2、找到返回地址"><a href="#2、找到返回地址" class="headerlink" title="2、找到返回地址"></a>2、找到返回地址</h2><p>x86-如下<br>gdb ./pwn<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fki2xlxs3fj30jl0i7q9n.jpg" alt=""><br>‘a’*112+addr_ret<br>x64<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fkhzy1yhrgj30eq06eq42.jpg" alt=""></p>
+<h2 id="2、找到返回地址"><a href="#2、找到返回地址" class="headerlink" title="2、找到返回地址"></a>2、找到返回地址</h2><p>x86-如下<br>gdb ./pwn<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fki2xlxs3fj30jl0i7q9n.jpg" alt=""><br>‘a’*112+addr_ret<br>或者<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pattern create <span class="number">200</span></div><div class="line">pattern search <span class="number">0x4141313d</span></div></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ipython</div><div class="line">cyclic(<span class="number">200</span>)</div><div class="line">cyclic_find('aapa')</div></pre></td></tr></table></figure></p>
+<p>x64<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fkhzy1yhrgj30eq06eq42.jpg" alt=""></p>
 <h2 id="3、生成shellcode"><a href="#3、生成shellcode" class="headerlink" title="3、生成shellcode"></a>3、生成shellcode</h2><p>这个联网才可以<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fki08gsy4bj30fv08nabr.jpg" alt=""><br>结果如下<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fki09ch88bj30gn0c80tp.jpg" alt=""></p>
 <h2 id="4、找内存中函数地址"><a href="#4、找内存中函数地址" class="headerlink" title="4、找内存中函数地址"></a>4、找内存中函数地址</h2><p>这需要程序跑完,在gdb里<br><code>p system</code><br><code>p callsystem</code><br>查看内存<br><code>x \16x 0x482054</code><br><code>x \gx rsp</code></p>
 <h2 id="5、搭建pwn题目"><a href="#5、搭建pwn题目" class="headerlink" title="5、搭建pwn题目"></a>5、搭建pwn题目</h2><p>查看是否开启随机化(不是0则开启)<br><code>cat /proc/sys/kernel/randomize_va_space</code><br>关闭随机化<br><code>echo 0 &gt; /proc/sys/kernel/randomize_va_space</code><br>搭建题目<br><code>socat tcp-l:4000,fork exec:./pwn</code><br>连接测试<br><code>nc 127.0.0.1 4000</code></p>
 <h2 id="6、coredump"><a href="#6、coredump" class="headerlink" title="6、coredump"></a>6、coredump</h2><p>在/etc/profile中加入以下一行，这将允许生成coredump文件<br><code>ulimit -c unlimited</code><br>在rc.local中加入以下一行，这将使程序崩溃时生成的coredump文件位于/tmp目录下<br><code>echo /tmp/core.%e.%p &gt; /proc/sys/kernel/core_pattern</code><br>调试coredump文件<br><code>gdb ./test test.core</code><br>x64找到溢出地点<br><code>x \100x $esp-100</code></p>
 <h2 id="7、libc查询-然而我并没有查到"><a href="#7、libc查询-然而我并没有查到" class="headerlink" title="7、libc查询(然而我并没有查到)"></a>7、libc查询(然而我并没有查到)</h2><p><a href="http://libcdb.com/" target="_blank" rel="external">http://libcdb.com/</a></p>
 <h2 id="8、查找到gadget"><a href="#8、查找到gadget" class="headerlink" title="8、查找到gadget"></a>8、查找到gadget</h2><p><img src="https://i.imgur.com/DVWbSy1.png" alt=""></p>
+<h2 id="9、ELF"><a href="#9、ELF" class="headerlink" title="9、ELF"></a>9、ELF</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">elf = ELF(&apos;./pwn&apos;)</div><div class="line">gets_plt = symbols[&apos;gets&apos;]</div><div class="line">buf = elf.bss()</div></pre></td></tr></table></figure>
+<h2 id="10、学不完的套路"><a href="#10、学不完的套路" class="headerlink" title="10、学不完的套路"></a>10、学不完的套路</h2><p>程序段<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./le1 &amp;</div><div class="line">pidof le1</div><div class="line">cat /proc/<span class="number">1705</span>(pid)/maps</div></pre></td></tr></table></figure></p>
+<p><img src="" alt=""><br>gdb里面的返向跑<br><code>recored</code><br>程序流程<br><code>ltrace ./le1</code><br>看调用了那些函数<br><code>strace ./le1</code><br>制作 call syscall和shellcode<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ipython</div><div class="line">from pwn <span class="keyword">import</span> *</div><div class="line">print shellcraft.sh()</div><div class="line"></div><div class="line">print shellcraft.syscall(<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>)</div><div class="line">asm('mov eax,11')</div></pre></td></tr></table></figure></p>
+<p>这里的<code>\x00\x00\x00</code>坏字符<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">asm(&apos;&apos;&apos;</div><div class="line">xor eax,eax</div><div class="line">mov al,11</div><div class="line">&apos;&apos;&apos;)</div></pre></td></tr></table></figure></p>
+<p><code>lay asm</code></p>
 <h3 id="文学修养"><a href="#文学修养" class="headerlink" title="文学修养"></a>文学修养</h3><p>无边落木萧萧下，不尽长江滚滚来。<br>万里悲秋常作客，百年多病独登台。</p>
 
       
@@ -474,7 +481,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -596,7 +603,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、工具"><span class="nav-number">1.</span> <span class="nav-text">1、工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、找到返回地址"><span class="nav-number">2.</span> <span class="nav-text">2、找到返回地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、生成shellcode"><span class="nav-number">3.</span> <span class="nav-text">3、生成shellcode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、找内存中函数地址"><span class="nav-number">4.</span> <span class="nav-text">4、找内存中函数地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、搭建pwn题目"><span class="nav-number">5.</span> <span class="nav-text">5、搭建pwn题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、coredump"><span class="nav-number">6.</span> <span class="nav-text">6、coredump</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、libc查询-然而我并没有查到"><span class="nav-number">7.</span> <span class="nav-text">7、libc查询(然而我并没有查到)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、查找到gadget"><span class="nav-number">8.</span> <span class="nav-text">8、查找到gadget</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文学修养"><span class="nav-number">8.1.</span> <span class="nav-text">文学修养</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、工具"><span class="nav-number">1.</span> <span class="nav-text">1、工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、找到返回地址"><span class="nav-number">2.</span> <span class="nav-text">2、找到返回地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、生成shellcode"><span class="nav-number">3.</span> <span class="nav-text">3、生成shellcode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、找内存中函数地址"><span class="nav-number">4.</span> <span class="nav-text">4、找内存中函数地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、搭建pwn题目"><span class="nav-number">5.</span> <span class="nav-text">5、搭建pwn题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、coredump"><span class="nav-number">6.</span> <span class="nav-text">6、coredump</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、libc查询-然而我并没有查到"><span class="nav-number">7.</span> <span class="nav-text">7、libc查询(然而我并没有查到)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、查找到gadget"><span class="nav-number">8.</span> <span class="nav-text">8、查找到gadget</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9、ELF"><span class="nav-number">9.</span> <span class="nav-text">9、ELF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10、学不完的套路"><span class="nav-number">10.</span> <span class="nav-text">10、学不完的套路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文学修养"><span class="nav-number">10.1.</span> <span class="nav-text">文学修养</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -640,7 +647,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共25.6k字</span>
+  <span class="post-count">博客全站共28.1k字</span>
 </div>
 
         
