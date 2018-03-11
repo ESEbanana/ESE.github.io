@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ESE.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ESE1.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ESE's Note" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Android与Apk的文件结构在学习逆向很重要的一步。随便记录一下smali语法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android与Apk的文件结构">
+<meta property="og:url" content="http://yoursite.com/2018/03/11/android_construction/index.html">
+<meta property="og:site_name" content="ESE&#39;s Note">
+<meta property="og:description" content="Android与Apk的文件结构在学习逆向很重要的一步。随便记录一下smali语法">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/gYQwOom.png">
+<meta property="og:updated_time" content="2018-03-11T11:33:08.054Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android与Apk的文件结构">
+<meta name="twitter:description" content="Android与Apk的文件结构在学习逆向很重要的一步。随便记录一下smali语法">
+<meta name="twitter:image" content="https://i.imgur.com/gYQwOom.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/11/android_construction/"/>
+
+
+
+
+
+  <title>Android与Apk的文件结构 | ESE's Note</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ESE's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">阅览室</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/11/android_construction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ESE's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android与Apk的文件结构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-11T11:03:06+08:00">
+                2018-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+          作者：ESE
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Android与Apk的文件结构在学习逆向很重要的一步。随便记录一下smali语法<br><a id="more"></a></p>
+<h1 id="1、Android"><a href="#1、Android" class="headerlink" title="1、Android"></a>1、Android</h1><p>Android 是google公司针对手机开发的一个平台，并公布了其中大部分代码，其大部分应用程序都是用JAVA开发的。</p>
+<h2 id="系统结构"><a href="#系统结构" class="headerlink" title="系统结构"></a>系统结构</h2><p>android的系统架构和其操作系统一样，采用了分层的架构。从架构图看，android分为四个层，从高层到低层分别是应用程序层、应用程序框架层、系统运行库层和linux核心层。<br><img src="https://i.imgur.com/gYQwOom.png" alt=""><br>从而看出liunx是很重要的，蓝色的代表java程序，黄色的代码为运行JAVA程序而实现的虚拟机，绿色部分为C/C++语言编写的程序库，红色的代码内核(linux内核+drvier)。</p>
+<h3 id="1、应用程序"><a href="#1、应用程序" class="headerlink" title="1、应用程序"></a>1、应用程序</h3><p>Android会同一系列核心应用程序包一起发布，应用程序基本都是使用JAVA语言编写的。</p>
+<h3 id="2、应用程序框架"><a href="#2、应用程序框架" class="headerlink" title="2、应用程序框架"></a>2、应用程序框架</h3><p>开发人员也可以完全访问核心应用程序所使用的API 框架，该应用程序的架构设计简化了组件的重用。</p>
+<h3 id="3、系统运行库"><a href="#3、系统运行库" class="headerlink" title="3、系统运行库"></a>3、系统运行库</h3><p>(1)、程序库<br>Android 包含一些C/C++库，这些库能被Android系统中不同的组件使用。它们通过 Android 应用程序框架为开发者提供服务。其实Android并非讲所有的设备驱动都放在linux内核里面，而是实现在userspace空间，这么做的主要原因是GPL协议，Linux是遵循该 协议来发布的，也就意味着对 linux内核的任何修改，都必须发布其源代码。而现在这么做就可以避开而无需发布其源代码，毕竟它是用来赚钱的。<br>(2)Android 运行库<br>Android 包括了一个核心库，该核心库提供了JAVA编程语言核心库的大多数功能。每一个Android应用程序都在它自己的进程中运 行，都拥有一个独立的Dalvik虚拟 机实例。Dalvik被设计成一个设备可以同时高效地运行多个虚拟系统。 Dalvik虚拟机执行（.dex）的Dalvik可执行文件，该格式文件针对小内存使用做了优化。同时Dalvik虚拟机依赖于linux内核的一些功能，比如线程机制和底层内存管理机制。</p>
+<h3 id="4、Linux内核"><a href="#4、Linux内核" class="headerlink" title="4、Linux内核"></a>4、Linux内核</h3><p>Android 的核心系统服务依赖于 Linux 2.6 内核，如安全性，内存管理，进程管理， 网络协议栈和驱动模型。 Linux 内核也同时作为硬件和软件栈之间的抽象层。</p>
+<h1 id="2、Apk的文件结构"><a href="#2、Apk的文件结构" class="headerlink" title="2、Apk的文件结构"></a>2、Apk的文件结构</h1><p>APK就是一个zip压缩包，解开这个APK包我们可以看到以下的结构：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">META-INF：签名文件</div><div class="line">res：资源文件</div><div class="line">AndroidManifest.xml：android 配置文件</div><div class="line">classes.dex：java代码编译后产生的类似字节码的文件（dalvik 字节码）</div><div class="line">resources.arsc：配置文件</div><div class="line">其他文件：诸如assets等，或者lib（native so 代码）等目录</div></pre></td></tr></table></figure></p>
+<p>apk的核心逻辑主要在 classes.dex(代码主要存在的文件)，有些代码会在.so(动态链接库)文件 [最头痛的文件].</p>
+<h1 id="3、Smali语法"><a href="#3、Smali语法" class="headerlink" title="3、Smali语法"></a>3、Smali语法</h1><h2 id="1、函数"><a href="#1、函数" class="headerlink" title="1、函数"></a>1、函数</h2><h3 id="函数的定义一般为："><a href="#函数的定义一般为：" class="headerlink" title="函数的定义一般为："></a>函数的定义一般为：</h3><p>Func-Name (Para-Type1Para-Type2Para-Type3…)Return-Type<br>注意参数与参数之间没有任何分隔符<br>1、check ()V         —-&gt; void check()<br>2、check (III)Z      —-&gt; boolean check(int,int,int)<br>3、check (Z[I[Ijava/lang/String)java/lang/String;   —-&gt; String check(boolean,int[],int[],String)</p>
+<p>而函数又分为direct method和virtual method。direct method就是private函数，其余的public和protected函数都属于virtual method。</p>
+<h3 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h3><p>格式：.method + 访问修饰符 + 方法名(参数表) + 返回值类型<br>.method // 方法的开始<br>.end method // 方法结束</p>
+<p>在调用函数时，有invoke-direct，invoke-virtual，另外还有invoke-static、invoke-super以及invoke-interface等几种不同的指令。<br>对象 -&gt; 方法名(参数类型)返回值<br>invoke-virtual 非静态方法调用<br>invoke-static  静态方法调用<br>invoke-direct  构造方法调用？<br>invoke-super   调用父类方法<br>invoke-interface 调用接口<br>（1）、invoke-static：顾名思义就是调用static函数的，因为是static函数，所以比起其他调用少一个参数，例如：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span>-<span class="built_in">string</span> v0, <span class="string">"fmodex"</span>  </div><div class="line">invoke-<span class="keyword">static</span> &#123;v0&#125;, Ljava/lang/System;-&gt;loadLibrary(Ljava/lang/String;)V</div></pre></td></tr></table></figure></p>
+<p> 这个是调用static void System.loadLibrary(String)来加载NDK编译的so库用的方法，同样也是这里v0就是参数”fmodex”了。<br>（2）、invoke-virtual：用于调用protected或public函数<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sget-object v0, Lcom/disney/WMW/WMWActivity;-&gt;shareHandler:Landroid/os/Handler;</div><div class="line">invoke-<span class="keyword">virtual</span> &#123;v0, v3&#125;, Landroid/os/Handler;-&gt;removeCallbacksAndMessages(Ljava/lang/Object;)V</div></pre></td></tr></table></figure></p>
+<p>v0是shareHandler:Landroid/os/Handler，v3是传递给removeCallbackAndMessage方法的Ljava/lang/Object参数</p>
+<p>调用返回结果:用到move-result（返回基本数据类型）和move-result-object（返回对象）指令</p>
+<h3 id="smali中函数实体分析"><a href="#smali中函数实体分析" class="headerlink" title="smali中函数实体分析"></a>smali中函数实体分析</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">.<span class="function">method <span class="keyword">protected</span> <span class="title">onDestroy</span><span class="params">()</span>V  </span></div><div class="line">    .locals 0  </div><div class="line">       </div><div class="line">    .prologue  </div><div class="line">    .line <span class="number">277</span>  </div><div class="line">    invoke-super &#123;p0&#125;, Lcom/disney/common/BaseActivity;-&gt;onDestroy()V  </div><div class="line">       </div><div class="line">    .line <span class="number">279</span>  </div><div class="line">    <span class="keyword">return</span>-<span class="keyword">void</span>  </div><div class="line">.end method</div></pre></td></tr></table></figure>
+<p>.local 0，这句话很重要，标明了你在这个函数中最少要用到的本地寄存器的个数。在这里，由于只需要调用一个父类的onDestroy()处理，所以只需要用到p0，所以使用到的本地寄存器数为0。如果不清楚这个规则，很容易在植入代码后忘记修改.local 的值，那么回编译后运行时将会得到一个VerifyError错误，而且极难发现问题所在。</p>
+<h2 id="2、语法"><a href="#2、语法" class="headerlink" title="2、语法"></a>2、语法</h2><h3 id="if与switch判断语句"><a href="#if与switch判断语句" class="headerlink" title="if与switch判断语句"></a>if与switch判断语句</h3><p>if判断一共有12条指令：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>-eq vA, VB, cond_** 如果vA等于vB则跳转到cond_**。相当于<span class="keyword">if</span> (vA==vB)</div><div class="line"><span class="keyword">if</span>-ne vA, VB, cond_** 如果vA不等于vB则跳转到cond_**。相当于<span class="keyword">if</span> (vA!=vB)</div><div class="line"><span class="keyword">if</span>-lt vA, VB, cond_** 如果vA小于vB则跳转到cond_**。相当于<span class="keyword">if</span> (vA&lt;vB)</div><div class="line"><span class="keyword">if</span>-le vA, VB, cond_** 如果vA小于等于vB则跳转到cond_**。相当于<span class="keyword">if</span> (vA&lt;=vB)</div><div class="line"><span class="keyword">if</span>-gt vA, VB, cond_** 如果vA大于vB则跳转到cond_**。相当于<span class="keyword">if</span> (vA&gt;vB)</div><div class="line"><span class="keyword">if</span>-ge vA, VB, cond_** 如果vA大于等于vB则跳转到cond_**。相当于<span class="keyword">if</span> (vA&gt;=vB)</div><div class="line"></div><div class="line"><span class="keyword">if</span>-eqz vA, :cond_** 如果vA等于<span class="number">0</span>则跳转到:cond_** 相当于<span class="keyword">if</span> (VA==<span class="number">0</span>)</div><div class="line"><span class="keyword">if</span>-nez vA, :cond_** 如果vA不等于<span class="number">0</span>则跳转到:cond_**相当于<span class="keyword">if</span> (VA!=<span class="number">0</span>)</div><div class="line"><span class="keyword">if</span>-ltz vA, :cond_** 如果vA小于<span class="number">0</span>则跳转到:cond_**相当于<span class="keyword">if</span> (VA&lt;<span class="number">0</span>)</div><div class="line"><span class="keyword">if</span>-lez vA, :cond_** 如果vA小于等于<span class="number">0</span>则跳转到:cond_**相当于<span class="keyword">if</span> (VA&lt;=<span class="number">0</span>)</div><div class="line"><span class="keyword">if</span>-gtz vA, :cond_** 如果vA大于<span class="number">0</span>则跳转到:cond_**相当于<span class="keyword">if</span> (VA&gt;<span class="number">0</span>)</div><div class="line"><span class="keyword">if</span>-gez vA, :cond_** 如果vA大于等于<span class="number">0</span>则跳转到:cond_**相当于<span class="keyword">if</span> (VA&gt;=<span class="number">0</span>)</div></pre></td></tr></table></figure></p>
+<p>Switch语句<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">整形顺序结构<span class="keyword">switch</span>(<span class="keyword">int</span>)</div><div class="line">    :pswitch_data_0</div><div class="line">    .packed-<span class="keyword">switch</span> <span class="number">0x0</span></div><div class="line">        :pswitch_0</div><div class="line">        :pswitch_1</div><div class="line">.end packed-<span class="keyword">switch</span></div><div class="line">整形非顺序结构<span class="keyword">switch</span>(<span class="keyword">int</span>)</div><div class="line">    :sswitch_data_0</div><div class="line">    .sparse-<span class="keyword">switch</span></div><div class="line">        <span class="number">0x0</span> -&gt; :sswitch_0</div><div class="line">        <span class="number">0x1</span> -&gt; :sswitch_1</div><div class="line">        <span class="number">0xa</span> -&gt; :sswitch_2</div><div class="line">.end sparse-<span class="keyword">switch</span></div><div class="line"><span class="keyword">switch</span>(String)</div><div class="line">    :pswitch_data_0</div><div class="line">    .packed-<span class="keyword">switch</span> <span class="number">0x41</span></div><div class="line">        :pswitch_0</div><div class="line">        :pswitch_1</div><div class="line">    .end packed-<span class="keyword">switch</span></div><div class="line"></div><div class="line">    :pswitch_data_1</div><div class="line">    .packed-<span class="keyword">switch</span> <span class="number">0x0</span></div><div class="line">        :pswitch_2</div><div class="line">        :pswitch_3</div><div class="line">    .end packed-<span class="keyword">switch</span></div></pre></td></tr></table></figure></p>
+<h3 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">.<span class="function">method <span class="keyword">public</span> <span class="title">statementFor</span><span class="params">()</span>Z</span></div><div class="line">    .locals 4</div><div class="line">    .prologue</div><div class="line">    .line <span class="number">17</span></div><div class="line">    <span class="keyword">const</span>/<span class="number">4</span> v0, <span class="number">0x0</span></div><div class="line">    .local v0, <span class="string">"a"</span>:I</div><div class="line">    :goto_0</div><div class="line">    <span class="keyword">const</span>/<span class="number">16</span> v1, <span class="number">0x64</span></div><div class="line">    <span class="keyword">if</span>-ge v0, v1, :cond_0 <span class="comment">// 结束循环条件</span></div><div class="line">    .line <span class="number">18</span></div><div class="line">    <span class="keyword">const</span>-<span class="built_in">string</span> v1, <span class="string">"StateLoop"</span></div><div class="line">    <span class="keyword">new</span>-instance v2, Ljava/lang/StringBuilder;</div><div class="line">    invoke-direct &#123;v2&#125;, Ljava/lang/StringBuilder;-&gt;&lt;init&gt;()V</div><div class="line">    <span class="keyword">const</span>-<span class="built_in">string</span> v3, <span class="string">""</span></div><div class="line">    invoke-<span class="keyword">virtual</span> &#123;v2, v3&#125;, Ljava/lang/StringBuilder;-&gt;append(Ljava/lang/String;)Ljava/lang/StringBuilder;</div><div class="line">    move-result-object v2</div><div class="line">    invoke-<span class="keyword">virtual</span> &#123;v2, v0&#125;, Ljava/lang/StringBuilder;-&gt;append(I)Ljava/lang/StringBuilder;</div><div class="line">    move-result-object v2</div><div class="line">    invoke-<span class="keyword">virtual</span> &#123;v2&#125;, Ljava/lang/StringBuilder;-&gt;toString()Ljava/lang/String;</div><div class="line">    move-result-object v</div><div class="line">    invoke-<span class="keyword">static</span> &#123;v1, v2&#125;, Landroid/util/Log;-&gt;d(Ljava/lang/String;Ljava/lang/String;)I</div><div class="line">    .line <span class="number">17</span></div><div class="line">    add-<span class="keyword">int</span>/lit8 v0, v0, <span class="number">0x1</span></div><div class="line">    <span class="keyword">goto</span> :goto_0 <span class="comment">// 通过goto实现循环</span></div><div class="line">    .line <span class="number">20</span></div><div class="line">    :cond_0</div><div class="line">    <span class="keyword">const</span>/<span class="number">4</span> v1, <span class="number">0x0</span></div><div class="line">    <span class="keyword">return</span> v1</div><div class="line">.end method</div><div class="line"><span class="keyword">for</span>/foreach循环，<span class="keyword">while</span>/<span class="keyword">do</span>-<span class="keyword">while</span> 几种循环结构smali语法均通过<span class="keyword">goto</span>实现，内部嵌入<span class="keyword">if</span>-xxx 实现跳出循环。</div></pre></td></tr></table></figure>
+<h3 id="try-catch语句"><a href="#try-catch语句" class="headerlink" title="try/catch语句"></a>try/catch语句</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># virtual methods</span></div><div class="line">.<span class="function">method <span class="keyword">public</span> <span class="title">statementTry</span><span class="params">()</span>Z</span></div><div class="line">    .locals 4</div><div class="line">    .prologue</div><div class="line">    .line <span class="number">14</span></div><div class="line">    <span class="keyword">const</span>-wide/<span class="number">16</span> v2, <span class="number">0x3e8</span></div><div class="line">    :try_start_0</div><div class="line">    invoke-<span class="keyword">static</span> &#123;v2, v3&#125;, Ljava/lang/Thread;-&gt;sleep(J)V</div><div class="line">    :try_end_0</div><div class="line">    .<span class="keyword">catch</span> Ljava/lang/InterruptedException; &#123;:try_start_0 .. :try_end_0&#125; :catch_0</div><div class="line">    .line <span class="number">18</span></div><div class="line">    :goto_0</div><div class="line">    <span class="keyword">const</span>/<span class="number">4</span> v1, <span class="number">0x1</span></div><div class="line">    <span class="keyword">return</span> v1</div><div class="line">    .line <span class="number">15</span></div><div class="line">    :catch_0</div><div class="line">    move-exception v0</div><div class="line">    .line <span class="number">16</span></div><div class="line">    .local v0, <span class="string">"e"</span>:Ljava/lang/InterruptedException;</div><div class="line">    invoke-<span class="keyword">virtual</span> &#123;v0&#125;, Ljava/lang/InterruptedException;-&gt;printStackTrace()V</div><div class="line">    <span class="keyword">goto</span> :goto_0</div><div class="line">.end method</div></pre></td></tr></table></figure>
+<p>Android参考:<br><a href="http://blog.csdn.net/spy19881201/article/details/5775484" target="_blank" rel="external">http://blog.csdn.net/spy19881201/article/details/5775484</a><br>samli参考:<br><a href="http://blog.csdn.net/chenrunhua/article/details/41250613" target="_blank" rel="external">http://blog.csdn.net/chenrunhua/article/details/41250613</a><br><a href="https://www.cnblogs.com/zhen-android/p/7259434.html" target="_blank" rel="external">https://www.cnblogs.com/zhen-android/p/7259434.html</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        
+      
+    </div>
+    
+
+    
+
+    
+
+    <div>
+     
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/09/android_re_2/" rel="next" title="Android_之_liunx">
+                <i class="fa fa-chevron-left"></i> Android_之_liunx
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/saucxs/" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/ese-76-83/activities" target="_blank" title="Zhihu">
+                    
+                      <i class="fa fa-fw fa-drupal"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/5899672336/profile?topnav=1&wvr=6/&is_all=1" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.betamao.me/" title="betamao" target="_blank">betamao</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://err0rzz.github.io/" title="壮壮" target="_blank">壮壮</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://veritas501.space/" title="Veritas501" target="_blank">Veritas501</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://lalajun.github.io/" title="lalajun" target="_blank">lalajun</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://bestwing.me/" title="swing" target="_blank">swing</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ksisw.com/posts" title="KsisWhite" target="_blank">KsisWhite</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://simp1e.leanote.com/" title="leanote_pwn" target="_blank">leanote_pwn</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://whereisk0shl.top/" title="CVE" target="_blank">CVE</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://bendawang.site/" title="Bendawang" target="_blank">Bendawang</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.baidu.com" title="百度一下" target="_blank">百度一下</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、Android"><span class="nav-number">1.</span> <span class="nav-text">1、Android</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统结构"><span class="nav-number">1.1.</span> <span class="nav-text">系统结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、应用程序"><span class="nav-number">1.1.1.</span> <span class="nav-text">1、应用程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、应用程序框架"><span class="nav-number">1.1.2.</span> <span class="nav-text">2、应用程序框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、系统运行库"><span class="nav-number">1.1.3.</span> <span class="nav-text">3、系统运行库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、Linux内核"><span class="nav-number">1.1.4.</span> <span class="nav-text">4、Linux内核</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、Apk的文件结构"><span class="nav-number">2.</span> <span class="nav-text">2、Apk的文件结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3、Smali语法"><span class="nav-number">3.</span> <span class="nav-text">3、Smali语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、函数"><span class="nav-number">3.1.</span> <span class="nav-text">1、函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数的定义一般为："><span class="nav-number">3.1.1.</span> <span class="nav-text">函数的定义一般为：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数调用"><span class="nav-number">3.1.2.</span> <span class="nav-text">函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#smali中函数实体分析"><span class="nav-number">3.1.3.</span> <span class="nav-text">smali中函数实体分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、语法"><span class="nav-number">3.2.</span> <span class="nav-text">2、语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if与switch判断语句"><span class="nav-number">3.2.1.</span> <span class="nav-text">if与switch判断语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环语句"><span class="nav-number">3.2.2.</span> <span class="nav-text">循环语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#try-catch语句"><span class="nav-number">3.2.3.</span> <span class="nav-text">try/catch语句</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共42.9k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
