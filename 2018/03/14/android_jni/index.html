@@ -81,19 +81,22 @@
 
 
 
-<meta name="description" content="以前打比赛的时候就是我负责Android题目的，以后就主要学习Android啦，顺便上传一些工具，IDA7.0(可支持64位f5反编译哦)等">
+<meta name="description" content="Android_jni是将核心加密算法写在.so(动态库)中，不容易被反编译逆向出算法。所以需要去学习了解一下。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android_逆向">
-<meta property="og:url" content="http://yoursite.com/2018/03/08/android_re_1/index.html">
+<meta property="og:title" content="Android_jni_编程">
+<meta property="og:url" content="http://yoursite.com/2018/03/14/android_jni/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="以前打比赛的时候就是我负责Android题目的，以后就主要学习Android啦，顺便上传一些工具，IDA7.0(可支持64位f5反编译哦)等">
+<meta property="og:description" content="Android_jni是将核心加密算法写在.so(动态库)中，不容易被反编译逆向出算法。所以需要去学习了解一下。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/NDYNZen.png">
-<meta property="og:updated_time" content="2018-03-10T01:00:30.002Z">
+<meta property="og:image" content="https://i.imgur.com/kbz3yQ3.png">
+<meta property="og:image" content="https://i.imgur.com/TtbtwFr.png">
+<meta property="og:image" content="https://i.imgur.com/U1eGcLP.png">
+<meta property="og:image" content="https://i.imgur.com/Y91D8OW.png">
+<meta property="og:updated_time" content="2018-03-14T09:18:48.101Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android_逆向">
-<meta name="twitter:description" content="以前打比赛的时候就是我负责Android题目的，以后就主要学习Android啦，顺便上传一些工具，IDA7.0(可支持64位f5反编译哦)等">
-<meta name="twitter:image" content="https://i.imgur.com/NDYNZen.png">
+<meta name="twitter:title" content="Android_jni_编程">
+<meta name="twitter:description" content="Android_jni是将核心加密算法写在.so(动态库)中，不容易被反编译逆向出算法。所以需要去学习了解一下。">
+<meta name="twitter:image" content="https://i.imgur.com/kbz3yQ3.png">
 
 
 
@@ -123,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/08/android_re_1/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/14/android_jni/"/>
 
 
 
 
 
-  <title>Android_逆向 | ESE's Note</title>
+  <title>Android_jni_编程 | ESE's Note</title>
   
 
 
@@ -256,7 +259,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/08/android_re_1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/14/android_jni/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -273,7 +276,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android_逆向</h1>
+          <h1 class="post-title" itemprop="name headline">Android_jni_编程</h1>
         
 
         <div class="post-meta">
@@ -285,8 +288,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-08T13:30:56+08:00">
-                2018-03-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-14T10:12:23+08:00">
+                2018-03-14
               </time>
             
 
@@ -327,26 +330,12 @@
       
 
       
-        <p>以前打比赛的时候就是我负责Android题目的，以后就主要学习Android啦，顺便上传一些工具，IDA7.0(可支持64位f5反编译哦)等<br><a id="more"></a><br>工具链接：<a href="https://pan.baidu.com/s/1poQEL-RlQgqRLhnfzozbpw" target="_blank" rel="external">https://pan.baidu.com/s/1poQEL-RlQgqRLhnfzozbpw</a> 密码：n6bp</p>
-<h2 id="1、Android"><a href="#1、Android" class="headerlink" title="1、Android"></a>1、Android</h2><p>Android是基于liunx内核的，我们简单看一个hello world的执行过程<br><img src="https://i.imgur.com/NDYNZen.png" alt=""></p>
-<h2 id="2、Android相关的语言"><a href="#2、Android相关的语言" class="headerlink" title="2、Android相关的语言"></a>2、Android相关的语言</h2><p>Java:开发安卓SDK的软件<br>smali:安卓的反汇编语言<br>c/c++:开发安卓NDK的软件，也就是包括so<br>Python:开发脚本插件，开发IDA脚本<br>C#:Unity3d游戏开发<br>Lua:重要的脚本插件或中间语言，在游戏中实用很多<br>JS:开发用于和服务器协议算法相关</p>
-<h2 id="3、ARM汇编基础知识"><a href="#3、ARM汇编基础知识" class="headerlink" title="3、ARM汇编基础知识"></a>3、ARM汇编基础知识</h2><h3 id="1、初识ARM"><a href="#1、初识ARM" class="headerlink" title="1、初识ARM"></a>1、初识ARM</h3><p>Intel8086是英特尔公司的16位处理器，ARM是ARM公司的32位处理器。每个处理器都对应自己的一套汇编语言，所以两个处理器分别对应于8086汇编和ARM汇编。由于处理器的位数，所以8086汇编指令的机器码是16位，而ARM汇编指令的机器码就是32位。机器码可以看作是二进制指令，其实所谓的HEX即称为十六进制操作码或十六进制机器码，也是二进制指令，只是把二进制的数值用十六进制去展示。，如果你会了ARM，就会了主流的嵌入式开发，然后就是硬件编程，然后就是机器人或机械制造。所以,ARM真的非常重要，希望可以去认真学习，不仅是ARM指令集，还有ARM的机器码的原理，以及ELF文件在linux下的objdump反编译。ARM机器码32位，我们以跳转指令BEQ指令为例讲解汇编指令的机器码。</p>
-<p>31-28位，Cond<br>27-25位，101,B指令标识<br>25-24位，Link<br>23-0位，Offset,跳转处与当前指令差值</p>
-<p>例：<br>00001BD0 BRQ loc_1C04<br>Cond:0000,表示EQ<br>101,B系列指令固定标识<br>L:0,表示不需要保存下一条指令<br>Offset:该值位0x1C04-0x1BD0=0000 0000 0000 0000 0000 1011<br>整体为：0000 1010 0000 0000 0000 0000 0000 1011<br>        Cond B+Link        Offset<br>0A 00 00 0B<br>再根据汇编倒序特点,显示为0B 00 00 0A</p>
-<h3 id="2、ARM与Thumb、Thunmb2指令"><a href="#2、ARM与Thumb、Thunmb2指令" class="headerlink" title="2、ARM与Thumb、Thunmb2指令"></a>2、ARM与Thumb、Thunmb2指令</h3><p>当我们把SO里的汇编语言放到工具中去转换为HEX时，会发现和IDA中的HEX有时是完全不同的，这是因为IDA中有时反编译SO使用的不是ARM，而是16位的ARM，也就是Thumb指令，但有时却是ARM的32位指令。其实对于指令集的判断应该看机器码，当机器码第5位statebit值位1为Thumb指令集，当为0时位ARM指令集。Thunmb2指令为32位，只有当15-13位为111,12-11位不为00的情况下才是。如同beq,bne这两个汇编指令，用ARM的4个HEX表示时，其实HEX的值位0A,1A,而当用2个HEX数表示时，其HEX值为D0,D1。有时候动态调试的时候需要手工IDA转为Thumb指令</p>
-<h3 id="3、ARM的寄存器"><a href="#3、ARM的寄存器" class="headerlink" title="3、ARM的寄存器"></a>3、ARM的寄存器</h3><p>首先以标准ARM指令来看，有R0-R15个寄存器<br>R0-R7:通用寄存器<br>R8-R10:不通用寄存器<br>R15:程序计数器(PC)，相当重要的一个寄存器，可以实现地址跳转，记的不是数，而是地址，直接关系着系统中断<br>R13:堆栈指针(SP)<br>R14:链接寄存器(LR)<br>R11:基址指针(FP)<br>R12:暂时寄存器(IP)<br>CPSR:状态寄存器</p>
-<h3 id="4、ARM的指令"><a href="#4、ARM的指令" class="headerlink" title="4、ARM的指令"></a>4、ARM的指令</h3><p>CMP:比较<br>CMP R0,#0  (R0寄存器中的值与0比较 标志位z=0,表示相等，在动态调试中可以看到)</p>
-<p>LDR: 从存储器中加载数据到寄存器 &lt;–Load<br>LDR R0,[R9,#04] 将R9+0x04指向存储单元的值赋给R0</p>
-<p>STR: 将寄存器的数据存储到存储器 –&gt; Store<br>STR R0,[R9,#04] R0的值存储到R9+0x04指向存储单元</p>
-<p>LDM: 将寄存器的数据加载到一个寄存器列表<br>LDM R0,{R1-R3} 将R0的数据依次加载到R1,R2,R3寄存器</p>
-<p>SDM: 一个寄存器列表的数据存储到指定寄存器<br>SDM R0,{R1-R3}</p>
-<p>PUSH: 将寄存器值压入堆栈中<br>POP:  将堆栈中的数据推出到寄存器</p>
-<p>ADD,SUB,MUL,DIV 加减乘除</p>
-<p>AND,ORR,EOR 与，或，异或</p>
-<p>LSL 逻辑左移<br>LSR 逻辑右移</p>
-<p>LSL R0,R1,#2  R0=R1*4</p>
-<h3 id="5、ARM寻址方式"><a href="#5、ARM寻址方式" class="headerlink" title="5、ARM寻址方式"></a>5、ARM寻址方式</h3><p>1). 寄存器：    MOV R1,R2 ; R2-&gt;R1<br>2). 立即数：    SUBS R0,R1,#1; R0=R1-1<br>3). 寄存器移位：MOV R0,R2,LSL #3 ;R2左移三位-&gt;R0<br>4). 间接寻址：  LDR R1,[R2] ; 装载R2指向的内存数值至R1<br>5). 基址寻址：  LDR R2,[R3,#0x0F] ;R3+0x0F作为地址，将所</p>
-<h3 id="6、函数传参"><a href="#6、函数传参" class="headerlink" title="6、函数传参"></a>6、函数传参</h3><p>一般从R0-R3,多于4个参数便会压入栈中</p>
+        <p>Android_jni是将核心加密算法写在.so(动态库)中，不容易被反编译逆向出算法。所以需要去学习了解一下。<br><a id="more"></a></p>
+<h1 id="1、什么是JNI"><a href="#1、什么是JNI" class="headerlink" title="1、什么是JNI"></a>1、什么是JNI</h1><p>JNI(Java Native Interface):java本地开发接口JNI是一个协议，这个协议用来沟通java代码和外部的本地代码(c/c++)外部的c/c++代码也可以调用java代码。效率上 C/C++是本地语言，比java更高效代码移植，如果之前用C语言开发过模块，可以复用已经存在的c代码java反编译比C语言容易，一般加密算法都是用C语言编写，不容易被反编译</p>
+<h1 id="2、交叉编译"><a href="#2、交叉编译" class="headerlink" title="2、交叉编译"></a>2、交叉编译</h1><p>交叉编译即在一个平台，编译出另一个平台能够执行的二进制代码。原理:即在一个平台上，模拟其他平台的特性。</p>
+<h2 id="1、常见的交叉编译工具"><a href="#1、常见的交叉编译工具" class="headerlink" title="1、常见的交叉编译工具"></a>1、常见的交叉编译工具</h2><p>NDK(Native Development Kit): 开发JNI必备工具，就是模拟其他平台特性类编译代码的工具<br>CDT(C/C++ Development Tools): 是Eclipse开发C语言的一个插件，高亮显示C语言的语法<br>Cygwin: 一个Windows平台的Unix模拟器</p>
+<h2 id="2、NDK的目录结构"><a href="#2、NDK的目录结构" class="headerlink" title="2、NDK的目录结构"></a>2、NDK的目录结构</h2><p>build/tools：linux的批处理文件<br>platforms：编译c代码需要使用的头文件和类库<br>prebuilt：预编译使用的二进制可执行文件<br>sample：jni的使用例子<br>source：ndk的源码<br>toolchains：工具链<br>ndk-build.cmd:编译打包c代码的一个指令，需要配置系统环境变量</p>
+<h1 id="3、Android-Studio之NDK安装"><a href="#3、Android-Studio之NDK安装" class="headerlink" title="3、Android_Studio之NDK安装"></a>3、Android_Studio之NDK安装</h1><p>搭建ndk环境<br>1、路径： File-&gt;Setting-&gt;看图<br><img src="https://i.imgur.com/kbz3yQ3.png" alt=""><br>(这个要等待一段时间)<br>2、新建项目<br><img src="https://i.imgur.com/TtbtwFr.png" alt=""><br>然后一直默认下一步，接着自动生成一个demo。<br>运行结果:<br><img src="https://i.imgur.com/U1eGcLP.png" alt=""><br>将apk改成zip<br>发现.so文件<br><img src="https://i.imgur.com/Y91D8OW.png" alt=""></p>
 
       
     </div>
@@ -386,8 +375,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/08/re_elf_static/" rel="next" title="静态编译linux的ELF文件">
-                <i class="fa fa-chevron-left"></i> 静态编译linux的ELF文件
+              <a href="/2018/03/12/android_re_3_ddms/" rel="next" title="Android_之_DDMS_与_修改smali混用">
+                <i class="fa fa-chevron-left"></i> Android_之_DDMS_与_修改smali混用
               </a>
             
           </div>
@@ -395,10 +384,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/09/android_re_2/" rel="prev" title="Android_之_liunx">
-                Android_之_liunx <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -593,7 +578,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、Android"><span class="nav-number">1.</span> <span class="nav-text">1、Android</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、Android相关的语言"><span class="nav-number">2.</span> <span class="nav-text">2、Android相关的语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、ARM汇编基础知识"><span class="nav-number">3.</span> <span class="nav-text">3、ARM汇编基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、初识ARM"><span class="nav-number">3.1.</span> <span class="nav-text">1、初识ARM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、ARM与Thumb、Thunmb2指令"><span class="nav-number">3.2.</span> <span class="nav-text">2、ARM与Thumb、Thunmb2指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、ARM的寄存器"><span class="nav-number">3.3.</span> <span class="nav-text">3、ARM的寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、ARM的指令"><span class="nav-number">3.4.</span> <span class="nav-text">4、ARM的指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、ARM寻址方式"><span class="nav-number">3.5.</span> <span class="nav-text">5、ARM寻址方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、函数传参"><span class="nav-number">3.6.</span> <span class="nav-text">6、函数传参</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、什么是JNI"><span class="nav-number">1.</span> <span class="nav-text">1、什么是JNI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、交叉编译"><span class="nav-number">2.</span> <span class="nav-text">2、交叉编译</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、常见的交叉编译工具"><span class="nav-number">2.1.</span> <span class="nav-text">1、常见的交叉编译工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、NDK的目录结构"><span class="nav-number">2.2.</span> <span class="nav-text">2、NDK的目录结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3、Android-Studio之NDK安装"><span class="nav-number">3.</span> <span class="nav-text">3、Android_Studio之NDK安装</span></a></li></ol></div>
             
 
           </div>

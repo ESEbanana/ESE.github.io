@@ -6,10 +6,28 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-03-12T14:46:55.257Z</updated>
+  <updated>2018-03-14T09:18:48.101Z</updated>
   <id>http://yoursite.com/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android_jni_编程</title>
+    <link href="http://yoursite.com/2018/03/14/android_jni/"/>
+    <id>http://yoursite.com/2018/03/14/android_jni/</id>
+    <published>2018-03-14T02:12:23.399Z</published>
+    <updated>2018-03-14T09:18:48.101Z</updated>
+    
+    <content type="html"><![CDATA[<p>Android_jni是将核心加密算法写在.so(动态库)中，不容易被反编译逆向出算法。所以需要去学习了解一下。<br><a id="more"></a></p><h1 id="1、什么是JNI"><a href="#1、什么是JNI" class="headerlink" title="1、什么是JNI"></a>1、什么是JNI</h1><p>JNI(Java Native Interface):java本地开发接口JNI是一个协议，这个协议用来沟通java代码和外部的本地代码(c/c++)外部的c/c++代码也可以调用java代码。效率上 C/C++是本地语言，比java更高效代码移植，如果之前用C语言开发过模块，可以复用已经存在的c代码java反编译比C语言容易，一般加密算法都是用C语言编写，不容易被反编译</p><h1 id="2、交叉编译"><a href="#2、交叉编译" class="headerlink" title="2、交叉编译"></a>2、交叉编译</h1><p>交叉编译即在一个平台，编译出另一个平台能够执行的二进制代码。原理:即在一个平台上，模拟其他平台的特性。</p><h2 id="1、常见的交叉编译工具"><a href="#1、常见的交叉编译工具" class="headerlink" title="1、常见的交叉编译工具"></a>1、常见的交叉编译工具</h2><p>NDK(Native Development Kit): 开发JNI必备工具，就是模拟其他平台特性类编译代码的工具<br>CDT(C/C++ Development Tools): 是Eclipse开发C语言的一个插件，高亮显示C语言的语法<br>Cygwin: 一个Windows平台的Unix模拟器</p><h2 id="2、NDK的目录结构"><a href="#2、NDK的目录结构" class="headerlink" title="2、NDK的目录结构"></a>2、NDK的目录结构</h2><p>build/tools：linux的批处理文件<br>platforms：编译c代码需要使用的头文件和类库<br>prebuilt：预编译使用的二进制可执行文件<br>sample：jni的使用例子<br>source：ndk的源码<br>toolchains：工具链<br>ndk-build.cmd:编译打包c代码的一个指令，需要配置系统环境变量</p><h1 id="3、Android-Studio之NDK安装"><a href="#3、Android-Studio之NDK安装" class="headerlink" title="3、Android_Studio之NDK安装"></a>3、Android_Studio之NDK安装</h1><p>搭建ndk环境<br>1、路径： File-&gt;Setting-&gt;看图<br><img src="https://i.imgur.com/kbz3yQ3.png" alt=""><br>(这个要等待一段时间)<br>2、新建项目<br><img src="https://i.imgur.com/TtbtwFr.png" alt=""><br>然后一直默认下一步，接着自动生成一个demo。<br>运行结果:<br><img src="https://i.imgur.com/U1eGcLP.png" alt=""><br>将apk改成zip<br>发现.so文件<br><img src="https://i.imgur.com/Y91D8OW.png" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Android_jni是将核心加密算法写在.so(动态库)中，不容易被反编译逆向出算法。所以需要去学习了解一下。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Android_之_DDMS_与_修改smali混用</title>
@@ -347,24 +365,6 @@
     <summary type="html">
     
       &lt;p&gt;去膜拜看雪师傅啦&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>中华人民共和国网络安全法</title>
-    <link href="http://yoursite.com/2017/11/07/misc_fa/"/>
-    <id>http://yoursite.com/2017/11/07/misc_fa/</id>
-    <published>2017-11-07T07:58:07.243Z</published>
-    <updated>2017-11-09T11:37:38.202Z</updated>
-    
-    <content type="html"><![CDATA[<p>必学中华人民共和国网络安全法<br><a id="more"></a></p><h2 id="1、链接"><a href="#1、链接" class="headerlink" title="1、链接"></a>1、链接</h2><p><a href="https://www.virzz.com/2017/06/01/Network_security_law_of_the_PRC.html" target="_blank" rel="external">https://www.virzz.com/2017/06/01/Network_security_law_of_the_PRC.html</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;必学中华人民共和国网络安全法&lt;br&gt;
     
     </summary>
     
