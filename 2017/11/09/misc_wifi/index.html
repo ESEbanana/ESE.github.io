@@ -81,19 +81,17 @@
 
 
 
-<meta name="description" content="到处都是wifi，那就破解吧，贼好用">
+<meta name="description" content="闲来无事做，不如来渗透">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WIFI破解密码">
+<meta property="og:title" content="linux渗透测试">
 <meta property="og:url" content="http://yoursite.com/2017/11/09/misc_wifi/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="到处都是wifi，那就破解吧，贼好用">
+<meta property="og:description" content="闲来无事做，不如来渗透">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/006rgqhqgy1flbtpq4f9bj30r50h8dho.jpg">
-<meta property="og:updated_time" content="2017-11-10T01:20:14.655Z">
+<meta property="og:updated_time" content="2018-03-15T03:24:22.997Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WIFI破解密码">
-<meta name="twitter:description" content="到处都是wifi，那就破解吧，贼好用">
-<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/006rgqhqgy1flbtpq4f9bj30r50h8dho.jpg">
+<meta name="twitter:title" content="linux渗透测试">
+<meta name="twitter:description" content="闲来无事做，不如来渗透">
 
 
 
@@ -129,7 +127,7 @@
 
 
 
-  <title>WIFI破解密码 | ESE's Note</title>
+  <title>linux渗透测试 | ESE's Note</title>
   
 
 
@@ -273,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">WIFI破解密码</h1>
+          <h1 class="post-title" itemprop="name headline">linux渗透测试</h1>
         
 
         <div class="post-meta">
@@ -327,9 +325,17 @@
       
 
       
-        <p>到处都是wifi，那就破解吧，贼好用<br><a id="more"></a></p>
-<h2 id="1、WIFI破解密码"><a href="#1、WIFI破解密码" class="headerlink" title="1、WIFI破解密码"></a>1、WIFI破解密码</h2><h2 id="2、钓鱼WiFi"><a href="#2、钓鱼WiFi" class="headerlink" title="2、钓鱼WiFi"></a>2、钓鱼WiFi</h2><p>需要安装 Pyqt4<br>安装类库<br><code>pip install -r requirements.txt</code><br>安装:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/P0cL4bs/WiFi-Pumpkin.git</div><div class="line">cd WiFi-Pumpkin</div><div class="line">chmod +x installer.sh</div><div class="line">./installer.sh --install</div></pre></td></tr></table></figure></p>
-<p>安装成功<br><img src="http://ww4.sinaimg.cn/large/006rgqhqgy1flbtpq4f9bj30r50h8dho.jpg" alt=""></p>
+        <p>闲来无事做，不如来渗透<br><a id="more"></a><br>啥为渗透，只限教学</p>
+<h1 id="1、主机发现与端口扫描"><a href="#1、主机发现与端口扫描" class="headerlink" title="1、主机发现与端口扫描"></a>1、主机发现与端口扫描</h1><h2 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a>nmap</h2><p>nmap [扫描类型…] [通用选项] {扫描目标说明}</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nmap -v -sS <span class="number">192.168</span><span class="number">.1</span><span class="number">.10</span><span class="number">-254</span></div></pre></td></tr></table></figure>
+<p>扫描10-254这段ip的主机，-p为扫描端口<br>-sS :TCP同步扫描(TCP SYN),因为不必全部打开一个TCP连接,所以这项技术通常称为半开扫描(half-open)。这项技术最大的好处是,很少有系统能够把这记入系统日志。不过，你需要root权限来定制SYN数据包。<br>-sN :秘密扫描，有时可以骗过防火墙<br>-v     :冗余模式。强烈推荐使用这个选项，它会给出扫描过程中的详细信息。<br>-p  :如-p1-65535,扫描每台主机的1-65535端口<br>-A  :详细扫描</p>
+<h2 id="netdiscover"><a href="#netdiscover" class="headerlink" title="netdiscover"></a>netdiscover</h2><p>netdiscover [通用选项] [ip]<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netdiscover -r <span class="number">192.168</span><span class="number">.0</span><span class="number">.1</span>/<span class="number">24</span></div></pre></td></tr></table></figure></p>
+<p>-p  :被动扫描(贼慢)<br>扫描一个子网段<br>当然还有其他的扫描工具啦。etc</p>
+<h1 id="2、dos"><a href="#2、dos" class="headerlink" title="2、dos"></a>2、dos</h1><h2 id="hping3"><a href="#hping3" class="headerlink" title="hping3"></a>hping3</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hping3 -I eth0 -S <span class="number">192.168</span><span class="number">.0</span><span class="number">.50</span> -a <span class="number">10.10</span><span class="number">.10</span><span class="number">.1</span> -p <span class="number">80</span> -i u1000</div></pre></td></tr></table></figure>
+<p>向192.168.0.50主机80端口发起dos攻击，将自己ip伪装成10.10.10.1<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hping3  -P -U --flood -V -a --rand-soucer -S <span class="number">10.21</span><span class="number">.13</span><span class="number">.97</span></div></pre></td></tr></table></figure></p>
+<p>伪造IP地址的简单的SYN洪水攻击――使用HPING3的DoS<br>-a –rand-source : 使用随机性的源头IP地址。</p>
+<h2 id="nping"><a href="#nping" class="headerlink" title="nping"></a>nping</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">nping --tcp -p <span class="number">80</span> --flags rst --ttl <span class="number">2</span> <span class="number">192.168</span><span class="number">.1</span><span class="number">.1</span></div><div class="line">nping --icmp --icmp-type time --delay <span class="number">500</span>ms <span class="number">192.168</span><span class="number">.254</span><span class="number">.254</span></div><div class="line">nping --echo-server <span class="string">"public"</span> -e wlan0 -vvv </div><div class="line">nping --echo-client <span class="string">"public"</span> echo.nmap.org --tcp -p1<span class="number">-1024</span> --flags ack</div></pre></td></tr></table></figure>
+<h1 id="3、iptables"><a href="#3、iptables" class="headerlink" title="3、iptables"></a>3、iptables</h1><p><code>iptables -A INPUT -j DROP</code><br>屏蔽所有ip<br>参考:<a href="https://esebanana.github.io/page/2/" target="_blank" rel="external">https://esebanana.github.io/page/2/</a></p>
 
       
     </div>
@@ -576,7 +582,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、WIFI破解密码"><span class="nav-number">1.</span> <span class="nav-text">1、WIFI破解密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、钓鱼WiFi"><span class="nav-number">2.</span> <span class="nav-text">2、钓鱼WiFi</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、主机发现与端口扫描"><span class="nav-number">1.</span> <span class="nav-text">1、主机发现与端口扫描</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#nmap"><span class="nav-number">1.1.</span> <span class="nav-text">nmap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#netdiscover"><span class="nav-number">1.2.</span> <span class="nav-text">netdiscover</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、dos"><span class="nav-number">2.</span> <span class="nav-text">2、dos</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hping3"><span class="nav-number">2.1.</span> <span class="nav-text">hping3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nping"><span class="nav-number">2.2.</span> <span class="nav-text">nping</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3、iptables"><span class="nav-number">3.</span> <span class="nav-text">3、iptables</span></a></li></ol></div>
             
 
           </div>
@@ -620,7 +626,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共43.6k字</span>
+  <span class="post-count">博客全站共44.0k字</span>
 </div>
 
         
