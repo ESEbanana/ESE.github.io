@@ -94,7 +94,7 @@
 <meta property="og:image" content="https://i.imgur.com/aVGdKqD.png">
 <meta property="og:image" content="https://i.imgur.com/R54UpIg.png">
 <meta property="og:image" content="https://i.imgur.com/rUsuZTW.png">
-<meta property="og:updated_time" content="2018-03-22T03:21:43.283Z">
+<meta property="og:updated_time" content="2018-03-22T03:32:44.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RE——Hook">
 <meta name="twitter:description" content="逆向分析之”花”。windows的Hook是程序设计中最为灵活多变的技巧之一。Hook有两种含义:1、系统提供的消息Hook机制;2、自定义的Hook编程技巧，">
@@ -348,6 +348,7 @@
 <h2 id="2个问题"><a href="#2个问题" class="headerlink" title="2个问题"></a>2个问题</h2><p>1、钩取的进程数<br>如果进程查看器和任务管理器多开几个，那么进程钩取一个，那是不可以的，所以要钩取系统中运行的所有进程。<br>2、新创进程<br>如果当钩取了系统中运行的所有进程，这时又新建一个ProcExp.exe，而这个进程又没有被钩取。</p>
 <h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>对于上面2个问题，我们隐藏test.exe进程时需要钩取系统中运行的所有进程的ntdll.ZwQuerySystemInformation() API，并且对后面将要启动的所有进程也进行相同的操作(当然这是全自动的啦)，这叫全局钩取。</p>
 <h1 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h1><p>逆向工程核心原理</p>
+<h2 id="最后，文学还是很重要的，借助诗圣两句提高文学素养"><a href="#最后，文学还是很重要的，借助诗圣两句提高文学素养" class="headerlink" title="最后，文学还是很重要的，借助诗圣两句提高文学素养"></a>最后，文学还是很重要的，借助诗圣两句提高文学素养</h2><p>绝代有佳人，幽居在空谷。<br>但见新人笑，那闻旧人哭。<br>——佳人</p>
 
       
     </div>
@@ -480,7 +481,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -594,7 +595,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#钩取方式"><span class="nav-number">1.</span> <span class="nav-text">钩取方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方式1——动态-进程内存"><span class="nav-number">2.</span> <span class="nav-text">方式1——动态-进程内存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方式2——IAT钩取"><span class="nav-number">3.</span> <span class="nav-text">方式2——IAT钩取</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方式3——进程隐藏"><span class="nav-number">4.</span> <span class="nav-text">方式3——进程隐藏</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2个问题"><span class="nav-number">4.1.</span> <span class="nav-text">2个问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决"><span class="nav-number">4.2.</span> <span class="nav-text">解决</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#来源"><span class="nav-number">5.</span> <span class="nav-text">来源</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#钩取方式"><span class="nav-number">1.</span> <span class="nav-text">钩取方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方式1——动态-进程内存"><span class="nav-number">2.</span> <span class="nav-text">方式1——动态-进程内存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方式2——IAT钩取"><span class="nav-number">3.</span> <span class="nav-text">方式2——IAT钩取</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方式3——进程隐藏"><span class="nav-number">4.</span> <span class="nav-text">方式3——进程隐藏</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2个问题"><span class="nav-number">4.1.</span> <span class="nav-text">2个问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决"><span class="nav-number">4.2.</span> <span class="nav-text">解决</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#来源"><span class="nav-number">5.</span> <span class="nav-text">来源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最后，文学还是很重要的，借助诗圣两句提高文学素养"><span class="nav-number">5.1.</span> <span class="nav-text">最后，文学还是很重要的，借助诗圣两句提高文学素养</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -638,7 +639,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共48.6k字</span>
+  <span class="post-count">博客全站共48.5k字</span>
 </div>
 
         
