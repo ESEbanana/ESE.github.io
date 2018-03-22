@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ESE.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ESE1.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ESE's Note" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="复习可执行文件的文件结构——PE。PE文件是微软Windows操作系统上的程序文件，意为可移植的可执行的文件。PE的段头直接沿用的COFF 的段头结构。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RE_PE">
+<meta property="og:url" content="http://yoursite.com/2018/03/21/re_PE/index.html">
+<meta property="og:site_name" content="ESE&#39;s Note">
+<meta property="og:description" content="复习可执行文件的文件结构——PE。PE文件是微软Windows操作系统上的程序文件，意为可移植的可执行的文件。PE的段头直接沿用的COFF 的段头结构。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/vfm1qtj.jpg">
+<meta property="og:image" content="https://i.imgur.com/DancFFy.png">
+<meta property="og:image" content="https://i.imgur.com/lhhFCrk.png">
+<meta property="og:image" content="https://i.imgur.com/7yB4x1A.png">
+<meta property="og:image" content="https://i.imgur.com/U9LeUOb.jpg">
+<meta property="og:image" content="https://i.imgur.com/SwaxF8w.png">
+<meta property="og:image" content="https://i.imgur.com/EQhlnD9.png">
+<meta property="og:updated_time" content="2018-03-21T08:26:31.001Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RE_PE">
+<meta name="twitter:description" content="复习可执行文件的文件结构——PE。PE文件是微软Windows操作系统上的程序文件，意为可移植的可执行的文件。PE的段头直接沿用的COFF 的段头结构。">
+<meta name="twitter:image" content="https://i.imgur.com/vfm1qtj.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/21/re_PE/"/>
+
+
+
+
+
+  <title>RE_PE | ESE's Note</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ESE's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">阅览室</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/21/re_PE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ESE's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RE_PE</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-21T08:13:56+08:00">
+                2018-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+          作者：ESE
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>复习可执行文件的文件结构——PE。PE文件是微软Windows操作系统上的程序文件，意为可移植的可执行的文件。PE的段头直接沿用的COFF 的段头结构。<br><a id="more"></a></p>
+<h1 id="1、PE的结构"><a href="#1、PE的结构" class="headerlink" title="1、PE的结构"></a>1、PE的结构</h1><p><img src="https://i.imgur.com/vfm1qtj.jpg" alt=""><br>DOS头: 是DOS命令窗口下可以执行，其实没有PE文件也是可以执行的（听说是老一辈习惯啦DOS命令下执行，就加上去啦）。<br>NT头: 是PE中最大的结构体啦，其中有签名，文件头和可选头。<br>节区头: 定义(代码，数据，资源等的大小，起始位置，权限等)</p>
+<h1 id="2、DOS头"><a href="#2、DOS头" class="headerlink" title="2、DOS头"></a>2、DOS头</h1><p>DOS结构体<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IMAGE_DOS_HEADER</span> &#123;</span>          <span class="comment">// DOS .EXE header  </span></div><div class="line">        WORD   e_magic;                     <span class="comment">// Magic number  </span></div><div class="line">        WORD   e_cblp;                      <span class="comment">// Bytes on last page of file  </span></div><div class="line">        WORD   e_cp;                        <span class="comment">// Pages in file  </span></div><div class="line">        WORD   e_crlc;                      <span class="comment">// Relocations  </span></div><div class="line">        WORD   e_cparhdr;                   <span class="comment">// Size of header in paragraphs  </span></div><div class="line">        WORD   e_minalloc;                  <span class="comment">// Minimum extra paragraphs needed  </span></div><div class="line">        WORD   e_maxalloc;                  <span class="comment">// Maximum extra paragraphs needed  </span></div><div class="line">        WORD   e_ss;                        <span class="comment">// Initial (relative) SS value  </span></div><div class="line">        WORD   e_sp;                        <span class="comment">// Initial SP value  </span></div><div class="line">        WORD   e_csum;                      <span class="comment">// Checksum  </span></div><div class="line">        WORD   e_ip;                        <span class="comment">// Initial IP value  </span></div><div class="line">        WORD   e_cs;                        <span class="comment">// Initial (relative) CS value  </span></div><div class="line">        WORD   e_lfarlc;                      <span class="comment">// File address of relocation table  </span></div><div class="line">        WORD   e_ovno;                      <span class="comment">// Overlay number  </span></div><div class="line">        WORD   e_res[<span class="number">4</span>];                     <span class="comment">// Reserved words  </span></div><div class="line">        WORD   e_oemid;                     <span class="comment">// OEM identifier (for e_oeminfo)  </span></div><div class="line">        WORD   e_oeminfo;                   <span class="comment">// OEM information; e_oemid specific  </span></div><div class="line">        WORD   e_res2[<span class="number">10</span>];                   <span class="comment">// Reserved words  </span></div><div class="line">        LONG   e_lfanew;                     <span class="comment">// File address of new exe header  </span></div><div class="line">&#125; IMAGE_DOS_HEADER, *PIMAGE_DOS_HEADER;</div></pre></td></tr></table></figure></p>
+<h2 id="e-magic：所有PE开头都有DOS签名-“MZ”，这是以一个名叫Mark-Zbikowski的DOS可执行文件的设计者首字母命名的"><a href="#e-magic：所有PE开头都有DOS签名-“MZ”，这是以一个名叫Mark-Zbikowski的DOS可执行文件的设计者首字母命名的" class="headerlink" title="e_magic：所有PE开头都有DOS签名  “MZ”，这是以一个名叫Mark Zbikowski的DOS可执行文件的设计者首字母命名的"></a>e_magic：所有PE开头都有DOS签名  “MZ”，这是以一个名叫Mark Zbikowski的DOS可执行文件的设计者首字母命名的</h2><h2 id="e-lfanew-指向NT头的位置，long类型，占4个字节。例"><a href="#e-lfanew-指向NT头的位置，long类型，占4个字节。例" class="headerlink" title="e_lfanew:指向NT头的位置，long类型，占4个字节。例:"></a>e_lfanew:指向NT头的位置，long类型，占4个字节。例:</h2><p><img src="https://i.imgur.com/DancFFy.png" alt=""></p>
+<h1 id="3、NT头"><a href="#3、NT头" class="headerlink" title="3、NT头"></a>3、NT头</h1><p>NT结构体<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IMAGE_NT_HEADERS</span> &#123;</span>  </div><div class="line">      DWORD                 Signature;  </div><div class="line">      IMAGE_FILE_HEADER     FileHeader;  </div><div class="line">      IMAGE_OPTIONAL_HEADER OptionalHeader;  </div><div class="line">&#125; IMAGE_NT_HEADERS, *PIMAGE_NT_HEADERS;</div></pre></td></tr></table></figure></p>
+<p>第一个参数是: 一个PE标志。在一个有效的PE文件里，Signature字段被设置为00004550h。<br>第二个参数是: IMAGE_FILE_HEADER结构体。<br>第三个参数是: OptionalHeader结构体。</p>
+<h2 id="NT文件头"><a href="#NT文件头" class="headerlink" title="NT文件头"></a>NT文件头</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IMAGE_FILE_HEADER</span> &#123;</span></div><div class="line">    WORD    Machine;　　　　　　　　　<span class="comment">//机器型号,哪个CPU可以跑的.重要.</span></div><div class="line">    WORD    NumberOfSections;　　　　  <span class="comment">//节的数量 .data , .text </span></div><div class="line">    DWORD   TimeDateStamp;　　　　　　　<span class="comment">//程序的编译时间,参考用,没有实际作用</span></div><div class="line">    DWORD   PointerToSymbolTable;　　　<span class="comment">//符号表地址，主要是给比人用的</span></div><div class="line">    DWORD   NumberOfSymbols;　　　　　　　<span class="comment">//符号表大小</span></div><div class="line">    WORD    SizeOfOptionalHeader;　　　<span class="comment">//可选头大小,这个字段很重要.才知道可选头是多大</span></div><div class="line">    WORD    Characteristics;　　　　　　<span class="comment">//文件属性,描述文件信息的.</span></div><div class="line">&#125; IMAGE_FILE_HEADER, *PIMAGE_FILE_HEADER;</div></pre></td></tr></table></figure>
+<h2 id="NT可选头结构体"><a href="#NT可选头结构体" class="headerlink" title="NT可选头结构体"></a>NT可选头结构体</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IMAGE_OPTIONAL_HEADER</span>  </span></div><div class="line"><span class="class">&#123;</span>  </div><div class="line">        <span class="comment">//   </span></div><div class="line">        <span class="comment">// Standard fields.     </span></div><div class="line">        <span class="comment">//   </span></div><div class="line">        WORD    Magic;              	<span class="comment">// 标志字, ROM 映像（0107h）,普通可执行文件（010Bh）   </span></div><div class="line">        BYTE    MajorLinkerVersion;     <span class="comment">// 链接程序的主版本号   </span></div><div class="line">        BYTE    MinorLinkerVersion;     <span class="comment">// 链接程序的次版本号   </span></div><div class="line">        DWORD   SizeOfCode;         	<span class="comment">// 所有含代码的节的总大小   </span></div><div class="line">        DWORD   SizeOfInitializedData;          <span class="comment">// 所有含已初始化数据的节的总大小   </span></div><div class="line">        DWORD   SizeOfUninitializedData;        <span class="comment">// 所有含未初始化数据的节的大小   </span></div><div class="line">        DWORD   AddressOfEntryPoint;        <span class="comment">// 程序执行入口RVA   </span></div><div class="line">        DWORD   BaseOfCode;         <span class="comment">// 代码的区块的起始RVA   </span></div><div class="line">        DWORD   BaseOfData;         <span class="comment">// 数据的区块的起始RVA    </span></div><div class="line">        DWORD   ImageBase;          <span class="comment">// 程序的首选装载地址   </span></div><div class="line">        DWORD   SectionAlignment;       <span class="comment">// 内存中的区块的对齐大小   </span></div><div class="line">        DWORD   FileAlignment;          <span class="comment">// 文件中的区块的对齐大小   </span></div><div class="line">        WORD    MajorOperatingSystemVersion;    <span class="comment">// 要求操作系统最低版本号的主版本号   </span></div><div class="line">        WORD    MinorOperatingSystemVersion;    <span class="comment">// 要求操作系统最低版本号的副版本号   </span></div><div class="line">        WORD    MajorImageVersion;      <span class="comment">// 可运行于操作系统的主版本号   </span></div><div class="line">        WORD    MinorImageVersion;      <span class="comment">// 可运行于操作系统的次版本号   </span></div><div class="line">        WORD    MajorSubsystemVersion;      <span class="comment">// 要求最低子系统版本的主版本号   </span></div><div class="line">        WORD    MinorSubsystemVersion;      <span class="comment">// 要求最低子系统版本的次版本号   </span></div><div class="line">        DWORD   Win32VersionValue;      <span class="comment">// 莫须有字段，不被病毒利用的话一般为0   </span></div><div class="line">        DWORD   SizeOfImage;            <span class="comment">// 映像装入内存后的总尺寸   </span></div><div class="line">        DWORD   SizeOfHeaders;          <span class="comment">// 所有头+ 区块表的尺寸大小   </span></div><div class="line">        DWORD   CheckSum;           <span class="comment">// 映像的校检和   </span></div><div class="line">        WORD    Subsystem;          <span class="comment">// 可执行文件期望的子系统   </span></div><div class="line">        WORD    DllCharacteristics;     <span class="comment">// DllMain()函数何时被调用，默认为0   </span></div><div class="line">        DWORD   SizeOfStackReserve;     <span class="comment">// 初始化时的栈大小   </span></div><div class="line">        DWORD   SizeOfStackCommit;      <span class="comment">// 初始化时实际提交的栈大小   </span></div><div class="line">        DWORD   SizeOfHeapReserve;      <span class="comment">// 初始化时保留的堆大小   </span></div><div class="line">        DWORD   SizeOfHeapCommit;       <span class="comment">// 初始化时实际提交的堆大小   </span></div><div class="line">        DWORD   LoaderFlags;            <span class="comment">// 与调试有关，默认为0    </span></div><div class="line">        DWORD   NumberOfRvaAndSizes;    <span class="comment">// 下边数据目录的项数，这个字段自Windows NT 发布以来        // 一直是16   </span></div><div class="line">        IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES];  </div><div class="line">        <span class="comment">// 数据目录表   </span></div><div class="line">&#125; IMAGE_OPTIONAL_HEADER32, *PIMAGE_OPTIONAL_HEADER32;</div></pre></td></tr></table></figure>
+<h2 id="一共31个字段成员-6个重要的"><a href="#一共31个字段成员-6个重要的" class="headerlink" title="一共31个字段成员,6个重要的"></a>一共31个字段成员,6个重要的</h2><p>RVA也叫作OEP<br>AddressOfEntryPoint 持有EP 的RVA 值<br>基址<br>SizeOfHeader PE 头的大小<br>Subsystem 用来区分系统驱动文件与普通可执行文件。<br>DataDirectory数组</p>
+<h2 id="重点是最后一个成员IMAGE-DATA-DIRECTORY-DataDirectory-IMAGE-NUMBEROF-DIRECTORY-ENTRIES"><a href="#重点是最后一个成员IMAGE-DATA-DIRECTORY-DataDirectory-IMAGE-NUMBEROF-DIRECTORY-ENTRIES" class="headerlink" title="重点是最后一个成员IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES];"></a>重点是最后一个成员IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES];</h2><p>因为DataDirectory数组里保存了导入表（用了哪些dll），导出表，TLS（Thread Local Storage） Directory等RVA和大小的信息<br>倒数第二个变量决定NumberOfRvaAndSizes数组长度<br>在LoadPE工具中，文件头显示信息，如下：<br><img src="https://i.imgur.com/lhhFCrk.png" alt=""></p>
+<h2 id="DataDirectory数组"><a href="#DataDirectory数组" class="headerlink" title="DataDirectory数组"></a>DataDirectory数组</h2><p>IMAGE_DATA_DIRCTORY结构如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IMAGE_DATA_DIRECTORY</span> &#123;</span>  </div><div class="line">        DWORD　VirtualAddress; <span class="comment">//相对虚拟地址  </span></div><div class="line">        DWORD　Size;　　　　　 <span class="comment">//大小  </span></div><div class="line">&#125; IMAGE_DATA_DIRECTORY, *PIMAGE_DATA_DIRECTORY;</div></pre></td></tr></table></figure></p>
+<p>一个是RVA，一个是大小</p>
+<p>data directory数据目录在WINNT.H中定义为<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IMAGE_DIRECTORY_ENTRY_EXPORT         0 导出表  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IMAGE_DIRECTORY_ENTRY_IMPORT         1 导入表   </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IMAGE_DIRECTORY_ENTRY_RESOURCE       2 资源目录  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IMAGE_DIRECTORY_ENTRY_EXCEPTION      3 异常目录  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IMAGE_DIRECTORY_ENTRY_SECURITY       4 安全目录  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IMAGE_DIRECTORY_ENTRY_BASERELOC      5 重定位基本表  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IMAGE_DIRECTORY_ENTRY_DEBUG          6 调试目录  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IMAGE_DIRECTORY_ENTRY_COPYRIGHT      7 描术字串  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IMAGE_DIRECTORY_ENTRY_GLOBALPTR      8 机器值  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IMAGE_DIRECTORY_ENTRY_TLS            9 TLS目录  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IMAGE_DIRECTORY_ENTRY_LOAD_CONFIG    10 载入配值目录  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT   11 绑定输入表  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IMAGE_DIRECTORY_ENTRY_IAT            12 导入地址表  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT   13 延迟载入描述  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR 14 COM信息</span></div></pre></td></tr></table></figure></p>
+<p>在LoadPE工具中，数据目录显示信息，如下：<br><img src="https://i.imgur.com/7yB4x1A.png" alt=""></p>
+<h1 id="4、RVA和RAW"><a href="#4、RVA和RAW" class="headerlink" title="4、RVA和RAW"></a>4、RVA和RAW</h1><p>理解PE 最重要的一个部分就是理解文件从磁盘到内存地址的映射过程，做逆向的人员，只有熟练地掌握才能跟踪到程序的调用过程和位置，才能分析和寻找漏洞。<br>对于文件和内存的映射关系，其实很简单，他们通过一个简单的公式计算而来：<br><img src="https://i.imgur.com/U9LeUOb.jpg" alt=""><br>换算公式是这样的：<br>RAW - PointToRawData(磁盘文件中节区起始位置) = RVA(相对虚拟地址) - VirtualAddress</p>
+<p>寻找过程就是先找到RVA 所在的段，然后根据公式计算出文件偏移。因为我们通过逆向工具，可以在内存中查找到所在的RVA，进而我们就可以计算出在文件中所在的位置，这样，就可以手动进行修改。</p>
+<p>VA与RVA公式是这样的：</p>
+<h2 id="RVA-VA（虚拟地址）-ImageBase（基址）"><a href="#RVA-VA（虚拟地址）-ImageBase（基址）" class="headerlink" title="RVA = VA（虚拟地址） - ImageBase（基址）"></a>RVA = VA（虚拟地址） - ImageBase（基址）</h2><p>结果:</p>
+<h2 id="RAW-VA-ImageBase-VirtualAddress-PointerToRawData"><a href="#RAW-VA-ImageBase-VirtualAddress-PointerToRawData" class="headerlink" title="RAW = VA - ImageBase - VirtualAddress + PointerToRawData"></a>RAW = VA - ImageBase - VirtualAddress + PointerToRawData</h2><p>比如:<br>VA=0x003A20F4 , ImageBase =0x003A0000<br><img src="https://i.imgur.com/SwaxF8w.png" alt=""><br>可以看到0x20F4地址位于VirtualAddress 为0x2000的.rdata节，偏移为0x20F4 - 0x2000 = 0xF4<br>观察节表，.rdata的PointerToRawData为0xE00，字符串在磁盘中的地址为0xE00 + 0xF4 = 0xEF4<br>使用公式：<br>RAW = VA - ImageBase - VirtualAddress + PointerToRawData = 0x003A20F4 - 0x003A0000 - 0x2000 + 0xE00 = 0xEF4<br>用winhex打开二进制文件<br><img src="https://i.imgur.com/EQhlnD9.png" alt=""></p>
+<h1 id="5、IAT与EAT"><a href="#5、IAT与EAT" class="headerlink" title="5、IAT与EAT"></a>5、IAT与EAT</h1><h2 id="IAT"><a href="#IAT" class="headerlink" title="IAT"></a>IAT</h2><p>一个普通PE文件的运行往往需要导入多个库文件，在PE文件运行时如何找到库文件中函数的准确入口是程序正确运行的保证。IAT就是提供这样保证的一个机制。IAT总得来说是一张表，表内存储着每个库文件函数在内存中的地址。<br>结构体<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IMAGE_IMPORT_DESCRIPTOR</span> &#123;</span></div><div class="line">    <span class="keyword">union</span> &#123;</div><div class="line">        DWORD   Characteristics;            <span class="comment">//导入表结束标志</span></div><div class="line">        DWORD   OriginalFirstThunk;         <span class="comment">//RVA指向一个结构体数组(INT表)</span></div><div class="line">    &#125;;</div><div class="line">    DWORD   TimeDateStamp;                  <span class="comment">//时间戳</span></div><div class="line">    DWORD   ForwarderChain;                 <span class="comment">// -1 if no forwarders</span></div><div class="line">    DWORD   Name;                           <span class="comment">//RVA指向dll名字，以0结尾</span></div><div class="line">    DWORD   FirstThunk;                     <span class="comment">//RVA指向一个结构体数组(IAT表)</span></div><div class="line">&#125; IMAGE_IMPORT_DESCRIPTOR, *PIMAGE_IMPORT_DESCRIPTOR;</div></pre></td></tr></table></figure></p>
+<p>第一个成员是一个联合体：一般给出的是OriginalFirstThunk的值，这个值是INT的地址，INT（Import Name Table）是一个存储了库文件函数名称的表<br>第二个成员是时间戳<br>第三个成员是ForwarderChain<br>第四个成员是Name，存储的是库名称字符数组的地址<br>第五个成员是FirstThunk，存储的是IAT表的地址</p>
+<p>第一步：<br>PE加载器读取结构体成员的值，Name成员找到库名称，然后将库文件加载到内存中来。<br>第二步：<br>PE加载器读取OriginalFirstThunk值获得INT地址，然后依次读取INT各项的值，根据函数的标号获取函数的地址<br>第三步：<br>根据FirstThunk的值获取IAT的地址，将上一步获得地址送入IAT中存储。</p>
+<p>理解:读取IID(结构体)成员name获取库名-&gt;load(库)-&gt;读取IID的成员，获取INT的地址-&gt;读取函数名并获取地址-&gt;读取IID的成员，获取IAT的地址-&gt;将得到函数地址存入IAT中-&gt;重复直到INT为NULL</p>
+<h2 id="EAT"><a href="#EAT" class="headerlink" title="EAT"></a>EAT</h2><p>EAT对应的结构体为IMAGE_EXPORT_DESCRIPTOR，位置信息存储在可选头DataDirectory[0]中。<br>一般PE文件此项值应为0，代表不存在这个表项，只有库文件，才会含有这个表项。<br>结构体成员包括特征值，时间戳，版本信息等。重要的成员是Name，存储着库文件的名字；Base存储着函数标号从哪里开始；NumberOfFunctions存储着函数的数量；NumberOfNames存储着函数名称的数量（一般情况下这两项相同）；AddressOfFunctions函数地址数组的首地址；AddressOfNames函数名称地址数组的首地址；AdressOfNameOrdinals，存储着函数标号的地址信息。</p>
+<p>个人思考:记得以前学习的时候，把VA与VirtualAddress看成一个相同的，导致转化的时候很矛盾，现在再看，真是自己可以静心好好的学，再次理解IAT的运行机制。</p>
+<p>参考：<br><a href="https://www.jianshu.com/p/af9766222816" target="_blank" rel="external">https://www.jianshu.com/p/af9766222816</a><br><a href="https://www.cnblogs.com/aguoshaofang/p/5021759.html" target="_blank" rel="external">https://www.cnblogs.com/aguoshaofang/p/5021759.html</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        
+      
+    </div>
+    
+
+    
+
+    
+
+    <div>
+     
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/15/re_hook/" rel="next" title="RE——Hook">
+                <i class="fa fa-chevron-left"></i> RE——Hook
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/saucxs/" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/ese-76-83/activities" target="_blank" title="Zhihu">
+                    
+                      <i class="fa fa-fw fa-drupal"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/5899672336/profile?topnav=1&wvr=6/&is_all=1" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.betamao.me/" title="betamao" target="_blank">betamao</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://err0rzz.github.io/" title="err0rzz" target="_blank">err0rzz</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://veritas501.space/" title="Veritas501" target="_blank">Veritas501</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://lalajun.github.io/" title="lalajun" target="_blank">lalajun</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://bestwing.me/" title="swing" target="_blank">swing</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://b3t4m3ee.github.io/" title="b3t4m3ee" target="_blank">b3t4m3ee</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://myblackmanba.github.io/" title="black" target="_blank">black</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.baidu.com" title="百度一下" target="_blank">百度一下</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、PE的结构"><span class="nav-number">1.</span> <span class="nav-text">1、PE的结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、DOS头"><span class="nav-number">2.</span> <span class="nav-text">2、DOS头</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#e-magic：所有PE开头都有DOS签名-“MZ”，这是以一个名叫Mark-Zbikowski的DOS可执行文件的设计者首字母命名的"><span class="nav-number">2.1.</span> <span class="nav-text">e_magic：所有PE开头都有DOS签名  “MZ”，这是以一个名叫Mark Zbikowski的DOS可执行文件的设计者首字母命名的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#e-lfanew-指向NT头的位置，long类型，占4个字节。例"><span class="nav-number">2.2.</span> <span class="nav-text">e_lfanew:指向NT头的位置，long类型，占4个字节。例:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3、NT头"><span class="nav-number">3.</span> <span class="nav-text">3、NT头</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#NT文件头"><span class="nav-number">3.1.</span> <span class="nav-text">NT文件头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NT可选头结构体"><span class="nav-number">3.2.</span> <span class="nav-text">NT可选头结构体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一共31个字段成员-6个重要的"><span class="nav-number">3.3.</span> <span class="nav-text">一共31个字段成员,6个重要的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重点是最后一个成员IMAGE-DATA-DIRECTORY-DataDirectory-IMAGE-NUMBEROF-DIRECTORY-ENTRIES"><span class="nav-number">3.4.</span> <span class="nav-text">重点是最后一个成员IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES];</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DataDirectory数组"><span class="nav-number">3.5.</span> <span class="nav-text">DataDirectory数组</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4、RVA和RAW"><span class="nav-number">4.</span> <span class="nav-text">4、RVA和RAW</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RVA-VA（虚拟地址）-ImageBase（基址）"><span class="nav-number">4.1.</span> <span class="nav-text">RVA = VA（虚拟地址） - ImageBase（基址）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RAW-VA-ImageBase-VirtualAddress-PointerToRawData"><span class="nav-number">4.2.</span> <span class="nav-text">RAW = VA - ImageBase - VirtualAddress + PointerToRawData</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5、IAT与EAT"><span class="nav-number">5.</span> <span class="nav-text">5、IAT与EAT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IAT"><span class="nav-number">5.1.</span> <span class="nav-text">IAT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EAT"><span class="nav-number">5.2.</span> <span class="nav-text">EAT</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共48.6k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
