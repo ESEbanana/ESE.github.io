@@ -89,7 +89,19 @@
 <meta property="og:description" content="IDA真的好用">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjr8txdky9j30fh08t74d.jpg">
-<meta property="og:updated_time" content="2017-11-09T11:52:49.201Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fjsow111ogj30f30ap74d.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjsoxdbsenj30ho08ddft.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjsp2mc1g3j30f503idfo.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/006rgqhqgy1fjsp7bf6c8j30hf043q2u.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fjsp9inf3vj30a40983zg.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fjspcf2jrdj30f106saad.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjspf4abj5j30dr059t8t.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjspjccvgqj30ef046t8x.jpg">
+<meta property="og:image" content="https://i.imgur.com/CcjDrqB.png">
+<meta property="og:image" content="https://i.imgur.com/VBcjd4b.png">
+<meta property="og:image" content="https://i.imgur.com/b7qqXAH.png">
+<meta property="og:image" content="https://i.imgur.com/gIQHS6j.png">
+<meta property="og:updated_time" content="2018-03-23T01:10:10.893Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RE_Windows下IDA动态调试linux的ELF">
 <meta name="twitter:description" content="IDA真的好用">
@@ -328,10 +340,24 @@
 
       
         <p>IDA真的好用<br><a id="more"></a></p>
-<h2 id="1、准备"><a href="#1、准备" class="headerlink" title="1、准备"></a>1、准备</h2><p>在 IDA 的安装目录/dbgsrc/找到 linux_server 和 linux_serverx64 拷贝到 linux 虚拟机中</p>
+<h1 id="IDA动态调试linux的ELF"><a href="#IDA动态调试linux的ELF" class="headerlink" title="IDA动态调试linux的ELF"></a>IDA动态调试linux的ELF</h1><h2 id="1、准备"><a href="#1、准备" class="headerlink" title="1、准备"></a>1、准备</h2><p>在 IDA 的安装目录/dbgsrc/找到 linux_server 和 linux_serverx64 拷贝到 linux 虚拟机中</p>
 <h2 id="2、查看文件类型"><a href="#2、查看文件类型" class="headerlink" title="2、查看文件类型"></a>2、查看文件类型</h2><p><code>file elf</code><br>如果是32位的运行<br><code>./linux_server</code><br>64位的运行<br><code>./linux_serverx64</code></p>
 <h2 id="3、Windows设置"><a href="#3、Windows设置" class="headerlink" title="3、Windows设置"></a>3、Windows设置</h2><p>1、Debugger –&gt;Remote Linux debugger<br>2、Debugger –&gt;Process options –&gt; hostname<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjr8txdky9j30fh08t74d.jpg" alt=""></p>
-<h2 id="4、运行"><a href="#4、运行" class="headerlink" title="4、运行"></a>4、运行</h2>
+<h2 id="4、运行"><a href="#4、运行" class="headerlink" title="4、运行"></a>4、运行</h2><h1 id="Linux下修改程序流程"><a href="#Linux下修改程序流程" class="headerlink" title="Linux下修改程序流程"></a>Linux下修改程序流程</h1><h2 id="1、Linux下修改程序流程"><a href="#1、Linux下修改程序流程" class="headerlink" title="1、Linux下修改程序流程"></a>1、Linux下修改程序流程</h2><p>今天看见一个ctf的elf题目，很有趣，是一个dice题目，很熟悉嘛。今天有发现一种新套路，便记录下来，以后遇见就嘿嘿嘿</p>
+<h2 id="2、分析"><a href="#2、分析" class="headerlink" title="2、分析"></a>2、分析</h2><p>打开ida，发现如下<br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1fjsow111ogj30f30ap74d.jpg" alt=""><br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjsoxdbsenj30ho08ddft.jpg" alt=""><br>前面生成随机数，后面验证，以往我都会改验证的地方，今天来点不一样的</p>
+<h2 id="3、修改"><a href="#3、修改" class="headerlink" title="3、修改"></a>3、修改</h2><p>发现flag在这个函数打印<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjsp2mc1g3j30f503idfo.jpg" alt=""><br>这个函数的地址是0x4006B6,同时发现main开始运行的 地址<br><img src="http://ww4.sinaimg.cn/large/006rgqhqgy1fjsp7bf6c8j30hf043q2u.jpg" alt=""><br>linux下gdb调试，在下断点,run运行<br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1fjsp9inf3vj30a40983zg.jpg" alt=""><br>i r 查看寄存器的值,此时，还没有运行到程序区<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fjspcf2jrdj30f106saad.jpg" alt=""><br>n下一步，在i r查看<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjspf4abj5j30dr059t8t.jpg" alt=""><br>发现已经到达程序区了，将rdi寄存器设置为我们想要的值 set $rdi=0x4006b6,运行c<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjspjccvgqj30ef046t8x.jpg" alt=""></p>
+<h1 id="程序员自我修养第4章——静态编译"><a href="#程序员自我修养第4章——静态编译" class="headerlink" title="程序员自我修养第4章——静态编译"></a>程序员自我修养第4章——静态编译</h1><h2 id="1、什么是静态编译"><a href="#1、什么是静态编译" class="headerlink" title="1、什么是静态编译"></a>1、什么是静态编译</h2><p>静态编译，就是编译器在编译可执行文件的时候，将可执行文件需要调用的对应动态链接库(.so或.lib)中的部分提取出来，链接到可执行文件中去，使可执行文件在运行的时候不依赖于动态链接库。</p>
+<h2 id="2、实验"><a href="#2、实验" class="headerlink" title="2、实验"></a>2、实验</h2><p>这里有a.c,b.c两个文件，如下:<br>b.c<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> shared=<span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> *b)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	*a^=*b^=*a^=*b;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>a.c<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">extern</span> <span class="keyword">int</span> shared;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> a=<span class="number">100</span>;</div><div class="line">	swap(&amp;a,&amp;shared);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>通过编译<code>gcc -c a.c b.c</code>产生a.o,b.o两个目标文件，接着我们准备把a.o,b.o文件合并ab文件。这里有两种方法。</p>
+<h2 id="一种是按序叠加-直接将一个文件加在另一个文件的尾，并依此合并-。"><a href="#一种是按序叠加-直接将一个文件加在另一个文件的尾，并依此合并-。" class="headerlink" title="一种是按序叠加(直接将一个文件加在另一个文件的尾，并依此合并)。"></a>一种是<code>按序叠加</code>(直接将一个文件加在另一个文件的尾，并依此合并)。</h2><h2 id="一种是相似段合并-将相同性质的段合并到一起，如text段合并到text段-，又称为两步链接法。"><a href="#一种是相似段合并-将相同性质的段合并到一起，如text段合并到text段-，又称为两步链接法。" class="headerlink" title="一种是相似段合并(将相同性质的段合并到一起，如text段合并到text段)，又称为两步链接法。"></a>一种是<code>相似段合并</code>(将相同性质的段合并到一起，如text段合并到text段)，又称为<code>两步链接法</code>。</h2><p>这里我们采用第二种方法进行链接(链接器为目标文件分配地址和空间)</p>
+<h3 id="第一步-空间与地址分配"><a href="#第一步-空间与地址分配" class="headerlink" title="第一步 空间与地址分配"></a>第一步 空间与地址分配</h3><p>扫描所有的输入文件，获取他们的各个段的长度，属性和位置，并且将输入目标文件的符号表中所有的符号定义和符号引用收集起来，同意放到一个全局符号表，并建立映射关系。</p>
+<h3 id="第二步-符号解析与重定位"><a href="#第二步-符号解析与重定位" class="headerlink" title="第二步 符号解析与重定位"></a>第二步 符号解析与重定位</h3><p>使用上面收集的所有信息，读取输入文件中断的数据，重定位信息，并且进行符号解析与重定位，调整代码中的地址等。这一步中核心是重定位过程。<br>我们使用ld链接器将<code>a.o</code>和<code>b.o</code>链接起来。<br><code>ld a.o b.o -e main -o ab</code><br>-e main 表示将main函数作为程序的入口地址，ld链接器默认的程序入口地址是_start.<br>-o ab 表示链接输出文件名为ab，默认为a.out<br><img src="https://i.imgur.com/CcjDrqB.png" alt=""><br><img src="https://i.imgur.com/VBcjd4b.png" alt=""><br>上图中VMA(Vitual Meemory Address)虚拟地址，LMA(load Memory Address)加载地址，正常情况下这两个是一样的，但是在一些嵌入式系统中，特别是在哪些程序放在ROM的系统中，它们是不同的。</p>
+<h3 id="符号地址的确定"><a href="#符号地址的确定" class="headerlink" title="符号地址的确定"></a>符号地址的确定</h3><p>当完成前面一步时，链接器开始计算各个符号的虚拟地址，因为各个符号在段内的相对位置是固定的，所有这个时候<code>main</code>,<code>shared</code>的地址已经确认啦(只需要每一个符号加上一个偏移，就能找到正确的虚拟地址)。</p>
+<h3 id="符号解析和重定位"><a href="#符号解析和重定位" class="headerlink" title="符号解析和重定位"></a>符号解析和重定位</h3><h4 id="重定位"><a href="#重定位" class="headerlink" title="重定位"></a>重定位</h4><p>我们用<code>objdump -d a.o</code><br><img src="https://i.imgur.com/b7qqXAH.png" alt=""><br>可以看到shared的地址是0，因为这里不知道的位置。swap也是一样的。我们再看看ab<br><code>objdunp -d ab</code><br><img src="https://i.imgur.com/gIQHS6j.png" alt=""><br>发现链接后能正确的找到符号地址</p>
+<h4 id="重定位修正方法"><a href="#重定位修正方法" class="headerlink" title="重定位修正方法"></a>重定位修正方法</h4><p>对于Intel x86处理器，有两种类型的处理器，分布的修正方法<br>A = 保存在修正位置的值<br>S = 符号的实际地址<br>P = 被修正过的位置(相对于段开始的偏移量或是虚拟地址)</p>
+<p>1、R_386_32 绝对寻址修正 S+A<br>2、R_386_PC32 相对寻址修正 S+A-P</p>
+
       
     </div>
     
@@ -380,8 +406,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/22/re_set_rdi/" rel="prev" title="RE_Linux下修改程序流程">
-                RE_Linux下修改程序流程 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/02/pwn1_me/" rel="prev" title="PWN——x86下的ro利用p">
+                PWN——x86下的ro利用p <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -463,7 +489,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -577,7 +603,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、准备"><span class="nav-number">1.</span> <span class="nav-text">1、准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、查看文件类型"><span class="nav-number">2.</span> <span class="nav-text">2、查看文件类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、Windows设置"><span class="nav-number">3.</span> <span class="nav-text">3、Windows设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、运行"><span class="nav-number">4.</span> <span class="nav-text">4、运行</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IDA动态调试linux的ELF"><span class="nav-number">1.</span> <span class="nav-text">IDA动态调试linux的ELF</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、准备"><span class="nav-number">1.1.</span> <span class="nav-text">1、准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、查看文件类型"><span class="nav-number">1.2.</span> <span class="nav-text">2、查看文件类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、Windows设置"><span class="nav-number">1.3.</span> <span class="nav-text">3、Windows设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、运行"><span class="nav-number">1.4.</span> <span class="nav-text">4、运行</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux下修改程序流程"><span class="nav-number">2.</span> <span class="nav-text">Linux下修改程序流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、Linux下修改程序流程"><span class="nav-number">2.1.</span> <span class="nav-text">1、Linux下修改程序流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、分析"><span class="nav-number">2.2.</span> <span class="nav-text">2、分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、修改"><span class="nav-number">2.3.</span> <span class="nav-text">3、修改</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#程序员自我修养第4章——静态编译"><span class="nav-number">3.</span> <span class="nav-text">程序员自我修养第4章——静态编译</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、什么是静态编译"><span class="nav-number">3.1.</span> <span class="nav-text">1、什么是静态编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、实验"><span class="nav-number">3.2.</span> <span class="nav-text">2、实验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一种是按序叠加-直接将一个文件加在另一个文件的尾，并依此合并-。"><span class="nav-number">3.3.</span> <span class="nav-text">一种是按序叠加(直接将一个文件加在另一个文件的尾，并依此合并)。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一种是相似段合并-将相同性质的段合并到一起，如text段合并到text段-，又称为两步链接法。"><span class="nav-number">3.4.</span> <span class="nav-text">一种是相似段合并(将相同性质的段合并到一起，如text段合并到text段)，又称为两步链接法。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步-空间与地址分配"><span class="nav-number">3.4.1.</span> <span class="nav-text">第一步 空间与地址分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步-符号解析与重定位"><span class="nav-number">3.4.2.</span> <span class="nav-text">第二步 符号解析与重定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#符号地址的确定"><span class="nav-number">3.4.3.</span> <span class="nav-text">符号地址的确定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#符号解析和重定位"><span class="nav-number">3.4.4.</span> <span class="nav-text">符号解析和重定位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#重定位"><span class="nav-number">3.4.4.1.</span> <span class="nav-text">重定位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重定位修正方法"><span class="nav-number">3.4.4.2.</span> <span class="nav-text">重定位修正方法</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>

