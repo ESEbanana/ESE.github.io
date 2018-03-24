@@ -96,7 +96,7 @@
 <meta property="og:image" content="https://i.imgur.com/WTjRmsT.png">
 <meta property="og:image" content="https://i.imgur.com/zTFsIUo.png">
 <meta property="og:image" content="https://i.imgur.com/0D2h6Eg.png">
-<meta property="og:updated_time" content="2018-03-15T10:38:06.130Z">
+<meta property="og:updated_time" content="2018-03-23T06:56:50.532Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RE_常见的脱壳方法">
 <meta name="twitter:description" content="软件壳出于程序作者想对程序资源压缩、注册保护的目的，把壳分为压缩壳和加密壳(强壳)两种，压缩壳只是为了减小程序体积对资源进行压缩，加密壳是程序输入表等等进行加密保护。">
@@ -334,7 +334,10 @@
       
 
       
-        <p>软件壳出于程序作者想对程序资源压缩、注册保护的目的，把壳分为压缩壳和加密壳(强壳)两种，压缩壳只是为了减小程序体积对资源进行压缩，加密壳是程序输入表等等进行加密保护。<br><a id="more"></a><br>例如：先用peid查一下壳，发现有壳(这里是upx壳)[查壳工具主要以peid和fileinfo这两个软件为代表]<br><img src="https://i.imgur.com/nI3hfj8.png" alt=""><br>接下里分别用下面5种方法脱壳</p>
+        <p>软件壳出于程序作者想对程序资源压缩、注册保护的目的，把壳分为压缩壳和加密壳(强壳)两种，压缩壳只是为了减小程序体积对资源进行压缩，加密壳是程序输入表等等进行加密保护。<br><a id="more"></a></p>
+<h1 id="壳的工作原理"><a href="#壳的工作原理" class="headerlink" title="壳的工作原理"></a>壳的工作原理</h1><p>某些加壳程序加壳后会修改了原来导入目录表的位置为壳的导入表，这样默认的导入表指向壳部分的导入表，你就看不到原来的导入表的内容了。程序启动后，操作系统为壳的导入表加载，在壳代码运行完成之后，壳代码会跳到原程序的入口点OEP，壳模拟操作系统填充原来导入表IAT，这样保证代码段能正常调用函数。一般壳的工作原理也就是这样了，随着现在加壳加密技术的进步，不是所有加壳软件都会这样。</p>
+<h1 id="脱壳原理"><a href="#脱壳原理" class="headerlink" title="脱壳原理"></a>脱壳原理</h1><p>首先修改被加壳程序的入口点到程序原来的OEP，然后修改PE程序导入表目录地址为原来导入表地址，或者新建一个节，将这个新节作为导入表节，并将原导入表内容写入新节导入表。</p>
+<p>例如：先用peid查一下壳，发现有壳(这里是upx壳)[查壳工具主要以peid和fileinfo这两个软件为代表]<br><img src="https://i.imgur.com/nI3hfj8.png" alt=""><br>接下里分别用下面5种方法脱壳</p>
 <h1 id="1、单步跟踪法"><a href="#1、单步跟踪法" class="headerlink" title="1、单步跟踪法"></a>1、单步跟踪法</h1><p>一般先f8单步步过，遇见向上的f4跳到下一条语句,然后会发现，一般有很大的跳转（大跨段），比如jmp XXXXXX 或者JE XXXXXX或者有RETN的一般很快就会到程序的OEP</p>
 <h1 id="2、ESP定律法"><a href="#2、ESP定律法" class="headerlink" title="2、ESP定律法"></a>2、ESP定律法</h1><p>OD加载，会看见pushad,运行一步，下硬件断点<br><img src="https://i.imgur.com/reV3ht1.png" alt=""><br>运行,就会在硬件断点的位置啦，删除硬件断点，接着往下执行几步就可以看见OEP啦<br><img src="https://i.imgur.com/1zMXa3o.png" alt=""></p>
 <h1 id="3、两次内存镜像法"><a href="#3、两次内存镜像法" class="headerlink" title="3、两次内存镜像法"></a>3、两次内存镜像法</h1><p>如图:<br><img src="https://i.imgur.com/V9QVnMh.png" alt=""><br>点击运行，到达这里<br><img src="https://i.imgur.com/vIx32jU.png" alt=""><br>接着<br><img src="https://i.imgur.com/WTjRmsT.png" alt=""><br>点击运行<br><img src="https://i.imgur.com/zTFsIUo.png" alt=""></p>
@@ -588,7 +591,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、单步跟踪法"><span class="nav-number">1.</span> <span class="nav-text">1、单步跟踪法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、ESP定律法"><span class="nav-number">2.</span> <span class="nav-text">2、ESP定律法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3、两次内存镜像法"><span class="nav-number">3.</span> <span class="nav-text">3、两次内存镜像法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4、一步到达OEP-对少数壳有用"><span class="nav-number">4.</span> <span class="nav-text">4、一步到达OEP(对少数壳有用)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5、模拟跟踪法"><span class="nav-number">5.</span> <span class="nav-text">5、模拟跟踪法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6、SFX"><span class="nav-number">6.</span> <span class="nav-text">6、SFX</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文学修养"><span class="nav-number">7.</span> <span class="nav-text">文学修养</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#壳的工作原理"><span class="nav-number">1.</span> <span class="nav-text">壳的工作原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#脱壳原理"><span class="nav-number">2.</span> <span class="nav-text">脱壳原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1、单步跟踪法"><span class="nav-number">3.</span> <span class="nav-text">1、单步跟踪法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、ESP定律法"><span class="nav-number">4.</span> <span class="nav-text">2、ESP定律法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3、两次内存镜像法"><span class="nav-number">5.</span> <span class="nav-text">3、两次内存镜像法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4、一步到达OEP-对少数壳有用"><span class="nav-number">6.</span> <span class="nav-text">4、一步到达OEP(对少数壳有用)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5、模拟跟踪法"><span class="nav-number">7.</span> <span class="nav-text">5、模拟跟踪法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6、SFX"><span class="nav-number">8.</span> <span class="nav-text">6、SFX</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文学修养"><span class="nav-number">9.</span> <span class="nav-text">文学修养</span></a></li></ol></div>
             
 
           </div>
@@ -632,7 +635,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共48.5k字</span>
+  <span class="post-count">博客全站共49.3k字</span>
 </div>
 
         
