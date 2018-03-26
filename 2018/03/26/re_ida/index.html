@@ -81,25 +81,19 @@
 
 
 
-<meta name="description" content="数据恢复分类：硬恢复和软恢复。">
+<meta name="description" content="IDA和OD是逆向中必不可少的一部分，现在来分享一下IDA和OD的一些技巧">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据恢复">
-<meta property="og:url" content="http://yoursite.com/2018/03/07/data_recovery/index.html">
+<meta property="og:title" content="RE_IDA_OD的常用小技巧">
+<meta property="og:url" content="http://yoursite.com/2018/03/26/re_ida/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="数据恢复分类：硬恢复和软恢复。">
+<meta property="og:description" content="IDA和OD是逆向中必不可少的一部分，现在来分享一下IDA和OD的一些技巧">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/bgX4ERU.png">
-<meta property="og:image" content="https://i.imgur.com/zTbHdTU.png">
-<meta property="og:image" content="https://i.imgur.com/iIKAhWi.png">
-<meta property="og:image" content="https://i.imgur.com/MOrVj10.png">
-<meta property="og:image" content="https://i.imgur.com/nfr90MH.png">
-<meta property="og:image" content="https://i.imgur.com/T5i92Ak.png">
-<meta property="og:image" content="https://i.imgur.com/QOeAArm.png">
-<meta property="og:updated_time" content="2018-03-07T04:22:05.370Z">
+<meta property="og:image" content="https://i.imgur.com/1odLgE0.png">
+<meta property="og:updated_time" content="2018-03-26T12:55:09.991Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据恢复">
-<meta name="twitter:description" content="数据恢复分类：硬恢复和软恢复。">
-<meta name="twitter:image" content="https://i.imgur.com/bgX4ERU.png">
+<meta name="twitter:title" content="RE_IDA_OD的常用小技巧">
+<meta name="twitter:description" content="IDA和OD是逆向中必不可少的一部分，现在来分享一下IDA和OD的一些技巧">
+<meta name="twitter:image" content="https://i.imgur.com/1odLgE0.png">
 
 
 
@@ -129,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/07/data_recovery/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/26/re_ida/"/>
 
 
 
 
 
-  <title>数据恢复 | ESE's Note</title>
+  <title>RE_IDA_OD的常用小技巧 | ESE's Note</title>
   
 
 
@@ -262,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/07/data_recovery/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/26/re_ida/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -279,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">数据恢复</h1>
+          <h1 class="post-title" itemprop="name headline">RE_IDA_OD的常用小技巧</h1>
         
 
         <div class="post-meta">
@@ -291,8 +285,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T08:29:17+08:00">
-                2018-03-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-26T14:18:54+08:00">
+                2018-03-26
               </time>
             
 
@@ -333,11 +327,14 @@
       
 
       
-        <p>数据恢复分类：硬恢复和软恢复。<br><a id="more"></a></p>
-<h1 id="一、硬恢复"><a href="#一、硬恢复" class="headerlink" title="一、硬恢复"></a>一、硬恢复</h1><p>所谓硬恢复就是硬盘出现物理性损伤，比如有盘体坏道、电路板芯片烧毁、盘体异响等故障，由此所导致的普通用户不容易取出里面数据，那么我们将它修好，同时又保留里面的数据或后来恢复里面的数据，这些都叫数据恢复，只不过这些故障有容易的和困难的之分。</p>
-<h1 id="二、软恢复"><a href="#二、软恢复" class="headerlink" title="二、软恢复"></a>二、软恢复</h1><p>所谓软恢复，就是硬盘本身没有物理损伤，而是由于人为或者病毒破坏所造成的数据丢失（比如误格式化，误分区），那么这样的数据恢复就叫软恢复。</p>
-<h2 id="1、FAT"><a href="#1、FAT" class="headerlink" title="1、FAT"></a>1、FAT</h2><p>FAT文件系统的基本结构依次为：DBR扇区、FAT表1、FAT表2、根目录和数据区。<br>如图:<br><img src="https://i.imgur.com/bgX4ERU.png" alt=""><br>我们可以用winhex工具来打开一个SD卡(磁盘，这里可以用RAMDisk来创建一个虚拟磁盘)，如图:<br><img src="https://i.imgur.com/zTbHdTU.png" alt=""><br>这里可以根据模板来看每个字节代表的意思(如果不能使用模板，那就还没有激活，这里附带全部工具。链接：<a href="https://pan.baidu.com/s/1AheJMibnDhikoUVZrqIgDg" target="_blank" rel="external">https://pan.baidu.com/s/1AheJMibnDhikoUVZrqIgDg</a> 密码：7hyd)。</p>
-<h2 id="2、文件恢复"><a href="#2、文件恢复" class="headerlink" title="2、文件恢复"></a>2、文件恢复</h2><p>使用WinHex 恢复被破坏的文件<br>用winhex打开磁盘，选择磁盘快照，然后创建一个文件，再删除文件，再次用winhex打开磁盘，就会发现刚才删除的文件，选择恢复文件(为了避免数据丢失，应该恢复到其他磁盘)，再次打开文件，发现文件恢复。如下图演示:<br><img src="https://i.imgur.com/iIKAhWi.png" alt=""><br><img src="https://i.imgur.com/MOrVj10.png" alt=""><br><img src="https://i.imgur.com/nfr90MH.png" alt=""><br><img src="https://i.imgur.com/T5i92Ak.png" alt=""><br><img src="https://i.imgur.com/QOeAArm.png" alt=""><br>接着测试NTFS的磁盘，发现并不不能恢复，呀呀呀呀（可能是自己太菜啦）。然后在网上找一下，发现一个恢复文件的工具很好用，专业还是专业的好，我就了解一下，好好学习。<a href="http://www.jjhuifu.com/jj/brj.html" target="_blank" rel="external">http://www.jjhuifu.com/jj/brj.html</a></p>
+        <p>IDA和OD是逆向中必不可少的一部分，现在来分享一下IDA和OD的一些技巧<br><a id="more"></a></p>
+<h1 id="IDA"><a href="#IDA" class="headerlink" title="IDA"></a>IDA</h1><h2 id="1、查找字符串"><a href="#1、查找字符串" class="headerlink" title="1、查找字符串"></a>1、查找字符串</h2><p>(Shift+f9)View-&gt;open subviews-&gt;Strings</p>
+<h2 id="2、修改文件，打补丁-patch"><a href="#2、修改文件，打补丁-patch" class="headerlink" title="2、修改文件，打补丁(patch)"></a>2、修改文件，打补丁(patch)</h2><p>1、找到修改地方<br>2、修改文件，也可以在(Hex view)窗口修改16进制:双击要修改的地方 -&gt;使用F2捷方式修改当前字节 -&gt;再按下F2快捷方式应用修改。<br>3、保存文件修改后的文件:[IDA Main Menu]-&gt;[Edit]-&gt;[PatchProgram]-&gt;[Apply patches to input file…]<br>IDA图形视图会有执行流，Yes箭头默认为绿色，No箭头默认为红色，蓝色表示默认下一个执行块。</p>
+<h2 id="3、ida无法识别，红色代码，不能f5"><a href="#3、ida无法识别，红色代码，不能f5" class="headerlink" title="3、ida无法识别，红色代码，不能f5"></a>3、ida无法识别，红色代码，不能f5</h2><p>如果地址是红色，当f5时会出现这句话：The function has undefined instruction/data at the specified address.那就创建一个函数(P)，当创建函数时，会出现这句话：The function has undefined instruction/data at the specified address.Your request has been put in the autoanalysis queue<br>如果我们不能创建函数,就不能使用F5来分析代码了,想让这些代码变绿色的方法(创建函数)很简单.<br>用鼠标从函数头部开始到 retn 结尾 拖一下,变成灰色.<br><img src="https://i.imgur.com/1odLgE0.png" alt=""><br>然后用快捷键 P 或者右键菜单,CreateFunction 来创建函数就可以了。当然了,到这里也不算完.下图是代码变绿色的,我用上面的方法创建函数了,可还是不能F5,我们通过Stack Pointer (option-&gt;General-&gt;Disassembly选中stack pointer)发现这个函数的堆栈是不平衡的.此时我们需要找接近retn 的 最后一个Call 然后去修正堆栈.此时我们需要找接近retn 的 最后一个Call 然后去修正堆栈.我们看到 retn 左边绿色的数字是 28,我们通过ALT + k 修正堆栈,把 28 retn 改成 0 就可以了。修正堆栈的时候一定要选择 Call 然后修正堆栈,下图是修正后的 代码</p>
+<h2 id="4、常用快捷键"><a href="#4、常用快捷键" class="headerlink" title="4、常用快捷键"></a>4、常用快捷键</h2><p>1、快捷键F5显示C伪代码<br>2、(Shift+f9)查找字符串<br>3、快捷键Alt+T，打开文本搜索对话框，在String文本框中输入要搜索的字符串点击OK即可<br>4、翻页 esc 和 Ctrl+Enter<br>5、使用小键盘“-”，“+”查看函数之间的关系<br>6、G跳转地址<br>7、使用快捷键”*”把变量重定义为数组<br>8、对于数字，16进制和10进制转换(H),转化成10字符(R)</p>
+<h1 id="OD-olldbg"><a href="#OD-olldbg" class="headerlink" title="OD(olldbg)"></a>OD(olldbg)</h1><h2 id="1、常用快捷键"><a href="#1、常用快捷键" class="headerlink" title="1、常用快捷键"></a>1、常用快捷键</h2><p>0、f2下断点<br>1、f7进入call<br>2、f8不进入call<br>3、f9运行<br>4、f4运行到当前位置<br>5、’-‘回到上一步的位置<br>6、’*’回到当前运行的位置<br>7、Ctrl+F2  重新运行程序到起始处，用于重新调试程序<br>8、Ctrl+G 寻找十六进制地址<br>9、Alt+F2 关闭被调试程序。<br>10、f3 选择可执行文件</p>
+<h2 id="OD上面图标"><a href="#OD上面图标" class="headerlink" title="OD上面图标"></a>OD上面图标</h2><p>1、’b’查看断点<br>2、’m’打开内存<br>3、’c’回到反汇编窗口</p>
+<h2 id="OD保存文件"><a href="#OD保存文件" class="headerlink" title="OD保存文件"></a>OD保存文件</h2><p>1、寻找到需要patch的地方<br>2、修改(patch)文件<br>3、 保存文件: 窗口中选中修改过的语句—&gt;右击—&gt;复制到可执行文件—&gt;“选择”或者“所有修改”—&gt;出现“文件”窗口—&gt;右击—&gt;保存文件</p>
 
       
     </div>
@@ -377,8 +374,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/29/web_bp/" rel="next" title="BurpSuite从安装到"放弃"">
-                <i class="fa fa-chevron-left"></i> BurpSuite从安装到"放弃"
+              <a href="/2018/03/21/re_PE/" rel="next" title="RE_PE">
+                <i class="fa fa-chevron-left"></i> RE_PE
               </a>
             
           </div>
@@ -386,10 +383,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/08/android_re_1/" rel="prev" title="Android_逆向">
-                Android_逆向 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -588,7 +581,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、硬恢复"><span class="nav-number">1.</span> <span class="nav-text">一、硬恢复</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、软恢复"><span class="nav-number">2.</span> <span class="nav-text">二、软恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、FAT"><span class="nav-number">2.1.</span> <span class="nav-text">1、FAT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、文件恢复"><span class="nav-number">2.2.</span> <span class="nav-text">2、文件恢复</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IDA"><span class="nav-number">1.</span> <span class="nav-text">IDA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、查找字符串"><span class="nav-number">1.1.</span> <span class="nav-text">1、查找字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、修改文件，打补丁-patch"><span class="nav-number">1.2.</span> <span class="nav-text">2、修改文件，打补丁(patch)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、ida无法识别，红色代码，不能f5"><span class="nav-number">1.3.</span> <span class="nav-text">3、ida无法识别，红色代码，不能f5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、常用快捷键"><span class="nav-number">1.4.</span> <span class="nav-text">4、常用快捷键</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OD-olldbg"><span class="nav-number">2.</span> <span class="nav-text">OD(olldbg)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、常用快捷键"><span class="nav-number">2.1.</span> <span class="nav-text">1、常用快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OD上面图标"><span class="nav-number">2.2.</span> <span class="nav-text">OD上面图标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OD保存文件"><span class="nav-number">2.3.</span> <span class="nav-text">OD保存文件</span></a></li></ol></li></ol></div>
             
 
           </div>

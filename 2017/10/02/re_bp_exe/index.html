@@ -90,7 +90,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1flahd5iz10j30hf0iuglv.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1flahdhlfxkj30iq0inwem.jpg">
-<meta property="og:updated_time" content="2018-03-23T10:20:16.477Z">
+<meta property="og:updated_time" content="2018-03-24T05:31:29.102Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RE_Windows爆破exe程序">
 <meta name="twitter:description" content="爆破最好的解决方法，z3 求解器是什么？">
@@ -329,7 +329,9 @@
 
       
         <p>爆破最好的解决方法，z3 求解器是什么？<br><a id="more"></a></p>
-<h1 id="z3"><a href="#z3" class="headerlink" title="z3"></a>z3</h1><h2 id="z3的安装"><a href="#z3的安装" class="headerlink" title="z3的安装"></a>z3的安装</h2><p>不过的我是在虚拟机上安装虚拟环境的：那z3是angr下的一个模板，那就先安装angr,就可以用z3了。<br>1、安装虚拟环境,在一个目录下配置虚拟环境<br><code>pip install virtualenvwrapper</code><br>2、配置虚拟环境<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">mkdir $HOME/.ven                    #创建工作目录</div><div class="line">vim $HOME/.bashrc                   #编辑启动项</div><div class="line">    <span class="keyword">export</span> WORKON_HOME=$HOME/.ven       #将这两项添加到文件，开机自动运行</div><div class="line">    source /usr/share/bin/virtualenvwrapper.sh  #这个不同的机器可能位置不同 find / -name virtualenvwrapper.sh 找到</div><div class="line">``` C</div><div class="line">或者直接运行</div><div class="line">`<span class="keyword">export</span> WORKON_HOME=$HOME/.ven`</div><div class="line">`source /usr/share/bin/virtualenvwrapper.sh`</div><div class="line"><span class="number">3</span>、查看虚拟环境</div><div class="line">``` C</div><div class="line">mkvirtualenv env1                   #创建环境</div><div class="line">workon                              #列出已有环境</div><div class="line">deactivate                          #退出环境</div><div class="line">rmvirtualenv                        #删除环境</div></pre></td></tr></table></figure></p>
+<h1 id="z3"><a href="#z3" class="headerlink" title="z3"></a>z3</h1><h2 id="z3的安装"><a href="#z3的安装" class="headerlink" title="z3的安装"></a>z3的安装</h2><p>不过的我是在虚拟机上安装虚拟环境的：那z3是angr下的一个模板，那就先安装angr,就可以用z3了。<br>1、安装虚拟环境,在一个目录下配置虚拟环境<br><code>pip install virtualenvwrapper</code><br>2、配置虚拟环境<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mkdir $HOME/.ven                    #创建工作目录</div><div class="line">vim $HOME/.bashrc                   #编辑启动项</div><div class="line">    <span class="keyword">export</span> WORKON_HOME=$HOME/.ven       #将这两项添加到文件，开机自动运行</div><div class="line">    source /usr/share/virtualenvwrapper/virtualenvwrapper.sh  #这个不同的机器可能位置不同 find / -name virtualenvwrapper.sh 找到</div></pre></td></tr></table></figure></p>
+<p>或者直接运行<br><code>export WORKON_HOME=$HOME/.ven</code><br><code>source /usr/share/virtualenvwrapper/virtualenvwrapper.sh</code></p>
+<p>3、查看虚拟环境<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mkvirtualenv env1                   #创建环境</div><div class="line">workon                              #列出已有环境</div><div class="line">deactivate                          #退出环境</div><div class="line">rmvirtualenv                        #删除环境</div></pre></td></tr></table></figure></p>
 <p>4、安装angr<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkvirtualenv angr</div><div class="line">pip install angr</div></pre></td></tr></table></figure></p>
 <h2 id="z3求解器是什么？"><a href="#z3求解器是什么？" class="headerlink" title="z3求解器是什么？"></a>z3求解器是什么？</h2><p>z3是由微软公司开发的一个优秀的SMT求解器（也就定理证明器），它能够检查逻辑表达式的可满足性<br>通俗讲，就是解方程。比如使用z3解二元一次方程：利用z3约束求解<br>x-y == 3<br>3x-8y == 4<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">from z3 <span class="keyword">import</span> *</div><div class="line">x = Int(<span class="string">'x'</span>)</div><div class="line">y = Int(<span class="string">'y'</span>)</div><div class="line">solver = Solver()</div><div class="line">solver.add(x-y == <span class="number">3</span>)</div><div class="line">solver.add(<span class="number">3</span>*x<span class="number">-8</span>*y == <span class="number">4</span>)</div><div class="line"><span class="keyword">if</span> solver.check() == sat:</div><div class="line">    print solver.model()</div></pre></td></tr></table></figure></p>
 <h2 id="angr"><a href="#angr" class="headerlink" title="angr"></a>angr</h2><p>它是一个易用的二进制分析套件，可以用于做动态符号执行和多种静态分析，现在来简单记录一下它的用法。详细的文档可以看这里。符号执行 （Symbolic Execution）是一种程序分析技术。其可以通过分析程序来得到让特定代码区域执行的输入。使用符号执行分析一个程序时，该程序会使用符号值作为输入，而非一般执行程序时使用的具体值。在达到目标代码时，分析器可以得到相应的路径约束，然后通过约束求解器来得到可以触发目标代码的具体值。[1]符号模拟技术（symbolic simulation）则把类似的思想用于硬件分析。符号计算（Symbolic computation）则用于数学表达式分析。angr功能很强大，需要多多练习。</p>
@@ -379,8 +381,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/02/pwn1_me/" rel="next" title="PWN——x86下的ro利用p">
-                <i class="fa fa-chevron-left"></i> PWN——x86下的ro利用p
+              <a href="/2017/09/21/re_elf_debugging/" rel="next" title="RE_Windows下IDA动态调试linux的ELF">
+                <i class="fa fa-chevron-left"></i> RE_Windows下IDA动态调试linux的ELF
               </a>
             
           </div>
@@ -472,7 +474,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -545,6 +547,10 @@
                 
                   <li class="links-of-blogroll-item">
                     <a href="http://veritas501.space/" title="Veritas501" target="_blank">Veritas501</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bendawang.site/" title="Bendawang" target="_blank">Bendawang</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
@@ -630,7 +636,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共49.3k字</span>
+  <span class="post-count">博客全站共47.3k字</span>
 </div>
 
         
