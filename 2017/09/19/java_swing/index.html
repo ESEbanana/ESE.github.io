@@ -81,18 +81,25 @@
 
 
 
-<meta name="description" content="JAVA云端实现">
+<meta name="description" content="基于JAVA图形化界面的云端，JAVA云端实现">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于JAVA图形化界面的云端">
 <meta property="og:url" content="http://yoursite.com/2017/09/19/java_swing/index.html">
 <meta property="og:site_name" content="wking&#39;s Note">
-<meta property="og:description" content="JAVA云端实现">
+<meta property="og:description" content="基于JAVA图形化界面的云端，JAVA云端实现">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjozm52oh6j30fs08x75l.jpg">
-<meta property="og:updated_time" content="2018-03-26T12:42:25.024Z">
+<meta property="og:image" content="https://i.imgur.com/bgX4ERU.png">
+<meta property="og:image" content="https://i.imgur.com/zTbHdTU.png">
+<meta property="og:image" content="https://i.imgur.com/iIKAhWi.png">
+<meta property="og:image" content="https://i.imgur.com/MOrVj10.png">
+<meta property="og:image" content="https://i.imgur.com/nfr90MH.png">
+<meta property="og:image" content="https://i.imgur.com/T5i92Ak.png">
+<meta property="og:image" content="https://i.imgur.com/QOeAArm.png">
+<meta property="og:updated_time" content="2018-03-31T10:06:04.193Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于JAVA图形化界面的云端">
-<meta name="twitter:description" content="JAVA云端实现">
+<meta name="twitter:description" content="基于JAVA图形化界面的云端，JAVA云端实现">
 <meta name="twitter:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjozm52oh6j30fs08x75l.jpg">
 
 
@@ -327,12 +334,17 @@
       
 
       
-        <p>JAVA云端实现<br><a id="more"></a></p>
-<h2 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h2><p> swing图形化界面继承来自AWT图形化界面1、Swing 是一个为Java设计的GUI工具包。Swing是JAVA基础类的一部分。Swing包括了图形用户界面（GUI）器件如：文本框，按钮，分隔窗格和表。Swing提供许多比AWT更好的屏幕显示元素。它们用纯Java写成，所以同Java本身一样可以跨平台运行，这一点不像AWT。它们是JFC的一部分。它们支持可更换的面板和主题（各种操作系统默认的特有主题），然而不是真的使用原生平台提供的设备，而是仅仅在表面上模仿它们。这意味着你可以在任意平台上使用JAVA支持的任意面板。轻量级组件的缺点则是执行速度较慢，优点就是可以在所有平台上采用统一的行为 。</p>
+        <p>基于JAVA图形化界面的云端，JAVA云端实现<br><a id="more"></a></p>
+<h1 id="JAVA云端实现"><a href="#JAVA云端实现" class="headerlink" title="JAVA云端实现"></a>JAVA云端实现</h1><h2 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h2><p> swing图形化界面继承来自AWT图形化界面1、Swing 是一个为Java设计的GUI工具包。Swing是JAVA基础类的一部分。Swing包括了图形用户界面（GUI）器件如：文本框，按钮，分隔窗格和表。Swing提供许多比AWT更好的屏幕显示元素。它们用纯Java写成，所以同Java本身一样可以跨平台运行，这一点不像AWT。它们是JFC的一部分。它们支持可更换的面板和主题（各种操作系统默认的特有主题），然而不是真的使用原生平台提供的设备，而是仅仅在表面上模仿它们。这意味着你可以在任意平台上使用JAVA支持的任意面板。轻量级组件的缺点则是执行速度较慢，优点就是可以在所有平台上采用统一的行为 。</p>
 <h2 id="2、了解Java-swing-结构"><a href="#2、了解Java-swing-结构" class="headerlink" title="2、了解Java swing 结构"></a>2、了解Java swing 结构</h2><p><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjozm52oh6j30fs08x75l.jpg" alt=""></p>
 <p>Swing组件可以分成两种类型，一种是JComponent类，另一种是Window类。两者的区别是JComponent组件类主要包括一些不能独立显示的组件（即必须依赖于中间容器才能显示），而Window组件类主要包括了一些可以独立显示的组件。</p>
 <p>JFrame – java的GUI程序的基本思路是以JFrame为基础，它是屏幕上window的对象，能够最大化、最小化、关闭。<br>JPanel – Java图形用户界面(GUI)工具包swing中的面板容器类，包含在javax.swing 包中，可以进行嵌套，功能是对窗体中具有相同逻辑功能的组件进行组合，是一种轻量级容器，可以加入到JFrame窗体中。。<br>JLabel – JLabel 对象可以显示文本、图像或同时显示二者。可以通过设置垂直和水平对齐方式，指定标签显示区中标签内容在何处对齐。默认情况下，标签在其显示区内垂直居中对齐。默认情况下，只显示文本的标签是开始边对齐；而只显示图像的标签则水平居中对齐。<br>JTextField –一个轻量级组件，它允许编辑单行文本。<br>JPasswordField – 允许我们输入了一行字像输入框，但隐藏星号(*) 或点创建密码(密码)</p>
 <p>最后，直接上代码模型，这是我项目的部分，贴出来大家可以参考<br>百度链接: <a href="http://pan.baidu.com/s/1qY4tVuk" target="_blank" rel="external">http://pan.baidu.com/s/1qY4tVuk</a><br>密码： 6qp5</p>
+<h1 id="数据恢复"><a href="#数据恢复" class="headerlink" title="数据恢复"></a>数据恢复</h1><p>数据恢复分类：硬恢复和软恢复。</p>
+<h2 id="一、硬恢复"><a href="#一、硬恢复" class="headerlink" title="一、硬恢复"></a>一、硬恢复</h2><p>所谓硬恢复就是硬盘出现物理性损伤，比如有盘体坏道、电路板芯片烧毁、盘体异响等故障，由此所导致的普通用户不容易取出里面数据，那么我们将它修好，同时又保留里面的数据或后来恢复里面的数据，这些都叫数据恢复，只不过这些故障有容易的和困难的之分。</p>
+<h2 id="二、软恢复"><a href="#二、软恢复" class="headerlink" title="二、软恢复"></a>二、软恢复</h2><p>所谓软恢复，就是硬盘本身没有物理损伤，而是由于人为或者病毒破坏所造成的数据丢失（比如误格式化，误分区），那么这样的数据恢复就叫软恢复。</p>
+<h3 id="1、FAT"><a href="#1、FAT" class="headerlink" title="1、FAT"></a>1、FAT</h3><p>FAT文件系统的基本结构依次为：DBR扇区、FAT表1、FAT表2、根目录和数据区。<br>如图:<br><img src="https://i.imgur.com/bgX4ERU.png" alt=""><br>我们可以用winhex工具来打开一个SD卡(磁盘，这里可以用RAMDisk来创建一个虚拟磁盘)，如图:<br><img src="https://i.imgur.com/zTbHdTU.png" alt=""><br>这里可以根据模板来看每个字节代表的意思(如果不能使用模板，那就还没有激活，这里附带全部工具。链接：<a href="https://pan.baidu.com/s/1AheJMibnDhikoUVZrqIgDg" target="_blank" rel="external">https://pan.baidu.com/s/1AheJMibnDhikoUVZrqIgDg</a> 密码：7hyd)。</p>
+<h3 id="2、文件恢复"><a href="#2、文件恢复" class="headerlink" title="2、文件恢复"></a>2、文件恢复</h3><p>使用WinHex 恢复被破坏的文件<br>用winhex打开磁盘，选择磁盘快照，然后创建一个文件，再删除文件，再次用winhex打开磁盘，就会发现刚才删除的文件，选择恢复文件(为了避免数据丢失，应该恢复到其他磁盘)，再次打开文件，发现文件恢复。如下图演示:<br><img src="https://i.imgur.com/iIKAhWi.png" alt=""><br><img src="https://i.imgur.com/MOrVj10.png" alt=""><br><img src="https://i.imgur.com/nfr90MH.png" alt=""><br><img src="https://i.imgur.com/T5i92Ak.png" alt=""><br><img src="https://i.imgur.com/QOeAArm.png" alt=""><br>接着测试NTFS的磁盘，发现并不不能恢复，呀呀呀呀（可能是自己太菜啦）。然后在网上找一下，发现一个恢复文件的工具很好用，专业还是专业的好，我就了解一下，好好学习。<a href="http://www.jjhuifu.com/jj/brj.html" target="_blank" rel="external">http://www.jjhuifu.com/jj/brj.html</a></p>
 
       
     </div>
@@ -583,7 +595,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、概念"><span class="nav-number">1.</span> <span class="nav-text">1、概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、了解Java-swing-结构"><span class="nav-number">2.</span> <span class="nav-text">2、了解Java swing 结构</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA云端实现"><span class="nav-number">1.</span> <span class="nav-text">JAVA云端实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、概念"><span class="nav-number">1.1.</span> <span class="nav-text">1、概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、了解Java-swing-结构"><span class="nav-number">1.2.</span> <span class="nav-text">2、了解Java swing 结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据恢复"><span class="nav-number">2.</span> <span class="nav-text">数据恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、硬恢复"><span class="nav-number">2.1.</span> <span class="nav-text">一、硬恢复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、软恢复"><span class="nav-number">2.2.</span> <span class="nav-text">二、软恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、FAT"><span class="nav-number">2.2.1.</span> <span class="nav-text">1、FAT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、文件恢复"><span class="nav-number">2.2.2.</span> <span class="nav-text">2、文件恢复</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -627,7 +639,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共48.0k字</span>
+  <span class="post-count">博客全站共48.8k字</span>
 </div>
 
         

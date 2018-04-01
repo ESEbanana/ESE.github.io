@@ -81,31 +81,21 @@
 
 
 
-<meta name="description" content="软件壳出于程序作者想对程序资源压缩、注册保护的目的，把壳分为压缩壳和加密壳(强壳)两种，压缩壳只是为了减小程序体积对资源进行压缩，加密壳是程序输入表等等进行加密保护。">
+<meta name="description" content="动态分析就是在运行恶意代码之后进行检查的过程。动态分析技术是恶意代码分析流程的第二步，一般在静态分析基础技术进入一个困难的时候。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RE_常见的脱壳方法">
-<meta property="og:url" content="http://yoursite.com/2018/03/15/re_tou_ke/index.html">
+<meta property="og:title" content="恶意代码分析——动态分析基础技术">
+<meta property="og:url" content="http://yoursite.com/2018/03/31/RE_evil_2/index.html">
 <meta property="og:site_name" content="wking&#39;s Note">
-<meta property="og:description" content="软件壳出于程序作者想对程序资源压缩、注册保护的目的，把壳分为压缩壳和加密壳(强壳)两种，压缩壳只是为了减小程序体积对资源进行压缩，加密壳是程序输入表等等进行加密保护。">
+<meta property="og:description" content="动态分析就是在运行恶意代码之后进行检查的过程。动态分析技术是恶意代码分析流程的第二步，一般在静态分析基础技术进入一个困难的时候。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/nI3hfj8.png">
-<meta property="og:image" content="https://i.imgur.com/reV3ht1.png">
-<meta property="og:image" content="https://i.imgur.com/1zMXa3o.png">
-<meta property="og:image" content="https://i.imgur.com/V9QVnMh.png">
-<meta property="og:image" content="https://i.imgur.com/vIx32jU.png">
-<meta property="og:image" content="https://i.imgur.com/WTjRmsT.png">
-<meta property="og:image" content="https://i.imgur.com/zTFsIUo.png">
-<meta property="og:image" content="https://i.imgur.com/0D2h6Eg.png">
-<meta property="og:image" content="https://i.imgur.com/vTGY7cr.png">
-<meta property="og:image" content="https://i.imgur.com/GP0Voer.png">
-<meta property="og:image" content="https://i.imgur.com/0qeQszn.png">
-<meta property="og:image" content="https://i.imgur.com/xU4fNkV.png">
-<meta property="og:image" content="https://i.imgur.com/Qpgt36g.png">
-<meta property="og:updated_time" content="2018-03-29T12:28:00.471Z">
+<meta property="og:image" content="https://i.imgur.com/1VeV9Fp.png">
+<meta property="og:image" content="https://i.imgur.com/GfEHrtj.png">
+<meta property="og:image" content="https://i.imgur.com/7yBNGk5.png">
+<meta property="og:updated_time" content="2018-04-01T01:30:29.087Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RE_常见的脱壳方法">
-<meta name="twitter:description" content="软件壳出于程序作者想对程序资源压缩、注册保护的目的，把壳分为压缩壳和加密壳(强壳)两种，压缩壳只是为了减小程序体积对资源进行压缩，加密壳是程序输入表等等进行加密保护。">
-<meta name="twitter:image" content="https://i.imgur.com/nI3hfj8.png">
+<meta name="twitter:title" content="恶意代码分析——动态分析基础技术">
+<meta name="twitter:description" content="动态分析就是在运行恶意代码之后进行检查的过程。动态分析技术是恶意代码分析流程的第二步，一般在静态分析基础技术进入一个困难的时候。">
+<meta name="twitter:image" content="https://i.imgur.com/1VeV9Fp.png">
 
 
 
@@ -135,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/15/re_tou_ke/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/31/RE_evil_2/"/>
 
 
 
 
 
-  <title>RE_常见的脱壳方法 | wking's Note</title>
+  <title>恶意代码分析——动态分析基础技术 | wking's Note</title>
   
 
 
@@ -268,7 +258,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/15/re_tou_ke/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/31/RE_evil_2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -285,7 +275,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">RE_常见的脱壳方法</h1>
+          <h1 class="post-title" itemprop="name headline">恶意代码分析——动态分析基础技术</h1>
         
 
         <div class="post-meta">
@@ -297,8 +287,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-15T15:17:45+08:00">
-                2018-03-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-31T17:02:09+08:00">
+                2018-03-31
               </time>
             
 
@@ -339,18 +329,22 @@
       
 
       
-        <p>软件壳出于程序作者想对程序资源压缩、注册保护的目的，把壳分为压缩壳和加密壳(强壳)两种，压缩壳只是为了减小程序体积对资源进行压缩，加密壳是程序输入表等等进行加密保护。<br><a id="more"></a></p>
-<h1 id="壳的工作原理"><a href="#壳的工作原理" class="headerlink" title="壳的工作原理"></a>壳的工作原理</h1><p>某些加壳程序加壳后会修改了原来导入目录表的位置为壳的导入表，这样默认的导入表指向壳部分的导入表，你就看不到原来的导入表的内容了。程序启动后，操作系统为壳的导入表加载，在壳代码运行完成之后，壳代码会跳到原程序的入口点OEP，壳模拟操作系统填充原来导入表IAT，这样保证代码段能正常调用函数。一般壳的工作原理也就是这样了，随着现在加壳加密技术的进步，不是所有加壳软件都会这样。</p>
-<h1 id="脱壳原理"><a href="#脱壳原理" class="headerlink" title="脱壳原理"></a>脱壳原理</h1><p>首先修改被加壳程序的入口点到程序原来的OEP，然后修改PE程序导入表目录地址为原来导入表地址，或者新建一个节，将这个新节作为导入表节，并将原导入表内容写入新节导入表。</p>
-<h1 id="普通壳脱壳"><a href="#普通壳脱壳" class="headerlink" title="普通壳脱壳"></a>普通壳脱壳</h1><p>例如：先用peid查一下壳，发现有壳(这里是upx壳)[查壳工具主要以peid和fileinfo这两个软件为代表]<br><img src="https://i.imgur.com/nI3hfj8.png" alt=""><br>接下里分别用下面5种方法脱壳</p>
-<h2 id="1、单步跟踪法"><a href="#1、单步跟踪法" class="headerlink" title="1、单步跟踪法"></a>1、单步跟踪法</h2><p>一般先f8单步步过，遇见向上的f4跳到下一条语句,然后会发现，一般有很大的跳转（大跨段），比如jmp XXXXXX 或者JE XXXXXX或者有RETN的一般很快就会到程序的OEP</p>
-<h2 id="2、ESP定律法"><a href="#2、ESP定律法" class="headerlink" title="2、ESP定律法"></a>2、ESP定律法</h2><p>原理:利用堆栈平衡<br>OD加载，会看见pushad,运行一步，下硬件断点<br><img src="https://i.imgur.com/reV3ht1.png" alt=""><br>运行,就会在硬件断点的位置啦，删除硬件断点，接着往下执行几步就可以看见OEP啦<br><img src="https://i.imgur.com/1zMXa3o.png" alt=""></p>
-<h2 id="3、两次内存镜像法"><a href="#3、两次内存镜像法" class="headerlink" title="3、两次内存镜像法"></a>3、两次内存镜像法</h2><p>如图:<br><img src="https://i.imgur.com/V9QVnMh.png" alt=""><br>点击运行，到达这里<br><img src="https://i.imgur.com/vIx32jU.png" alt=""><br>接着<br><img src="https://i.imgur.com/WTjRmsT.png" alt=""><br>点击运行<br><img src="https://i.imgur.com/zTFsIUo.png" alt=""></p>
-<h2 id="4、一步到达OEP-对少数壳有用"><a href="#4、一步到达OEP-对少数壳有用" class="headerlink" title="4、一步到达OEP(对少数壳有用)"></a>4、一步到达OEP(对少数壳有用)</h2><p>OD加载后，Ctrl+F，搜索popad,接着f4运行到这里，接着一步步往下找就可以找到OEP啦。</p>
-<h2 id="5、模拟跟踪法"><a href="#5、模拟跟踪法" class="headerlink" title="5、模拟跟踪法"></a>5、模拟跟踪法</h2><p>上面都可以属于模拟跟踪法。</p>
-<h2 id="6、SFX"><a href="#6、SFX" class="headerlink" title="6、SFX"></a>6、SFX</h2><p><img src="https://i.imgur.com/0D2h6Eg.png" alt=""><br>重载后，自动跳到程序入口点</p>
-<h1 id="vmprotect脱壳"><a href="#vmprotect脱壳" class="headerlink" title="vmprotect脱壳"></a>vmprotect脱壳</h1><p>这里有vc的程序作为示例:<br>正常的vc的程序的入口是的机器码是: 55 8b ec<br>而vmp的壳的程序，是找不到55 8b ec,这里学习记录一下脱壳方法<br>1、用exeinfo PE查壳<br><img src="https://i.imgur.com/vTGY7cr.png" alt=""><br>2、设置OD：选项-&gt;调试设置-&gt;事件-&gt;系统断点<br>3、将程序载入od,f9运行，便会来到一个call，(ctrl+g)搜索，VirtualProtect:<br><img src="https://i.imgur.com/GP0Voer.png" alt=""><br>4、接着便会来到一个地址，在这里下断点，继续f9,<br><img src="https://i.imgur.com/0qeQszn.png" alt=""><br>5、然后运行几次f9都会断到这里，NewProtect = READONLY且最后一次时(运行几次就知道啦，低位不会变)，此时alt+B，断点界面取消或禁用断点，然后alt+M，对text段下内存访问断点：<br><img src="https://i.imgur.com/xU4fNkV.png" alt=""><br>6、来到这里<br><img src="https://i.imgur.com/Qpgt36g.png" alt=""><br>7、(ctrl+g)搜索401000，硬件访问断点。运行，接着可以搜索特征码:EB0B85F375078BC6C1E0100BF0<br>8、这时就会找到OEP啦，可以直接dump出来，IDA可以看见算法啦，如果要运行，还需要IAT修复<br>这里分享一下vmp脱壳教程<br>链接: <a href="http://pan.baidu.com/s/1qWt14lA" target="_blank" rel="external">http://pan.baidu.com/s/1qWt14lA</a> 密码: 2wmq 解压密码：www.lthack.com</p>
-<h2 id="文学修养"><a href="#文学修养" class="headerlink" title="文学修养"></a>文学修养</h2><p>衣带渐宽终不悔，<br>为伊消得人憔悴。</p>
+        <p>动态分析就是在运行恶意代码之后进行检查的过程。动态分析技术是恶意代码分析流程的第二步，一般在静态分析基础技术进入一个困难的时候。<br><a id="more"></a></p>
+<h1 id="动态分析"><a href="#动态分析" class="headerlink" title="动态分析"></a>动态分析</h1><p>动态分析能让你观察到恶意代码的真实功能，一个行为存在二进制程序中，并不意味着他就会执行，动态分析也是一种识别恶意代码功能的有效方法。虽然动态分析技术分成好用，但它还是应该在静态分析基础技术之后进行。</p>
+<h2 id="沙箱"><a href="#沙箱" class="headerlink" title="沙箱"></a>沙箱</h2><h3 id="简便但粗糙的方法"><a href="#简便但粗糙的方法" class="headerlink" title="简便但粗糙的方法"></a>简便但粗糙的方法</h3><p>有几个功能一体化的软件产品，可以用来进行基本的动态分析，最流行的就是沙箱技术，沙箱是一种在安全环境里运行不信任程序的安全机制，不用担心伤害到”真正的”系统。沙箱包含一个虚拟环境，通过某种方式模拟网络服务，以确保被测试的软件或恶意代码能正常执行。</p>
+<h3 id="使用恶意代码沙箱"><a href="#使用恶意代码沙箱" class="headerlink" title="使用恶意代码沙箱"></a>使用恶意代码沙箱</h3><p>许多分析容易的代码的沙箱，诸如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Norman沙箱，GFI沙箱，Anubis,Joe沙箱、ThreatExpert\BitBlaze和Comodo</div></pre></td></tr></table></figure></p>
+<p>恶意代码分析，等等，都是提供免费分析恶意代码服务。Norman沙箱，GFI沙箱是最受欢迎的。这些沙箱都提供容易理解的输出结果，而且用来做初诊断非常有用，而且这些沙箱都是自动执行的。</p>
+<h2 id="rundll32-exe"><a href="#rundll32-exe" class="headerlink" title="rundll32.exe"></a>rundll32.exe</h2><p>所有windows版本中都包含rundll32.exe程序，它提供了一个运行DLL的平台<br>语法：C:\rundll32.exe DLLname,Export arguments</p>
+<h2 id="Process-Monitor"><a href="#Process-Monitor" class="headerlink" title="Process Monitor"></a>Process Monitor</h2><p>进程监视器，它提供一种方式来监控注册表，文件系统，网络，进程和线程行为，结合并增强了FileMon和RegMon的功能</p>
+<h2 id="Process-Explorer"><a href="#Process-Explorer" class="headerlink" title="Process Explorer"></a>Process Explorer</h2><p>进程浏览器，用来列出所有活跃的进程，被进程载入的DLL，各种进程属性和整体系统信息，也可以用它杀死一个进程，退出用户登录，启动与激活进程</p>
+<h2 id="Dependency-Walker"><a href="#Dependency-Walker" class="headerlink" title="Dependency Walker"></a>Dependency Walker</h2><p>支持列出可执行文件的动态链接</p>
+<h2 id="Regshot"><a href="#Regshot" class="headerlink" title="Regshot"></a>Regshot</h2><p>注册表比较工具，可以比较两个注册表的快照，发现差异</p>
+<h2 id="ApateDNS"><a href="#ApateDNS" class="headerlink" title="ApateDNS"></a>ApateDNS</h2><p>用来查看恶意代码发出的DNS请求</p>
+<h2 id="Netcat"><a href="#Netcat" class="headerlink" title="Netcat"></a>Netcat</h2><p>被用在支持端口扫描，隧道，代理，端口转发等对内外连接上</p>
+<h2 id="Wireshark"><a href="#Wireshark" class="headerlink" title="Wireshark"></a>Wireshark</h2><p>嗅探器，截获并记录网络数据包的工具</p>
+<h2 id="INetSim"><a href="#INetSim" class="headerlink" title="INetSim"></a>INetSim</h2><p>基于linux模拟常见网络服务的免费软件，通过模拟服务（HTTP，HTTPS，FTP，IRC，DNS，SMTP等），允许你来分析未知恶意代码的网络行为</p>
+<h1 id="动态分析技术实践"><a href="#动态分析技术实践" class="headerlink" title="动态分析技术实践"></a>动态分析技术实践</h1><h2 id="lab3-1"><a href="#lab3-1" class="headerlink" title="lab3-1"></a>lab3-1</h2><h3 id="1、找出这个恶意代码的导入函数与字符串列表"><a href="#1、找出这个恶意代码的导入函数与字符串列表" class="headerlink" title="1、找出这个恶意代码的导入函数与字符串列表"></a>1、找出这个恶意代码的导入函数与字符串列表</h3><p>用Dependecy Walker和Peid查看,发现导入函数很少，接着发现加壳<br><img src="https://i.imgur.com/1VeV9Fp.png" alt=""><br>用strings工具查看，发现一个网站和admin，注册表<br><img src="https://i.imgur.com/GfEHrtj.png" alt=""></p>
+<h3 id="2、这个恶意代码在主机上的感染迹象特征是什么"><a href="#2、这个恶意代码在主机上的感染迹象特征是什么" class="headerlink" title="2、这个恶意代码在主机上的感染迹象特征是什么"></a>2、这个恶意代码在主机上的感染迹象特征是什么</h3><p>先将虚拟机拍快照，然后准备运行，win7上发现运行不了<br><img src="https://i.imgur.com/7yBNGk5.png" alt=""><br>然后找个xp pro x86的运行</p>
 
       
     </div>
@@ -390,8 +384,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/12/android_re_3_ddms/" rel="next" title="Android_之_DDMS_与_修改smali混用">
-                <i class="fa fa-chevron-left"></i> Android_之_DDMS_与_修改smali混用
+              <a href="/2018/03/29/RE_evil_1/" rel="next" title="恶意代码分析——静态分析基础技术">
+                <i class="fa fa-chevron-left"></i> 恶意代码分析——静态分析基础技术
               </a>
             
           </div>
@@ -399,10 +393,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/15/re_hook/" rel="prev" title="RE——Hook">
-                RE——Hook <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -601,7 +591,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#壳的工作原理"><span class="nav-number">1.</span> <span class="nav-text">壳的工作原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#脱壳原理"><span class="nav-number">2.</span> <span class="nav-text">脱壳原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#普通壳脱壳"><span class="nav-number">3.</span> <span class="nav-text">普通壳脱壳</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、单步跟踪法"><span class="nav-number">3.1.</span> <span class="nav-text">1、单步跟踪法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、ESP定律法"><span class="nav-number">3.2.</span> <span class="nav-text">2、ESP定律法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、两次内存镜像法"><span class="nav-number">3.3.</span> <span class="nav-text">3、两次内存镜像法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、一步到达OEP-对少数壳有用"><span class="nav-number">3.4.</span> <span class="nav-text">4、一步到达OEP(对少数壳有用)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、模拟跟踪法"><span class="nav-number">3.5.</span> <span class="nav-text">5、模拟跟踪法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、SFX"><span class="nav-number">3.6.</span> <span class="nav-text">6、SFX</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vmprotect脱壳"><span class="nav-number">4.</span> <span class="nav-text">vmprotect脱壳</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文学修养"><span class="nav-number">4.1.</span> <span class="nav-text">文学修养</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#动态分析"><span class="nav-number">1.</span> <span class="nav-text">动态分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#沙箱"><span class="nav-number">1.1.</span> <span class="nav-text">沙箱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简便但粗糙的方法"><span class="nav-number">1.1.1.</span> <span class="nav-text">简便但粗糙的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用恶意代码沙箱"><span class="nav-number">1.1.2.</span> <span class="nav-text">使用恶意代码沙箱</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rundll32-exe"><span class="nav-number">1.2.</span> <span class="nav-text">rundll32.exe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Process-Monitor"><span class="nav-number">1.3.</span> <span class="nav-text">Process Monitor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Process-Explorer"><span class="nav-number">1.4.</span> <span class="nav-text">Process Explorer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dependency-Walker"><span class="nav-number">1.5.</span> <span class="nav-text">Dependency Walker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regshot"><span class="nav-number">1.6.</span> <span class="nav-text">Regshot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ApateDNS"><span class="nav-number">1.7.</span> <span class="nav-text">ApateDNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Netcat"><span class="nav-number">1.8.</span> <span class="nav-text">Netcat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wireshark"><span class="nav-number">1.9.</span> <span class="nav-text">Wireshark</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#INetSim"><span class="nav-number">1.10.</span> <span class="nav-text">INetSim</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态分析技术实践"><span class="nav-number">2.</span> <span class="nav-text">动态分析技术实践</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lab3-1"><span class="nav-number">2.1.</span> <span class="nav-text">lab3-1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、找出这个恶意代码的导入函数与字符串列表"><span class="nav-number">2.1.1.</span> <span class="nav-text">1、找出这个恶意代码的导入函数与字符串列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、这个恶意代码在主机上的感染迹象特征是什么"><span class="nav-number">2.1.2.</span> <span class="nav-text">2、这个恶意代码在主机上的感染迹象特征是什么</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

@@ -101,7 +101,7 @@
 <meta property="og:image" content="https://i.imgur.com/6l4SNrb.png">
 <meta property="og:image" content="https://i.imgur.com/tY54N4S.png">
 <meta property="og:image" content="https://i.imgur.com/lyOtUHh.png">
-<meta property="og:updated_time" content="2018-03-31T08:49:18.943Z">
+<meta property="og:updated_time" content="2018-04-01T01:12:26.526Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="恶意代码分析——静态分析基础技术">
 <meta name="twitter:description" content="啥？你电脑中病毒啦，被勒索啦，那就来好好学习恶意代码分析，讲得很好。留下了没有技术的眼泪">
@@ -362,7 +362,7 @@
 <h2 id="5、是否有任何其它文件或基于主机的迹象"><a href="#5、是否有任何其它文件或基于主机的迹象" class="headerlink" title="5、是否有任何其它文件或基于主机的迹象"></a>5、是否有任何其它文件或基于主机的迹象</h2><p>用PEview打开<br><img src="https://i.imgur.com/lyOtUHh.png" alt=""><br>首先是两个近似函数Kernel32.dll  与Kerne132.dll，初步判断是进行文件混淆目的。<br>然后是一个系统目录路径，一个函数Kerne132.dll，初步判断是这个路径和Kerne132.dll存在某种关联。<br>然后再来两个Kernel32.dll 和Lab01-01.dll，Lab01-01.dll这很明显就是上面分析的.dll文件，所以初步判定是这个程序需要调用到Kernel32.dll 和Lab01-01.dll。<br>然后是系统路径和Kernel32.dll文件，和一个函数。这就是说调用到系统路径里的Kernel32.dll文件的某个函数<br>众多联系起来可以进一步判断，这个程序实现的功能是在系统路径中寻找，创建，复制一个Kerne132.dll文件，然后还调用了Lab01-01.dll文件实现它里面的功能。</p>
 <h2 id="6、是否有基于网络的迹象"><a href="#6、是否有基于网络的迹象" class="headerlink" title="6、是否有基于网络的迹象"></a>6、是否有基于网络的迹象</h2><p>有基于网络的迹象，发现IP：127.26.152.13</p>
 <h2 id="7、文件的目的是什么"><a href="#7、文件的目的是什么" class="headerlink" title="7、文件的目的是什么"></a>7、文件的目的是什么</h2><p>该文件并没有加壳，她住要实现的功能是，调用Kernel32.dll文件的相关函数，实现在系统目录里面遍历查找是否存在Kerne132.dll文件，如果不存在就进行创建Kerne132.dll文件，进行混淆Kernel32.dll文件，然后再调用Lab01-01.dll文件，实现通过联通网络，然后接受目标IP：127.26.152.13传过来的指令，通过该文件后门向系统发出休眠指令使得系统进入休眠状态。</p>
-<h1 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h1><p>恶意代码分析实战</p>
+<h1 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h1><p>这里可以下载到所有的工具:<br><a href="https://github.com/vito-L/malware-analysis/blob/master/Tools.md" target="_blank" rel="external">https://github.com/vito-L/malware-analysis/blob/master/Tools.md</a><br>恶意代码分析实战</p>
 
       
     </div>
@@ -411,6 +411,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/31/RE_evil_2/" rel="prev" title="恶意代码分析——动态分析基础技术">
+                恶意代码分析——动态分析基础技术 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -653,7 +657,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共48.0k字</span>
+  <span class="post-count">博客全站共48.8k字</span>
 </div>
 
         
