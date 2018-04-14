@@ -81,27 +81,17 @@
 
 
 
-<meta name="description" content="在main函数前，还有什么">
+<meta name="description" content="进程与线程是Windows下最常用的方式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RE_绕过tls保护">
-<meta property="og:url" content="http://yoursite.com/2017/10/10/re_tls/index.html">
+<meta property="og:title" content="Windows下的线程与进程">
+<meta property="og:url" content="http://yoursite.com/2018/04/09/re_thread_and_process/index.html">
 <meta property="og:site_name" content="wking&#39;s Note">
-<meta property="og:description" content="在main函数前，还有什么">
+<meta property="og:description" content="进程与线程是Windows下最常用的方式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1flfix8jsj8j31750f2aah.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1flfj49nejej30r90ikq6b.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1flfjxsyhz4j316l0nh78k.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1flfk389npmj30ny0eydhc.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/006rgqhqgy1flfk4opm41j30lb0dqmy7.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1flfk72dak1j315t0jq41a.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1flfka5rrbkj30m40hhjse.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/006rgqhqgy1flfkb8q07mj30jw0bi74m.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1flfkdw89zvj30up0d4dgi.jpg">
-<meta property="og:updated_time" content="2017-11-30T09:30:54.353Z">
+<meta property="og:updated_time" content="2018-04-12T03:08:17.733Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RE_绕过tls保护">
-<meta name="twitter:description" content="在main函数前，还有什么">
-<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1flfix8jsj8j31750f2aah.jpg">
+<meta name="twitter:title" content="Windows下的线程与进程">
+<meta name="twitter:description" content="进程与线程是Windows下最常用的方式">
 
 
 
@@ -131,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/10/re_tls/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/09/re_thread_and_process/"/>
 
 
 
 
 
-  <title>RE_绕过tls保护 | wking's Note</title>
+  <title>Windows下的线程与进程 | wking's Note</title>
   
 
 
@@ -264,7 +254,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/re_tls/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/09/re_thread_and_process/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -281,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">RE_绕过tls保护</h1>
+          <h1 class="post-title" itemprop="name headline">Windows下的线程与进程</h1>
         
 
         <div class="post-meta">
@@ -293,8 +283,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T15:50:53+08:00">
-                2017-10-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-09T15:55:29+08:00">
+                2018-04-09
               </time>
             
 
@@ -335,11 +325,11 @@
       
 
       
-        <p>在main函数前，还有什么<br><a id="more"></a></p>
-<h2 id="1、何为tls"><a href="#1、何为tls" class="headerlink" title="1、何为tls"></a>1、何为tls</h2><p>TLS回调函数是指，每当创建/终止进程的线程时会自动调用执行的函数。创建的主线程也会自动调用回调函数，且其调用执行先于EP代码。</p>
-<h2 id="2、实践"><a href="#2、实践" class="headerlink" title="2、实践"></a>2、实践</h2><p>TLS callback函数的定义<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">typedef VOID</div><div class="line">(NTAPI *PIMAGE_TLS_CALLBACK) (</div><div class="line">    PVOID DllHandle,     //模块句柄，即加载地址</div><div class="line">    DWORD Reason,        </div><div class="line">    PVOID Reserved</div><div class="line">    );</div><div class="line"></div><div class="line">其中reason有以下几种：(winNT.h)</div><div class="line"><span class="comment">#define DLL_PROCESS_ATTACH   1    进程启动</span></div><div class="line"><span class="comment">#define DLL_THREAD_ATTACH    2    线程启动</span></div><div class="line"><span class="comment">#define DLL_THREAD_DETACH    3    线程退出</span></div><div class="line"><span class="comment">#define DLL_PROCESS_DETACH   0    进程退出</span></div></pre></td></tr></table></figure></p>
-<h2 id="3、手动去除TLS函数"><a href="#3、手动去除TLS函数" class="headerlink" title="3、手动去除TLS函数"></a>3、手动去除TLS函数</h2><p>例如：ida打开是这样的<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1flfix8jsj8j31750f2aah.jpg" alt=""><br>那就有TLS函数<br>1、OD去除TLS函数<br>OD运行，f9直接退出，因为会先执行TLS函数，这时需要设置成这样<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1flfj49nejej30r90ikq6b.jpg" alt=""><br>这就可以停在系统断点，可以看看tls函数做了什么，一般都是判断是否使用工具，ida,od，peid，如果有使用其中一种，程序直接退出，不会执行main函数<br>接着就一步一步的找TLS函数，找到直接把tls函数nop。<br>2、利用PEviewEXE和winhex去掉TLS函数<br>利用PEviewEXE查看PE文件的结构体,发现TLS结构体<br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1flfjxsyhz4j316l0nh78k.jpg" alt=""><br>修改1<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1flfk389npmj30ny0eydhc.jpg" alt=""><br>修改为<br><img src="http://ww4.sinaimg.cn/large/006rgqhqgy1flfk4opm41j30lb0dqmy7.jpg" alt=""><br>修改2<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1flfk72dak1j315t0jq41a.jpg" alt=""><br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1flfka5rrbkj30m40hhjse.jpg" alt=""><br>修改为<br><img src="http://ww4.sinaimg.cn/large/006rgqhqgy1flfkb8q07mj30jw0bi74m.jpg" alt=""><br>将修改后的文件另存为111.exe,ida打开<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1flfkdw89zvj30up0d4dgi.jpg" alt=""><br>这是已经去掉TLS函数了，收工</p>
-
+        <p>进程与线程是Windows下最常用的方式<br><a id="more"></a></p>
+<h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><p>进程（Process）是计算机中的程序关于某数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位，是操作系统结构的基础。在早期面向进程设计的计算机结构中，进程是程序的基本执行实体；在当代面向线程设计的计算机结构中，进程是线程的容器。程序是指令、数据及其组织形式的描述，进程是程序的实体。</p>
+<h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><p>创建一个新的进程需要用到这个函数CreateProcess，下面是代码范例:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"> <span class="function">BOOL <span class="title">CreateProcess</span><span class="params">(  </span></span></div><div class="line"><span class="function"><span class="params">　LPCTSTR lpApplicationName, <span class="comment">// 应用程序名称  </span></span></span></div><div class="line"><span class="function"><span class="params">　LPTSTR lpCommandLine, <span class="comment">// 命令行字符串  </span></span></span></div><div class="line"><span class="function"><span class="params">　LPSECURITY_ATTRIBUTES lpProcessAttributes, <span class="comment">// 进程的安全属性  </span></span></span></div><div class="line"><span class="function"><span class="params">　LPSECURITY_ATTRIBUTES lpThreadAttributes, <span class="comment">// 线程的安全属性  </span></span></span></div><div class="line"><span class="function"><span class="params">　BOOL bInheritHandles, <span class="comment">// 是否继承父进程的属性  </span></span></span></div><div class="line"><span class="function"><span class="params">　DWORD dwCreationFlags, <span class="comment">// 创建标志  </span></span></span></div><div class="line"><span class="function"><span class="params">　LPVOID lpEnvironment, <span class="comment">// 指向新的环境块的指针  </span></span></span></div><div class="line"><span class="function"><span class="params">　LPCTSTR lpCurrentDirectory, <span class="comment">// 指向当前目录名的指针  </span></span></span></div><div class="line"><span class="function"><span class="params">　LPSTARTUPINFO lpStartupInfo, <span class="comment">// 传递给新进程的信息  </span></span></span></div><div class="line"><span class="function"><span class="params">　LPPROCESS_INFORMATION lpProcessInformation <span class="comment">// 新进程返回的信息  </span></span></span></div><div class="line"><span class="function"><span class="params">)</span></span>;</div></pre></td></tr></table></figure></p>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><p>fork是linux下创建线程，这里通过pipe来进行进程间的通讯<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> n;</div><div class="line">    <span class="keyword">int</span> fd[<span class="number">2</span>];</div><div class="line">    <span class="keyword">char</span> buff[<span class="number">128</span>] = &#123;<span class="number">0</span>&#125;;</div><div class="line"> 	<span class="keyword">pid_t</span> pid;</div><div class="line"> 	<span class="keyword">if</span>(pipe(fd)&lt;<span class="number">0</span>)</div><div class="line"> 	&#123;</div><div class="line"> 		<span class="built_in">exit</span>(<span class="number">1</span>);</div><div class="line"> 	&#125;</div><div class="line">    <span class="keyword">if</span>((pid=fork())&lt;<span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>( pid&gt;<span class="number">0</span> )</div><div class="line">    &#123;</div><div class="line">        close(fd[<span class="number">0</span>]);</div><div class="line">        write(fd[<span class="number">1</span>],<span class="string">"hello\n"</span>,<span class="number">6</span>);</div><div class="line">        wait(<span class="literal">NULL</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        close(fd[<span class="number">1</span>]);</div><div class="line">        n=read(fd[<span class="number">0</span>],buff,<span class="number">128</span>);</div><div class="line">        write(STDOUT_FILENO,buff,n);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><h1 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">进程优点：编程、调试简单，可靠性较高。</div><div class="line">进程缺点：创建、销毁、切换速度慢，内存、资源占用大。</div><div class="line">线程优点：创建、销毁、切换速度快，内存、资源占用小。</div><div class="line">线程缺点：编程、调试复杂，可靠性较差。</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -378,8 +368,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/09/pwn3_me_fmt/" rel="next" title="PWN——格式化字符串利用">
-                <i class="fa fa-chevron-left"></i> PWN——格式化字符串利用
+              <a href="/2018/04/04/re_evil_3/" rel="next" title="恶意代码分析———分析恶意Windows程序">
+                <i class="fa fa-chevron-left"></i> 恶意代码分析———分析恶意Windows程序
               </a>
             
           </div>
@@ -387,10 +377,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/14/pwn_tools/" rel="prev" title="PWN从开始到开始--pwn题的一些小技巧">
-                PWN从开始到开始--pwn题的一些小技巧 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -589,7 +575,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、何为tls"><span class="nav-number">1.</span> <span class="nav-text">1、何为tls</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、实践"><span class="nav-number">2.</span> <span class="nav-text">2、实践</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、手动去除TLS函数"><span class="nav-number">3.</span> <span class="nav-text">3、手动去除TLS函数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#进程"><span class="nav-number">1.</span> <span class="nav-text">进程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows"><span class="nav-number">1.1.</span> <span class="nav-text">Windows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux"><span class="nav-number">1.2.</span> <span class="nav-text">Linux</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程"><span class="nav-number">2.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#区别"><span class="nav-number">3.</span> <span class="nav-text">区别</span></a></li></ol></div>
             
 
           </div>
