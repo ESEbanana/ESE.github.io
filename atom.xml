@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-02T02:41:49.015Z</updated>
+  <updated>2018-05-02T04:25:33.650Z</updated>
   <id>http://yoursite.com/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
@@ -16,7 +16,7 @@
     <link href="http://yoursite.com/2018/04/19/re_evil_4/"/>
     <id>http://yoursite.com/2018/04/19/re_evil_4/</id>
     <published>2018-04-19T01:55:00.943Z</published>
-    <updated>2018-05-02T02:41:49.015Z</updated>
+    <updated>2018-05-02T04:25:33.650Z</updated>
     
     <content type="html"><![CDATA[<p>WinDbg是微软提供的一个免费调试器，虽然在恶意代码分析中，WinDbg不如OllyDbg调试器那么流行，不过它支持内核调试。<br><a id="more"></a></p><h1 id="WinDbg"><a href="#WinDbg" class="headerlink" title="WinDbg"></a>WinDbg</h1><h2 id="驱动与内核代码"><a href="#驱动与内核代码" class="headerlink" title="驱动与内核代码"></a>驱动与内核代码</h2><p>为了更好的理解WinDbg内核调试，在介绍内核代码调试之前，首先介绍内核代码的工作原理、恶意代码使用内核代码的原因，以及内核代码存在的一些特殊挑战等。Windows设备驱动简称为驱动，它让第三方开发商在Windows内核模式下运行代码。<br>由于驱动程序常驻内存，并且负责响应用户应用程序的请求，因此分析它十分困难。另外，由于应用程序不能直接与驱动设备程序通讯，而是直接访问设备对象，向具体的物理设备发送请求，使得驱动程序更加难以分析。设备对象由</p><h2 id="调试模式"><a href="#调试模式" class="headerlink" title="调试模式"></a>调试模式</h2><p>Windbg.exe是Windows的一个调试工具，它支持两种调试模式，即“实时调试模式(Living)”和“事后调试模式(Postmortem)”。</p><h3 id="实时模式"><a href="#实时模式" class="headerlink" title="实时模式"></a>实时模式</h3><p>被调试的程序正在运行当中，调试器可以实时分析、修改被调试目标的状态，如寄存器、内存、变量，调试exe可执行程序或双击双机实时调试都属于这种模式；</p><h3 id="事后模式"><a href="#事后模式" class="headerlink" title="事后模式"></a>事后模式</h3><p>被调试的程序已经执行结束，现在只是事后对它保留的快照进行分析，快照就是转储文件(Dump文件)。</p><h2 id="调试命令"><a href="#调试命令" class="headerlink" title="调试命令"></a>调试命令</h2><p>分为3种</p><p>### </p>]]></content>
     

@@ -73,6 +73,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/atom.xml" title="ESE's Note" type="application/atom+xml" />
 
@@ -305,7 +307,7 @@
 
   
     <div class="comments" id="comments">
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjE2OS8xMjcwNA=="></div>
+      <div id="lv-container" data-id="city" data-uid="662ym8qmGBMUlts3YzqMR1VS"></div>
     </div>
 
   
@@ -692,6 +694,26 @@
 
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
 <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'zcWjlG57Emc5jAlfR1pIEPVm-gzGzoHsz',
+        appKey: 'Mt81aRWQozkXMVGeSgXGXELQ',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
