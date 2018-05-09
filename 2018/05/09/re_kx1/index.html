@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ESE.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ESE1.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ESE's Note" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="去膜拜看雪师傅啦,看雪论坛是个软件安全技术交流场所，为安全技术爱好者提供一个技术交流平台和资源。从单一版块『软件调试论坛』，发展到以软件安全技术为主题多个版块的综合论坛。其实这是一个超级大神级别的存在，来膜拜一波">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RE——看雪">
+<meta property="og:url" content="http://yoursite.com/2018/05/09/re_kx1/index.html">
+<meta property="og:site_name" content="ESE&#39;s Note">
+<meta property="og:description" content="去膜拜看雪师傅啦,看雪论坛是个软件安全技术交流场所，为安全技术爱好者提供一个技术交流平台和资源。从单一版块『软件调试论坛』，发展到以软件安全技术为主题多个版块的综合论坛。其实这是一个超级大神级别的存在，来膜拜一波">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fkxzsu500uj31440g1q7v.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fkxzvguj53j31h20guady.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fkxzw6hh09j319v08rabc.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fkxzzfg35gj31ah0bwgod.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006rgqhqgy1fky059od5wj30k309zq4f.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/006rgqhqly1fl19dym9r5j30xg0jvn5i.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqly1fl19irbza0j30xq0cjtef.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqly1fl19m8qbthj31180ho41f.jpg">
+<meta property="og:updated_time" content="2018-05-02T02:42:02.119Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RE——看雪">
+<meta name="twitter:description" content="去膜拜看雪师傅啦,看雪论坛是个软件安全技术交流场所，为安全技术爱好者提供一个技术交流平台和资源。从单一版块『软件调试论坛』，发展到以软件安全技术为主题多个版块的综合论坛。其实这是一个超级大神级别的存在，来膜拜一波">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fkxzsu500uj31440g1q7v.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '。。',
+      apiKey: '。。。。',
+      indexName: 'search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/09/re_kx1/"/>
+
+
+
+
+
+  <title>RE——看雪 | ESE's Note</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ESE's Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">阅览室</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/09/re_kx1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ESE's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RE——看雪</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-09T11:52:41+08:00">
+                2018-05-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/re/" itemprop="url" rel="index">
+                    <span itemprop="name">re</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/09/re_kx1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/09/re_kx1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          作者：ESE
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>去膜拜看雪师傅啦,看雪论坛是个软件安全技术交流场所，为安全技术爱好者提供一个技术交流平台和资源。从单一版块『软件调试论坛』，发展到以软件安全技术为主题多个版块的综合论坛。其实这是一个超级大神级别的存在，来膜拜一波<br><a id="more"></a></p>
+<h1 id="Re1"><a href="#Re1" class="headerlink" title="Re1"></a>Re1</h1><p>签到题直接过</p>
+<h1 id="Re2"><a href="#Re2" class="headerlink" title="Re2"></a>Re2</h1><h2 id="1、题目"><a href="#1、题目" class="headerlink" title="1、题目"></a>1、题目</h2><p>链接：<a href="http://pan.baidu.com/s/1qXVQmok" target="_blank" rel="external">http://pan.baidu.com/s/1qXVQmok</a> 密码：h5sw<br>去年你已经知道看雪啦，只是不敢去做题，自己太菜了，今年去试一试，第一道题签到题，很开心。然而，第二题，我已经跪啦，不过，在公布wp后，还是学到了许多，这里记录一下学习到的知识。</p>
+<h2 id="2、分析"><a href="#2、分析" class="headerlink" title="2、分析"></a>2、分析</h2><p>一、侦查：无壳 Microsoft Visual C/C++(6.0)[libc]，有明确提示成功和失败信息。<br>二、入坑：OD加载，查找字符，定位到：“You get it!”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">地址       反汇编                                    文本字符串</div><div class="line">00401000  /$  68 6CB04100   PUSH ctf2017_.0041B06C                   ;  \n Crackme for CTF2017 @Pediy.\n</div><div class="line">00401005  |.  E8 382D0100   CALL ctf2017_.00413D42</div><div class="line">0040100A  |.  83C4 04       ADD ESP,0x4</div><div class="line">0040100D  |.  C705 34B04100&gt;MOV DWORD PTR DS:[0x41B034],0x2          ;  2</div><div class="line">00401017  |.  E8 34000000   CALL ctf2017_.00401050                   ;  input</div><div class="line">0040101C  |.  E8 6F000000   CALL ctf2017_.00401090                   ;  check1</div><div class="line">00401021  |.  E8 BA000000   CALL ctf2017_.004010E0                   ;  check2</div><div class="line">00401026  |.  A1 34B04100   MOV EAX,DWORD PTR DS:[0x41B034]          ;  0</div><div class="line">0040102B  |.  85C0          TEST EAX,EAX</div><div class="line">0040102D  |.  75 10         JNZ Xctf2017_.0040103F</div><div class="line">0040102F  |.  68 5CB04100   PUSH ctf2017_.0041B05C                   ;  You get it!\n</div><div class="line">00401034  |.  E8 092D0100   CALL ctf2017_.00413D42</div><div class="line">00401039  |.  83C4 04       ADD ESP,0x4</div><div class="line">0040103C  |.  33C0          XOR EAX,EAX</div><div class="line">0040103E  |.  C3            RETN</div><div class="line">0040103F  |&gt;  68 38B04100   PUSH ctf2017_.0041B038                   ;  Bad register-code, keep trying.\n</div><div class="line">00401044  |.  E8 F92C0100   CALL ctf2017_.00413D42</div><div class="line">00401049  |.  83C4 04       ADD ESP,0x4</div><div class="line">0040104C  |.  33C0          XOR EAX,EAX</div><div class="line">0040104E  \.  C3            RETN</div><div class="line">0040104F      90            NOP</div><div class="line">00401050  /$  83EC 0C       SUB ESP,0xC</div><div class="line">00401053  |.  68 ACB04100   PUSH ctf2017_.0041B0AC                   ;   Coded by Fpc.\n\n</div><div class="line">00401058  |.  E8 E52C0100   CALL ctf2017_.00413D42</div><div class="line">0040105D  |.  83C4 04       ADD ESP,0x4</div><div class="line">00401060  |.  68 90B04100   PUSH ctf2017_.0041B090                   ;   Please input your code:</div><div class="line">00401065  |.  E8 D82C0100   CALL ctf2017_.00413D42</div><div class="line">0040106A  |.  83C4 04       ADD ESP,0x4</div><div class="line">0040106D  |.  8D4424 00     LEA EAX,DWORD PTR SS:[ESP]</div><div class="line">00401071  |.  50            PUSH EAX</div><div class="line">00401072  |.  68 8CB04100   PUSH ctf2017_.0041B08C                   ;  %s</div><div class="line">00401077  |.  E8 F72C0100   CALL ctf2017_.00413D73</div><div class="line">0040107C  |.  8D4424 08     LEA EAX,DWORD PTR SS:[ESP+0x8]</div><div class="line">00401080  |.  83C4 14       ADD ESP,0x14</div><div class="line">00401083  \.  C3            RETN</div></pre></td></tr></table></figure></p>
+<p>简单跟踪几步发现 401090、4010E0 为显性算法比较，分析 401090、4010E0：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">void check1()</div><div class="line">&#123;</div><div class="line">  int v0; // [sp+4h] [bp-8h]@0</div><div class="line">  int v1; // [sp+8h] [bp-4h]@0</div><div class="line"></div><div class="line">  if ( v1 &amp;&amp; v0 &amp;&amp; v1 != v0 &amp;&amp; 5 * (v1 - v0) + v1 == 0x8F503A42 &amp;&amp; 13 * (v1 - v0) + v0 == 0xEF503A42 )</div><div class="line">    --dword_41B034;</div><div class="line">&#125;</div><div class="line">void check2()</div><div class="line">&#123;</div><div class="line">  int v0; // [sp+4h] [bp-8h]@0</div><div class="line">  int v1; // [sp+8h] [bp-4h]@0</div><div class="line"></div><div class="line">  if ( v1 &amp;&amp; v0 &amp;&amp; v1 != v0 &amp;&amp; 17 * (v1 - v0) + v1 == 0xF3A94883 &amp;&amp; 7 * (v1 - v0) + v0 == 0x33A94883 )</div><div class="line">    --dword_41B034;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p> 把输入每4个字符ASCII作为十六进制赋值计算，假设为a,b则：<br> ⑴：0x5 <em> ( a - b ) + a == 0x8F503A42<br> ⑵：0xD </em> ( a - b ) + b == 0xEF503A42<br> ⑶：0x11 <em> ( a - b ) + a == 0xF3A94883<br> ⑷：0x7 </em> ( a - b ) + b == 0x33A94883<br>然而我分析到这里，感觉只能穷举。。。。结果当然失败了<br>后来看了大佬们的wp，果然学到了许多<br>大佬1：考虑该显性算法未随机打乱数值，低位特征依然继承到计算结果，因此先尝试求解低位，再逐个往高位求解，避免穷举范围过大：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def solve_false():</div><div class="line">    start_time = time.clock()</div><div class="line">    for a1 in range(0x30,0x7b):</div><div class="line">        for b1 in range(0x30,0x7b):</div><div class="line">            if (0x5 * (a1 - b1) + a1) &amp; 0xff == 0x42:</div><div class="line">                if (0xd * (a1 - b1) + b1) &amp; 0xff == 0x42:</div><div class="line">                    if (0x11 *(a1 - b1) + a1) &amp; 0xff == 0x83:</div><div class="line">                        if (0x7 * (a1 - b1) + b1) &amp; 0xff == 0x83:</div><div class="line">                            print (&quot;found sn a1 : %x&quot; % a1)</div><div class="line">                            print (&quot;found sn b1 : %x&quot; % b1)</div><div class="line">    print (&apos;use time: %.3f second&apos; % (time.clock()-start_time))</div><div class="line">    return</div></pre></td></tr></table></figure></p>
+<p>迅速识别该方程组无合法答案，无疑是作者埋的坑，立即寻找其他途径。<br>大佬2:z3识别改方程组无解（这里我还是没有懂，z3太强大啦）<br>大佬3：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">0x11 * ( a - b ) + a == 0xF3A94883</div><div class="line">0x5 * ( a - b ) + a == 0x8F503A42</div></pre></td></tr></table></figure></p>
+<p>推出:<br><code>12 * ( a - b ) == 0x64590d41</code><br>右边为偶数，左边为奇数，无解</p>
+<p>这道题由于没有判断输入长度，便存在溢出（这里我完全没有想打RE，还有溢出，涨知识了），那溢出到哪里呢？,大佬们发现0x00413131存在shellcode编码（膜拜），溢出到这里<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">.text:0040112B                 db 5 dup(90h)</div><div class="line">.text:00401130                 dd 4800h dup(0)</div><div class="line">.text:00413130 ; ---------------------------------------------------------------------------</div><div class="line">.text:00413130                 retn</div><div class="line">.text:00413130 ; ---------------------------------------------------------------------------</div><div class="line">.text:00413131                 db 83h, 0C4h, 0F0h</div><div class="line">.text:00413134                 dd 20712A70h, 0F1C75F2h, 28741C71h, 2E0671DDh, 870F574h</div><div class="line">.text:00413134                 dd 74F17169h, 0DC167002h, 0EA74C033h, 0DC261275h, 0F471E771h</div><div class="line">.text:00413134                 dd 6903740Fh, 0EB75EB70h, 0FDF7069h, 22712C70h, 0B8261F7Dh</div><div class="line">.text:00413134                 dd 2B741E71h, 3E067169h, 870F57Ch, 7CF17169h, 0DC197002h</div><div class="line">.text:00413134                 dd 41B034A3h, 75E77400h, 0E571DC12h, 7CDCF271h, 0E9706903h</div><div class="line">.text:00413134                 dd 6965E97Dh, 70B8DC70h, 3E1D7127h, 710F1971h, 0DD257019h</div><div class="line">.text:00413134                 dd 0F6700571h, 71DD0870h, 700270F2h, 70580F14h, 0F1171ECh</div><div class="line">.text:00413134                 dd 0F671EA71h, 0DD03700Fh, 0ED71ED70h, 0FE170DDh, 7F36217Eh</div><div class="line">.text:00413134                 dd 671A7D27h, 1D2A74B8h, 65690D7Eh, 67C067Fh, 1D361C7Eh</div><div class="line">.text:00413134                 dd 8BDC0E7Fh, 75EA74C8h, 7E69DC14h, 0C1F47FEFh, 0F97CFB7Fh</div><div class="line">.text:00413134                 dd 0EA7DE27Fh, 0D87E6965h, 772076B8h, 2E1A7F27h, 0DD2978B8h</div><div class="line">.text:00413134                 dd 778D0D76h, 67EF207h, 0DD261B76h, 58B80E77h, 1479EB78h</div><div class="line">.text:00413134                 dd 768DB865h, 0FF477EFh, 0F97EFB77h, 0EA7FE177h, 0B8D9768Dh</div><div class="line">.text:00413134                 dd 73F22372h, 1C756729h, 0DD2C740Fh, 66690E72h, 6740673h</div><div class="line">.text:00413134                 dd 0DD361E72h, 0DD261073h, 0E974D88Bh, 12751575h, 73ED72DCh</div><div class="line">.text:00413134                 dd 0FB730FF3h, 0E073F974h, 6966E875h, 740FD672h, 2E1D7527h</div><div class="line">.text:00413134                 dd 75DC1973h, 0DD267C19h, 742E0475h, 0F3751D08h, 16740272h</div><div class="line">.text:00413134                 dd 0ED7C58C1h, 0C1F3137Dh, 0F575EA75h, 1D03720Fh, 0EC73EC74h</div><div class="line">.text:00413134                 dd 0DF741D66h, 0F23EBDCh, 0EB227585h, 85261DFAh, 74D08B29h</div><div class="line">.text:00413134                 dd 0EBF6EB18h, 75D08BF4h, 32F2EBECh, 0E9754A3Eh, 6256F2EBh</div><div class="line">.text:00413134                 dd 0EDEB7A6Eh, 7D267C7Ah, 187DF21Ch, 70187D0Fh, 37D1D25h</div><div class="line">.text:00413134                 dd 7D69087Ch, 7C027CF4h, 0C18BDC16h, 1271ED70h, 7DEB7DDCh</div><div class="line">.text:00413134                 dd 37CC1F5h, 7DEC7C69h, 7C6966ECh, 2A780FDFh, 793E2079h</div><div class="line">.text:00413134                 dd 1C79B81Ch, 798D2874h, 0F5783606h, 79DD0878h, 780278F1h</div><div class="line">.text:00413134                 dd 0C32B0F16h, 1275EA74h, 0E7790F2Eh, 78B8F479h, 0EB78DD03h</div><div class="line">.text:00413134                 dd 78DDEB79h, 2B70B8DFh, 79662271h, 1E71C11Eh, 71692A70h</div><div class="line">.text:00413134                 dd 70F67805h, 0F271DD08h, 19700278h, 2E0C10Fh, 1471EA70h</div><div class="line">.text:00413134                 dd 0F107966h, 0F171E571h, 700278DCh, 36E979E9h, 0C1DC70DDh</div><div class="line">.text:00413134                 dd 22712B70h, 0B81E7326h, 29781E71h, 571DD3Eh, 870F572h</div><div class="line">.text:00413134                 dd 72F1711Dh, 0C1177002h, 0EA78C103h, 733E1379h, 0E671C10Fh</div></pre></td></tr></table></figure></p>
+<p>那溢出长度是多少呢？输入aaaabbbbccccddddeeee,发现返回地址是dddd,<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fkxzsu500uj31440g1q7v.jpg" alt=""><br>再次输入aaaabbbbccc11A<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fkxzvguj53j31h20guady.jpg" alt=""><br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fkxzw6hh09j319v08rabc.jpg" alt=""><br>黑色，这里右键-分析-从模块删除分析<br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1fkxzzfg35gj31ah0bwgod.jpg" alt=""><br>这里出现花指令(代码混淆，花指令不影响程序运行。就是看耐心。就拿这个题目来说。花指令就是跳来跳去。可以脱去，其实不脱话也一样的)<br><img src="http://ww1.sinaimg.cn/large/006rgqhqgy1fky059od5wj30k309zq4f.jpg" alt=""><br>一步一步分析<br>在0x413131位置设置新断点，回车断下，忽略花指令，仅摘录算法相关代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">00413131    83C4 F0         add esp,-0x10</div><div class="line">00413150    33C0            xor eax,eax</div><div class="line">00413184    A3 34B04100     mov dword ptr ds:[0x41B034],eax </div><div class="line">004131BA    58              pop eax          //aaaa</div><div class="line">004131EB    8BC8            mov ecx,eax</div><div class="line">0041321F    58              pop eax     //bbbb</div><div class="line">00413254    8BD8            mov ebx,eax</div><div class="line">00413289    58              pop eax   //cccc</div><div class="line">004132B5    8BD0            mov edx,eax</div><div class="line">004132AD    8BD0            mov edx,eax</div><div class="line">004132E2    8BC1            mov eax,ecx  //eax=aaaa</div><div class="line">00413316    2BC3            sub eax,ebx   //ebx=bbbb eax=a-b</div><div class="line">00413349    C1E0 02         shl eax,0x2    //(a-b)*4</div><div class="line">00413380    03C1            add eax,ecx     //(a-b)*4+a</div><div class="line">004133B5    03C2            add eax,edx     //(a-b)*4+a+c</div><div class="line">004133E9    2D E217F9EA     sub eax,0xEAF917E2   ///0xEAF917E2==((a-b)*4+a+c)</div><div class="line"></div><div class="line">00413B1E    58              pop eax                ; ctf2017_.00413E3E</div><div class="line">00413B4E    35 0E210100     xor eax,0x1210E</div><div class="line">00413B83    3305 34B04100   xor eax,dword ptr ds:[0x41B034]</div><div class="line">0040103F    68 38B04100     push ctf2017_.0041B038         &quot;Bad register-code&quot;</div><div class="line"></div><div class="line">00413455    03C1            add eax,ecx     //ecx=aaaa</div><div class="line">00413489    2BC3            sub eax,ebx    //ebx=bbbb</div><div class="line">004134BF    8BD8            mov ebx,eax    //ebx=eax=a-b</div><div class="line">004134F3    D1E0            shl eax,1   //(a-b)*2</div><div class="line">00413525    03C3            add eax,ebx  //(a-b)*3</div><div class="line">00413559    03C1            add eax,ecx   //(a-b)*3+a</div><div class="line">0041358F    8BC8            mov ecx,eax //</div><div class="line">004135C3    03C2            add eax,edx   //(a-b)*3+a+c</div><div class="line">004135F7    2D C808F5E8     sub eax,0xE8F508C8 //(a-b)*3+a+c==0xE8F508C8</div><div class="line"></div><div class="line">00413665    8BC1            mov eax,ecx</div><div class="line">0041365D    8BC1            mov eax,ecx //(a-b)*3+a</div><div class="line">004136A7    2BC2            sub eax,edx  //(a-b)*3+a-c</div><div class="line">004136D8    2D 683C0A0C     sub eax,0xC0A3C68 // (a-b)*3+a-c==0xC0A3C68</div></pre></td></tr></table></figure></p>
+<p>3、求解<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(a-b)*3+a-c==0xC0A3C68</div><div class="line">(a-b)*3+a+c==0xE8F508C8</div><div class="line">(a-b)*4+a+c==0xEAF917E2</div></pre></td></tr></table></figure></p>
+<p>以参考了许多大神的代码<br>学到了一种解决方程的方法，贼好用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">from sympy import *</div><div class="line">a=Symbol(&apos;a&apos;)</div><div class="line">b=Symbol(&apos;b&apos;)</div><div class="line">c=Symbol(&apos;c&apos;)</div><div class="line">print (solve([(a-b)*3+a-c-0xC0A3C68,(a-b)*3+a+c-0xE8F508C8,(a-b)*4+a+c-0xEAF917E2],[a,b,c]))</div></pre></td></tr></table></figure></p>
+<h1 id="3、Re3"><a href="#3、Re3" class="headerlink" title="3、Re3"></a>3、Re3</h1><h2 id="1、题目-1"><a href="#1、题目-1" class="headerlink" title="1、题目"></a>1、题目</h2><p>链接：<a href="http://pan.baidu.com/s/1kUYItoz" target="_blank" rel="external">http://pan.baidu.com/s/1kUYItoz</a> 密码：xem0<br>第三题，我感觉世界观坍塌啦。依然不会，还是学习为主。看大神们的记录，学习一遍</p>
+<h2 id="3、分析"><a href="#3、分析" class="headerlink" title="3、分析"></a>3、分析</h2><p>一、侦查：无壳 Microsoft Visual C/C++(6.0)[libc]，诸多反调试<br>二、入坑：<br>OD加载（好像我的od直接过了反调试），f9，运行，什么鬼，直接跳到了dll,继续f9….终于出现对话框，输入<br>12345678，结果程序崩溃。</p>
+<p>IDA打开，定位到CrackMe字符串，找到关键函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line">int __stdcall sub_434EF0(HWND hDlg, int a2, int a3, int a4)</div><div class="line">&#123;</div><div class="line">  int v4; // ST0C_4@17</div><div class="line">  CHAR *v5; // esi@17</div><div class="line">  int v6; // eax@17</div><div class="line">  int v8; // [sp+0h] [bp-1A4Ch]@18</div><div class="line">  int v9; // [sp+4h] [bp-1A48h]@18</div><div class="line">  int v10; // [sp+8h] [bp-1A44h]@18</div><div class="line">  int v11; // [sp+Ch] [bp-1A40h]@1</div><div class="line">  int i; // [sp+1C4h] [bp-1888h]@14</div><div class="line">  char v13[1032]; // [sp+1D0h] [bp-187Ch]@16</div><div class="line">  char v14[40]; // [sp+5D8h] [bp-1474h]@14</div><div class="line">  int v15; // [sp+600h] [bp-144Ch]@14</div><div class="line">  char v16; // [sp+60Ch] [bp-1440h]@14</div><div class="line">  char v17; // [sp+60Dh] [bp-143Fh]@14</div><div class="line">  char v18; // [sp+A14h] [bp-1038h]@14</div><div class="line">  char v19; // [sp+A15h] [bp-1037h]@14</div><div class="line">  char v20; // [sp+E1Ch] [bp-C30h]@14</div><div class="line">  char v21; // [sp+E1Dh] [bp-C2Fh]@14</div><div class="line">  CHAR String; // [sp+1224h] [bp-828h]@14</div><div class="line">  char v23; // [sp+1225h] [bp-827h]@14</div><div class="line">  int v24; // [sp+162Ch] [bp-420h]@14</div><div class="line">  char v25; // [sp+1638h] [bp-414h]@1</div><div class="line">  char v26; // [sp+1639h] [bp-413h]@1</div><div class="line">  int v27; // [sp+1A40h] [bp-Ch]@1</div><div class="line">  unsigned int v28; // [sp+1A48h] [bp-4h]@1</div><div class="line">  int savedregs; // [sp+1A4Ch] [bp+0h]@1</div><div class="line"></div><div class="line">  memset(&amp;v11, 0xCCu, 0x1A40u);</div><div class="line">  v28 = (unsigned int)&amp;savedregs ^ dword_49B344;</div><div class="line">  v27 = 0;</div><div class="line">  v25 = 0;</div><div class="line">  sub_42D5E6(&amp;v26, 0, 1023);</div><div class="line">  v11 = a2;</div><div class="line">  if ( a2 == 16 )</div><div class="line">    ExitProcess(0);</div><div class="line">  if ( v11 == 272 )</div><div class="line">  &#123;</div><div class="line">    v27 = sub_42D4F1();</div><div class="line">    if ( v27 == 1 )</div><div class="line">      ExitProcess(0);</div><div class="line">    v27 = 0;</div><div class="line">    v27 = sub_42E428();</div><div class="line">    if ( v27 == 1 )</div><div class="line">      ExitProcess(0);</div><div class="line">    v27 = 0;</div><div class="line">    v27 = sub_42D825();</div><div class="line">    if ( v27 == 1 )</div><div class="line">      ExitProcess(0);</div><div class="line">    sub_42D14F(hDlg, 1);</div><div class="line">  &#125;</div><div class="line">  else if ( v11 == 273 )</div><div class="line">  &#123;</div><div class="line">    v11 = (unsigned __int16)a3;</div><div class="line">    if ( (unsigned __int16)a3 == 1002 )</div><div class="line">    &#123;</div><div class="line">      String = 0;</div><div class="line">      sub_42D5E6(&amp;v23, 0, 1023);</div><div class="line">      v20 = 0;</div><div class="line">      sub_42D5E6(&amp;v21, 0, 1023);</div><div class="line">      GetDlgItemTextA(hDlg, 1001, &amp;String, 1025);</div><div class="line">      v24 = sub_42DE51();</div><div class="line">      v18 = 0;</div><div class="line">      sub_42D5E6(&amp;v19, 0, 1023);</div><div class="line">      sub_42D267(&amp;String, 1024, &amp;v20);</div><div class="line">      v16 = 0;</div><div class="line">      sub_42D5E6(&amp;v17, 0, 1023);</div><div class="line">      sub_42D267(&amp;v20, 1024, &amp;v18);</div><div class="line">      sub_42D96A(&amp;v18, &amp;v16, 1024);</div><div class="line">      v15 = 3;</div><div class="line">      sub_42DA78(&amp;v18, 3, v14);</div><div class="line">      for ( i = 0; i &lt; 32; ++i )</div><div class="line">        sub_42DF05(&amp;v13[2 * i], &quot;%02x&quot;, v14[i]);</div><div class="line">      v4 = sub_42D794(v13);</div><div class="line">      v5 = &amp;String + sub_42D794(&amp;String);</div><div class="line">      v6 = sub_42D794(v13);</div><div class="line">      if ( !sub_42DB27(v13, &amp;v5[-v6], v4) )</div><div class="line">      &#123;</div><div class="line">        sub_42D0B4(v8, v9, v10);</div><div class="line">        if ( (unsigned __int8)sub_42D9AB(&amp;unk_49B000, &amp;v16) == 1 )</div><div class="line">        &#123;</div><div class="line">          MessageBoxA(0, &quot;ok&quot;, &quot;CrackMe&quot;, 0);</div><div class="line">          sub_42DE51();</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  sub_42D65E(&amp;savedregs, &amp;dword_435250);</div><div class="line">  sub_42D1E5();</div><div class="line">  return sub_42DE51();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>哇，还是经验太少，这里许多函数看不懂。</p>
+<p>再用OD打开，发现程序有随机化，好烦，f9…出现对话框，按道理这时候可以在读取字符的API下断点，这里是GetDlgItemTextA。然而，我在当前模块中没有找到，后来发现个插件-设置API断点，总算断下来啦。接下来分析算法啦(这是我的能力还是太弱了)。</p>
+<p>借助大神们的wp<br>IDA反汇编关键函数<br><img src="http://ww4.sinaimg.cn/large/006rgqhqly1fl19dym9r5j30xg0jvn5i.jpg" alt=""></p>
+<p>这个直接明文:<br><img src="http://ww2.sinaimg.cn/large/006rgqhqly1fl19irbza0j30xq0cjtef.jpg" alt=""><br>我自己尝试，然而，我来到这个函数，程序执行后就崩溃了<br><img src="http://ww3.sinaimg.cn/large/006rgqhqly1fl19m8qbthj31180ho41f.jpg" alt=""><br>继续分析。</p>
+<p>猜测作者意图<br>1、获取输入 ipt<br>2、两次 base64 解码得到 buf<br>3、自定义解码得到 cmd<br>4、判断 sm3(buf[:3) == ipt[-64:]<br>5、cmd 能在迷宫走到终点</p>
+<h1 id="4、Re4"><a href="#4、Re4" class="headerlink" title="4、Re4"></a>4、Re4</h1><h2 id="1、题目-2"><a href="#1、题目-2" class="headerlink" title="1、题目"></a>1、题目</h2><p>链接：<a href="http://pan.baidu.com/s/1kUYItoz" target="_blank" rel="external">http://pan.baidu.com/s/1kUYItoz</a> 密码：xem0<br>学习为主。看大神们的记录，学习一遍</p>
+<h2 id="3、分析-1"><a href="#3、分析-1" class="headerlink" title="3、分析"></a>3、分析</h2><p>一、侦查：无壳 Microsoft Visual C/C++(6.0)[libc]，诸多反调试<br>二、OD附加，过反调试<br>先运行exe程序，再打开od附加exe进程，再调用GetWindowTextW的API时候下断点，点击运行，exe程序输入sn,此时会断在od中的GetWindowTextW的断点（还在api系统区）<br><img src="" alt=""><br>往下走来到程序区<br><img src="" alt=""><br>往下走,主要细节<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div></pre></td><td class="code"><pre><div class="line">01151CB0    55              push    ebp</div><div class="line">01151CB1    8BEC            mov     ebp, esp</div><div class="line">01151CB3    81EC D0000000   sub     esp, 0xD0</div><div class="line">01151CB9    A1 14F01601     mov     eax, dword ptr [0x116F014]</div><div class="line">01151CBE    33C5            xor     eax, ebp</div><div class="line">01151CC0    8945 FC         mov     dword ptr [ebp-0x4], eax</div><div class="line">01151CC3    57              push    edi</div><div class="line">01151CC4    8BF9            mov     edi, ecx</div><div class="line">01151CC6    85FF            test    edi, edi</div><div class="line">01151CC8    0F84 61010000   je      01151E2F</div><div class="line">01151CCE    85D2            test    edx, edx</div><div class="line">01151CD0    0F85 81000000   jnz     01151D57</div><div class="line">01151CD6    E8 25FFFFFF     call    01151C00       ;判断注册码是否包含&apos;b&apos;</div><div class="line">01151CDB    85C0            test    eax, eax</div><div class="line">01151CDD    74 54           je      short 01151D33</div><div class="line">01151CDF    68 C8000000     push    0xC8</div><div class="line">01151CE4    8D85 34FFFFFF   lea     eax, dword ptr [ebp-0xCC]</div><div class="line">01151CEA    6A 00           push    0x0</div><div class="line">01151CEC    50              push    eax</div><div class="line">01151CED    E8 DE1C0000     call    &lt;memset&gt;</div><div class="line">01151CF2    83C4 0C         add     esp, 0xC</div><div class="line">01151CF5    8D85 34FFFFFF   lea     eax, dword ptr [ebp-0xCC]</div><div class="line">01151CFB    6A 64           push    0x64</div><div class="line">01151CFD    50              push    eax</div><div class="line">01151CFE    FF77 0C         push    dword ptr [edi+0xC]</div><div class="line">01151D01    FF15 4C811601   call    dword ptr [&lt;&amp;USER32.GetWindowTex&gt;; user32.GetWindowTextW</div><div class="line">01151D07    6A 70           push    0x70</div><div class="line">01151D09    8D95 34FFFFFF   lea     edx, dword ptr [ebp-0xCC]</div><div class="line">01151D0F    E8 3C0D0000     call    01152A50    ; 判断注册码里是否包含&apos;p&apos;</div><div class="line">01151D14    85C0            test    eax, eax</div><div class="line">01151D16    74 1B           je      short 01151D33</div><div class="line">01151D18    BA 01000000     mov     edx, 0x1</div><div class="line">01151D1D    8BCF            mov     ecx, edi</div><div class="line">01151D1F    E8 8CFFFFFF     call    01151CB0</div><div class="line">01151D24    5F              pop     edi</div><div class="line">01151D25    8B4D FC         mov     ecx, dword ptr [ebp-0x4]</div><div class="line">01151D28    33CD            xor     ecx, ebp</div><div class="line">01151D2A    E8 960F0000     call    01152CC5</div><div class="line">01151D2F    8BE5            mov     esp, ebp</div><div class="line">01151D31    5D              pop     ebp</div><div class="line">01151D32    C3              retn</div><div class="line">01151D33    6A 00           push    0x0</div><div class="line">01151D35    68 0F040000     push    0x40F</div><div class="line">01151D3A    68 11010000     push    0x111</div><div class="line">01151D3F    FF77 04         push    dword ptr [edi+0x4]</div><div class="line">01151D42    FF15 50811601   call    dword ptr [&lt;&amp;USER32.SendMessageW&gt;; user32.SendMessageW</div><div class="line">01151D48    5F              pop     edi</div><div class="line">01151D49    8B4D FC         mov     ecx, dword ptr [ebp-0x4]</div><div class="line">01151D4C    33CD            xor     ecx, ebp</div><div class="line">01151D4E    E8 720F0000     call    01152CC5</div><div class="line">01151D53    8BE5            mov     esp, ebp</div><div class="line">01151D55    5D              pop     ebp</div><div class="line">01151D56    C3              retn</div><div class="line">01151D33    6A 00           push    0x0</div><div class="line">01151D35    68 0F040000     push    0x40F</div><div class="line">01151D3A    68 11010000     push    0x111</div><div class="line">01151D3F    FF77 04         push    dword ptr [edi+0x4]</div><div class="line">01151D42    FF15 50811601   call    dword ptr [&lt;&amp;USER32.SendMessageW&gt;; user32.SendMessageW</div><div class="line">01151D48    5F              pop     edi</div><div class="line">01151D49    8B4D FC         mov     ecx, dword ptr [ebp-0x4]</div><div class="line">01151D4C    33CD            xor     ecx, ebp</div><div class="line">01151D4E    E8 720F0000     call    01152CC5</div><div class="line">01151D53    8BE5            mov     esp, ebp</div><div class="line">01151D55    5D              pop     ebp</div><div class="line">01151D56    C3              retn</div><div class="line">01151D57    56              push    esi</div><div class="line">01151D58    E8 812B0000     call    011548DE</div><div class="line">01151D5D    68 C8000000     push    0xC8</div><div class="line">01151D62    8985 30FFFFFF   mov     dword ptr [ebp-0xD0], eax</div><div class="line">01151D68    8D85 34FFFFFF   lea     eax, dword ptr [ebp-0xCC]</div><div class="line">01151D6E    6A 00           push    0x0</div><div class="line">01151D70    50              push    eax</div><div class="line">01151D71    E8 5A1C0000     call    &lt;memset&gt;</div><div class="line">01151D76    83C4 0C         add     esp, 0xC</div><div class="line">01151D79    8D85 34FFFFFF   lea     eax, dword ptr [ebp-0xCC]</div><div class="line">01151D7F    68 C8000000     push    0xC8</div><div class="line">01151D84    50              push    eax</div><div class="line">01151D85    FF77 0C         push    dword ptr [edi+0xC]</div><div class="line">01151D88    FF15 4C811601   call    dword ptr [&lt;&amp;USER32.GetWindowTex&gt;; user32.GetWindowTextW</div><div class="line">01151D8E    33F6            xor     esi, esi</div><div class="line">01151D90    8D85 34FFFFFF   lea     eax, dword ptr [ebp-0xCC]</div><div class="line">01151D96    66:39B5 34FFFFF&gt;cmp     word ptr [ebp-0xCC], si</div><div class="line">01151D9D    74 0B           je      short 01151DAA</div><div class="line">01151D9F    90              nop</div><div class="line">01151DA0    8D40 02         lea     eax, dword ptr [eax+0x2]</div><div class="line">01151DA3    46              inc     esi</div><div class="line">01151DA4    66:8338 00      cmp     word ptr [eax], 0x0</div><div class="line">01151DA8  ^ 75 F6           jnz     short 01151DA0</div><div class="line">01151DAA    33C9            xor     ecx, ecx</div><div class="line">01151DAC    8D46 01         lea     eax, dword ptr [esi+0x1]</div><div class="line">01151DAF    BA 02000000     mov     edx, 0x2</div><div class="line">01151DB4    F7E2            mul     edx</div><div class="line">01151DB6    53              push    ebx</div><div class="line">01151DB7    0F90C1          seto    cl</div><div class="line">01151DBA    F7D9            neg     ecx</div><div class="line">01151DBC    0BC8            or      ecx, eax</div><div class="line">01151DBE    51              push    ecx</div><div class="line">01151DBF    E8 120F0000     call    01152CD6</div><div class="line">01151DC4    83C4 04         add     esp, 0x4</div><div class="line">01151DC7    8BD8            mov     ebx, eax</div><div class="line">01151DC9    E8 102B0000     call    011548DE</div><div class="line">01151DCE    2B85 30FFFFFF   sub     eax, dword ptr [ebp-0xD0]</div><div class="line">01151DD4    83F8 02         cmp     eax, 0x2</div><div class="line">01151DD7    7F 65           jg      short 01151E3E</div><div class="line">01151DD9    8D85 34FFFFFF   lea     eax, dword ptr [ebp-0xCC]</div><div class="line">01151DDF    50              push    eax</div><div class="line">01151DE0    53              push    ebx</div><div class="line">01151DE1    E8 8A0A0000     call    01152870</div><div class="line">01151DE6    83FE 07         cmp     esi, 0x7           ;注册码是否为7位</div><div class="line">01151DE9    73 0B           jnb     short 01151DF6</div><div class="line">01151DEB    6A 00           push    0x0</div><div class="line">01151DED    6A 00           push    0x0</div><div class="line">01151DEF    68 0E040000     push    0x40E</div><div class="line">01151DF4    EB 0B           jmp     short 01151E01</div><div class="line">01151DF6    76 2C           jbe     short 01151E24</div><div class="line">01151DF8    6A 00           push    0x0</div><div class="line">01151DFA    6A 00           push    0x0</div><div class="line">01151DFC    68 0D040000     push    0x40D</div><div class="line">01151E01    FF77 04         push    dword ptr [edi+0x4]</div><div class="line">01151E04    FF15 50811601   call    dword ptr [&lt;&amp;USER32.SendMessageW&gt;; user32.SendMessageW</div><div class="line">01151E0A    53              push    ebx</div><div class="line">01151E0B    E8 CF0E0000     call    01152CDF</div><div class="line">01151E10    83C4 04         add     esp, 0x4</div><div class="line">01151E13    5B              pop     ebx</div><div class="line">01151E14    5E              pop     esi</div><div class="line">01151E15    5F              pop     edi</div><div class="line">01151E16    8B4D FC         mov     ecx, dword ptr [ebp-0x4]</div><div class="line">01151E19    33CD            xor     ecx, ebp</div><div class="line">01151E1B    E8 A50E0000     call    01152CC5</div><div class="line">01151E20    8BE5            mov     esp, ebp</div><div class="line">01151E22    5D              pop     ebp</div><div class="line">01151E23    C3              retn</div><div class="line">01151E24    8BD3            mov     edx, ebx</div><div class="line">01151E26    8BCF            mov     ecx, edi</div><div class="line">01151E28    E8 33FCFFFF     call    01151A60        ;这里进入最后的判断</div><div class="line">01151E2D    5B              pop     ebx</div><div class="line">01151E2E    5E              pop     esi</div><div class="line">01151E2F    8B4D FC         mov     ecx, dword ptr [ebp-0x4]</div><div class="line">01151E32    33CD            xor     ecx, ebp</div><div class="line">01151E34    5F              pop     edi</div><div class="line">01151E35    E8 8B0E0000     call    01152CC5</div><div class="line">01151E3A    8BE5            mov     esp, ebp</div><div class="line">01151E3C    5D              pop     ebp</div><div class="line">01151E3D    C3              retn</div><div class="line">01151E3E    6A 00           push    0x0</div><div class="line">01151E40    E8 6C2D0000     call    01154BB1</div></pre></td></tr></table></figure></p>
+<p>以上代码得出注册码必须为7位并且包含字符’b’,’p’<br>再看最后的判断call<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div></pre></td><td class="code"><pre><div class="line">01151870    55              push    ebp</div><div class="line">01151871    8BEC            mov     ebp, esp</div><div class="line">01151873    83EC 54         sub     esp, 0x54</div><div class="line">01151876    A1 14F01601     mov     eax, dword ptr [0x116F014]</div><div class="line">0115187B    33C5            xor     eax, ebp</div><div class="line">0115187D    8945 FC         mov     dword ptr [ebp-0x4], eax</div><div class="line">01151880    53              push    ebx</div><div class="line">01151881    56              push    esi</div><div class="line">01151882    57              push    edi</div><div class="line">01151883    6A 36           push    0x36</div><div class="line">01151885    8D45 B0         lea     eax, dword ptr [ebp-0x50]</div><div class="line">01151888    8BD9            mov     ebx, ecx</div><div class="line">0115188A    6A 00           push    0x0</div><div class="line">0115188C    50              push    eax</div><div class="line">0115188D    8BFA            mov     edi, edx</div><div class="line">0115188F    895D AC         mov     dword ptr [ebp-0x54], ebx</div><div class="line">01151892    E8 39210000     call    &lt;memset&gt;</div><div class="line">01151897    83C4 0C         add     esp, 0xC</div><div class="line">0115189A    8D4D E8         lea     ecx, dword ptr [ebp-0x18]</div><div class="line">0115189D    B8 30000000     mov     eax, 0x30</div><div class="line">011518A2    66:8901         mov     word ptr [ecx], ax</div><div class="line">011518A5    8D49 02         lea     ecx, dword ptr [ecx+0x2]</div><div class="line">011518A8    40              inc     eax</div><div class="line">011518A9    83F8 39         cmp     eax, 0x39</div><div class="line">011518AC  ^ 7E F4           jle     short 011518A2                   ; 0-9</div><div class="line">011518AE    B8 61000000     mov     eax, 0x61</div><div class="line">011518B3    8D4D B0         lea     ecx, dword ptr [ebp-0x50]</div><div class="line">011518B6    66:8901         mov     word ptr [ecx], ax</div><div class="line">011518B9    8D49 02         lea     ecx, dword ptr [ecx+0x2]</div><div class="line">011518BC    40              inc     eax</div><div class="line">011518BD    83F8 7A         cmp     eax, 0x7A</div><div class="line">011518C0  ^ 7E F4           jle     short 011518B6                   ; a-z</div><div class="line">011518C2    33D2            xor     edx, edx</div><div class="line">011518C4    8D45 B0         lea     eax, dword ptr [ebp-0x50]</div><div class="line">011518C7    66:3955 B0      cmp     word ptr [ebp-0x50], dx</div><div class="line">011518CB    74 0D           je      short 011518DA</div><div class="line">011518CD    0F1F            ???                                      ; 未知命令</div><div class="line">011518CF    008D 40024266   add     byte ptr [ebp+0x66420240], cl</div><div class="line">011518D5    8338 00         cmp     dword ptr [eax], 0x0</div><div class="line">011518D8  ^ 75 F6           jnz     short 011518D0</div><div class="line">011518DA    33C9            xor     ecx, ecx</div><div class="line">011518DC    85D2            test    edx, edx</div><div class="line">011518DE    74 1C           je      short 011518FC</div><div class="line">011518E0    0FB7444D B0     movzx   eax, word ptr [ebp+ecx*2-0x50]</div><div class="line">011518E5    83F8 61         cmp     eax, 0x61</div><div class="line">011518E8    72 0D           jb      short 011518F7</div><div class="line">011518EA    83F8 7A         cmp     eax, 0x7A</div><div class="line">011518ED    77 08           ja      short 011518F7</div><div class="line">011518EF    83C0 E0         add     eax, -0x20</div><div class="line">011518F2    66:89444D B0    mov     word ptr [ebp+ecx*2-0x50], ax</div><div class="line">011518F7    41              inc     ecx</div><div class="line">011518F8    3BCA            cmp     ecx, edx</div><div class="line">011518FA  ^ 72 E4           jb      short 011518E0</div><div class="line">011518FC    33C9            xor     ecx, ecx</div><div class="line">011518FE    8BC7            mov     eax, edi</div><div class="line">01151900    85FF            test    edi, edi</div><div class="line">01151902    74 76           je      short 0115197A</div><div class="line">01151904    66:390F         cmp     word ptr [edi], cx</div><div class="line">01151907    74 11           je      short 0115191A</div><div class="line">01151909    0F1F            ???                                      ; 未知命令</div><div class="line">0115190B    8000 00         add     byte ptr [eax], 0x0</div><div class="line">0115190E    0000            add     byte ptr [eax], al</div><div class="line">01151910    8D40 02         lea     eax, dword ptr [eax+0x2]</div><div class="line">01151913    41              inc     ecx</div><div class="line">01151914    66:8338 00      cmp     word ptr [eax], 0x0</div><div class="line">01151918  ^ 75 F6           jnz     short 01151910</div><div class="line">0115191A    33C0            xor     eax, eax</div><div class="line">0115191C    85C9            test    ecx, ecx</div><div class="line">0115191E    74 22           je      short 01151942</div><div class="line">01151920    83F8 02         cmp     eax, 0x2</div><div class="line">01151923    73 07           jnb     short 0115192C</div><div class="line">01151925    66:833447 0F    xor     word ptr [edi+eax*2], 0xF</div><div class="line">0115192A    EB 11           jmp     short 0115193D</div><div class="line">0115192C    83F8 04         cmp     eax, 0x4</div><div class="line">0115192F    73 07           jnb     short 01151938</div><div class="line">01151931    66:833447 50    xor     word ptr [edi+eax*2], 0x50</div><div class="line">01151936    EB 05           jmp     short 0115193D</div><div class="line">01151938    66:833447 42    xor     word ptr [edi+eax*2], 0x42</div><div class="line">0115193D    40              inc     eax</div><div class="line">0115193E    3BC1            cmp     eax, ecx</div><div class="line">01151940  ^ 72 DE           jb      short 01151920</div><div class="line">01151942    33D2            xor     edx, edx</div><div class="line">01151944    8BC7            mov     eax, edi</div><div class="line">01151946    66:3917         cmp     word ptr [edi], dx</div><div class="line">01151949    74 0F           je      short 0115195A</div><div class="line">0115194B    0F1F            ???                                      ; 未知命令</div><div class="line">0115194D    44              inc     esp</div><div class="line">0115194E    0000            add     byte ptr [eax], al</div><div class="line">01151950    8D40 02         lea     eax, dword ptr [eax+0x2]</div><div class="line">01151953    42              inc     edx</div><div class="line">01151954    66:8338 00      cmp     word ptr [eax], 0x0</div><div class="line">01151958  ^ 75 F6           jnz     short 01151950</div><div class="line">0115195A    33C9            xor     ecx, ecx</div><div class="line">0115195C    85D2            test    edx, edx</div><div class="line">0115195E    74 1A           je      short 0115197A</div><div class="line">01151960    0FB7044F        movzx   eax, word ptr [edi+ecx*2]</div><div class="line">01151964    83F8 61         cmp     eax, 0x61</div><div class="line">01151967    72 0C           jb      short 01151975</div><div class="line">01151969    83F8 7A         cmp     eax, 0x7A</div><div class="line">0115196C    77 07           ja      short 01151975</div><div class="line">0115196E    83C0 E0         add     eax, -0x20</div><div class="line">01151971    66:89044F       mov     word ptr [edi+ecx*2], ax</div><div class="line">01151975    41              inc     ecx</div><div class="line">01151976    3BCA            cmp     ecx, edx</div><div class="line">01151978  ^ 72 E6           jb      short 01151960</div><div class="line">0115197A    33F6            xor     esi, esi</div><div class="line">0115197C    0F57C0          xorps   xmm0, xmm0</div><div class="line">0115197F    66:0FD6         ???                                      ; 未知命令</div><div class="line">01151982    45              inc     ebp</div><div class="line">01151983    F0:66:8975 F8   lock mov word ptr [ebp-0x8], si          ; 不允许锁定前缀</div><div class="line">01151988    66:3937         cmp     word ptr [edi], si</div><div class="line">0115198B    74 48           je      short 011519D5</div><div class="line">0115198D    66:8B4D B0      mov     cx, word ptr [ebp-0x50]</div><div class="line">01151991    8D5D F0         lea     ebx, dword ptr [ebp-0x10]</div><div class="line">01151994    8BC7            mov     eax, edi</div><div class="line">01151996    66:85C9         test    cx, cx</div><div class="line">01151999    74 2C           je      short 011519C7</div><div class="line">0115199B    0FB710          movzx   edx, word ptr [eax]</div><div class="line">0115199E    8D4D B0         lea     ecx, dword ptr [ebp-0x50]</div><div class="line">011519A1    33C0            xor     eax, eax</div><div class="line">011519A3    66:3B11         cmp     dx, word ptr [ecx]</div><div class="line">011519A6    74 10           je      short 011519B8</div><div class="line">011519A8    40              inc     eax</div><div class="line">011519A9    8D4D B0         lea     ecx, dword ptr [ebp-0x50]</div><div class="line">011519AC    66:833C41 00    cmp     word ptr [ecx+eax*2], 0x0</div><div class="line">011519B1    8D0C41          lea     ecx, dword ptr [ecx+eax*2]</div><div class="line">011519B4  ^ 75 ED           jnz     short 011519A3</div><div class="line">011519B6    EB 0B           jmp     short 011519C3</div><div class="line">011519B8    66:8B4445 B0    mov     ax, word ptr [ebp+eax*2-0x50]</div><div class="line">011519BD    66:8903         mov     word ptr [ebx], ax</div><div class="line">011519C0    83C3 02         add     ebx, 0x2</div><div class="line">011519C3    66:8B4D B0      mov     cx, word ptr [ebp-0x50]</div><div class="line">011519C7    46              inc     esi</div><div class="line">011519C8    66:833C77 00    cmp     word ptr [edi+esi*2], 0x0</div><div class="line">011519CD    8D0477          lea     eax, dword ptr [edi+esi*2]</div><div class="line">011519D0  ^ 75 C4           jnz     short 01151996</div><div class="line">011519D2    8B5D AC         mov     ebx, dword ptr [ebp-0x54]</div><div class="line">011519D5    33C9            xor     ecx, ecx</div><div class="line">011519D7    8D45 F0         lea     eax, dword ptr [ebp-0x10]</div><div class="line">011519DA    66:394D F0      cmp     word ptr [ebp-0x10], cx</div><div class="line">011519DE    74 59           je      short 01151A39</div><div class="line">011519E0    8D40 02         lea     eax, dword ptr [eax+0x2]</div><div class="line">011519E3    41              inc     ecx</div><div class="line">011519E4    66:8338 00      cmp     word ptr [eax], 0x0</div><div class="line">011519E8  ^ 75 F6           jnz     short 011519E0</div><div class="line">011519EA    83F9 02         cmp     ecx, 0x2</div><div class="line">011519ED    75 4A           jnz     short 01151A39</div><div class="line">011519EF    33C0            xor     eax, eax</div><div class="line">011519F1    C745 F0 3100350&gt;mov     dword ptr [ebp-0x10], 0x350031</div><div class="line">011519F8    C745 F4 5000420&gt;mov     dword ptr [ebp-0xC], 0x420050</div><div class="line">011519FF    8D77 04         lea     esi, dword ptr [edi+0x4]</div><div class="line">01151A02    66:8945 F8      mov     word ptr [ebp-0x8], ax</div><div class="line">01151A06    33C9            xor     ecx, ecx</div><div class="line">01151A08    0F1F            ???                                      ; 未知命令</div><div class="line">01151A0A    8400            test    byte ptr [eax], al</div><div class="line">01151A0C    0000            add     byte ptr [eax], al</div><div class="line">01151A0E    0000            add     byte ptr [eax], al</div><div class="line">01151A10    66:8B444D F0    mov     ax, word ptr [ebp+ecx*2-0x10]</div><div class="line">01151A15    66:3B06         cmp     ax, word ptr [esi]</div><div class="line">01151A18    75 1F           jnz     short 01151A39</div><div class="line">01151A1A    41              inc     ecx</div><div class="line">01151A1B    83C6 02         add     esi, 0x2</div><div class="line">01151A1E    83F9 04         cmp     ecx, 0x4</div><div class="line">01151A21  ^ 72 ED           jb      short 01151A10</div><div class="line">01151A23    8BD7            mov     edx, edi</div><div class="line">01151A25    8BCB            mov     ecx, ebx</div><div class="line">01151A27    E8 14FDFFFF     call    01151740         ; 这里是最后判断的call，</div><div class="line">01151A2C    6A 00           push    0x0</div><div class="line">01151A2E    85C0            test    eax, eax</div><div class="line">01151A30    74 09           je      short 01151A3B</div><div class="line">01151A32    68 0B040000     push    0x40B</div><div class="line">01151A37    EB 07           jmp     short 01151A40</div><div class="line">01151A39    6A 00           push    0x0</div><div class="line">01151A3B    68 0A040000     push    0x40A</div><div class="line">01151A40    68 11010000     push    0x111</div><div class="line">01151A45    FF73 04         push    dword ptr [ebx+0x4]</div><div class="line">01151A48    FF15 54811601   call    dword ptr [&lt;&amp;USER32.PostMessageW&gt;; user32.PostMessageW</div></pre></td></tr></table></figure></p>
+<p>以上代码比如初始化0-9,a-z，注册码转换成大写，提取出注册码里所有的字母，纯属多余<br>接下去直接看里面最后的call<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">01151810   &gt; /66:8B01       mov     ax, word ptr [ecx]</div><div class="line">01151813   . |66:3B040E     cmp     ax, word ptr [esi+ecx]           ;  判断第1,2位是否为&apos;12&apos;</div><div class="line">01151817   . |75 42         jnz     short 0115185B</div><div class="line">01151819   . |83C2 06       add     edx, 0x6</div><div class="line">0115181C   . |83C1 02       add     ecx, 0x2</div><div class="line">0115181F   . |83FA 39       cmp     edx, 0x39</div><div class="line">01151822   .^\7E EC         jle     short 01151810</div><div class="line">01151824   .  0FB74F 12     movzx   ecx, word ptr [edi+0x12]    ； 第i位字符+第1位字符是否为0x63（设计不合理?）</div><div class="line">01151828   .  0FB703        movzx   eax, word ptr [ebx]</div><div class="line">0115182B   .  03C8          add     ecx, eax</div><div class="line">0115182D   .  83F9 63       cmp     ecx, 0x63</div><div class="line">01151830   .  75 29         jnz     short 0115185B</div><div class="line">01151832   .  8B45 B4       mov     eax, dword ptr [ebp-0x4C]</div><div class="line">01151835   .  0FB74F 0C     movzx   ecx, word ptr [edi+0xC]</div><div class="line">01151839   .  0308          add     ecx, dword ptr [eax]</div><div class="line">0115183B   .  8B45 B0       mov     eax, dword ptr [ebp-0x50]</div><div class="line">0115183E   .  0FB700        movzx   eax, word ptr [eax]</div><div class="line">01151841   .  3BC1          cmp     eax, ecx</div><div class="line">01151843   .  75 16         jnz     short 0115185B    ; 这里判断注册码最后一位是否等于用&apos;123456789&apos;替换了注册码的n位之后的字符判断的第0x0c位+n是否相等</div><div class="line">01151845   .  5F            pop     edi</div><div class="line">01151846   .  5E            pop     esi</div><div class="line">01151847   .  B8 01000000   mov     eax, 0x1</div><div class="line">0115184C   .  5B            pop     ebx</div></pre></td></tr></table></figure></p>
+<p>以上分析完成得到一组注册码1215pb8<br>1）包含字符’b’’’p’<br>2)  7位长度<br>3)  第1、2位为’1’’2’<br>4） 第0位字符’1’(0x30)+第n位字符(计数所在位)’2’(0x32) = 0x63<br>5)  第3、4、5、6位为’15pb’<br>6)  最后1位为‘7’+计数</p>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <div>
+     
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/09/re_ida/" rel="next" title="RE_IDA_OD的常用小技巧">
+                <i class="fa fa-chevron-left"></i> RE_IDA_OD的常用小技巧
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/09/re_thread_and_process/" rel="prev" title="线程与进程">
+                线程与进程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="662ym8qmGBMUlts3YzqMR1VS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/saucxs/" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/ese-76-83/activities" target="_blank" title="Zhihu">
+                    
+                      <i class="fa fa-fw fa-drupal"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/5899672336/profile?topnav=1&wvr=6/&is_all=1" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.betamao.me/" title="betamao" target="_blank">betamao</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://err0rzz.github.io/" title="err0rzz" target="_blank">err0rzz</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://veritas501.space/" title="Veritas501" target="_blank">Veritas501</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.jianshu.com/u/91d9fc4789e3" title="Killshadow" target="_blank">Killshadow</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://lalajun.github.io/" title="lalajun" target="_blank">lalajun</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://bestwing.me/" title="swing" target="_blank">swing</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://b3t4m3ee.github.io/" title="b3t4m3ee" target="_blank">b3t4m3ee</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://myblackmanba.github.io/" title="black" target="_blank">black</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.baidu.com" title="百度一下" target="_blank">百度一下</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Re1"><span class="nav-number">1.</span> <span class="nav-text">Re1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Re2"><span class="nav-number">2.</span> <span class="nav-text">Re2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、题目"><span class="nav-number">2.1.</span> <span class="nav-text">1、题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、分析"><span class="nav-number">2.2.</span> <span class="nav-text">2、分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3、Re3"><span class="nav-number">3.</span> <span class="nav-text">3、Re3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、题目-1"><span class="nav-number">3.1.</span> <span class="nav-text">1、题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、分析"><span class="nav-number">3.2.</span> <span class="nav-text">3、分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4、Re4"><span class="nav-number">4.</span> <span class="nav-text">4、Re4</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、题目-2"><span class="nav-number">4.1.</span> <span class="nav-text">1、题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、分析-1"><span class="nav-number">4.2.</span> <span class="nav-text">3、分析</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共67.1k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'zcWjlG57Emc5jAlfR1pIEPVm-gzGzoHsz',
+        appKey: 'Mt81aRWQozkXMVGeSgXGXELQ',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === '') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascript" src="/js/src/particle.js" count="50" zindex="-2" opacity="1" color="0,104,183"></script>
