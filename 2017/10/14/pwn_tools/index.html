@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fki08gsy4bj30fv08nabr.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fki09ch88bj30gn0c80tp.jpg">
 <meta property="og:image" content="https://i.imgur.com/DVWbSy1.png">
-<meta property="og:updated_time" content="2018-05-06T05:21:15.552Z">
+<meta property="og:updated_time" content="2018-05-09T03:35:20.190Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PWN从开始到开始--pwn题的一些小技巧">
 <meta name="twitter:description" content="pwn题必备的套路">
@@ -194,6 +194,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -394,7 +404,7 @@
 <p>或者<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ipython</div><div class="line">cyclic(<span class="number">200</span>)</div><div class="line">cyclic_find('aapa')</div></pre></td></tr></table></figure></p>
 <p>x64<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fkhzy1yhrgj30eq06eq42.jpg" alt=""></p>
 <h2 id="生成shellcode"><a href="#生成shellcode" class="headerlink" title="生成shellcode"></a>生成shellcode</h2><p>这个联网才可以<br><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fki08gsy4bj30fv08nabr.jpg" alt=""><br>结果如下<br><img src="http://ww3.sinaimg.cn/large/006rgqhqgy1fki09ch88bj30gn0c80tp.jpg" alt=""><br>例子(shellcode):<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">shellcode = </div><div class="line"><span class="string">"\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80"</span></div></pre></td></tr></table></figure></p>
-<h2 id="找内存中函数地址"><a href="#找内存中函数地址" class="headerlink" title="找内存中函数地址"></a>找内存中函数地址</h2><p>这需要程序跑完,在gdb里<br><code>p system</code><br><code>p callsystem</code><br>查看内存<br><code>x \16x 0x482054</code><br><code>x \gx rsp</code></p>
+<h2 id="找内存中函数地址"><a href="#找内存中函数地址" class="headerlink" title="找内存中函数地址"></a>找内存中函数地址</h2><p>这需要程序跑完,在gdb里<br><code>p system</code><br><code>p callsystem</code><br>查看内存<br><code>x\16x 0x482054</code><br><code>stack 100</code><br><code>x\s 0x482054</code><br><code>x \gx rsp</code></p>
 <h2 id="搭建pwn题目"><a href="#搭建pwn题目" class="headerlink" title="搭建pwn题目"></a>搭建pwn题目</h2><p>查看是否开启随机化(不是0则开启)<br><code>cat /proc/sys/kernel/randomize_va_space</code><br>关闭随机化<br><code>echo 0 &gt; /proc/sys/kernel/randomize_va_space</code><br>搭建题目<br><code>socat tcp-l:4000,fork exec:./pwn</code><br>连接测试<br><code>nc 127.0.0.1 4000</code></p>
 <h2 id="coredump"><a href="#coredump" class="headerlink" title="coredump"></a>coredump</h2><p>在/etc/profile中加入以下一行，这将允许生成coredump文件<br><code>ulimit -c unlimited</code><br>在rc.local中加入以下一行，这将使程序崩溃时生成的coredump文件位于/tmp目录下<br><code>echo /tmp/core.%e.%p &gt; /proc/sys/kernel/core_pattern</code><br>调试coredump文件<br><code>gdb ./test test.core</code><br>x64找到溢出地点<br><code>x \100x $esp-100</code></p>
 <h2 id="libc查询-然而我并没有查到"><a href="#libc查询-然而我并没有查到" class="headerlink" title="libc查询(然而我并没有查到)"></a>libc查询(然而我并没有查到)</h2><p><a href="http://libcdb.com/" target="_blank" rel="external">http://libcdb.com/</a></p>
