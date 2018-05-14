@@ -88,10 +88,13 @@
 <meta property="og:site_name" content="ESE&#39;s Note">
 <meta property="og:description" content="前面都在关注恶意代码分析，很少关注恶意代码能够做什么，接下来是熟悉恶意代码最常见的行为特征。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-09T13:20:27.513Z">
+<meta property="og:image" content="https://i.imgur.com/kqdnGkB.png">
+<meta property="og:image" content="https://i.imgur.com/zezjh36.png">
+<meta property="og:updated_time" content="2018-05-14T10:12:15.018Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="恶意代码分析———恶意代码行为">
 <meta name="twitter:description" content="前面都在关注恶意代码分析，很少关注恶意代码能够做什么，接下来是熟悉恶意代码最常见的行为特征。">
+<meta name="twitter:image" content="https://i.imgur.com/kqdnGkB.png">
 
 
 
@@ -400,7 +403,9 @@
 <h3 id="特洛伊木马化-Trojanized-系统二进制文件"><a href="#特洛伊木马化-Trojanized-系统二进制文件" class="headerlink" title="特洛伊木马化(Trojanized)系统二进制文件"></a>特洛伊木马化(Trojanized)系统二进制文件</h3><p>  恶意代码通常修改一个系统文件的函数入口点，使它跳转到恶意代码。这些修改补丁覆盖函数的开始代码或者覆盖其他一些并不影响特洛伊木马化dll正常操作的代码。为了不影响二进制文件的正常操作，恶意的代码被加入到可执行的一个空节中。插入的代码通常用来加载恶意代码。加载恶意代码后，为了让dll的操作与插入前的代码一致，代码会跳转回原始的dll程序。</p>
 <h3 id="dll加载顺序劫持"><a href="#dll加载顺序劫持" class="headerlink" title="dll加载顺序劫持"></a>dll加载顺序劫持</h3><p>dll加载顺序劫持是一种简单隐蔽的技术，它允许恶意代码编写者在不使用注册表项或者特洛伊二进制文件的前提下创建一个存活的、恶意的dll程序。<br>windows xp上加载dll的默认搜索顺序:<br>1、加载应用程序的目录<br>2、当前目录<br>3、系统目录<br>4、16位子系统的系统目录<br>5、Windows目录<br>6、path环境变量里列出的目录。</p>
 <h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><h3 id="使用SeDebugPrivilege"><a href="#使用SeDebugPrivilege" class="headerlink" title="使用SeDebugPrivilege"></a>使用SeDebugPrivilege</h3><p>以用户权限运行的进程并没有任意访问系统一切资源的权限，也不能拥有这种权限。例如在远程进程中调用类似于TerminateProcess和CreateRemoteThread函数。恶意代码获得访问这些函数的权限的唯一方法是通过设置访问令牌的权限来开启SeDebugPrivilege。<br>SeDebugPrivilege特权作为一个系统级别调试的工具被创建，但是恶意代码编写者用它来获取 系统进程拥有的所有权限(默认情况本地管理员账户才有权限)。</p>
-<h3 id="隐藏它的踪迹-用户态的Rootkit"><a href="#隐藏它的踪迹-用户态的Rootkit" class="headerlink" title="隐藏它的踪迹-用户态的Rootkit"></a>隐藏它的踪迹-用户态的Rootkit</h3><p>常用来隐藏恶意代码行为的工具被称为Rootkit。Rootkit有多种存在形式，但是大部分Rootkit通过修改操作系统内部的功能来工作。这种修改可以为恶意代码的文件、进程、网络连接以及其他资源对其他程序隐藏。<br>一些Rootkit会修改用户态的应用程序，但是大部分会修改内核，因为保护机制都运行在内核层。</p>
+<h2 id="隐藏它的踪迹-用户态的Rootkit"><a href="#隐藏它的踪迹-用户态的Rootkit" class="headerlink" title="隐藏它的踪迹-用户态的Rootkit"></a>隐藏它的踪迹-用户态的Rootkit</h2><p>常用来隐藏恶意代码行为的工具被称为Rootkit。Rootkit有多种存在形式，但是大部分Rootkit通过修改操作系统内部的功能来工作。这种修改可以为恶意代码的文件、进程、网络连接以及其他资源对其他程序隐藏。<br>一些Rootkit会修改用户态的应用程序，但是大部分会修改内核，因为保护机制都运行在内核层。</p>
+<h3 id="IAT-Hook"><a href="#IAT-Hook" class="headerlink" title="IAT Hook"></a>IAT Hook</h3><p>IAT Hook是用户空间中一种经典的Rootkit方法，它隐藏本地系统中的文件、进程以及网络连接，这种挂钩方法是修改导入地址表(IAT)或者导出地址表(EAT)。<br>一个IAT Hook的例子如下:正常调用函数与hook函数，修改IAT<br><img src="https://i.imgur.com/kqdnGkB.png" alt=""><br>上面的路径是正常执行流，下面路径是加入Rootkit后的执行流。不过IAT Hook是一种过时且容易探测的挂钩方式，因此现在的Rootkit都使用更高级的inline Hook方法代替。</p>
+<h3 id="Inline-Hook"><a href="#Inline-Hook" class="headerlink" title="Inline Hook"></a>Inline Hook</h3><p>Inline Hook是通过覆盖导入dll中API函数代码来实现的，所以它必须等到dll被加载后才能执行。IAT Hook只简单修改函数指针，但是Inline Hook将修改函数实际的函数代码。<br>恶意Rootkit通常用一个跳转指令替换函数的开始代码来执行Inline Hook，这个跳转指令使Rootkit插入的恶意代码获取执行。另外，Rootkit还可以通过改变函数的代码来破坏它或者是改变它，而不是跳到恶意代码。<br>例如：一个Inline Hook函数ZwDeviceIoControlFile的例子，应用程序如Netstat,用这个函数来提取系统的网络信息。<br><img src="https://i.imgur.com/zezjh36.png" alt=""><br>现在，ZwDeviceIoControlFile会先调用Rootkit的函数，Rootkit的挂钩函数移除所有发送到目的端口443的流量以后，再调用真实的ZwDeviceIoControlFile函数，使一切操作与没有安装挂钩之前一样继续进行。</p>
 
       
     </div>
@@ -562,7 +567,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -651,6 +656,10 @@
                   </li>
                 
                   <li class="links-of-blogroll-item">
+                    <a href="http://skysec.top/" title="一叶飘零" target="_blank">一叶飘零</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
                     <a href="https://lalajun.github.io/" title="lalajun" target="_blank">lalajun</a>
                   </li>
                 
@@ -664,10 +673,6 @@
                 
                   <li class="links-of-blogroll-item">
                     <a href="https://myblackmanba.github.io/" title="black" target="_blank">black</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.baidu.com" title="百度一下" target="_blank">百度一下</a>
                   </li>
                 
               </ul>
@@ -689,7 +694,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#功能"><span class="nav-number">1.</span> <span class="nav-text">功能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载器和启动器"><span class="nav-number">1.1.</span> <span class="nav-text">下载器和启动器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后门-backdoor"><span class="nav-number">1.2.</span> <span class="nav-text">后门(backdoor)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反向shell"><span class="nav-number">1.2.1.</span> <span class="nav-text">反向shell</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Netcat反向shell"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Netcat反向shell</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#windwos反向shell"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">windwos反向shell</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#僵尸网络"><span class="nav-number">1.2.2.</span> <span class="nav-text">僵尸网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程控制工具与僵尸网络的比较"><span class="nav-number">1.2.3.</span> <span class="nav-text">远程控制工具与僵尸网络的比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登录凭证窃密器"><span class="nav-number">1.3.</span> <span class="nav-text">登录凭证窃密器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GINA-验证界面-拦截"><span class="nav-number">1.3.1.</span> <span class="nav-text">GINA(验证界面)拦截</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#口令哈希转储"><span class="nav-number">1.3.2.</span> <span class="nav-text">口令哈希转储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存活机制"><span class="nav-number">1.4.</span> <span class="nav-text">存活机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#windows注册表"><span class="nav-number">1.4.1.</span> <span class="nav-text">windows注册表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#工具"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AppInit-dll"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">AppInit_dll</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Winlogon-Notify"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">Winlogon Notify</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特洛伊木马化-Trojanized-系统二进制文件"><span class="nav-number">1.4.2.</span> <span class="nav-text">特洛伊木马化(Trojanized)系统二进制文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dll加载顺序劫持"><span class="nav-number">1.4.3.</span> <span class="nav-text">dll加载顺序劫持</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提权"><span class="nav-number">1.5.</span> <span class="nav-text">提权</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用SeDebugPrivilege"><span class="nav-number">1.5.1.</span> <span class="nav-text">使用SeDebugPrivilege</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐藏它的踪迹-用户态的Rootkit"><span class="nav-number">1.5.2.</span> <span class="nav-text">隐藏它的踪迹-用户态的Rootkit</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#功能"><span class="nav-number">1.</span> <span class="nav-text">功能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载器和启动器"><span class="nav-number">1.1.</span> <span class="nav-text">下载器和启动器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后门-backdoor"><span class="nav-number">1.2.</span> <span class="nav-text">后门(backdoor)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反向shell"><span class="nav-number">1.2.1.</span> <span class="nav-text">反向shell</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Netcat反向shell"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Netcat反向shell</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#windwos反向shell"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">windwos反向shell</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#僵尸网络"><span class="nav-number">1.2.2.</span> <span class="nav-text">僵尸网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程控制工具与僵尸网络的比较"><span class="nav-number">1.2.3.</span> <span class="nav-text">远程控制工具与僵尸网络的比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登录凭证窃密器"><span class="nav-number">1.3.</span> <span class="nav-text">登录凭证窃密器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GINA-验证界面-拦截"><span class="nav-number">1.3.1.</span> <span class="nav-text">GINA(验证界面)拦截</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#口令哈希转储"><span class="nav-number">1.3.2.</span> <span class="nav-text">口令哈希转储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存活机制"><span class="nav-number">1.4.</span> <span class="nav-text">存活机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#windows注册表"><span class="nav-number">1.4.1.</span> <span class="nav-text">windows注册表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#工具"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AppInit-dll"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">AppInit_dll</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Winlogon-Notify"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">Winlogon Notify</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特洛伊木马化-Trojanized-系统二进制文件"><span class="nav-number">1.4.2.</span> <span class="nav-text">特洛伊木马化(Trojanized)系统二进制文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dll加载顺序劫持"><span class="nav-number">1.4.3.</span> <span class="nav-text">dll加载顺序劫持</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提权"><span class="nav-number">1.5.</span> <span class="nav-text">提权</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用SeDebugPrivilege"><span class="nav-number">1.5.1.</span> <span class="nav-text">使用SeDebugPrivilege</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐藏它的踪迹-用户态的Rootkit"><span class="nav-number">1.6.</span> <span class="nav-text">隐藏它的踪迹-用户态的Rootkit</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IAT-Hook"><span class="nav-number">1.6.1.</span> <span class="nav-text">IAT Hook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inline-Hook"><span class="nav-number">1.6.2.</span> <span class="nav-text">Inline Hook</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -733,7 +738,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共69.1k字</span>
+  <span class="post-count">博客全站共69.4k字</span>
 </div>
 
         
