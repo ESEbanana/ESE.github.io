@@ -110,12 +110,13 @@
 <meta property="og:site_name" content="ESE&#39;s Note">
 <meta property="og:description" content="RE的一些基础,逆向题目，需要大胆猜测。接下来就是小心验证。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/qSlypYH.png">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fkd7ylncezj30e50k4ta1.jpg">
-<meta property="og:updated_time" content="2018-05-15T00:34:10.795Z">
+<meta property="og:updated_time" content="2018-05-21T10:41:25.795Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Re_开始到开始">
 <meta name="twitter:description" content="RE的一些基础,逆向题目，需要大胆猜测。接下来就是小心验证。">
-<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/006rgqhqgy1fkd7ylncezj30e50k4ta1.jpg">
+<meta name="twitter:image" content="https://i.imgur.com/qSlypYH.png">
 
 
 
@@ -407,6 +408,7 @@
         <p>RE的一些基础,逆向题目，需要大胆猜测。接下来就是小心验证。<br><a id="more"></a></p>
 <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>RE是逆向工程的简称（自己认为而已），逆向工程（又称逆向技术），是一种产品设计技术再现过程，即对一项目标产品进行逆向分析及研究，从而演绎并得出该产品的处理流程、组织结构、功能特性及技术规格等设计要素，以制作出功能相近，但又不完全一样的产品。逆向工程源于商业及军事领域中的硬件分析。其主要目的是在不能轻易获得必要的生产信息的情况下，直接从成品分析，推导出产品的设计原理。</p>
 <h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><p>1、IDA<br>2、Ollydbg<br>3、PEID</p>
+<h1 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h1><p><img src="https://i.imgur.com/qSlypYH.png" alt=""></p>
 <h1 id="逆向工程入门学习（转载）"><a href="#逆向工程入门学习（转载）" class="headerlink" title="逆向工程入门学习（转载）"></a>逆向工程入门学习（转载）</h1><p>汇编是逆向工程的基础，这篇文章讲解并不深入但是覆盖了你刚开始学习汇编需要了解的所有基础知识！汇编语言是一切程序的起点和终点，毕竟所有的高级语言都是建立在汇编基础之上的。在许多高级语言中我们都需要相对明确的语法，但是在汇编中，我们会使用一些单词缩写和数字来表达程序。</p>
 <h2 id="I"><a href="#I" class="headerlink" title="I."></a>I.</h2><p> 单元、位和字节<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> ·BIT（位） - 电脑数据量的最小单元，可以是0或者1。</div><div class="line">例：00000001 = 1；00000010 = 2；00000011 = 3     </div><div class="line">·BYTE（字节） - 一个字节包含8个位，所以一个字节最大值是255(0-255)。为了方便阅读，我们通常使用16进制来表示。</div><div class="line">·WORD（字） - 一个字由两个字节组成，共有16位。一个字的最大值是0FFFFh (或者是 65535d) (h代表16进制，d代表10进制)。</div><div class="line">·DOUBLE WORD（双字DWORD） - 一个双字包含两个字，共有32位。最大值为0FFFFFFFF (或者是 4294967295d)。</div><div class="line">·KILOBYTE（千字） - 千字节并不是1000个字节，而是1024 (32*32) 个字节。</div><div class="line">·MEGABYTE - 兆字节同样也不是一兆个字节，而是1024*1024=1,048,576 个字节</div></pre></td></tr></table></figure></p>
 <h2 id="II"><a href="#II" class="headerlink" title="II."></a>II.</h2><p> 寄存器</p>
@@ -586,7 +588,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -597,7 +599,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -713,7 +715,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工具"><span class="nav-number">2.</span> <span class="nav-text">工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#逆向工程入门学习（转载）"><span class="nav-number">3.</span> <span class="nav-text">逆向工程入门学习（转载）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I"><span class="nav-number">3.1.</span> <span class="nav-text">I.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II"><span class="nav-number">3.2.</span> <span class="nav-text">II.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III-标志寄存器"><span class="nav-number">3.3.</span> <span class="nav-text">III. 标志寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IV-段偏移"><span class="nav-number">3.4.</span> <span class="nav-text">IV. 段偏移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VI-指令-字母表排序"><span class="nav-number">3.5.</span> <span class="nav-text">VI. 指令 (字母表排序)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深入的必经之路"><span class="nav-number">3.6.</span> <span class="nav-text">深入的必经之路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#学习途径"><span class="nav-number">4.</span> <span class="nav-text">学习途径</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#练习"><span class="nav-number">4.1.</span> <span class="nav-text">练习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各种论坛"><span class="nav-number">4.2.</span> <span class="nav-text">各种论坛</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐书籍"><span class="nav-number">4.3.</span> <span class="nav-text">推荐书籍:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#只想说，需要耐心。多百度-多逛博客，多认识点大师傅"><span class="nav-number">4.4.</span> <span class="nav-text">只想说，需要耐心。多百度,多逛博客，多认识点大师傅</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工具"><span class="nav-number">2.</span> <span class="nav-text">工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构"><span class="nav-number">3.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#逆向工程入门学习（转载）"><span class="nav-number">4.</span> <span class="nav-text">逆向工程入门学习（转载）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I"><span class="nav-number">4.1.</span> <span class="nav-text">I.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II"><span class="nav-number">4.2.</span> <span class="nav-text">II.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III-标志寄存器"><span class="nav-number">4.3.</span> <span class="nav-text">III. 标志寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IV-段偏移"><span class="nav-number">4.4.</span> <span class="nav-text">IV. 段偏移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VI-指令-字母表排序"><span class="nav-number">4.5.</span> <span class="nav-text">VI. 指令 (字母表排序)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深入的必经之路"><span class="nav-number">4.6.</span> <span class="nav-text">深入的必经之路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#学习途径"><span class="nav-number">5.</span> <span class="nav-text">学习途径</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#练习"><span class="nav-number">5.1.</span> <span class="nav-text">练习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各种论坛"><span class="nav-number">5.2.</span> <span class="nav-text">各种论坛</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐书籍"><span class="nav-number">5.3.</span> <span class="nav-text">推荐书籍:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#只想说，需要耐心。多百度-多逛博客，多认识点大师傅"><span class="nav-number">5.4.</span> <span class="nav-text">只想说，需要耐心。多百度,多逛博客，多认识点大师傅</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -757,7 +759,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共73.5k字</span>
+  <span class="post-count">博客全站共75.6k字</span>
 </div>
 
         
