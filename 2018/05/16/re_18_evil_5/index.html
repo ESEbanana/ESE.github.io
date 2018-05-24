@@ -110,7 +110,7 @@
 <meta property="og:site_name" content="ESE&#39;s Note">
 <meta property="og:description" content="恶意代码大量使用网络连接，我们将解释如何开发基于网络的有效应对措施。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-19T01:21:56.966Z">
+<meta property="og:updated_time" content="2018-05-24T07:31:33.911Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="恶意代码分析———恶意代码的网络特征">
 <meta name="twitter:description" content="恶意代码大量使用网络连接，我们将解释如何开发基于网络的有效应对措施。">
@@ -406,7 +406,17 @@
 <h1 id="网络应对措施"><a href="#网络应对措施" class="headerlink" title="网络应对措施"></a>网络应对措施</h1><p>网络行为的基本属性包含IP地址、TCP、与UDP端口、域名，以及流量内容等。因此，网络和安全设备可以利用它们，来提供网络应对措施，根据IP地址和端口，防火墙和路由器可以限制对网络的访问。配置DNS服务器，可以将一个已知的恶意域名重定向到内部主机，这被称为sinkhole技术。配置代理服务器，可以检测或者阻止访问某些域名。<br>入侵检测系统(IDS)、入侵防御系统(IPS),以及电子邮寄和web代理等其他安全应用。</p>
 <h2 id="在原生环境中观察恶意代码"><a href="#在原生环境中观察恶意代码" class="headerlink" title="在原生环境中观察恶意代码"></a>在原生环境中观察恶意代码</h2><p>恶意代码分析的第一步不应该是在实验环境中运行恶意代码，也不应该是解刨恶意代码分析它的反汇编代码。与之相反的是，你应该首先查看已经获得的关于恶意代码的所有数据。恶意代码分析师经常是得到一个没有任何上下文的恶意代码样本(或是可疑的可执行文件)，但是在大多数情况下，你可以获取额外的更多数据。开始恶意代码网络行为分析的最好方法是挖掘恶意代码已经生成的日志、报警以及网络包。<br>来自真实网络的信息比来自实验环境的信息，有着明显的优势。<br>1、真实环境捕获的信息将提供恶意应用程序真实 行为的最佳视图，而恶意代码可以被编程，以加入探测实验环境的能力。<br>2、活跃恶意代码的真实场景信息 能够提供独特的视角，来加快分析过程。真实流量提供了恶意代码在两个端点(客户端和服务器端)之间的通讯信息，然而，在实验环境里，分析者通常只能获取其中一端的信息。而分析恶意代码如何接受内容，比起分析恶意代码如何产生内容，往往会更具有挑战性。因此，双向的样本流量可以帮助分析师加快恶意代码解析<br>3、此外，当你被动地查看信息时，不存在 泄露给攻击者分析活动的风险。</p>
 <h2 id="恶意代码行为的痕迹"><a href="#恶意代码行为的痕迹" class="headerlink" title="恶意代码行为的痕迹"></a>恶意代码行为的痕迹</h2><p>我们在实验环境中运行这个文件，需要时刻注意它的网络行为。<br>1、请求域名<br>2、ip地址<br>3、http的GET请求</p>
-<h2 id="OPSEC-操作安全性"><a href="#OPSEC-操作安全性" class="headerlink" title="OPSEC=操作安全性"></a>OPSEC=操作安全性</h2>
+<h2 id="OPSEC-操作安全性"><a href="#OPSEC-操作安全性" class="headerlink" title="OPSEC=操作安全性"></a>OPSEC=操作安全性</h2><p>当调查恶意代码过程中采取某些行动时，会告诉恶意代码编写者你已经识别出了恶意代码，甚至可能会向攻击者透露你的个人信息。对于攻击者而言，有许多潜在的攻击方法，可以确定出调查活动<br>1、发送带有到某个特定链接的针对性网络钓鱼邮件(也被称为鱼叉式网络钓鱼)，观察试图从期望地理区域之外IP地址发来链接的访问。<br>2、设计一种利用方式，在博客评论中创建一个经过编码的链接，从而有效地创建一个私人的但可以公开访问的感染审计记录。<br>3、在恶意代码中嵌入一个未使用域名，观察对这个域名的解析。<br>4、如果攻击者意识到自己正在被调查，他们可能会改变策略，从而消失得无影无踪。</p>
+<h1 id="安全地调查在线攻击者"><a href="#安全地调查在线攻击者" class="headerlink" title="安全地调查在线攻击者"></a>安全地调查在线攻击者</h1><p>最安全的选择是完全不使用互联网去调查攻击，但是这是不切实际的。</p>
+<h2 id="间接性策略"><a href="#间接性策略" class="headerlink" title="间接性策略"></a>间接性策略</h2><p>一种间接策略是使用某些旨在提供匿名服务机制，如 Tor<br>另一种策略是使用专门的机器来研究，通常是虚拟机。也可以用一些方法来隐藏专用机器的具体位置，如下:<br>1、使用匿名的蜂链接<br>2、通过安全shell(SSH)或者一个虚拟机私有网络(VPN),将你的连接通过远程的基础设施来进行隧道传输。<br>3、使用运行在线云服务中的一个临时远程机器。</p>
+<h2 id="获取IP地址和域名信息"><a href="#获取IP地址和域名信息" class="headerlink" title="获取IP地址和域名信息"></a>获取IP地址和域名信息</h2><p>DomainTools：<a href="http://www.domaintools.com" target="_blank" rel="external">http://www.domaintools.com</a><br>RobTex：<a href="http://www.robtex.com" target="_blank" rel="external">http://www.robtex.com</a><br>BFX DNS logger: <a href="http://www.bfk.de/bfk_dnslogger_en.html" target="_blank" rel="external">http://www.bfk.de/bfk_dnslogger_en.html</a></p>
+<h2 id="基于内容的网络应对措施"><a href="#基于内容的网络应对措施" class="headerlink" title="基于内容的网络应对措施"></a>基于内容的网络应对措施</h2><p>网络基本属性，ip和地址<br>基于内容特征往往更有价值并且作用更加持久，因为它们使用更多基础特征来识别恶意代码。</p>
+<h2 id="结合静态和动态技术分析"><a href="#结合静态和动态技术分析" class="headerlink" title="结合静态和动态技术分析"></a>结合静态和动态技术分析</h2><p>ida为主，其它为辅</p>
+<h1 id="寻找网络操作代码"><a href="#寻找网络操作代码" class="headerlink" title="寻找网络操作代码"></a>寻找网络操作代码</h1><p>评估网络通信的第一步是找到用于执行通信的系统调用。Windows套接字(winsock)中的 部分API是最常用的底层函数。</p>
+<h2 id="了解网络内容的来源"><a href="#了解网络内容的来源" class="headerlink" title="了解网络内容的来源"></a>了解网络内容的来源</h2><p>特征生成中最有价值的元素是恶意代码中的硬编码。<br>1、随机数据<br>2、来源于标准网络库的数据<br>3、来源于恶意代码的硬编码数据<br>4、关于主机及其配置信息的数据<br>5、从其他来源接受数据</p>
+<h2 id="临时数据"><a href="#临时数据" class="headerlink" title="临时数据"></a>临时数据</h2><p>恶意代码运行时会生成一下临时数据，这可能会很有价值。确定编码方式。</p>
+<h1 id="了解攻击者的意图"><a href="#了解攻击者的意图" class="headerlink" title="了解攻击者的意图"></a>了解攻击者的意图</h1><p>1、专注属与两端之间的协议元素<br>2、专注于已知的任何协议元素作为秘钥的部分<br>3、确定流量中不太明显的协议元素</p>
+
       
     </div>
     
@@ -475,8 +485,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/23/re_19_dll_1/" rel="prev" title="dll的编写，调用，分析">
-                dll的编写，调用，分析 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/23/re_20_win_api1/" rel="prev" title="Windows Api第一篇">
+                Windows Api第一篇 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -563,7 +573,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -690,7 +700,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网络应对措施"><span class="nav-number">1.</span> <span class="nav-text">网络应对措施</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在原生环境中观察恶意代码"><span class="nav-number">1.1.</span> <span class="nav-text">在原生环境中观察恶意代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#恶意代码行为的痕迹"><span class="nav-number">1.2.</span> <span class="nav-text">恶意代码行为的痕迹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OPSEC-操作安全性"><span class="nav-number">1.3.</span> <span class="nav-text">OPSEC=操作安全性</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网络应对措施"><span class="nav-number">1.</span> <span class="nav-text">网络应对措施</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在原生环境中观察恶意代码"><span class="nav-number">1.1.</span> <span class="nav-text">在原生环境中观察恶意代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#恶意代码行为的痕迹"><span class="nav-number">1.2.</span> <span class="nav-text">恶意代码行为的痕迹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OPSEC-操作安全性"><span class="nav-number">1.3.</span> <span class="nav-text">OPSEC=操作安全性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安全地调查在线攻击者"><span class="nav-number">2.</span> <span class="nav-text">安全地调查在线攻击者</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#间接性策略"><span class="nav-number">2.1.</span> <span class="nav-text">间接性策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取IP地址和域名信息"><span class="nav-number">2.2.</span> <span class="nav-text">获取IP地址和域名信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于内容的网络应对措施"><span class="nav-number">2.3.</span> <span class="nav-text">基于内容的网络应对措施</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结合静态和动态技术分析"><span class="nav-number">2.4.</span> <span class="nav-text">结合静态和动态技术分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寻找网络操作代码"><span class="nav-number">3.</span> <span class="nav-text">寻找网络操作代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#了解网络内容的来源"><span class="nav-number">3.1.</span> <span class="nav-text">了解网络内容的来源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#临时数据"><span class="nav-number">3.2.</span> <span class="nav-text">临时数据</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#了解攻击者的意图"><span class="nav-number">4.</span> <span class="nav-text">了解攻击者的意图</span></a></li></ol></div>
             
 
           </div>
@@ -734,7 +744,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共75.6k字</span>
+  <span class="post-count">博客全站共77.4k字</span>
 </div>
 
         
