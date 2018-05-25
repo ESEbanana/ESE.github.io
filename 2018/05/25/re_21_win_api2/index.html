@@ -103,26 +103,17 @@
 
 
 
-<meta name="description" content="基于JAVA图形化界面的云端，JAVA云端实现">
+<meta name="description" content="Windows的GDI图形">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于java图形化界面的云端">
-<meta property="og:url" content="http://yoursite.com/2017/09/07/misc_1_java_swing/index.html">
+<meta property="og:title" content="Windows Api第二篇">
+<meta property="og:url" content="http://yoursite.com/2018/05/25/re_21_win_api2/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="基于JAVA图形化界面的云端，JAVA云端实现">
+<meta property="og:description" content="Windows的GDI图形">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjozm52oh6j30fs08x75l.jpg">
-<meta property="og:image" content="https://i.imgur.com/bgX4ERU.png">
-<meta property="og:image" content="https://i.imgur.com/zTbHdTU.png">
-<meta property="og:image" content="https://i.imgur.com/iIKAhWi.png">
-<meta property="og:image" content="https://i.imgur.com/MOrVj10.png">
-<meta property="og:image" content="https://i.imgur.com/nfr90MH.png">
-<meta property="og:image" content="https://i.imgur.com/T5i92Ak.png">
-<meta property="og:image" content="https://i.imgur.com/QOeAArm.png">
-<meta property="og:updated_time" content="2018-05-15T00:33:01.655Z">
+<meta property="og:updated_time" content="2018-05-25T14:37:20.970Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基于java图形化界面的云端">
-<meta name="twitter:description" content="基于JAVA图形化界面的云端，JAVA云端实现">
-<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/006rgqhqgy1fjozm52oh6j30fs08x75l.jpg">
+<meta name="twitter:title" content="Windows Api第二篇">
+<meta name="twitter:description" content="Windows的GDI图形">
 
 
 
@@ -152,12 +143,12 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/07/misc_1_java_swing/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/25/re_21_win_api2/"/>
 
 
 
 
-  <title>基于java图形化界面的云端 | ESE's Note</title>
+  <title>Windows Api第二篇 | ESE's Note</title>
   
 
 
@@ -308,7 +299,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/07/misc_1_java_swing/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/25/re_21_win_api2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -325,7 +316,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">基于java图形化界面的云端</h1>
+          <h1 class="post-title" itemprop="name headline">Windows Api第二篇</h1>
         
 
         <div class="post-meta">
@@ -337,8 +328,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-07T08:49:18+08:00">
-                2017-09-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-25T20:49:18+08:00">
+                2018-05-25
               </time>
             
 
@@ -360,8 +351,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/misc/" itemprop="url" rel="index">
-                    <span itemprop="name">misc</span>
+                  <a href="/categories/re/" itemprop="url" rel="index">
+                    <span itemprop="name">re</span>
                   </a>
                 </span>
 
@@ -378,8 +369,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/07/misc_1_java_swing/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/09/07/misc_1_java_swing/" itemprop="commentCount"></span>
+                <a href="/2018/05/25/re_21_win_api2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/25/re_21_win_api2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -411,17 +402,22 @@
       
 
       
-        <p>基于JAVA图形化界面的云端，JAVA云端实现<br><a id="more"></a></p>
-<h1 id="JAVA云端实现"><a href="#JAVA云端实现" class="headerlink" title="JAVA云端实现"></a>JAVA云端实现</h1><h2 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h2><p> swing图形化界面继承来自AWT图形化界面1、Swing 是一个为Java设计的GUI工具包。Swing是JAVA基础类的一部分。Swing包括了图形用户界面（GUI）器件如：文本框，按钮，分隔窗格和表。Swing提供许多比AWT更好的屏幕显示元素。它们用纯Java写成，所以同Java本身一样可以跨平台运行，这一点不像AWT。它们是JFC的一部分。它们支持可更换的面板和主题（各种操作系统默认的特有主题），然而不是真的使用原生平台提供的设备，而是仅仅在表面上模仿它们。这意味着你可以在任意平台上使用JAVA支持的任意面板。轻量级组件的缺点则是执行速度较慢，优点就是可以在所有平台上采用统一的行为 。</p>
-<h2 id="2、了解Java-swing-结构"><a href="#2、了解Java-swing-结构" class="headerlink" title="2、了解Java swing 结构"></a>2、了解Java swing 结构</h2><p><img src="http://ww2.sinaimg.cn/large/006rgqhqgy1fjozm52oh6j30fs08x75l.jpg" alt=""></p>
-<p>Swing组件可以分成两种类型，一种是JComponent类，另一种是Window类。两者的区别是JComponent组件类主要包括一些不能独立显示的组件（即必须依赖于中间容器才能显示），而Window组件类主要包括了一些可以独立显示的组件。</p>
-<p>JFrame – java的GUI程序的基本思路是以JFrame为基础，它是屏幕上window的对象，能够最大化、最小化、关闭。<br>JPanel – Java图形用户界面(GUI)工具包swing中的面板容器类，包含在javax.swing 包中，可以进行嵌套，功能是对窗体中具有相同逻辑功能的组件进行组合，是一种轻量级容器，可以加入到JFrame窗体中。。<br>JLabel – JLabel 对象可以显示文本、图像或同时显示二者。可以通过设置垂直和水平对齐方式，指定标签显示区中标签内容在何处对齐。默认情况下，标签在其显示区内垂直居中对齐。默认情况下，只显示文本的标签是开始边对齐；而只显示图像的标签则水平居中对齐。<br>JTextField –一个轻量级组件，它允许编辑单行文本。<br>JPasswordField – 允许我们输入了一行字像输入框，但隐藏星号(*) 或点创建密码(密码)</p>
-<p>最后，直接上代码模型，这是我项目的部分，贴出来大家可以参考<br>百度链接: <a href="http://pan.baidu.com/s/1qY4tVuk" target="_blank" rel="external">http://pan.baidu.com/s/1qY4tVuk</a><br>密码： 6qp5</p>
-<h1 id="数据恢复"><a href="#数据恢复" class="headerlink" title="数据恢复"></a>数据恢复</h1><p>数据恢复分类：硬恢复和软恢复。</p>
-<h2 id="一、硬恢复"><a href="#一、硬恢复" class="headerlink" title="一、硬恢复"></a>一、硬恢复</h2><p>所谓硬恢复就是硬盘出现物理性损伤，比如有盘体坏道、电路板芯片烧毁、盘体异响等故障，由此所导致的普通用户不容易取出里面数据，那么我们将它修好，同时又保留里面的数据或后来恢复里面的数据，这些都叫数据恢复，只不过这些故障有容易的和困难的之分。</p>
-<h2 id="二、软恢复"><a href="#二、软恢复" class="headerlink" title="二、软恢复"></a>二、软恢复</h2><p>所谓软恢复，就是硬盘本身没有物理损伤，而是由于人为或者病毒破坏所造成的数据丢失（比如误格式化，误分区），那么这样的数据恢复就叫软恢复。</p>
-<h3 id="1、FAT"><a href="#1、FAT" class="headerlink" title="1、FAT"></a>1、FAT</h3><p>FAT文件系统的基本结构依次为：DBR扇区、FAT表1、FAT表2、根目录和数据区。<br>如图:<br><img src="https://i.imgur.com/bgX4ERU.png" alt=""><br>我们可以用winhex工具来打开一个SD卡(磁盘，这里可以用RAMDisk来创建一个虚拟磁盘)，如图:<br><img src="https://i.imgur.com/zTbHdTU.png" alt=""><br>这里可以根据模板来看每个字节代表的意思(如果不能使用模板，那就还没有激活，这里附带全部工具。链接：<a href="https://pan.baidu.com/s/1AheJMibnDhikoUVZrqIgDg" target="_blank" rel="external">https://pan.baidu.com/s/1AheJMibnDhikoUVZrqIgDg</a> 密码：7hyd)。</p>
-<h3 id="2、文件恢复"><a href="#2、文件恢复" class="headerlink" title="2、文件恢复"></a>2、文件恢复</h3><p>使用WinHex 恢复被破坏的文件<br>用winhex打开磁盘，选择磁盘快照，然后创建一个文件，再删除文件，再次用winhex打开磁盘，就会发现刚才删除的文件，选择恢复文件(为了避免数据丢失，应该恢复到其他磁盘)，再次打开文件，发现文件恢复。如下图演示:<br><img src="https://i.imgur.com/iIKAhWi.png" alt=""><br><img src="https://i.imgur.com/MOrVj10.png" alt=""><br><img src="https://i.imgur.com/nfr90MH.png" alt=""><br><img src="https://i.imgur.com/T5i92Ak.png" alt=""><br><img src="https://i.imgur.com/QOeAArm.png" alt=""><br>接着测试NTFS的磁盘，发现并不不能恢复，呀呀呀呀（可能是自己太菜啦）。然后在网上找一下，发现一个恢复文件的工具很好用，专业还是专业的好，我就了解一下，好好学习。<a href="http://www.jjhuifu.com/jj/brj.html" target="_blank" rel="external">http://www.jjhuifu.com/jj/brj.html</a></p>
+        <p>Windows的GDI图形<br><a id="more"></a></p>
+<h1 id="Windows图形"><a href="#Windows图形" class="headerlink" title="Windows图形"></a>Windows图形</h1><p>大多数 Windows 程式在 WinMain 中进入讯息回圈之前的初始化期间都要呼 叫函式 UpdateWindow。通过呼叫 GetUpdateRect，可以在任何时候取得这些座标。 装置内容（简称为「DC」）实际上是 GDI 内部保存的资料结构。装置内容 与特定的显示设备（如视讯显示器或印表机）相关。程式必须在处理单个讯息处理期间取得和 释放代号。除了呼叫 CreateDC（函式，在本章暂不讲述）建立的装置内容之外， 程式不能在两个讯息之间保存其他装置内容代号。 </p>
+<h2 id="取得装置内容代号"><a href="#取得装置内容代号" class="headerlink" title="取得装置内容代号"></a>取得装置内容代号</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>在处理 WM_PAINT 讯息时，使用这种方法。它涉及 BeginPaint 和 EndPaint两个函式，这两个函式需要视窗代号（作为参数传给视窗讯息处理程式）和 PAINTSTRUCT结构的变数（在WINUSER.H表头档案中定义）的地址为参数<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">case</span> WM_PAINT:    hdc = BeginPaint (hwnd, &amp;ps) ;            使用GDI函式    	   EndPaint (hwnd, &amp;ps) ;    </div><div class="line">	<span class="keyword">return</span> <span class="number">0</span> ;</div></pre></td></tr></table></figure></p>
+<p>绘图资讯结构,Windows 为每个视窗保存一个「绘图资讯结构」，这就是 PAINTSTRUCT，定义如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">tagPAINTSTRUCT</span> </span></div><div class="line"><span class="class">&#123;</span>    </div><div class="line">	HDC       hdc ;  </div><div class="line">	BOOL        fErase ;  </div><div class="line">	RECT        rcPaint ;  </div><div class="line">	BOOL     fRestore ;  </div><div class="line">	BOOL     fIncUpdate ;  </div><div class="line">	BYTE     rgbReserved[<span class="number">32</span>] ; </div><div class="line">&#125; PAINTSTRUCT ;</div></pre></td></tr></table></figure></p>
+<p>在程式呼叫 BeginPaint 时，Windows 会适当填入该结构的各个栏位值。使 用者程式只使用前三个栏位，其他栏位由 Windows 内部使用.Windows 程式使用白色画刷<br>wndclass.hbrBackground = (HBRUSH) GetStockObject (WHITE_BRUSH) ; </p>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>要得到视窗显示区域的装置内容代号，可以呼叫 GetDC 来取得代号，在使 用完後呼叫 ReleaseDC<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hdc = GetDC (hwnd) ; 使用GDI函式 </div><div class="line">ReleaseDC (hwnd, hdc) ;</div></pre></td></tr></table></figure></p>
+<p>与 BeginPaint 和EndPaint一样，GetDC 和ReleaseDC 函式必须成对地使用。 如果在处理某讯息时呼叫 GetDC，则必须在退出视窗讯息处理程式之前呼叫 ReleaseDC。不要在一个讯息中呼叫 GetDC 却在另一个讯息呼叫 ReleaseDC。 </p>
+<p>TextOut 是用於显示文字的最常用的 GDI 函式。语法是：<br><code>TextOut (hdc, x, y, psText, iLength) ;</code></p>
+<p>系统字体<br>呼叫 GetTextMetrics 取得字体大小。GetTextMetrics 传回装置内容中 目前选取的字体资讯，因此它需要装置内容代号。Windows 将文字大小的不同值 复制到在 WINGDI.H 中定义的 TEXTMETRIC 型态的结构中。TEXTMETRIC 结构有 20 个栏位，我们只使用前七个：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">tagTEXTMETRIC</span> &#123;</span>  </div><div class="line">	LONG tmHeight ;   </div><div class="line">	LONG tmAscent ;   </div><div class="line">	LONG tmDescent ;    </div><div class="line">	LONG tmInternalLeading ;   </div><div class="line">	LONG tmExternalLeading ;   </div><div class="line">	LONG tmAveCharWidth ;      </div><div class="line">	LONG tmMaxCharWidth ;        </div><div class="line">	其他结构栏位 </div><div class="line">&#125; TEXTMETRIC, * PTEXTMETRIC ;</div></pre></td></tr></table></figure></p>
+<p>要使用 GetTextMetrics 函式，需要先定义一个结构变数（通常称为 tm）：<br>TEXTMETRIC tm ;<br>在需要确定文字大小时，先取得装置内容代号，再呼叫 GetTextMetrics：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hdc = GetDC (hwnd) ; </div><div class="line">GetTextMetrics (hdc, &amp;tm) ; </div><div class="line">ReleaseDC (hwnd, hdc) ;</div></pre></td></tr></table></figure></p>
+<p>最重要的值是 tmHeight，它是 tmAscent 和 tmDescent 的和。这两个值表示 了基准线上下字元的最大纵向高度</p>
+<h3 id="格式化文字"><a href="#格式化文字" class="headerlink" title="格式化文字"></a>格式化文字</h3><p>假设要编写一个 Windows 程式，在显示区域显示几行文字，这需要先取得 字元宽度和高度。您可以在视窗讯息处理程式内定义两个变数来保存平均字元 宽度(cxChar)和总的字元高度(cyChar)<br><code>static int cxChar, cyChar ;</code><br>下面是取得系统字体的字元宽度和高度的 WM_CREATE 程式码：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">case</span> WM_CREATE:  </div><div class="line">	hdc = GetDC (hwnd) ;  </div><div class="line">	GetTextMetrics (hdc, &amp;tm) ; </div><div class="line">  	cxChar = tm.tmAveCharWidth ;  </div><div class="line">  	cyChar = tm.tmHeight + tm.tmExternalLeading ; </div><div class="line">  	ReleaseDC (hwnd, hdc) ;  </div><div class="line">  	<span class="keyword">return</span> <span class="number">0</span> ;</div></pre></td></tr></table></figure></p>
+<p>您会发现常常需要显示格式化的数字跟简单的字串。您不能使惯用的工具（可爱的 printf 函式）来完成这项工作，但是可以使用 sprintf 和 Windows 版的 sprintf——wsprintf。这些函式与 printf 相似，只是把格式化字串放到字串中。然後，可以用 TextOut 将字串输出到显示器上。 非常方便的是，从 sprintf 和 wsprintf 传回的值就是字串的长度。您可以将这 个值传递给 TextOut 作为 iLength 参数。下面的程式码显示了 wsprintf 与 TextOut 的典型组合：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span>   iLength ; </div><div class="line">TCHAR szBuffer [<span class="number">40</span>] ;</div><div class="line">iLength = wsprintf (szBuffer, TEXT (<span class="string">"The sum of %i and %i is %i"</span>),                   iA, iB, iA + iB) ; </div><div class="line">TextOut (hdc, x, y, szBuffer, iLength) ;</div></pre></td></tr></table></figure></p>
+<p>也可以这样<br><code>TextOut (hdc, x, y, szBuffer,     wsprintf (szBuffer, TEXT (&quot;The sum of %i and %i is %i&quot;),           iA, iB, iA + iB)) ;</code></p>
+<h2 id="综合使用"><a href="#综合使用" class="headerlink" title="综合使用"></a>综合使用</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"sysmets.h"</span>  <span class="comment">//自己定义的，书上有</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> NUMLINES ((int)(sizeof sysmetrics / sizeof sysmetrics[0]))</span></div><div class="line"></div><div class="line"><span class="function">LRESULT CALLBACK <span class="title">WndProc</span><span class="params">(HWND, UINT, WPARAM, LPARAM)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> WINAPI <span class="title">WinMain</span><span class="params">(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, <span class="keyword">int</span> iCmdShow)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">static</span> TCHAR szAppName[] = TEXT(<span class="string">"SysMets"</span>);</div><div class="line">	HWND hwnd;  </div><div class="line">	MSG msg;</div><div class="line">	WNDCLASS wndclass;</div><div class="line">	wndclass.style = CS_HREDRAW | CS_VREDRAW;</div><div class="line">	wndclass.lpfnWndProc = WndProc;  </div><div class="line">	wndclass.cbClsExtra = <span class="number">0</span>;</div><div class="line">	wndclass.cbWndExtra = <span class="number">0</span>;</div><div class="line">	wndclass.hInstance = hInstance;</div><div class="line">	wndclass.hIcon = LoadIcon(<span class="literal">NULL</span>, IDI_APPLICATION);</div><div class="line">	wndclass.hCursor = LoadCursor(<span class="literal">NULL</span>, IDC_ARROW);</div><div class="line">	wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);</div><div class="line">	wndclass.lpszClassName = szAppName;</div><div class="line">	<span class="keyword">if</span> (!RegisterClass(&amp;wndclass))</div><div class="line">	&#123;</div><div class="line">		MessageBox(<span class="literal">NULL</span>, TEXT(<span class="string">"This program requires Windows NT!"</span>), szAppName, MB_ICONERROR);</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	hwnd = CreateWindow(szAppName, <span class="comment">// window class name    </span></div><div class="line">		TEXT(<span class="string">"Get System Metrics No.1"</span>), <span class="comment">// window caption    </span></div><div class="line">		WS_OVERLAPPEDWINDOW, <span class="comment">// window style    </span></div><div class="line">		CW_USEDEFAULT, <span class="comment">// initial x position    </span></div><div class="line">		CW_USEDEFAULT, <span class="comment">// initial y position    </span></div><div class="line">		CW_USEDEFAULT, <span class="comment">// initial x size    </span></div><div class="line">		CW_USEDEFAULT, <span class="comment">// initial y size    </span></div><div class="line">		<span class="literal">NULL</span>,   <span class="comment">// parent window handle       </span></div><div class="line">		<span class="literal">NULL</span>,         <span class="comment">// window menu handle       </span></div><div class="line">		hInstance,     <span class="comment">// program instance handle       </span></div><div class="line">		<span class="literal">NULL</span>);      <span class="comment">// creation parameters </span></div><div class="line">	ShowWindow(hwnd, iCmdShow);</div><div class="line">	UpdateWindow(hwnd);</div><div class="line">	<span class="keyword">while</span> (GetMessage(&amp;msg, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="number">0</span>))</div><div class="line">	&#123;</div><div class="line">		TranslateMessage(&amp;msg);</div><div class="line">		DispatchMessage(&amp;msg);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> msg.wParam;</div><div class="line">&#125;</div><div class="line"><span class="function">LRESULT CALLBACK <span class="title">WndProc</span><span class="params">(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">static</span> <span class="keyword">int</span> cxChar, cxCaps, cyChar;</div><div class="line">	HDC   hdc;</div><div class="line">	<span class="keyword">int</span> i;</div><div class="line">	TCHAR szBuffer[<span class="number">10</span>];</div><div class="line">	PAINTSTRUCT ps;</div><div class="line">	TEXTMETRIC tm;</div><div class="line">	<span class="keyword">switch</span> (message)</div><div class="line">	&#123;</div><div class="line">	<span class="keyword">case</span> WM_CREATE:</div><div class="line">		hdc = GetDC(hwnd);</div><div class="line">		GetTextMetrics(hdc, &amp;tm);</div><div class="line">		cxChar = tm.tmAveCharWidth;</div><div class="line">		cxCaps = (tm.tmPitchAndFamily &amp; <span class="number">1</span> ? <span class="number">3</span> : <span class="number">2</span>) * cxChar / <span class="number">2</span>;</div><div class="line">		cyChar = tm.tmHeight + tm.tmExternalLeading;</div><div class="line">		ReleaseDC(hwnd, hdc);</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	<span class="keyword">case</span>  WM_PAINT:</div><div class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; NUMLINES; i++)</div><div class="line">		&#123;</div><div class="line">			TextOut(hdc,</div><div class="line">				<span class="number">0</span>,</div><div class="line">				cyChar * i,</div><div class="line">				sysmetrics[i].szLabel,</div><div class="line">				lstrlen(sysmetrics[i].szLabel));</div><div class="line">			TextOut(hdc,</div><div class="line">				<span class="number">22</span> * cxCaps, cyChar * i,</div><div class="line">				sysmetrics[i].szDesc,</div><div class="line">				lstrlen(sysmetrics[i].szDesc));</div><div class="line">			SetTextAlign(hdc, TA_RIGHT | TA_TOP);</div><div class="line">			TextOut(hdc,</div><div class="line">				<span class="number">22</span> * cxCaps + <span class="number">40</span> * cxChar,</div><div class="line">				cyChar * i, szBuffer,</div><div class="line">				wsprintf(szBuffer, TEXT(<span class="string">"%5d"</span>),</div><div class="line">					GetSystemMetrics(sysmetrics[i].iIndex)));</div><div class="line">			SetTextAlign(hdc, TA_LEFT | TA_TOP);</div><div class="line">		&#125;</div><div class="line">		EndPaint(hwnd, &amp;ps);</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	<span class="keyword">case</span> WM_DESTROY:</div><div class="line">		PostQuitMessage(<span class="number">0</span>);</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> DefWindowProc(hwnd, message, wParam, lParam);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>来源:《Windows程序设计》(第五版)</p>
 
       
     </div>
@@ -481,8 +477,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/07/linux1_kali_iptables/" rel="next" title="liunx的配置">
-                <i class="fa fa-chevron-left"></i> liunx的配置
+              <a href="/2018/05/24/re_20_win_api1/" rel="next" title="Windows Api第一篇">
+                <i class="fa fa-chevron-left"></i> Windows Api第一篇
               </a>
             
           </div>
@@ -490,10 +486,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/12/misc_2_infiltration/" rel="prev" title="linux渗透测试">
-                linux渗透测试 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -706,7 +698,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA云端实现"><span class="nav-number">1.</span> <span class="nav-text">JAVA云端实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、概念"><span class="nav-number">1.1.</span> <span class="nav-text">1、概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、了解Java-swing-结构"><span class="nav-number">1.2.</span> <span class="nav-text">2、了解Java swing 结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据恢复"><span class="nav-number">2.</span> <span class="nav-text">数据恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、硬恢复"><span class="nav-number">2.1.</span> <span class="nav-text">一、硬恢复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、软恢复"><span class="nav-number">2.2.</span> <span class="nav-text">二、软恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、FAT"><span class="nav-number">2.2.1.</span> <span class="nav-text">1、FAT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、文件恢复"><span class="nav-number">2.2.2.</span> <span class="nav-text">2、文件恢复</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows图形"><span class="nav-number">1.</span> <span class="nav-text">Windows图形</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#取得装置内容代号"><span class="nav-number">1.1.</span> <span class="nav-text">取得装置内容代号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一"><span class="nav-number">1.1.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二"><span class="nav-number">1.1.2.</span> <span class="nav-text">方法二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#格式化文字"><span class="nav-number">1.1.3.</span> <span class="nav-text">格式化文字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综合使用"><span class="nav-number">1.2.</span> <span class="nav-text">综合使用</span></a></li></ol></li></ol></div>
             
 
           </div>
