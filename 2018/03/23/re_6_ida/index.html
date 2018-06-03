@@ -111,7 +111,7 @@
 <meta property="og:description" content="IDA和OD是逆向中必不可少的一部分，现在来分享一下IDA和OD的一些技巧">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/1odLgE0.png">
-<meta property="og:updated_time" content="2018-05-15T00:34:37.754Z">
+<meta property="og:updated_time" content="2018-06-03T02:16:33.461Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Re_ida_od的常用小技巧">
 <meta name="twitter:description" content="IDA和OD是逆向中必不可少的一部分，现在来分享一下IDA和OD的一些技巧">
@@ -408,8 +408,8 @@
 <h1 id="IDA"><a href="#IDA" class="headerlink" title="IDA"></a>IDA</h1><h2 id="1、查找字符串"><a href="#1、查找字符串" class="headerlink" title="1、查找字符串"></a>1、查找字符串</h2><p>(Shift+f9)View-&gt;open subviews-&gt;Strings</p>
 <h2 id="2、修改文件，打补丁-patch"><a href="#2、修改文件，打补丁-patch" class="headerlink" title="2、修改文件，打补丁(patch)"></a>2、修改文件，打补丁(patch)</h2><p>1、找到修改地方<br>2、修改文件，也可以在(Hex view)窗口修改16进制:双击要修改的地方 -&gt;使用F2捷方式修改当前字节 -&gt;再按下F2快捷方式应用修改。<br>3、保存文件修改后的文件:[IDA Main Menu]-&gt;[Edit]-&gt;[PatchProgram]-&gt;[Apply patches to input file…]<br>IDA图形视图会有执行流，Yes箭头默认为绿色，No箭头默认为红色，蓝色表示默认下一个执行块。</p>
 <h2 id="3、ida无法识别，红色代码，不能f5"><a href="#3、ida无法识别，红色代码，不能f5" class="headerlink" title="3、ida无法识别，红色代码，不能f5"></a>3、ida无法识别，红色代码，不能f5</h2><p>如果地址是红色，当f5时会出现这句话：The function has undefined instruction/data at the specified address.那就创建一个函数(P)，当创建函数时，会出现这句话：The function has undefined instruction/data at the specified address.Your request has been put in the autoanalysis queue<br>如果我们不能创建函数,就不能使用F5来分析代码了,想让这些代码变绿色的方法(创建函数)很简单.<br>用鼠标从函数头部开始到 retn 结尾 拖一下,变成灰色.<br><img src="https://i.imgur.com/1odLgE0.png" alt=""><br>然后用快捷键 P 或者右键菜单,CreateFunction 来创建函数就可以了。当然了,到这里也不算完.下图是代码变绿色的,我用上面的方法创建函数了,可还是不能F5,我们通过Stack Pointer (option-&gt;General-&gt;Disassembly选中stack pointer)发现这个函数的堆栈是不平衡的.此时我们需要找接近retn 的 最后一个Call 然后去修正堆栈.此时我们需要找接近retn 的 最后一个Call 然后去修正堆栈.我们看到 retn 左边绿色的数字是 28,我们通过ALT + k 修正堆栈,把 28 retn 改成 0 就可以了。修正堆栈的时候一定要选择 Call 然后修正堆栈,下图是修正后的 代码</p>
-<h2 id="4、常用快捷键"><a href="#4、常用快捷键" class="headerlink" title="4、常用快捷键"></a>4、常用快捷键</h2><p>1、快捷键F5显示C伪代码<br>2、(Shift+f9)查找字符串<br>3、快捷键Alt+T，打开文本搜索对话框，在String文本框中输入要搜索的字符串点击OK即可<br>4、翻页 esc 和 Ctrl+Enter<br>5、使用小键盘“-”，“+”查看函数之间的关系<br>6、G跳转地址<br>7、使用快捷键”*”把变量重定义为数组<br>8、对于数字，16进制和10进制转换(H),转化成10字符(R)</p>
-<h1 id="OD-olldbg"><a href="#OD-olldbg" class="headerlink" title="OD(olldbg)"></a>OD(olldbg)</h1><h2 id="1、常用快捷键"><a href="#1、常用快捷键" class="headerlink" title="1、常用快捷键"></a>1、常用快捷键</h2><p>0、f2下断点<br>1、f7进入call<br>2、f8不进入call<br>3、f9运行<br>4、f4运行到当前位置<br>5、’-‘回到上一步的位置<br>6、’*’回到当前运行的位置<br>7、Ctrl+F2  重新运行程序到起始处，用于重新调试程序<br>8、Ctrl+G 寻找十六进制地址<br>9、Alt+F2 关闭被调试程序。<br>10、f3 选择可执行文件<br>11、ctrl+b 在地址栏进行查找字符串<br>12、m -&gt; 查找</p>
+<h2 id="4、常用快捷键"><a href="#4、常用快捷键" class="headerlink" title="4、常用快捷键"></a>4、常用快捷键</h2><p>1、快捷键F5显示C伪代码<br>2、(Shift+f9)查找字符串<br>3、快捷键Alt+T，打开文本搜索对话框，在String文本框中输入要搜索的字符串点击OK即可<br>4、翻页 esc 和 Ctrl+Enter<br>5、使用小键盘“-”，“+”查看函数之间的关系<br>6、G跳转地址<br>7、使用快捷键”*”把变量重定义为数组<br>8、对于数字，16进制和10进制转换(H),转化成10字符(R)<br>9、注释’;’</p>
+<h1 id="OD-olldbg"><a href="#OD-olldbg" class="headerlink" title="OD(olldbg)"></a>OD(olldbg)</h1><h2 id="1、常用快捷键"><a href="#1、常用快捷键" class="headerlink" title="1、常用快捷键"></a>1、常用快捷键</h2><p>0、f2下断点<br>1、f7进入call<br>2、f8不进入call<br>3、f9运行<br>4、f4运行到当前位置<br>5、’-‘回到上一步的位置<br>6、’*’回到当前运行的位置<br>7、Ctrl+F2  重新运行程序到起始处，用于重新调试程序<br>8、Ctrl+G 寻找十六进制地址<br>9、Alt+F2 关闭被调试程序。<br>10、f3 选择可执行文件<br>11、ctrl+b 在地址栏进行查找字符串<br>12、m -&gt; 查找<br>13、ctrl+f  -&gt;将汇编转成16进制</p>
 <h2 id="OD上面图标"><a href="#OD上面图标" class="headerlink" title="OD上面图标"></a>OD上面图标</h2><p>1、’b’查看断点<br>2、’m’打开内存<br>3、’c’回到反汇编窗口</p>
 <h2 id="OD保存文件"><a href="#OD保存文件" class="headerlink" title="OD保存文件"></a>OD保存文件</h2><p>1、寻找到需要patch的地方<br>2、修改(patch)文件<br>3、 保存文件: 窗口中选中修改过的语句—&gt;右击—&gt;复制到可执行文件—&gt;“选择”或者“所有修改”—&gt;出现“文件”窗口—&gt;右击—&gt;保存文件</p>
 
@@ -569,7 +569,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -740,7 +740,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共79.1k字</span>
+  <span class="post-count">博客全站共85.8k字</span>
 </div>
 
         

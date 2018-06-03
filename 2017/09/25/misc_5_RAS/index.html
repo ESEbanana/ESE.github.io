@@ -111,7 +111,7 @@
 <meta property="og:description" content="我不生产RAS,只是RAS的搬运工…..">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/hGtJn1U.png">
-<meta property="og:updated_time" content="2018-05-23T02:22:58.393Z">
+<meta property="og:updated_time" content="2018-05-28T11:36:20.991Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RSA的常见攻击方法">
 <meta name="twitter:description" content="我不生产RAS,只是RAS的搬运工…..">
@@ -437,7 +437,7 @@
 <p>那么一种基于连分数(一个数论当中的问题)的特殊攻击类型就可以危害RSA的安全。此时需要满足：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$q&lt;$$p$$&lt;<span class="number">2</span>q$</div></pre></td></tr></table></figure></p>
 <p>如果满足上述条件，通过Wiener Attack可以在多项式时间中分解n。<br>rsa-wiener-attack的攻击源码开源在了github中，采取python编写，可以很容易使用。 </p>
 <h3 id="识别-3"><a href="#识别-3" class="headerlink" title="识别"></a>识别</h3><p>非常简单，e看起来很大就行了。如果密文用不同的ei加密几次,并且用同一个n，那么e=e1<em>e2</em>e3*..,这时e变得很大。就可以攻击啦</p>
-<h3 id="例题：-2"><a href="#例题：-2" class="headerlink" title="例题："></a>例题：</h3><p>直接github用工具就行。<br><a href="https://github.com/pablocelayes/rsa-wiener-attack" target="_blank" rel="external">https://github.com/pablocelayes/rsa-wiener-attack</a><br>这里注意一个细节问题，如果在运行脚本的时候报错，请在脚本前加上：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span>   sys</div><div class="line">sys.setrecursionlimit(<span class="number">10000000</span>)</div></pre></td></tr></table></figure></p>
+<h3 id="例题：-2"><a href="#例题：-2" class="headerlink" title="例题："></a>例题：</h3><p>直接github用工具就行。<br>链接：<a href="https://pan.baidu.com/s/194Tqa20WK-F-KZyAElj3pQ" target="_blank" rel="external">https://pan.baidu.com/s/194Tqa20WK-F-KZyAElj3pQ</a> 密码：5fyu<br><a href="https://github.com/pablocelayes/rsa-wiener-attack" target="_blank" rel="external">https://github.com/pablocelayes/rsa-wiener-attack</a><br>这里注意一个细节问题，如果在运行脚本的时候报错，请在脚本前加上：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span>   sys</div><div class="line">sys.setrecursionlimit(<span class="number">10000000</span>)</div></pre></td></tr></table></figure></p>
 <h2 id="共模攻击"><a href="#共模攻击" class="headerlink" title="共模攻击"></a>共模攻击</h2><p>如果在RSA的使用中使用了相同的模n对相同的明文m进行了加密，那么就可以在不分解n的情况下还原出明文m的值。<br>即：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ c_1equiv m^&#123;e_1&#125;$ $mod$ $n$</div><div class="line"></div><div class="line">$ c_2equiv m^&#123;e_2&#125;$ $mod$ $n$</div></pre></td></tr></table></figure></p>
 <p>此时不需要分解n，不需要求解私钥，如果两个加密指数互素，就可以通过共模攻击在两个密文和公钥被嗅探到的情况下还原出明文m的值。<br>过程如下，首先两个加密指数互质，则：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"> $ (e_1,e_2)=<span class="number">1</span> $</div><div class="line"></div><div class="line">即存在$ s_2 $，$ s_2 $使得：</div><div class="line"></div><div class="line">$ s_1e_1+s_2e_2=<span class="number">1</span> $</div><div class="line"></div><div class="line">又因为：</div><div class="line"></div><div class="line">$ c_1equiv m^&#123;e_1&#125;$ $mod$ $n$</div><div class="line"></div><div class="line">$ c_2equiv m^&#123;e_2&#125;$ $mod$ $n$</div><div class="line"></div><div class="line">通过代入化简可以得出：</div><div class="line"></div><div class="line">$c_1^&#123;s_1&#125;c_2^&#123;s_2&#125;equiv m$ $mod$ $n$</div></pre></td></tr></table></figure></p>
 <p>明文解出。</p>
@@ -603,7 +603,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -774,7 +774,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共79.1k字</span>
+  <span class="post-count">博客全站共85.8k字</span>
 </div>
 
         
