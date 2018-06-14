@@ -134,7 +134,7 @@
 <meta property="og:image" content="https://i.imgur.com/glgDAB1.png">
 <meta property="og:image" content="https://i.imgur.com/DHYqe5h.png">
 <meta property="og:image" content="https://i.imgur.com/bTutnPU.png">
-<meta property="og:updated_time" content="2018-05-28T13:19:50.884Z">
+<meta property="og:updated_time" content="2018-06-13T08:12:50.652Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="恶意代码分析——静态与动态分析基础技术">
 <meta name="twitter:description" content="啥？你电脑中病毒啦，被勒索啦，那就来好好学习恶意代码分析，讲得很好。留下了没有技术的眼泪">
@@ -446,7 +446,7 @@
 运行时链接在合法程序中并不流行，但是在恶意代码中是常用的，特别是当恶意代码被加壳或是混淆的时候。使用运行时链接的可执行程序，只有当需要使用函数时，才链接到库，而不是想动态链接模式那样在程序启动时就会链接。
 动态链接是windows里最常用的，将一些函数打包在一个dll里，然后通过程序调用dll里的函数，在程序启动时就会链接上。
 </code></pre><h3 id="使用Dependency-Walker工具探索动态链接函数"><a href="#使用Dependency-Walker工具探索动态链接函数" class="headerlink" title="使用Dependency Walker工具探索动态链接函数"></a>使用Dependency Walker工具探索动态链接函数</h3><p>界面<br><img src="https://i.imgur.com/GPksbSz.png" alt=""><br>常见的dll<br><img src="https://i.imgur.com/l6sqRh6.png" alt=""></p>
-<h2 id="实践1"><a href="#实践1" class="headerlink" title="实践1"></a>实践1</h2><p>学习样本:(<a href="http://www.practicalmalwareanalysis.com)或(http://www.nostarch.com/malware.htm" target="_blank" rel="external">http://www.practicalmalwareanalysis.com)或(http://www.nostarch.com/malware.htm</a>)</p>
+<h2 id="实践1"><a href="#实践1" class="headerlink" title="实践1"></a>实践1</h2><p>学习样本:<a href="https://github.com/mikesiko/PracticalMalwareAnalysis-Labs" target="_blank" rel="external">这里</a></p>
 <h3 id="反病毒引擎扫描"><a href="#反病毒引擎扫描" class="headerlink" title="反病毒引擎扫描"></a>反病毒引擎扫描</h3><p>将Lab01-01.exe和Lab01-01.dll放到<a href="https://www.virustotal.com结果如下(我是翻墙的)：" target="_blank" rel="external">https://www.virustotal.com结果如下(我是翻墙的)：</a><br><img src="https://i.imgur.com/0oxKOCq.png" alt=""><br><img src="https://i.imgur.com/9q5Cwxd.png" alt=""></p>
 <h3 id="什么时候编译的"><a href="#什么时候编译的" class="headerlink" title="什么时候编译的"></a>什么时候编译的</h3><p><img src="https://i.imgur.com/2fCf4JN.png" alt=""></p>
 <h3 id="是否被混淆或者加壳"><a href="#是否被混淆或者加壳" class="headerlink" title="是否被混淆或者加壳"></a>是否被混淆或者加壳</h3><p><img src="https://i.imgur.com/6l4SNrb.png" alt=""><br>发现并没有加壳，但是用Dependency Walker查看发现并没有很多函数，可能被混淆啦。接着用strings 查看dll,发现一个ip地址<br><img src="https://i.imgur.com/tY54N4S.png" alt=""></p>
