@@ -113,7 +113,8 @@
 <meta property="og:image" content="https://i.imgur.com/NwWZMaz.png">
 <meta property="og:image" content="https://i.imgur.com/4a0Ul5O.png">
 <meta property="og:image" content="https://i.imgur.com/NIdbxui.png">
-<meta property="og:updated_time" content="2018-06-22T03:43:18.459Z">
+<meta property="og:image" content="https://i.imgur.com/uJSPMek.png">
+<meta property="og:updated_time" content="2018-06-22T11:20:35.096Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Crackme1">
 <meta name="twitter:description" content="Android stdio 第一个程序 Crackme1">
@@ -418,8 +419,11 @@
 <h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><h3 id="使用jd-gui查看Crackme1"><a href="#使用jd-gui查看Crackme1" class="headerlink" title="使用jd-gui查看Crackme1"></a>使用jd-gui查看Crackme1</h3><p><img src="https://i.imgur.com/NIdbxui.png" alt=""><br>这里就是返回结果为true则成功。接着我们使用apkdb[这是一键编译，方便点]反编译apk，并找到MainActvity.smali代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar apktool.jar d demo.apk</div></pre></td></tr></table></figure></p>
 <p>调用checkSN方法，参数是传递两个string[p1,p2]，返回值是Z[boolean]布尔型<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">.locals</span> 1</div><div class="line"><span class="keyword">.param</span> p0, <span class="string">"x0"</span>    <span class="comment"># Lcom/example/ese/crackme1/MainActivity;</span></div><div class="line"><span class="keyword">.param</span> p1, <span class="string">"x1"</span>    <span class="comment"># Ljava/lang/String;</span></div><div class="line"><span class="keyword">.param</span> p2, <span class="string">"x2"</span>    <span class="comment"># Ljava/lang/String;</span></div><div class="line"></div><div class="line"><span class="keyword">.prologue</span></div><div class="line"><span class="keyword">.line</span> 13</div><div class="line">invoke-direct &#123;p0, p1, p2&#125;, <span class="class">Lcom/example/ese/crackme1/MainActivity;</span>-&gt;checkSN(<span class="class">Ljava/lang/String;</span><span class="class">Ljava/lang/String;</span>)Z</div><div class="line"></div><div class="line">move-result v0   //返回结果</div><div class="line"></div><div class="line">return v0</div></pre></td></tr></table></figure></p>
 <p>这里将返回结果修改为1，<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">  <span class="built_in"> move-result </span>v0  //返回结果</div><div class="line"></div><div class="line">const/4 v0, 0x1</div><div class="line"></div><div class="line">  <span class="built_in"> return </span>v0</div></pre></td></tr></table></figure></p>
-<p>在进行打包和签名。安装，成功绕过。</p>
-<h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2>
+<p>在进行打包和签名。安装，成功绕过。<a href="https://esebanana.github.io/2018/06/19/android_5_tools/" target="_blank" rel="external">这里</a>有反编译打包回来，签名的方法。</p>
+<h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><p>使用ddms动态<a href="https://esebanana.github.io/2018/06/19/android_5_tools/" target="_blank" rel="external">调试</a>，在程序算出sn的时候，我们将sn打印出来。<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">.line</span> 60</div><div class="line">:cond_2</div><div class="line">invoke-virtual &#123;v5&#125;, <span class="class">Ljava/lang/StringBuilder;</span>-&gt;toString()<span class="class">Ljava/lang/String;</span></div><div class="line"></div><div class="line">move-result-object v6</div><div class="line"></div><div class="line"><span class="keyword">.line</span> 64</div><div class="line"><span class="keyword">.local</span> v6, <span class="string">"userSN"</span>:<span class="class">Ljava/lang/String;</span></div></pre></td></tr></table></figure></p>
+<p>修改<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">.line</span> 60</div><div class="line">:cond_2</div><div class="line">invoke-virtual &#123;v5&#125;, <span class="class">Ljava/lang/StringBuilder;</span>-&gt;toString()<span class="class">Ljava/lang/String;</span></div><div class="line"></div><div class="line">move-result-object v6</div><div class="line"></div><div class="line">const-string v3,<span class="string">"TEST"</span></div><div class="line">invoke-static&#123;v3,v6&#125;,<span class="class">Landroid/util/Log;</span>-&gt;i(<span class="class">Ljava/lang/String;</span><span class="class">Ljava/lang/String;</span>)I</div><div class="line"></div><div class="line"><span class="keyword">.line</span> 64</div><div class="line"><span class="keyword">.local</span> v6, <span class="string">"userSN"</span>:<span class="class">Ljava/lang/String;</span></div></pre></td></tr></table></figure></p>
+<p>这是添加log.d(“TEST”,v6),v6就是算出来序列号的值。然后在反编译回去，签名。运行结果:<br><img src="https://i.imgur.com/uJSPMek.png" alt=""><br>输入，显示成功</p>
+
       
     </div>
     
@@ -743,7 +747,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共86.4k字</span>
+  <span class="post-count">博客全站共86.8k字</span>
 </div>
 
         
