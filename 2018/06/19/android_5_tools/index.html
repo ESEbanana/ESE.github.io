@@ -103,18 +103,18 @@
 
 
 
-<meta name="description" content="常用的android工具安装以及apktool反编译">
+<meta name="description" content="常用的android工具安装以及apktool反编译，ddms,jeb2使用等">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android工具">
+<meta property="og:title" content="Android工具及其使用">
 <meta property="og:url" content="http://yoursite.com/2018/06/19/android_5_tools/index.html">
 <meta property="og:site_name" content="ESE&#39;s Note">
-<meta property="og:description" content="常用的android工具安装以及apktool反编译">
+<meta property="og:description" content="常用的android工具安装以及apktool反编译，ddms,jeb2使用等">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/uJSPMek.png">
-<meta property="og:updated_time" content="2018-06-22T11:18:36.305Z">
+<meta property="og:updated_time" content="2018-06-22T12:38:02.396Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android工具">
-<meta name="twitter:description" content="常用的android工具安装以及apktool反编译">
+<meta name="twitter:title" content="Android工具及其使用">
+<meta name="twitter:description" content="常用的android工具安装以及apktool反编译，ddms,jeb2使用等">
 <meta name="twitter:image" content="https://i.imgur.com/uJSPMek.png">
 
 
@@ -150,7 +150,7 @@
 
 
 
-  <title>Android工具 | ESE's Note</title>
+  <title>Android工具及其使用 | ESE's Note</title>
   
 
 
@@ -318,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android工具</h1>
+          <h1 class="post-title" itemprop="name headline">Android工具及其使用</h1>
         
 
         <div class="post-meta">
@@ -404,8 +404,11 @@
       
 
       
-        <p>常用的android工具安装以及apktool反编译<br><a id="more"></a><br><a href="https://pan.baidu.com/s/1gx1Lr15t2UjFcshQ5ZstMA" target="_blank" rel="external">下载</a>工具</p>
+        <p>常用的android工具安装以及apktool反编译，ddms,jeb2使用等<br><a id="more"></a><br><a href="https://pan.baidu.com/s/1gx1Lr15t2UjFcshQ5ZstMA" target="_blank" rel="external">下载</a>工具</p>
 <h1 id="adb"><a href="#adb" class="headerlink" title="adb"></a>adb</h1><p>直接解压。配置环境变量<br>然后在cmd下输入adb(下面就是成功):<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Android Debug Bridge version <span class="number">1.0</span><span class="number">.39</span></div><div class="line">Version <span class="number">0.0</span><span class="number">.1</span><span class="number">-4500957</span></div><div class="line">Installed as G:\job\android\tools\platform-tools-latest-windows\adb.exe</div><div class="line"></div><div class="line">global options:</div><div class="line"> -a         listen on all network interfaces, <span class="keyword">not</span> just localhost</div><div class="line"> -<span class="function">d         use USB <span class="title">device</span> <span class="params">(error <span class="keyword">if</span> multiple devices connected)</span></span></div><div class="line"> -e         use TCP/IP device (error if multiple TCP/IP devices available)</div><div class="line"> -<span class="function">s SERIAL  use device with given <span class="title">serial</span> <span class="params">(overrides $ANDROID_SERIAL)</span></span></div><div class="line"> -t ID      use device with given transport id</div><div class="line"> -H         name of adb server host [<span class="keyword">default</span>=localhost]</div><div class="line"> -P         port of adb server [<span class="keyword">default</span>=<span class="number">5037</span>]</div><div class="line"> -L SOCKET  listen on given socket <span class="keyword">for</span> adb server [<span class="keyword">default</span>=tcp:localhost:<span class="number">5037</span>]</div></pre></td></tr></table></figure></p>
+<p>这里以夜神模拟器<a href="https://jingyan.baidu.com/article/ed15cb1ba2b7561be2698111.html" target="_blank" rel="external">设置</a></p>
+<p>连接<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt;adb devices</div><div class="line">List of devices attached</div><div class="line">&gt;adb connect <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">62001</span></div><div class="line">connected to <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">62001</span></div><div class="line">&gt;adb devices</div><div class="line">List of devices attached</div><div class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">62001</span> device</div><div class="line">&gt;adb shell</div><div class="line">root@android:/ <span class="meta"># ls</span></div></pre></td></tr></table></figure></p>
+<p>连接成功</p>
 <h1 id="dex2jar与jd-gui"><a href="#dex2jar与jd-gui" class="headerlink" title="dex2jar与jd-gui"></a>dex2jar与jd-gui</h1><p>dex2jar可以直接获取apk的java源码，jd-gui可以直接获取jar的java源码</p>
 <h1 id="apktool反编译"><a href="#apktool反编译" class="headerlink" title="apktool反编译"></a>apktool反编译</h1><p>apk反编译<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar apktool.jar d demo.apk</div></pre></td></tr></table></figure></p>
 <p>之后对smali进行修改，然后对修改好的进行打包。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar apktool.jar b -d demo -o debug.apk</div></pre></td></tr></table></figure></p>
@@ -420,6 +423,7 @@
 <p>这是打开模拟器，然后命令行:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">The standalone version of DDMS is deprecated.</div><div class="line">Please use Android Device Monitor (monitor.bat) instead.</div><div class="line">06:38:13 W/DeviceMonitor: Adb rejected connection to client '745': closed</div><div class="line">06:38:13 W/DeviceMonitor: Adb rejected connection to client '745': closed</div><div class="line">06:38:13 W/DeviceMonitor: Adb rejected connection to client '762': closed</div><div class="line">06:38:13 W/DeviceMonitor: Adb rejected connection to client '762': closed</div><div class="line"><span class="number">06</span>:<span class="number">38</span>:<span class="number">26</span> W/EmulatorConsole: Failed to find emulator port from serial: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">62001</span></div></pre></td></tr></table></figure></p>
 <p>这就显示连接上模拟器，在smali中添加打印函数<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">const-string v3,<span class="string">"TEST"</span></div><div class="line">invoke-static&#123;v3,v6&#125;,<span class="class">Landroid/util/Log;</span>-&gt;i(<span class="class">Ljava/lang/String;</span><span class="class">Ljava/lang/String;</span>)I</div></pre></td></tr></table></figure></p>
 <p>是函数log.d(“TEST”,v6)。模拟器中运行apk,结果如图[这是一个<a href="https://esebanana.github.io/2018/06/22/android_7_apk_crackme/" target="_blank" rel="external">test</a>]:<br><img src="https://i.imgur.com/uJSPMek.png" alt=""></p>
+<h1 id="jeb2动态调试apk"><a href="#jeb2动态调试apk" class="headerlink" title="jeb2动态调试apk"></a>jeb2动态调试apk</h1><p><a href="http://pan.baidu.com/s/1bJdWse" target="_blank" rel="external">下载</a> 密码：ncr3</p>
 
       
     </div>
@@ -704,7 +708,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#adb"><span class="nav-number">1.</span> <span class="nav-text">adb</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dex2jar与jd-gui"><span class="nav-number">2.</span> <span class="nav-text">dex2jar与jd-gui</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#apktool反编译"><span class="nav-number">3.</span> <span class="nav-text">apktool反编译</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ddms-Dalvik-Debug-Monitor-Service"><span class="nav-number">4.</span> <span class="nav-text">ddms(Dalvik Debug Monitor Service)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行ddms-bat"><span class="nav-number">4.1.</span> <span class="nav-text">运行ddms.bat</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#adb"><span class="nav-number">1.</span> <span class="nav-text">adb</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dex2jar与jd-gui"><span class="nav-number">2.</span> <span class="nav-text">dex2jar与jd-gui</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#apktool反编译"><span class="nav-number">3.</span> <span class="nav-text">apktool反编译</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ddms-Dalvik-Debug-Monitor-Service"><span class="nav-number">4.</span> <span class="nav-text">ddms(Dalvik Debug Monitor Service)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行ddms-bat"><span class="nav-number">4.1.</span> <span class="nav-text">运行ddms.bat</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jeb2动态调试apk"><span class="nav-number">5.</span> <span class="nav-text">jeb2动态调试apk</span></a></li></ol></div>
             
 
           </div>
@@ -748,7 +752,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共86.8k字</span>
+  <span class="post-count">博客全站共87.9k字</span>
 </div>
 
         
