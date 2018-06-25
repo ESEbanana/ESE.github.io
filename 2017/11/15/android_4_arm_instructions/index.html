@@ -115,7 +115,7 @@
 <meta property="og:image" content="https://i.imgur.com/AODuvUH.png">
 <meta property="og:image" content="https://i.imgur.com/LCo56km.png">
 <meta property="og:image" content="https://i.imgur.com/eRKYowp.png">
-<meta property="og:updated_time" content="2018-06-19T14:17:29.423Z">
+<meta property="og:updated_time" content="2018-06-23T08:18:02.995Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arm汇编指令初探">
 <meta name="twitter:description" content="转载arm语法，来自看雪学院">
@@ -418,6 +418,17 @@
 <h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.section .text</div><div class="line">.global _start</div><div class="line"></div><div class="line">_start:</div><div class="line"> mov r0, pc</div><div class="line"> mov r1, #<span class="number">2</span></div><div class="line"> add r2, r1, r1</div><div class="line"> bkpt</div></pre></td></tr></table></figure>
 <p>将上述代码保存为test.s文件，使用编译汇编代码[ubuntu16需要安装qemu]:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">arm-linux-gnueabi-as test.s -o test.o</div><div class="line">arm-linux-gnueabi-objdump -d test.o <span class="comment">//查看汇编</span></div><div class="line">arm-linux-gnueabi-ld test.o -o test</div></pre></td></tr></table></figure></p>
 <p>我们使用gdb远程调试(这里我用一个gdb的插件pwndbg)<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">gdb ./test</div><div class="line">pwndbg&gt; b _start</div><div class="line">Breakpoint <span class="number">1</span> at <span class="number">0x10054</span></div><div class="line">pwndbg&gt; c</div></pre></td></tr></table></figure></p>
+<p>汇编指令<br>1.ldr 和mov的区别<br>mov只能传递寄存器之间的值<br>例如 mov r0,r1<br>ldr 传递内存地址里的值到寄存器<br>例如 ldr r1,[r3]<br>例如 ldr r0,[r1,#4]<br>这在0x86里都是mov负责的工作，现在被分工了<br>ldr伪指令可以当mov一样使用<br>例如 ldr r0,=ffff  操作数前加一个等号<br>操作数大小在mov指令范围内的话会自动编译成mov指令</p>
+<p>2.str 和 ldr<br>str是传递寄存器里的值到内存地址中<br>例如 str r0,[r1]  r0寄存器的值写入到r1所表示的内存地址里<br>这跟我们以往见到的汇编指令是相反的,第一个操作数是源操作数,第二个操作数是目标操作数,这里应该注意一下.<br>理解一str 是ldr反操作<br>对比 ldr r0,[r1] 和 str r0,[r1]  是相反的执行过程<br>理解二可以理解str为写内存 ldr 为读内存<br>这些在0x86里都是MOV 负责的工作，现在被分工了</p>
+<p>3.stm和ldm 批量读写 后面往往会跟着ia ib da db等等条件<br>i表示 加4 d表示减4 a表示赋值后 b表示赋值前 都是对应的英文单词的缩写<br>例子：<br>STMIA r0!,{r1,R3,R5}<br>IA表示赋值后加4,也就是先存后增<br>产生的结果是：<br>r1存至r0<br>R3存至r0+4<br>R5存至r0+8<br>r0最后指向的地址是r0（初）+0xC<br>因为是先存后增，所以寄存器组存数据也是递增的，从r1递增取至R5<br>成对使用的取数据操作是：<br>LDMDB r0!,{r1,R3,R5}<br>这个时候r0指向的地址已经是r0（初）+0xC，先减后取，所以产生的结果是：<br>r0+8取至R5<br>r0+4取至R3<br>r0取至r1<br>这两句命令相当于保存和还原的操作  类似PUSHAD POPAD的功能</p>
+<p>4.跳转<br>B 无条件跳转指令  对应JMP<br>    mov pc ,xxxx 相当于B(PC 之前我们说了 相当于EIP)<br>    ldr pc,_xxxx往往都是异常处理<br>    例如 ldr pc, _data_abort 数据异常<br>BEQ相等跳转指令 对应JE<br>BL保存PC到LR再跳转 相当于CALL<br>     也就是 mov lr,pc 然后B<br>     mov pc,lr 可以返回 相当于retn<br>BLX和BX 中的X表示跳转切换指令集 arm和thumb</p>
+<p>5.状态寄存器<br>我们看到很多指令后面跟个S<br>例如 adds 带s 表示影响状态寄存器</p>
+<p>6.立即数 前面要加#</p>
+<p>7.SWP 后面跟B交换字节否则交换32位<br>SWP 指令举例如下<br>SWP R1,R1,[R0]  将R1 的内容与R0 指向的内存地址里的值交换<br>SWPB R1,R2,[R0]  将R0指向的内存地址里的值读取一字节数据到R1中(高 24位清零) 并将R2的内容写入到该内存单元中<br>实际上这个过程可以拆分成3句代码 来赋值，相当于C++里的变量交换</p>
+<p>8.异或 E0R 对应 XOR<br>lsl,lsr 左右移<br>例如 mov r0,r1,lsl #2  结果 r0=r1*4</p>
+<p>9.Ball对应Call 省略成 BL      Ball=B+All（条件）+保存LR</p>
+<p>10.mvn 取反然后mov<br>例如 mvn r0,#0  结果 r0=ffffffff</p>
+<p>汇编指令很多不是我们几天能够完全掌握的 可以在逆向的学习过程中慢慢吸收<br>这里面只是给大家列举比较常用的一些指令而已</p>
 
       
     </div>
@@ -746,7 +757,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共87.9k字</span>
+  <span class="post-count">博客全站共88.7k字</span>
 </div>
 
         
