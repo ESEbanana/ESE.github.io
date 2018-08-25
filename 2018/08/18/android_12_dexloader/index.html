@@ -110,7 +110,7 @@
 <meta property="og:site_name" content="ESE&#39;s Note">
 <meta property="og:description" content="android加载器(一般作为插件开发)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-25T06:05:55.955Z">
+<meta property="og:updated_time" content="2018-08-25T06:06:52.459Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="dexClassLoader">
 <meta name="twitter:description" content="android加载器(一般作为插件开发)">
@@ -427,10 +427,7 @@
 <p>check1.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">check1</span><span class="params">(String st)</span> </span>&#123;</div><div class="line">    <span class="keyword">byte</span>[] enc = &#123;<span class="number">67</span>, <span class="number">112</span>, <span class="number">112</span>, <span class="number">105</span>, <span class="number">68</span>, <span class="number">45</span>, <span class="number">110</span>, <span class="number">65</span>, <span class="number">91</span>, <span class="number">69</span>, <span class="number">89</span>, <span class="number">97</span>, <span class="number">79</span>, <span class="number">69</span>, <span class="number">86</span>, <span class="number">85</span>, <span class="number">107</span>, <span class="number">71</span>, <span class="number">72</span>, <span class="number">78</span>, <span class="number">78</span>, <span class="number">94</span>, <span class="number">109</span>&#125;;</div><div class="line">    <span class="keyword">byte</span>[] srtbyte = st.getBytes();</div><div class="line">    <span class="keyword">if</span>(st.length()!=enc.length)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;enc.length;i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>(enc[i]!=srtbyte[i])</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="申请权限"><a href="#申请权限" class="headerlink" title="申请权限"></a>申请权限</h2><p>AndroidManifest中申请权限,<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;uses-permission android:name=<span class="string">"android.permission.READ_EXTERNAL_STORAGE"</span>/&gt;</div><div class="line">&lt;uses-permission android:name=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span>/&gt;</div><div class="line">&lt;application</div><div class="line">...</div><div class="line">&lt;/application&gt;</div></pre></td></tr></table></figure></p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/wy353208214/article/details/50859422" target="_blank" rel="external">https://blog.csdn.net/wy353208214/article/details/50859422</a></p>
-<p>com.ctf.hac.crypt.movAndroid</p>
-<pre><code>&lt;string name=&quot;PluginClass&quot;&gt;com.ctf.hac.dydemo.dynamic.imp.ImpDynamic&lt;/string&gt;
-&lt;string name=&quot;function&quot;&gt;DynamicXor&lt;/string&gt;
-</code></pre>
+
       
     </div>
     
